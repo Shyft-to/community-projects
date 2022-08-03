@@ -1,4 +1,6 @@
-# Create,Read and Update NFTs
+# Create, Read and Update NFTs
+
+## Try out the project hosted here: https://solana-nft-project-nine.vercel.app/
 
 This project illustrates creating, reading, listing NFTs and getting details of an NFT Using SHYFT APIs. You can findout more about our APIs here. [Read Documentation](https://docs.shyft.to/).
 
