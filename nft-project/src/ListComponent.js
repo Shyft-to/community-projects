@@ -12,8 +12,10 @@ const ListAll = ({walletId,setWalletId,setSolDomainApp}) => {
     const [loaded,setLoaded] = useState(false);
     const [network, setNetwork] = useState("mainnet-beta");
     let uwallet = ReactSession.get("userw");
+    let memNetwork =  ReactSession.get("networkSel");
     useEffect(()=>{
         //ReactSession.set("userw",waddress);
+        ReactSession.set("networkSel", null);
         ReactSession.set("solDomain",null);
         if( !waddress )
         {
@@ -65,8 +67,11 @@ const ListAll = ({walletId,setWalletId,setSolDomainApp}) => {
             console.log('I am running and setting the wallet address');
             setWalletId(waddress);
     },[waddress]);
-    
     //console.log(walletId);
+    useEffect(()=>{
+        if(memNetwork)
+            setNetwork(memNetwork);
+    },[memNetwork])
     useEffect(() => {
       console.log("Use Our API EndPoint:",process.env.REACT_APP_URL_EP);
       const endPoint = process.env.REACT_APP_URL_EP;
@@ -142,9 +147,11 @@ const ListAll = ({walletId,setWalletId,setSolDomainApp}) => {
                                 onChange={
                                     (e) => {
                                         ReactSession.set("nfts", null);
+                                        ReactSession.set("networkSel", e.target.value);
                                         setNetwork(e.target.value)
                                     }
                                 }
+                                value={network}
                                 >
                                 <option value="mainnet-beta">Mainnet</option>
                                 <option value="devnet">Devnet</option>
