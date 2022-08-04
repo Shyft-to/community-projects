@@ -511,7 +511,7 @@ h4 {
 
   position: absolute;
   top: 40px;
-  left: 90px;
+  left: 75px;
   bottom: 8px;
 }
 .sidenav .divider {
@@ -589,7 +589,8 @@ h4 {
   .sidemenu-wall
   {
     margin-bottom: 60px;
-    color: #112f4a
+    color: #112f4a;
+    padding-top: 32px;
   }
   .sidemenu-wall p
   {
@@ -610,7 +611,7 @@ h4 {
   }
   .wallet-dom
   {
-    font-size: 0.9em !important;
+    font-size: 18px !important;
     font-weight: 700;
   }
 
