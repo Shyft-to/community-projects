@@ -38,7 +38,7 @@ h4 {
   font-size: 60px;
   line-height: 86px;
   font-weight: 800;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   color: #112f4a;
 }
 
@@ -475,6 +475,7 @@ h4 {
   background: linear-gradient(360deg, #3a44b8 0.07%, #97d2ff 114.49%);
 }
 
+
 .sidenav a {
   padding: 15px 8px 15px 32px;
   text-decoration: none;
@@ -591,6 +592,8 @@ h4 {
     margin-bottom: 60px;
     color: #112f4a;
     padding-top: 32px;
+    padding-left: 25px;
+    padding-right: 10px;
   }
   .sidemenu-wall p
   {
@@ -613,6 +616,24 @@ h4 {
   {
     font-size: 18px !important;
     font-weight: 700;
+  }
+  .wallet-text-side
+  {
+    word-wrap: break-word;
+    font-size: 14px !important;
+    font: 600 14px "Poppins", sans-serif !important;
+    letter-spacing: 1px;
+
+  }
+  .wallet-text-side button
+  {
+    font-size: 14px !important;
+    font: 600 16px "Poppins", sans-serif !important;
+    letter-spacing: 1px;
+    background-color: transparent;
+    text-align: left;
+    border: none;
+    margin-left: -13px;
   }
 
 @media screen and (max-height: 450px) {
@@ -1435,15 +1456,15 @@ h4 {
   z-index: 10;
   width: 100%;
   background-color: white;
-  padding: 15px 5px 5px;
+  padding: 15px 5px 15px;
   border-top: 1px solid #112f4a22;
 }
-/* .red-sphere-back
+.red-sphere-back
 {
   background: url('../images/red-ellipse.png');
   background-position: right top;
   background-repeat: no-repeat;
-} */
+}
 .white-footer-icons img
 {
   width: 70%;
@@ -1492,6 +1513,7 @@ h4 {
 {
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
+  padding-left: 40px;
 }
 .dark-head-table .content:last-of-type
 {
@@ -1503,15 +1525,26 @@ h4 {
 .light-table-body .content
 {
   border-collapse: collapse;
-  font: 400 1rem/1.2rem "Poppins", sans-serif;
+  font: 500 1rem/1.2rem "Poppins", sans-serif;
   letter-spacing: 1px;
   padding: 15px 20px;
+  color: #112f4a;
 }
 .light-table-body .content:first-of-type
 {
   padding-top: 20px;
+  letter-spacing: 2px;
 }
 .light-table-body .content:last-of-type
 {
   text-align: center;
+  font-weight: 600;
+}
+
+.loading-state
+{
+  font: 600 1rem/1.2rem "Poppins", sans-serif;
+  color: #112f4a;
+  letter-spacing: 1px;
+  padding: 20px 5px;
 }

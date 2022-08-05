@@ -1,68 +1,100 @@
-import { useContext, useState,useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from 'axios';
+
 import { WalletContext } from "./WalletContext";
-import { useNavigate,useParams  } from "react-router-dom";
+import { NetworkContext } from "./NetworkContext";
+import coinLogo from './resources/images/coins-icon.svg';
 
 const ListAll = () => {
-    const {walletId,setWalletId} = useContext(WalletContext);
-    const [coins,setCoins] = useState(null);
-    const [network,setNetwork] = useState('devnet');
+    const { walletId, setWalletId } = useContext(WalletContext);
+    const { network, setNetwork } = useContext(NetworkContext);
+    const [coins, setCoins] = useState(null);
+    const [isLoading,setLoading] = useState(false);
     const navigate = useNavigate();
     //const [isLoaded,setLoaded] = useState(false);
-    
-    const {waddress} = useParams();
+
+    const { waddress } = useParams();
     useEffect(() => {
-        if( !waddress )
-        {
+        if (!waddress) {
             console.log('Wallet Not connected')
             navigate('/');
         }
-        else
-        {
+        else {
             setWalletId(waddress);
         }
-    },[])
-    
+    }, [])
+
 
     useEffect(() => {
         const endPoint = process.env.REACT_APP_URL_EP;
         const xKey = process.env.REACT_APP_API_KEY.toString();
 
-        let reqUrl = `12${endPoint}wallet/all_tokens?network=devnet&wallet=${waddress}`;
-    
+        let reqUrl = `${endPoint}wallet/all_tokens?network=${network}&wallet=${waddress}`;
+        setLoading(true);
         axios({
-                url: reqUrl,
-                method: "GET",
-                headers: {
+            url: reqUrl,
+            method: "GET",
+            headers: {
                 "Content-Type": "application/json",
                 "x-api-key": xKey,
-                },
-            })
+            },
+        })
             .then((res) => {
                 console.log(res.data);
-                if(res.data.success)
-                {
+                
+                if (res.data.success) {
                     setCoins(res.data.result);
                 }
-                else
-                {
+                else {
                     setCoins(null);
                 }
+                setLoading(false);
+
             })
             .catch((err) => {
                 console.warn(err);
                 setCoins(null);
-            });
-      
-    }, [walletId]);
-    
+                setLoading(false);
 
-    return ( 
+            });
+
+    }, [walletId, network]);
+
+
+    return (
         <div>
             <div className="right-al-container">
                 <div className="container-lg">
                     <div className="p-1">
-                        <h2 className="section-heading" style={{padding: "80px 0px 40px"}}>All Your Tokens</h2>
+                        <div className="row" style={{ padding: "40px 0px 40px" }}>
+                            <div className="col-md-9">
+                                <h2 className="section-heading">All Your Tokens</h2>
+                            </div>
+                            <div className="col-md-3">
+                                <div className="white-form-group">
+                                    <select
+                                        name="network"
+                                        className="form-control form-select"
+                                        id=""
+                                        onChange={
+                                            (e) => {
+                                                setCoins(null);
+                                                setNetwork(e.target.value)
+                                            }
+                                        }
+                                        value={network}
+                                    >
+                                        <option value="mainnet-beta">Mainnet</option>
+                                        <option value="devnet">Devnet</option>
+                                        <option value="testnet">Testnet</option>
+
+                                    </select>
+                                </div>
+                                {/* currently on: {network} */}
+                            </div>
+                        </div>
 
                         <div className="row dark-head-table">
                             <div className="col-12 col-sm-10 content">Token Address</div>
@@ -70,32 +102,46 @@ const ListAll = () => {
                         </div>
                         
                         {
-                            !coins && (
-                                <div className="text-center">
-                                    No tokes to show
+                            isLoading && 
+                                (<div className="row light-table-body">
+                                    <div className="col-12">
+                                        <div className="text-center loading-state">
+                                            Loading <i className="fas fa-circle-notch fa-spin"></i>
+                                        </div>
+                                    </div>
+                                    
+                                </div>)
+                        }
+                        {
+                            ((!coins || (coins.length === 0)) && !isLoading) && (
+                                <div className="text-center loading-state">
+                                    No Tokes Available
                                 </div>
                             )
                         }
                         {
                             coins && coins.map((coin) => (
-                                <div className="row light-table-body" key={coin.address}>
-                                    <div className="col-12 col-sm-10 content">{coin.address}</div>
-                                    <div className="col-12 col-sm-2 content">{coin.balance}</div>
-                                </div>
-                            )) 
+                                <Link to={`/view-details?token_address=${coin.address}&network=${network}`} className="no-decor text-dark" key={coin.address}>
+                                    <div className="row light-table-body">
+                                        <div className="col-12 col-sm-10 content"><span className="me-2"><img src={coinLogo} alt="token" /></span> {coin.address}</div>
+                                        <div className="col-12 col-sm-2 content">{coin.balance}</div>
+                                    </div>
+                                </Link>
+
+                            ))
                         }
-                        
+
                         {/* <div className="row light-table-body">
-                            <div className="col-12 col-sm-10 content">asdaAvS3avds0asd1123123assad41d1e1</div>
+                            <div className="col-12 col-sm-10 content"><span className="me-2"><img src={coinLogo} alt="token" /></span>asdaAvS3avds0asd1123123assad41d1e1</div>
                             <div className="col-12 col-sm-2 content">12.1 ETH</div>
                         </div> */}
-                        
+
                     </div>
-                    
+
                 </div>
-            </div>  
-        </div> 
+            </div>
+        </div>
     );
 }
- 
+
 export default ListAll;

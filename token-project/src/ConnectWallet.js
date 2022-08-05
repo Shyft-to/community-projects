@@ -50,7 +50,7 @@ const ConnectWallet = () => {
             <div className="container-lg">
                 <div className="row">
                     <div className="col-12 col-md-8">
-                        <h2 className="section-heading" style={{ marginTop: "60px", marginBottom: "20px" }}>Create your own fungible tokens</h2>
+                        <h2 className="section-heading" style={{ marginTop: "60px", marginBottom: "20px" }}>Showcase Your Fungible Tokens with SHYFT</h2>
                         <p className="p-para-light" style={{ marginTop: "30px",marginBottom: "50px", fontSize: "1.2em" }}>Connect, your wallet to get started.</p>
                         <button className="btn-solid-grad" onClick={solanaConnect}>Connect Wallet</button>
                     </div>
