@@ -105,15 +105,15 @@ const ViewToken = () => {
                                 <div className="details-table">
                                 <div className="row">
                                         <div className="col-4">Token Address</div>
-                                        <div className="col-8 text-end" style={{wordWrap: "break-word"}}><a href={`https://explorer.solana.com/address/?cluster=`} target="_blank" className="no-decor" rel="noreferrer">{tokAddr}</a></div>
+                                        <div className="col-8 text-end" style={{wordWrap: "break-word"}}><a href={`https://explorer.solana.com/address/${tokAddr}?cluster=${networkParams[1]}`} target="_blank" className="no-decor" rel="noreferrer">{tokAddr}</a></div>
                                     </div>
                                     <div className="row">
                                         <div className="col-4">Mint Authority</div>
-                                        <div className="col-8 text-end" style={{wordWrap: "break-word"}}><a href={`https://explorer.solana.com/address/?cluster=`} target="_blank" className="no-decor" rel="noreferrer">{mint}</a></div>
+                                        <div className="col-8 text-end" style={{wordWrap: "break-word"}}><a href={`https://explorer.solana.com/address/${mint}?cluster=${networkParams[1]}`} target="_blank" className="no-decor" rel="noreferrer">{mint}</a></div>
                                     </div>
                                     <div className="row">
                                         <div className="col-4">Freeze Authority</div>
-                                        <div className="col-8 text-end" style={{wordWrap: "break-word"}}><a href={`https://explorer.solana.com/address/?cluster=`} target="_blank" className="no-decor" rel="noreferrer">{freeze}</a></div>
+                                        <div className="col-8 text-end" style={{wordWrap: "break-word"}}><a href={`https://explorer.solana.com/address/${freeze}?cluster=${networkParams[1]}`} target="_blank" className="no-decor" rel="noreferrer">{freeze}</a></div>
                                     </div>
                                     <div className="row">
                                         <div className="col-4">Decimals</div>

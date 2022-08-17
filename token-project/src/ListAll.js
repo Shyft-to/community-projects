@@ -115,7 +115,7 @@ const ListAll = () => {
                         {
                             ((!coins || (coins.length === 0)) && !isLoading) && (
                                 <div className="text-center loading-state">
-                                    No Tokes Available
+                                    No Tokens Available
                                 </div>
                             )
                         }
