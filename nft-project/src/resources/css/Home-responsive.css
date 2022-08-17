@@ -267,7 +267,7 @@
   }
 
   .mint-single .image-section .image-container {
-    height: 400px;
+    height: 250px;
   }
   .reversal-tab {
     display: flex;
@@ -444,8 +444,8 @@
     margin-bottom: 40px;
   }
   .mint-single .image-section .image-container {
-    width: 400px;
-    height: 400px;
+    width: 300px;
+    height: 300px;
     margin: 0 auto;
   }
 
@@ -659,8 +659,8 @@
   }
 
   .mint-single .image-section .image-container {
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
   }
   .manage-wallet {
     padding: 60px 0px;
