@@ -1,7 +1,6 @@
 {
   "name": "solana-ft-project-tokens",
   "version": "0.1.0",
-  "homepage": "./",
   "private": true,
   "dependencies": {
     "@solana/buffer-layout": "^4.0.0",

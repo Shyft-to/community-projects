@@ -1,7 +1,6 @@
 {
   "name": "sample-project-nfts",
   "version": "0.1.0",
-  "homepage": "./",
   "private": true,
   "dependencies": {
     "@metaplex/js": "^4.12.0",
