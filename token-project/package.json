@@ -1,8 +1,10 @@
 {
   "name": "solana-ft-project-tokens",
   "version": "0.1.0",
+  "homepage": "./",
   "private": true,
   "dependencies": {
+    "@solana/buffer-layout": "^4.0.0",
     "@solana/wallet-adapter-phantom": "0.9.7",
     "@solana/web3.js": "^1.50.1",
     "@testing-library/jest-dom": "^5.16.4",
