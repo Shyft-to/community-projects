@@ -725,6 +725,11 @@
     width: 40%;
     font: 400 10px/15px "Poppins", sans-serif;
   }
+  .icons-menu
+  {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 @media (max-width: 400px) {

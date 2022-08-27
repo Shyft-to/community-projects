@@ -1759,7 +1759,7 @@ h4 {
 .right-al-container
 {
   margin-left: 250px;
-  min-height: 100vh;
+  min-height: 82vh;
 }
 
 .footer-white
@@ -2063,4 +2063,10 @@ h4 {
   color: #112f4a;
   padding: 0px 2px 16px;
   text-align: center;
+}
+
+
+.icons-menu
+{
+  margin-left: auto;
 }
