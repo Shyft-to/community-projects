@@ -15,6 +15,7 @@ const ListLoader = (props) => {
                         <button className="btn-solid-grad" onClick={() => props.listNFT(props.listingNFT)}>List</button>
                         <button className="btn-solid-grad" onClick={props.closePopupList}>Close</button>
                     </div>
+                    <div className="text-center text-danger">{props.errMessg}</div>
                     </div>
                 </div>
             </div>

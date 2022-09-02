@@ -10,6 +10,7 @@ import FetchLoader from "./Loaders/FetchComponent";
 import ListLoader from "./Loaders/ListLoader";
 
 import { signAndConfirmTransaction } from "./utility/common";
+import SuccessLoader from "./Loaders/SuccessLoader";
 
 
 const ListAll = () => {
@@ -80,6 +81,8 @@ const ListAll = () => {
     const [listingPrice,setListingPrice] = useState();
     const [showLister,setShowLister] = useState(false);
     const [okModal,setOkModal] = useState(false);
+
+    const [errMessg,setErrMessg] = useState('');
     
     const lister = (nft_addr,nftname,nfturi) => {
       setListingNFT(nft_addr);
@@ -111,7 +114,7 @@ const ListAll = () => {
         const xKey = process.env.REACT_APP_API_KEY;
         const endPoint = process.env.REACT_APP_URL_EP;
         const marketplaceAddress = process.env.REACT_APP_MARKPLACE;
-        setMssg("");
+        
         
         let nftUrl = `${endPoint}marketplace/list`;
 
@@ -137,6 +140,7 @@ const ListAll = () => {
               console.log(res.data);
               if(res.data.success === true)
               {
+                setOkModal(true);
                 setShowLister(false);
                 const transaction = res.data.result.encoded_transaction;
                 const ret_result = await signAndConfirmTransaction(network,transaction,callback);
@@ -147,8 +151,8 @@ const ListAll = () => {
             // Catch errors if any
             .catch((err) => {
               console.warn(err);
-              setMssg(err.message);
-              setShowLister(false);
+              setErrMessg(err.message);
+              //setShowLister(false);
             });
     }
     const closePopupList = () => {
@@ -159,7 +163,8 @@ const ListAll = () => {
     return (
       <div>
         {!loaded && <FetchLoader />}
-        {showLister && <ListLoader listingNFT={listingNFT} listingName={listingName} listingURI={listingURI} listingPrice={listingPrice} setListingPrice={setListingPrice} listNFT={listNFT} closePopupList={closePopupList} />}
+        {showLister && <ListLoader listingNFT={listingNFT} listingName={listingName} listingURI={listingURI} listingPrice={listingPrice} setListingPrice={setListingPrice} listNFT={listNFT} closePopupList={closePopupList} errMessg={errMessg} />}
+        {okModal && <SuccessLoader />}
         <div className="right-al-container">
           <div className="container-lg">
 

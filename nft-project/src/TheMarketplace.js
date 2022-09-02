@@ -6,6 +6,7 @@ import { WalletContext } from "./Context/WalletContext";
 import NftOne from "./NftOne";
 import { signAndConfirmTransaction } from "./utility/common";
 import BuyLoader from "./Loaders/BuyLoader";
+import SuccessLoader from "./Loaders/SuccessLoader";
 
 const TheMarketplace = () => {
   const navigate = useNavigate();
@@ -84,7 +85,7 @@ const TheMarketplace = () => {
     const xKey = process.env.REACT_APP_API_KEY;
         const endPoint = process.env.REACT_APP_URL_EP;
         const marketplaceAddress = process.env.REACT_APP_MARKPLACE;
-        setMssg("");
+        setErrorMsgBuy("");
         
         let nftUrl = `123${endPoint}marketplace/buy`;
 
@@ -122,8 +123,8 @@ const TheMarketplace = () => {
             // Catch errors if any
             .catch((err) => {
               console.warn(err);
-              setMssg(err.message);
-              setSure(false);
+              setErrorMsgBuy(err.message);
+              //setSure(false);
             });
   }
 
@@ -192,7 +193,8 @@ const TheMarketplace = () => {
                 <p className="p-para">{mssg}</p>
               </div>
             )}
-            {sure && <BuyLoader closePopupList={closePopupList} buyNow={buyNow} nfAddr={nfAddr} />}
+            {sure && <BuyLoader closePopupList={closePopupList} buyNow={buyNow} nfAddr={nfAddr} errorMsgBuy={errorMsgBuy} />}
+            {okModal && <SuccessLoader />}
             <div className="row mt-4">
               {/* {loaded &&
                 nfts.map((nft) => (
