@@ -2145,3 +2145,27 @@ h4 {
   text-align: center;
   font-weight: 600;
 }
+
+.dark-head-table .content
+{
+  background-color: #112f4a;
+  border-collapse: collapse;
+  color: #fff;
+  font: 400 1rem/1.2rem "Poppins", sans-serif;
+  letter-spacing: 1px;
+  padding: 15px 20px;
+  
+  
+}
+.dark-head-table .content:first-of-type
+{
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  padding-left: 40px;
+}
+.dark-head-table .content:last-of-type
+{
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  text-align: center;
+}

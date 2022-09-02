@@ -185,7 +185,7 @@ const TheMarketplace = () => {
   return (
     <div>
       <div className="right-al-container mb-2">
-        <div className="container-lg bg-primary">
+        <div className="container-lg">
           <div className="marketplace-lp">
             <h2 className="section-heading">NFT Marketplace</h2>
             {mssg && (
