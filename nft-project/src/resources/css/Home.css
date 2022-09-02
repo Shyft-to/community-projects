@@ -2070,3 +2070,58 @@ h4 {
 {
   margin-left: auto;
 }
+
+
+/* new styles */
+.full-overlay .list-square
+{
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  max-height: 300px;
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 0px;
+}
+.full-overlay .list-square input
+{
+  width: 80%;
+  margin: 0 auto;
+}
+.full-overlay .list-square .btn-solid-grad
+{
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.full-overlay .list-square img
+{
+  width: 50px;
+}
+
+.white-button-container-sm {
+  /* background-color: blue; */
+  background: #5965f3;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #e0499b, #5965f3);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #e0499b, #5965f3);
+  padding: 2px;
+  border-radius: 40px;
+  height: 30px;
+  transition: all 0.2s;
+}
+
+.white-button-container-sm button {
+  font: 600 14px/0 "Poppins", sans-serif;
+  color: #112f4a;
+  height: 100%;
+  width: 100%;
+  border-radius: 39px;
+  border: none;
+  background-color: #fff;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+}

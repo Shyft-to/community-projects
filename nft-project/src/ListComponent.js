@@ -7,6 +7,9 @@ import { WalletContext } from "./Context/WalletContext";
 import { NetworkContext } from "./Context/NetworkContext";
 
 import FetchLoader from "./Loaders/FetchComponent";
+import ListLoader from "./Loaders/ListLoader";
+
+import { signAndConfirmTransaction } from "./utility/common";
 
 
 const ListAll = () => {
@@ -69,15 +72,96 @@ const ListAll = () => {
               setLoaded(true);
             });
     },[walletId,network]);
+
+    //all functions required for listing
+    const [listingNFT,setListingNFT] = useState(null);
+    const [listingName,setListingName] = useState(null);
+    const [listingURI,setListingURI] = useState(null);
+    const [listingPrice,setListingPrice] = useState(null);
+    const [showLister,setShowLister] = useState(false);
+    const [okModal,setOkModal] = useState(false);
+    
+    const lister = (nft_addr,nftname,nfturi) => {
+      setListingNFT(nft_addr);
+      setListingName(nftname);
+      setListingURI(nfturi);
+      setShowLister(true);
+    }
+    const callback = (signature,result) => {
+      console.log("Signature ",signature);
+      console.log("result ",result);
+      try {
+        if(signature.err === null)
+        {
+          console.log('ok');
+        }
+        else
+        {
+          console.log('failed');
+        }
+        setOkModal(false);
+      } catch (error) {
+        console.log('failed');
+        setOkModal(false);
+      }
+      
+    }
+
+    const listNFT = (nft_addr) => {
+        const xKey = process.env.REACT_APP_API_KEY;
+        const endPoint = process.env.REACT_APP_URL_EP;
+        const marketplaceAddress = process.env.REACT_APP_MARKPLACE;
+        setMssg("");
+        
+        let nftUrl = `${endPoint}marketplace/list`;
+
+        axios({
+            // Endpoint to list
+            url: nftUrl,
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "x-api-key": xKey,
+            },
+            data: {
+                network:'devnet',
+                marketplace_address: marketplaceAddress,
+                nft_address: nft_addr,
+                price: Number(listingPrice),
+                seller_wallet: walletId
+                
+            }
+          })
+            // Handle the response from backend here
+            .then(async (res) => {
+              console.log(res.data);
+              if(res.data.success === true)
+              {
+                setShowLister(false);
+                const transaction = res.data.result.encoded_transaction;
+                const ret_result = await signAndConfirmTransaction(network,transaction,callback);
+                console.log(ret_result);
+              }
+              
+            })
+            // Catch errors if any
+            .catch((err) => {
+              console.warn(err);
+              setMssg(err.message);
+              setShowLister(false);
+            });
+    }
+    const closePopupList = () => {
+      setShowLister(false);
+    }
+    
     
     return (
       <div>
         {!loaded && <FetchLoader />}
+        {showLister && <ListLoader listingNFT={listingNFT} listingName={listingName} listingURI={listingURI} listingPrice={listingPrice} setListingPrice={setListingPrice} listNFT={listNFT} closePopupList={closePopupList} />}
         <div className="right-al-container">
           <div className="container-lg">
-            {/* {loaded && 
-
-                        } */}
 
             <div className="row">
               <div className="col-9">
@@ -114,35 +198,6 @@ const ListAll = () => {
               </div>
             )}
             <div className="row">
-              {/* <div className="col-6 col-xs-6 col-sm-6 col-md-4 col-lg-3 port-cust-padding">
-                                <div className="cards-outer-port">
-                                    <a href="" style={{textDecoration: "none"}}>
-                                        <div className="inner-box">
-                                            <div className="inner-box-img-container">
-                                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScgOEqtH-wzp3LS_mInNtYSseUvJGg85fubvIAJQPaWAmflkObvFghL5V8YclM-zh2Fzc&usqp=CAU" alt="NftImage" />
-                                            </div>
-                                            <div className="d-flex justify-content-between px-1 py-2">
-                                                <div>
-                                                    <p className="port-para-2">Name</p>
-
-                                                </div>
-                                                <div>
-                                                    <a href="/" className="no-decor" disabled>
-                                                        <div className="btn-link-sm">
-                                                            <div>Update</div>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                
-                            </div> */}
-
-              {/* <div className="text-center loading-state my-5">
-                                    Loading <i className="fas fa-circle-notch fa-spin"></i>
-                            </div> */}
 
               {loaded &&
                 nfts.map((nft) => (
@@ -169,7 +224,7 @@ const ListAll = () => {
                               {nft.name}
                             </p>
                           </div>
-                          <div className="col-12 col-xl-6 pt-1">
+                          {/* <div className="col-12 col-xl-6 pt-1">
                             {nft.update_authority === waddress ? (
                               <div className="white-sm-btn-upd">
                                 <Link
@@ -190,16 +245,9 @@ const ListAll = () => {
                                 </Link>
                               </div>
                             )}
-                            {/* <div className={(nft.update_authority === waddress)?"white-sm-btn-upd":"white-sm-btn-upd disabled"} data-bs-toggle={(nft.update_authority === waddress)?"":"tooltip"} title="You do not have update authority for this NFT">
-                              
-                              <Link
-                                className="btn linker"
-                                to={(nft.update_authority === waddress)?`/update?token_address=${nft.mint}&network=${network}`:`#`}
-                                
-                              >
-                                Update
-                              </Link>
-                            </div> */}
+                          </div> */}
+                          <div className="col-12 col-xl-6 pt-1 px-3">
+                            <div className="white-button-container-sm" ><button onClick={() => lister(nft.mint,nft.name,nft.image_uri)}>List</button></div>
                           </div>
                         </div>
                       </div>
