@@ -77,7 +77,7 @@ const ListAll = () => {
     const [listingNFT,setListingNFT] = useState(null);
     const [listingName,setListingName] = useState(null);
     const [listingURI,setListingURI] = useState(null);
-    const [listingPrice,setListingPrice] = useState(null);
+    const [listingPrice,setListingPrice] = useState();
     const [showLister,setShowLister] = useState(false);
     const [okModal,setOkModal] = useState(false);
     
