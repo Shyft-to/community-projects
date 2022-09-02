@@ -23,6 +23,8 @@ import Update from './UpdateComponent';
 import NavBarComponent from './headerComponent/NavBarComponent';
 import Footer from './footerComponent/footer';
 import ConnectWalletCreate from './ConnectWalletCreate';
+import MarketplaceCreator from './MarketplaceCreator';
+import TheMarketplace from './TheMarketplace';
 
 
 // import Wallet from './Wallet';
@@ -50,6 +52,9 @@ function App() {
                 <Route exact path="/get-details" element={<GetDetails />} />
                 <Route exact path="/create" element={<Create />} />
                 <Route exact path="/update" element={<Update />} />
+                <Route exact path="/mark" element={<MarketplaceCreator />} />
+                <Route exact path="/marketplace/:waddress" element={<TheMarketplace />} />
+                
                 <Route exact path="*" element={<ConnectWallet />} />
               </Routes>
               <Footer />

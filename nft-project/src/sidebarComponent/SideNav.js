@@ -130,6 +130,46 @@ const SideNav = () => {
               </div>
             </div>
         </Link>
+        <Link to="/marketplace">
+            <div className="row sidemenu-anc">
+              <div className="col-3">
+                <img src={createIcon} alt="Create" />
+              </div>
+              <div className="col-9">
+                <p>Marketplace</p>
+              </div>
+            </div>
+        </Link>
+        <Link to="/">
+            <div className="row sidemenu-anc">
+              <div className="col-3">
+                <img src={createIcon} alt="Create" />
+              </div>
+              <div className="col-9">
+                <p>My NFTs</p>
+              </div>
+            </div>
+        </Link>
+        <Link to="/">
+            <div className="row sidemenu-anc">
+              <div className="col-3">
+                <img src={createIcon} alt="Create" />
+              </div>
+              <div className="col-9">
+                <p>History</p>
+              </div>
+            </div>
+        </Link>
+        <Link to="/">
+            <div className="row sidemenu-anc">
+              <div className="col-3">
+                <img src={createIcon} alt="Create" />
+              </div>
+              <div className="col-9">
+                <p>Stats</p>
+              </div>
+            </div>
+        </Link>
       </div>
     </div>
   );
