@@ -11,6 +11,10 @@ import { WalletContext } from "../Context/WalletContext";
 import wallIcon from '../resources/images/sidebar/wallet-icon.svg';
 import dashIcon from '../resources/images/sidebar/dashboard-icon.svg';
 import createIcon from '../resources/images/sidebar/create-icon.svg';
+import markerPlaceIcon from '../resources/images/sidebar/marketplace.svg';
+import myListingIcon from '../resources/images/sidebar/mylistings.svg';
+import historyIcon from '../resources/images/sidebar/history.svg';
+import statsIcon from '../resources/images/sidebar/stats.svg';
 
 
 const SideNav = () => {
@@ -108,7 +112,7 @@ const SideNav = () => {
         <a id="cls-button" className="closebtn" onClick={closeNav}>
           Dismiss
         </a>
-        <Link className={(location_get.pathname!=='/create'&&location_get.pathname!=='/connect-wallet')?"active":""} to={(walletId===null)?`/`:`/wallet/${walletId}`}>
+        <Link className={(location_get.pathname===`/wallet/${walletId}`&&location_get.pathname==='/')?"active":""} to={(walletId===null)?`/`:`/wallet/${walletId}`}>
         {/* <Link to={(walletId===null)?`/`:`/wallet/${walletId}`}> */}
             <div className="row sidemenu-anc">
               <div className="col-3">
@@ -130,30 +134,30 @@ const SideNav = () => {
               </div>
             </div>
         </Link>
-        <Link to="/marketplace">
+        <Link to="/marketplace" className={(location_get.pathname==='/marketplace')?"active":""}>
             <div className="row sidemenu-anc">
               <div className="col-3">
-                <img src={createIcon} alt="Create" />
+                <img src={markerPlaceIcon} alt="Create" />
               </div>
               <div className="col-9">
                 <p>Marketplace</p>
               </div>
             </div>
         </Link>
-        <Link to="/">
+        <Link to="/my-listings" className={(location_get.pathname==='/my-listings')?"active":""}>
             <div className="row sidemenu-anc">
               <div className="col-3">
-                <img src={createIcon} alt="Create" />
+                <img src={myListingIcon} alt="listing" />
               </div>
               <div className="col-9">
                 <p>My NFTs</p>
               </div>
             </div>
         </Link>
-        <Link to="/">
+        <Link to="/transactions" className={(location_get.pathname==='/transactions')?"active":""}>
             <div className="row sidemenu-anc">
               <div className="col-3">
-                <img src={createIcon} alt="Create" />
+                <img src={historyIcon} alt="history" />
               </div>
               <div className="col-9">
                 <p>History</p>
@@ -163,7 +167,7 @@ const SideNav = () => {
         <Link to="/">
             <div className="row sidemenu-anc">
               <div className="col-3">
-                <img src={createIcon} alt="Create" />
+                <img src={statsIcon} alt="stats" />
               </div>
               <div className="col-9">
                 <p>Stats</p>

@@ -10,7 +10,7 @@ import SuccessLoader from "./Loaders/SuccessLoader";
 
 const TheMarketplace = () => {
   const navigate = useNavigate();
-  const { waddress } = useParams();
+  //const { waddress } = useParams();
   const network = "devnet";
   const [loaded, setLoaded] = useState(true);
   const [nfts, setNfts] = useState([
@@ -132,15 +132,15 @@ const TheMarketplace = () => {
     setSure(false);
   }
 
-  // useEffect(() => {
-  //     if (!waddress) {
-  //         console.log('Wallet Not connected')
-  //         navigate('/');
-  //     }
-  //     else {
-  //         setWalletId(waddress);
-  //     }
-  // }, []);
+  useEffect(() => {
+      if (!walletId) {
+          console.log('Wallet Not connected')
+          navigate('/');
+      }
+      // else {
+      //     setWalletId(waddress);
+      // }
+  }, []);
 
   //Required Code to fetch data from the marketplace
   // useEffect(() => {
@@ -222,7 +222,7 @@ const TheMarketplace = () => {
                             </p>
                           </div>
                           <div className="col-12 col-xl-6 pt-1">
-                            {nft.update_authority === waddress ? (
+                            {nft.update_authority === walletId ? (
                               <div className="white-sm-btn-upd">
                                 <Link
                                   className="btn linker"

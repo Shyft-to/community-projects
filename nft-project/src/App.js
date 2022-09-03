@@ -26,6 +26,7 @@ import ConnectWalletCreate from './ConnectWalletCreate';
 import MarketplaceCreator from './MarketplaceCreator';
 import TheMarketplace from './TheMarketplace';
 import Transactions from './Transactions';
+import ListedNFTs from './ListedNfts';
 
 
 // import Wallet from './Wallet';
@@ -54,8 +55,9 @@ function App() {
                 <Route exact path="/create" element={<Create />} />
                 <Route exact path="/update" element={<Update />} />
                 <Route exact path="/mark" element={<MarketplaceCreator />} />
-                <Route exact path="/marketplace/:waddress" element={<TheMarketplace />} />
+                <Route exact path="/marketplace" element={<TheMarketplace />} />
                 <Route exact path="/transactions" element={<Transactions />} />
+                <Route exact path="/my-listings" element={<ListedNFTs />} />
                 
                 <Route exact path="*" element={<ConnectWallet />} />
               </Routes>
