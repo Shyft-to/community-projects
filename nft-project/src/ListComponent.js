@@ -40,7 +40,7 @@ const ListAll = () => {
         const endPoint = process.env.REACT_APP_URL_EP;
         setMssg("");
         
-        let nftUrl = `${endPoint}nft/read_all?network=${network}&address=${waddress}`;
+        let nftUrl = `${endPoint}nft/read_all?network=${network}&address=${waddress}&refresh=refresh`;
 
         axios({
             // Endpoint to get NFTs
@@ -97,6 +97,7 @@ const ListAll = () => {
         if(signature.err === null)
         {
           console.log('ok');
+          navigate(`/my-listings`);
         }
         else
         {
@@ -152,6 +153,7 @@ const ListAll = () => {
             .catch((err) => {
               console.warn(err);
               setErrMessg(err.message);
+              navigate(`/my-listings`);
               //setShowLister(false);
             });
     }

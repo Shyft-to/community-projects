@@ -150,7 +150,7 @@ const SideNav = () => {
                 <img src={myListingIcon} alt="listing" />
               </div>
               <div className="col-9">
-                <p>My NFTs</p>
+                <p>My Listings</p>
               </div>
             </div>
         </Link>

@@ -12,31 +12,32 @@ const TheMarketplace = () => {
   const navigate = useNavigate();
   //const { waddress } = useParams();
   const network = "devnet";
-  const [loaded, setLoaded] = useState(true);
-  const [nfts, setNfts] = useState([
-    {
-      network: "devnet",
-      marketplace_address: "8svcgCzGTT12h3uvDNR3BUY27hJvKtYdxcMKjEQzh14q",
-      seller_address: "AaYFExyZuMHbJHzjimKyQBAH1yfA9sKTxSzBc6Nr5X4s",
-      price: 100,
-      currency_symbol: "SD",
-      nft_address: "GpLzvmQYcQM3USH7RGehoriEzmJLJ8AfKVdLFZRoVBsz",
-      list_state: "9xPa5TQyctvZ4vGkKcgEzT316JankshomR13dPLVN2nD",
-      created_at: "2022-08-22T17:16:06.000Z",
-      receipt: "FwEG6zTfM4mT9SaCMS61nswuJcfNDLEi2xn7T7gs4qRs",
-    },
-    {
-      network: "devnet",
-      marketplace_address: "8svcgCzGTT12h3uvDNR3BUY27hJvKtYdxcMKjEQzh14q",
-      seller_address: "GE4kh5FsCDWeJfqLsKx7zC9ijkqKpCuYQxh8FYBiTJe",
-      price: 300,
-      currency_symbol: "SD",
-      nft_address: "5r2rJ37qUGYCqqHzvjBTjMBh4Pu2VD9wSiUnsky8UzYS",
-      list_state: "8WM1Etk7fWraMshaAgYc6jBBKVAGsPwwRnNWyke9o5yN",
-      created_at: "2022-08-22T17:20:17.000Z",
-      receipt: "D9qHwezut8c7rmLkaGE1h1Yo3fVTp9EKYnLRDFjupyA3",
-    },
-  ]);
+  const [loaded, setLoaded] = useState(false);
+  // const [nfts, setNfts] = useState([
+  //   {
+  //     network: "devnet",
+  //     marketplace_address: "8svcgCzGTT12h3uvDNR3BUY27hJvKtYdxcMKjEQzh14q",
+  //     seller_address: "AaYFExyZuMHbJHzjimKyQBAH1yfA9sKTxSzBc6Nr5X4s",
+  //     price: 100,
+  //     currency_symbol: "SD",
+  //     nft_address: "GpLzvmQYcQM3USH7RGehoriEzmJLJ8AfKVdLFZRoVBsz",
+  //     list_state: "9xPa5TQyctvZ4vGkKcgEzT316JankshomR13dPLVN2nD",
+  //     created_at: "2022-08-22T17:16:06.000Z",
+  //     receipt: "FwEG6zTfM4mT9SaCMS61nswuJcfNDLEi2xn7T7gs4qRs",
+  //   },
+  //   {
+  //     network: "devnet",
+  //     marketplace_address: "8svcgCzGTT12h3uvDNR3BUY27hJvKtYdxcMKjEQzh14q",
+  //     seller_address: "GE4kh5FsCDWeJfqLsKx7zC9ijkqKpCuYQxh8FYBiTJe",
+  //     price: 300,
+  //     currency_symbol: "SD",
+  //     nft_address: "5r2rJ37qUGYCqqHzvjBTjMBh4Pu2VD9wSiUnsky8UzYS",
+  //     list_state: "8WM1Etk7fWraMshaAgYc6jBBKVAGsPwwRnNWyke9o5yN",
+  //     created_at: "2022-08-22T17:20:17.000Z",
+  //     receipt: "D9qHwezut8c7rmLkaGE1h1Yo3fVTp9EKYnLRDFjupyA3",
+  //   },
+  // ]);
+  const [nfts, setNfts] = useState(null);
   const [mssg, setMssg] = useState("");
 
   const { walletId, setWalletId } = useContext(WalletContext);
@@ -60,15 +61,18 @@ const TheMarketplace = () => {
       if(signature.err === null)
       {
         console.log('ok');
+        navigate(`/wallet/${walletId}`);
       }
       else
       {
         console.log('failed');
+        navigate(`/wallet/${walletId}`);
       }
       setOkModal(false);
     } catch (error) {
       console.log('failed');
       setOkModal(false);
+      navigate(`/wallet/${walletId}`);
     }
     
   }
@@ -87,7 +91,7 @@ const TheMarketplace = () => {
         const marketplaceAddress = process.env.REACT_APP_MARKPLACE;
         setErrorMsgBuy("");
         
-        let nftUrl = `123${endPoint}marketplace/buy`;
+        let nftUrl = `${endPoint}marketplace/buy`;
 
         axios({
             // Endpoint to list
@@ -102,7 +106,7 @@ const TheMarketplace = () => {
                 marketplace_address: marketplaceAddress,
                 nft_address: nftAddr,
                 price: Number(price),
-                seller_wallet: selWall,
+                seller_address: selWall,
                 buyer_wallet: walletId
                 
             }
@@ -115,7 +119,7 @@ const TheMarketplace = () => {
                 setSure(false);
                 setOkModal(true);
                 const transaction = res.data.result.encoded_transaction;
-                const ret_result = await signAndConfirmTransaction(network,transaction,callback);
+                const ret_result = await signAndConfirmTransaction('devnet',transaction,callback);
                 console.log(ret_result);
               }
               
@@ -124,7 +128,8 @@ const TheMarketplace = () => {
             .catch((err) => {
               console.warn(err);
               setErrorMsgBuy(err.message);
-              //setSure(false);
+              setOkModal(false);
+              // setSure(false);
             });
   }
 
@@ -143,47 +148,50 @@ const TheMarketplace = () => {
   }, []);
 
   //Required Code to fetch data from the marketplace
-  // useEffect(() => {
-  //     const xKey = process.env.REACT_APP_API_KEY;
-  //     const endPoint = process.env.REACT_APP_URL_EP;
-  //     setMssg("");
+  useEffect(() => {
+      const xKey = process.env.REACT_APP_API_KEY;
+      const endPoint = process.env.REACT_APP_URL_EP;
+      const marketplaceAddress = process.env.REACT_APP_MARKPLACE; 
+      setMssg("");
 
-  //     let nftUrl = `123${endPoint}marketplace/active_listings?network=${network}&marketplace_address=54K5BTMj8ynktzEeaD1iGhAJsCN2svBKmD1fTQTonbBB'`;
+      let nftUrl = `${endPoint}marketplace/active_listings?network=${net}&marketplace_address=${marketplaceAddress}`;
 
-  //     axios({
-  //         // Endpoint to get NFTs
-  //         url: nftUrl,
-  //         method: "GET",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           "x-api-key": xKey,
-  //         },
-  //       })
-  //         // Handle the response from backend here
-  //         .then((res) => {
-  //           console.log(res.data);
-  //           if(res.data.success === true)
-  //             setNfts(res.data.result);
-  //           else
-  //           {
-  //               setMssg("Some Error Occured");
-  //               setNfts([]);
-  //           }
-  //           setLoaded(true);
-  //           //ReactSession.set("nfts", res.data.result);
-  //           //setLoaded(true);
-  //         })
-  //         // Catch errors if any
-  //         .catch((err) => {
-  //           console.warn(err);
-  //           setMssg(err.message);
-  //           setNfts([]);
-  //           setLoaded(true);
-  //         });
-  // },[walletId]);
+      axios({
+          // Endpoint to get NFTs
+          url: nftUrl,
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "x-api-key": xKey,
+          },
+        })
+          // Handle the response from backend here
+          .then((res) => {
+            console.log(res.data);
+            if(res.data.success === true)
+              setNfts(res.data.result);
+            else
+            {
+                setMssg("Some Error Occured");
+                setNfts([]);
+            }
+            setLoaded(true);
+            //ReactSession.set("nfts", res.data.result);
+            //setLoaded(true);
+          })
+          // Catch errors if any
+          .catch((err) => {
+            console.warn(err);
+            setMssg(err.message);
+            setNfts([]);
+            setLoaded(true);
+          });
+  },[walletId]);
 
   return (
     <div>
+     {sure && <BuyLoader closePopupList={closePopupList} buyNow={buyNow} nfAddr={nfAddr} errorMsgBuy={errorMsgBuy} />}
+      {okModal && <SuccessLoader />}
       <div className="right-al-container mb-2">
         <div className="container-lg">
           <div className="marketplace-lp">
@@ -193,8 +201,7 @@ const TheMarketplace = () => {
                 <p className="p-para">{mssg}</p>
               </div>
             )}
-            {sure && <BuyLoader closePopupList={closePopupList} buyNow={buyNow} nfAddr={nfAddr} errorMsgBuy={errorMsgBuy} />}
-            {okModal && <SuccessLoader />}
+            
             <div className="row mt-4">
               {/* {loaded &&
                 nfts.map((nft) => (

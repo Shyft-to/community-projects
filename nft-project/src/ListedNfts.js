@@ -146,7 +146,7 @@ const ListedNFTs = () => {
         const endPoint = process.env.REACT_APP_URL_EP;
         setMssg("");
   
-        let nftUrl = `123${endPoint}marketplace/active_listings?network=${network}&marketplace_address=54K5BTMj8ynktzEeaD1iGhAJsCN2svBKmD1fTQTonbBB'`;
+        let nftUrl = `${endPoint}marketplace/active_listings?network=${network}&marketplace_address=54K5BTMj8ynktzEeaD1iGhAJsCN2svBKmD1fTQTonbBB'`;
   
         axios({
             // Endpoint to get NFTs
@@ -197,7 +197,7 @@ const ListedNFTs = () => {
                   
                   {loaded &&
                   nfts.filter(nft=>nft.seller_address === walletId).map((nft) => (
-                      <NftTwo buyList={buyList} nft={nft} key={nft.nft_address}/>
+                      <NftTwo buyList={buyList} nft={nft} key={nft.nft_address} />
                   ))}
                   {
                     loaded && ((nfts.filter(nft=>nft.seller_address === walletId).length <=0)?<div className="p-para text-center">You have not Listed any NFTs</div>:"")
