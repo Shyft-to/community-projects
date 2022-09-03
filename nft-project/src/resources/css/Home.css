@@ -2137,6 +2137,7 @@ h4 {
   letter-spacing: 1px;
   padding: 15px 20px;
   color: #112f4a;
+  word-wrap: break-word;
 }
 .light-table-body .content:first-of-type
 {
@@ -2171,4 +2172,17 @@ h4 {
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
   text-align: center;
+}
+
+.transaction-lp
+{
+  padding-top: 30px;
+}
+.marketplace-lp
+{
+  padding-top: 30px;
+}
+.your-listings
+{
+  padding-top: 30px;
 }

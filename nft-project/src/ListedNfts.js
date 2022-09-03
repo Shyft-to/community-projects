@@ -144,9 +144,10 @@ const ListedNFTs = () => {
     useEffect(() => {
         const xKey = process.env.REACT_APP_API_KEY;
         const endPoint = process.env.REACT_APP_URL_EP;
+        const marketplaceAddress = process.env.REACT_APP_MARKPLACE; 
         setMssg("");
   
-        let nftUrl = `${endPoint}marketplace/active_listings?network=${network}&marketplace_address=54K5BTMj8ynktzEeaD1iGhAJsCN2svBKmD1fTQTonbBB'`;
+        let nftUrl = `${endPoint}marketplace/seller_listings?network=devnet&marketplace_address=${marketplaceAddress}&seller_address=${walletId}`;
   
         axios({
             // Endpoint to get NFTs
@@ -184,8 +185,8 @@ const ListedNFTs = () => {
       <div>
         <div className="right-al-container mb-2">
           <div className="container-lg">
-            <div className="marketplace-lp">
-              <h2 className="section-heading">NFT Marketplace</h2>
+            <div className="your-listings">
+              <h2 className="section-heading">Your Marketplace Listings</h2>
               {mssg && (
                 <div className="pt-5 text-center">
                   <p className="p-para">{mssg}</p>

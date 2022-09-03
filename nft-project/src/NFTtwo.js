@@ -47,20 +47,20 @@ const NftTwo = (props) => {
                     </div>
 
                     <div className="row pt-3">
-                        <div className="col-12 col-xl-9">
+                        <div className="col-12 col-xl-7">
                             <p
-                                className="port-para-2 text-center text-xl-start"
+                                className="port-para-2 text-start"
                                 style={{ wordWrap: "break-word" }}
                             >
                                 {name}
                             </p>
                         </div>
-                        <div className="col-12 col-xl-3">
+                        <div className="col-12 col-xl-5">
                             <p
-                                className="port-para-2 text-center text-xl-rend"
+                                className="port-para-2 text-end"
                                 style={{ wordWrap: "break-word" }}
                             >
-                                {JSON.stringify(props.nft.price)}
+                                {JSON.stringify(props.nft.price)} {props.nft.currency_symbol}
                             </p>
                         </div>
 
