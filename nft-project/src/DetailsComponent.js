@@ -4,6 +4,7 @@ import axios from "axios";
 import { signAndConfirmTransaction } from "./utility/common";
 import SuccessLoader from "./Loaders/SuccessLoader";
 import BurnLoader from "./Loaders/BurnLoader";
+import ListLoader from "./Loaders/ListLoader";
 //import { ReactSession } from "react-client-session";
 
 import { WalletContext } from "./Context/WalletContext";
@@ -186,6 +187,94 @@ const GetDetails = () => {
         });
   }
 
+
+  //all functions required for listing
+  const [listingNFT,setListingNFT] = useState(null);
+  const [listingName,setListingName] = useState(null);
+  const [listingURI,setListingURI] = useState(null);
+  const [listingPrice,setListingPrice] = useState();
+  const [showLister,setShowLister] = useState(false);
+  const [okModal,setOkModal] = useState(false);
+
+  const [errMessg,setErrMessg] = useState('');
+  
+  const lister = (nft_addr,nftname,nfturi) => {
+    setListingNFT(nft_addr);
+    setListingName(nftname);
+    setListingURI(nfturi);
+    setShowLister(true);
+  }
+  const callbackList = (signature,result) => {
+    console.log("Signature ",signature);
+    console.log("result ",result);
+    try {
+      if(signature.err === null)
+      {
+        console.log('ok');
+        navigate(`/my-listings`);
+      }
+      else
+      {
+        console.log('failed');
+      }
+      setOkModal(false);
+    } catch (error) {
+      console.log('failed');
+      setOkModal(false);
+    }
+    
+  }
+
+  const listNFT = (nft_addr) => {
+      const xKey = process.env.REACT_APP_API_KEY;
+      const endPoint = process.env.REACT_APP_URL_EP;
+      const marketplaceAddress = process.env.REACT_APP_MARKPLACE;
+      
+      
+      let nftUrl = `${endPoint}marketplace/list`;
+
+      axios({
+          // Endpoint to list
+          url: nftUrl,
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-api-key": xKey,
+          },
+          data: {
+              network:'devnet',
+              marketplace_address: marketplaceAddress,
+              nft_address: nft_addr,
+              price: Number(listingPrice),
+              seller_wallet: walletId
+              
+          }
+        })
+          // Handle the response from backend here
+          .then(async (res) => {
+            console.log(res.data);
+            if(res.data.success === true)
+            {
+              setOkModal(true);
+              setShowLister(false);
+              const transaction = res.data.result.encoded_transaction;
+              const ret_result = await signAndConfirmTransaction('devnet',transaction,callbackList);
+              console.log(ret_result);
+            }
+            
+          })
+          // Catch errors if any
+          .catch((err) => {
+            console.warn(err);
+            setErrMessg(err.message);
+            navigate(`/my-listings`);
+            //setShowLister(false);
+          });
+  }
+  const closePopupList = () => {
+    setShowLister(false);
+  }
+
     return (
         
         <div>
@@ -196,6 +285,8 @@ const GetDetails = () => {
             {
                 burning && <BurnLoader />
             }
+            {showLister && <ListLoader listingNFT={listingNFT} listingName={listingName} listingURI={listingURI} listingPrice={listingPrice} setListingPrice={setListingPrice} listNFT={listNFT} closePopupList={closePopupList} errMessg={errMessg} />}
+            {okModal && <SuccessLoader />}
             <div className="fixed-price-page generic-ball-background right-al-container">
                 <div className="container-xl">
                     <div className="row title-container" style={{marginTop: "5px"}}>
@@ -230,6 +321,11 @@ const GetDetails = () => {
                                     {
                                         (updAuth === walletId)? 
                                             (<button className="btn-solid-grad px-5 mx-4" onClick={handleBurn}>Burn NFT</button>):
+                                            ("")  
+                                    }
+                                    {
+                                        (updAuth === walletId)? 
+                                            (<button className="btn-solid-grad px-5 mx-4 mt-3" onClick={()=>lister(mintAddr,name,imgs)}>List On Marketplace</button>):
                                             ("")  
                                     }
                                     

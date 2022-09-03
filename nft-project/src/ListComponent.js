@@ -144,7 +144,7 @@ const ListAll = () => {
                 setOkModal(true);
                 setShowLister(false);
                 const transaction = res.data.result.encoded_transaction;
-                const ret_result = await signAndConfirmTransaction(network,transaction,callback);
+                const ret_result = await signAndConfirmTransaction('devnet',transaction,callback);
                 console.log(ret_result);
               }
               
