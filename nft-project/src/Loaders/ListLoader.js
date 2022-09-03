@@ -7,7 +7,11 @@ const ListLoader = (props) => {
                         <img src={props.listingURI} alt="nftloader" style={{width: "50%"}}/>
                     <p className="p-para pt-2">{props.listingName}</p>
                     <div className="white-form-group">
-                        <input type="number" className="form-control" placeholder="Enter Price" value={props.listingPrice} onChange={(e) => {
+                        <input type="number" className="form-control" placeholder="Ask Price?" min="0" onChange={(e) => {
+                            if(!e.target.value)
+                            {
+                                props.setErrMessg('Value Must be a Number and not less than 0');
+                            }
                           props.setListingPrice(e.target.value);
                         }} />
                     </div>

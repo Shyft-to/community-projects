@@ -78,7 +78,7 @@ const ListAll = () => {
     const [listingNFT,setListingNFT] = useState(null);
     const [listingName,setListingName] = useState(null);
     const [listingURI,setListingURI] = useState(null);
-    const [listingPrice,setListingPrice] = useState();
+    const [listingPrice,setListingPrice] = useState(0);
     const [showLister,setShowLister] = useState(false);
     const [okModal,setOkModal] = useState(false);
 
@@ -88,6 +88,7 @@ const ListAll = () => {
       setListingNFT(nft_addr);
       setListingName(nftname);
       setListingURI(nfturi);
+      setErrMessg('');
       setShowLister(true);
     }
     const callback = (signature,result) => {
@@ -116,46 +117,56 @@ const ListAll = () => {
         const endPoint = process.env.REACT_APP_URL_EP;
         const marketplaceAddress = process.env.REACT_APP_MARKPLACE;
         
-        
-        let nftUrl = `${endPoint}marketplace/list`;
+        if(listingPrice === 0)
+        {
+          setErrMessg('Value must be a number greater than 0')
+        }
+        else
+        {
+          let nftUrl = `${endPoint}marketplace/list`;
 
-        axios({
-            // Endpoint to list
-            url: nftUrl,
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "x-api-key": xKey,
-            },
-            data: {
-                network:'devnet',
-                marketplace_address: marketplaceAddress,
-                nft_address: nft_addr,
-                price: Number(listingPrice),
-                seller_wallet: walletId
-                
-            }
-          })
-            // Handle the response from backend here
-            .then(async (res) => {
-              console.log(res.data);
-              if(res.data.success === true)
-              {
-                setOkModal(true);
-                setShowLister(false);
-                const transaction = res.data.result.encoded_transaction;
-                const ret_result = await signAndConfirmTransaction('devnet',transaction,callback);
-                console.log(ret_result);
+          axios({
+              // Endpoint to list
+              url: nftUrl,
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "x-api-key": xKey,
+              },
+              data: {
+                  network:'devnet',
+                  marketplace_address: marketplaceAddress,
+                  nft_address: nft_addr,
+                  price: Number(listingPrice),
+                  seller_wallet: walletId
+                  
               }
-              
             })
-            // Catch errors if any
-            .catch((err) => {
-              console.warn(err);
-              setErrMessg(err.message);
-              navigate(`/my-listings`);
-              //setShowLister(false);
-            });
+              // Handle the response from backend here
+              .then(async (res) => {
+                console.log(res.data);
+                if(res.data.success === true)
+                {
+                  setOkModal(true);
+                  setShowLister(false);
+                  const transaction = res.data.result.encoded_transaction;
+                  const ret_result = await signAndConfirmTransaction('devnet',transaction,callback);
+                  console.log(ret_result);
+                  setListingPrice(0);
+                }
+                
+              })
+              // Catch errors if any
+              .catch((err) => {
+                console.warn(err);
+                setErrMessg(err.message);
+                navigate(`/my-listings`);
+                setListingPrice(0);
+                //setShowLister(false);
+              });
+        }
+        
+        
     }
     const closePopupList = () => {
       setShowLister(false);
@@ -165,7 +176,7 @@ const ListAll = () => {
     return (
       <div>
         {!loaded && <FetchLoader />}
-        {showLister && <ListLoader listingNFT={listingNFT} listingName={listingName} listingURI={listingURI} listingPrice={listingPrice} setListingPrice={setListingPrice} listNFT={listNFT} closePopupList={closePopupList} errMessg={errMessg} />}
+        {showLister && <ListLoader listingNFT={listingNFT} listingName={listingName} listingURI={listingURI} listingPrice={listingPrice} setListingPrice={setListingPrice} listNFT={listNFT} closePopupList={closePopupList} errMessg={errMessg} setErrMessg={setErrMessg} />}
         {okModal && <SuccessLoader />}
         <div className="right-al-container">
           <div className="container-lg">
