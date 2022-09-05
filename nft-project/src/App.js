@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import {  BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ReactSession } from "react-client-session";
 
 import { DomainContext } from "./Context/DomainContext";
@@ -35,7 +35,7 @@ function App() {
     const [walletId, setWalletId] = useState(null);
     const [solDomainsApp,setSolDomainApp] = useState(null);
     const [network, setNetwork] = useState("mainnet-beta")
-    ReactSession.setStoreType("localStorage");
+    ReactSession.setStoreType("sessionStorage");
     // console.log("Rendering this state super page");
     return (
       <div className="App">

@@ -5,14 +5,17 @@ import { connectTheWallet } from "./utility/common";
 //import { DomainContext } from "./Context/DomainContext";
 import { WalletContext } from "./Context/WalletContext";
 //import { NetworkContext } from "./Context/NetworkContext";
+import { ReactSession } from "react-client-session";
 
 const ConnectWallet = () => {
     const navigate = useNavigate();
     const { setWalletId } = useContext(WalletContext);
     const solanaConnect = async () => {
+        ReactSession.set("connected_wallet", '');
         console.log('clicked solana connect');
         const resp = await connectTheWallet();
-        console.log(resp);
+        //console.log(resp);
+        ReactSession.set("connected_wallet", resp.addr);
         setWalletId(resp.addr);
         navigate('/wallet/' + resp.addr);
     }

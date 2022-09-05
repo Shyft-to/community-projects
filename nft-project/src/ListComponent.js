@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect, useState,useContext } from "react";
-//import { ReactSession } from "react-client-session";
+import { ReactSession } from "react-client-session";
 import { useNavigate,useParams,Link } from "react-router-dom";
+
 
 import { WalletContext } from "./Context/WalletContext";
 import { NetworkContext } from "./Context/NetworkContext";
@@ -26,10 +27,12 @@ const ListAll = () => {
     
     const [got_listings,setGotListings] = useState(null);
     const [mpListings,setMplisting] = useState([]);
+    const [conn_wall,setConnWall] = useState(null);
 
     const [mssg,setMssg] = useState("");
 
     useEffect(() => {
+      setConnWall(ReactSession.get("connected_wallet"));
         if (!waddress) {
             console.log('Wallet Not connected')
             navigate('/');
@@ -332,7 +335,7 @@ const ListAll = () => {
                             )}
                           </div> */}
                           <div className="col-12 col-xl-6 pt-1 px-3">
-                            {(mpListings.includes(nft.mint))?<div className="white-button-container-sm" ><button disabled>Listed</button></div>:<div className="white-button-container-sm disabled" ><button onClick={() => lister(nft.mint,nft.name,nft.cached_image_uri)}>List</button></div>}
+                            {(conn_wall === walletId)?(mpListings.includes(nft.mint))?<div className="white-button-container-sm"><button disabled>Listed</button></div>:<div className="white-button-container-sm disabled" ><button onClick={() => lister(nft.mint,nft.name,nft.cached_image_uri)}>List</button></div>:""}
                            
                           </div>
                         </div>

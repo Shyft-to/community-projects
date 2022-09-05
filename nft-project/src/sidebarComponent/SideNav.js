@@ -4,6 +4,7 @@ import axios from "axios";
 import {  clusterApiUrl, Connection,PublicKey } from "@solana/web3.js";
 import { PhantomWalletAdapter } from '@solana/wallet-adapter-phantom';
 import { connectTheWallet } from "../utility/common";
+import { ReactSession } from "react-client-session";
 
 import { DomainContext } from "../Context/DomainContext";
 import { WalletContext } from "../Context/WalletContext";
@@ -41,8 +42,10 @@ const SideNav = () => {
 
   const solanaConnect = async () => {
     console.log('clicked solana connect');
+    ReactSession.set("connected_wallet", '');
     const resp = await connectTheWallet();
         console.log(resp);
+        ReactSession.set("connected_wallet", resp.addr);
         setWalletId(resp.addr);
         navigate('/wallet/' + resp.addr);
 
