@@ -6,7 +6,7 @@ import { WalletContext } from "./Context/WalletContext";
 import NftOne from "./NftOne";
 import { signAndConfirmTransaction } from "./utility/common";
 import BuyLoader from "./Loaders/BuyLoader";
-import SuccessLoader from "./Loaders/SuccessLoader";
+import SuccessLoaderWithClose from "./Loaders/SuccessLoaderWithClose";
 import FailedLoader from "./Loaders/FailedLoader";
 
 const TheMarketplace = () => {
@@ -177,7 +177,7 @@ const TheMarketplace = () => {
   return (
     <div>
      {sure && <BuyLoader closePopupList={closePopupList} buyNow={buyNow} nfAddr={nfAddr} errorMsgBuy={errorMsgBuy} />}
-      {okModal && <SuccessLoader />}
+      {okModal && <SuccessLoaderWithClose />}
       {failedModal && <FailedLoader closer={setFailedModal} />}
       <div className="right-al-container mb-2">
         <div className="container-lg">

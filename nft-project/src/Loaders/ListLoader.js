@@ -4,7 +4,7 @@ const ListLoader = (props) => {
             <div className="full-overlay">
                 <div className="list-square">
                     <div className='text-center p-1'>
-                        <div className="bg-primary closecross-section"><button onClick={props.closePopupList} style={{float:"right"}}><i class="fa fa-times"></i></button></div>
+                        <div className="bg-primary closecross-section"><button onClick={props.closePopupList} style={{float:"right"}}><i className="fa fa-times"></i></button></div>
                         <img src={props.listingURI} alt="nftloader" />
                         <p className="p-para pt-2">{props.listingName}</p>
                         <div className="white-form-group">

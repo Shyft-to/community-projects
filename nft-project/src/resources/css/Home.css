@@ -2200,3 +2200,15 @@ h4 {
 {
   padding-top: 30px;
 }
+
+.faded-text-closer
+{
+  position: fixed;
+  border: none;
+  background-color: transparent;
+  font: 400 1rem/1.2rem "Poppins", sans-serif;
+  color: #ffffffee;
+  top: 65%;
+  left: 48.5%;
+  letter-spacing: 1px;
+}

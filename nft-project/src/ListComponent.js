@@ -10,7 +10,7 @@ import FetchLoader from "./Loaders/FetchComponent";
 import ListLoader from "./Loaders/ListLoader";
 
 import { signAndConfirmTransaction } from "./utility/common";
-import SuccessLoader from "./Loaders/SuccessLoader";
+import SuccessLoaderWithClose from "./Loaders/SuccessLoaderWithClose";
 import FailedLoader from "./Loaders/FailedLoader";
 
 
@@ -243,7 +243,7 @@ const ListAll = () => {
       <div>
         {!loaded && <FetchLoader />}
         {showLister && <ListLoader listingNFT={listingNFT} listingName={listingName} listingURI={listingURI} listingPrice={listingPrice} setListingPrice={setListingPrice} listNFT={listNFT} closePopupList={closePopupList} errMessg={errMessg} setErrMessg={setErrMessg} />}
-        {okModal && <SuccessLoader />}
+        {okModal && <SuccessLoaderWithClose closer={setOkModal} />}
         {failedModal && <FailedLoader closer={setFailedModal} />}
         <div className="right-al-container">
           <div className="container-lg">
