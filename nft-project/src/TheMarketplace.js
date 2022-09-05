@@ -7,36 +7,13 @@ import NftOne from "./NftOne";
 import { signAndConfirmTransaction } from "./utility/common";
 import BuyLoader from "./Loaders/BuyLoader";
 import SuccessLoader from "./Loaders/SuccessLoader";
+import FailedLoader from "./Loaders/FailedLoader";
 
 const TheMarketplace = () => {
   const navigate = useNavigate();
   //const { waddress } = useParams();
   const network = "devnet";
   const [loaded, setLoaded] = useState(false);
-  // const [nfts, setNfts] = useState([
-  //   {
-  //     network: "devnet",
-  //     marketplace_address: "8svcgCzGTT12h3uvDNR3BUY27hJvKtYdxcMKjEQzh14q",
-  //     seller_address: "AaYFExyZuMHbJHzjimKyQBAH1yfA9sKTxSzBc6Nr5X4s",
-  //     price: 100,
-  //     currency_symbol: "SD",
-  //     nft_address: "GpLzvmQYcQM3USH7RGehoriEzmJLJ8AfKVdLFZRoVBsz",
-  //     list_state: "9xPa5TQyctvZ4vGkKcgEzT316JankshomR13dPLVN2nD",
-  //     created_at: "2022-08-22T17:16:06.000Z",
-  //     receipt: "FwEG6zTfM4mT9SaCMS61nswuJcfNDLEi2xn7T7gs4qRs",
-  //   },
-  //   {
-  //     network: "devnet",
-  //     marketplace_address: "8svcgCzGTT12h3uvDNR3BUY27hJvKtYdxcMKjEQzh14q",
-  //     seller_address: "GE4kh5FsCDWeJfqLsKx7zC9ijkqKpCuYQxh8FYBiTJe",
-  //     price: 300,
-  //     currency_symbol: "SD",
-  //     nft_address: "5r2rJ37qUGYCqqHzvjBTjMBh4Pu2VD9wSiUnsky8UzYS",
-  //     list_state: "8WM1Etk7fWraMshaAgYc6jBBKVAGsPwwRnNWyke9o5yN",
-  //     created_at: "2022-08-22T17:20:17.000Z",
-  //     receipt: "D9qHwezut8c7rmLkaGE1h1Yo3fVTp9EKYnLRDFjupyA3",
-  //   },
-  // ]);
   const [nfts, setNfts] = useState(null);
   const [mssg, setMssg] = useState("");
 
@@ -51,6 +28,7 @@ const TheMarketplace = () => {
 
   const [sure,setSure] = useState(false);
   const [okModal,setOkModal] = useState(false);
+  const [failedModal,setFailedModal] = useState(false);
 
   const[errorMsgBuy,setErrorMsgBuy] = useState('');
 
@@ -66,13 +44,15 @@ const TheMarketplace = () => {
       else
       {
         console.log('failed');
-        navigate(`/wallet/${walletId}`);
+        //navigate(`/wallet/${walletId}`);
+        setFailedModal(true);
       }
       setOkModal(false);
     } catch (error) {
       console.log('failed');
       setOkModal(false);
-      navigate(`/wallet/${walletId}`);
+      setFailedModal(true);
+      //navigate(`/wallet/${walletId}`);
     }
     
   }
@@ -82,6 +62,7 @@ const TheMarketplace = () => {
     setSelWall(seller_wallet);
     setPrice(price);
     setNfAddr(nftAddr);
+    setErrorMsgBuy("");
     setSure(true);
   }
 
@@ -89,7 +70,7 @@ const TheMarketplace = () => {
     const xKey = process.env.REACT_APP_API_KEY;
         const endPoint = process.env.REACT_APP_URL_EP;
         const marketplaceAddress = process.env.REACT_APP_MARKPLACE;
-        setErrorMsgBuy("");
+        
         
         let nftUrl = `${endPoint}marketplace/buy`;
 
@@ -122,6 +103,10 @@ const TheMarketplace = () => {
                 const ret_result = await signAndConfirmTransaction('devnet',transaction,callback);
                 console.log(ret_result);
               }
+              else
+              {
+                setErrorMsgBuy('Failed! Error Occured!');
+              }
               
             })
             // Catch errors if any
@@ -129,6 +114,7 @@ const TheMarketplace = () => {
               console.warn(err);
               setErrorMsgBuy(err.message);
               setOkModal(false);
+              setFailedModal(true);
               // setSure(false);
             });
   }
@@ -192,6 +178,7 @@ const TheMarketplace = () => {
     <div>
      {sure && <BuyLoader closePopupList={closePopupList} buyNow={buyNow} nfAddr={nfAddr} errorMsgBuy={errorMsgBuy} />}
       {okModal && <SuccessLoader />}
+      {failedModal && <FailedLoader closer={setFailedModal} />}
       <div className="right-al-container mb-2">
         <div className="container-lg">
           <div className="marketplace-lp">

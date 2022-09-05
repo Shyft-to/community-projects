@@ -79,7 +79,7 @@ const GetDetails = () => {
         // setApiResponse(JSON.stringify(data.result));
         setName(data.result.name);
         setDesc(data.result.description);
-        setImgs(data.result.image_uri);
+        setImgs(data.result.cached_image_uri);
         setSym(data.result.symbol);
         setSym(data.result.symbol);
         setOwnAddr(data.result.owner);
@@ -323,11 +323,11 @@ const GetDetails = () => {
                                             (<button className="btn-solid-grad px-5 mx-4" onClick={handleBurn}>Burn NFT</button>):
                                             ("")  
                                     }
-                                    {
+                                    {/* {
                                         (updAuth === walletId)? 
                                             (<button className="btn-solid-grad px-5 mx-4 mt-3" onClick={()=>lister(mintAddr,name,imgs)}>List On Marketplace</button>):
                                             ("")  
-                                    }
+                                    } */}
                                     
                                     {/* <Link className={(updAuth === walletId)?"btn-solid-grad px-5":"btn-solid-grad disabled px-5"} to={(updAuth === walletId)?`/update?token_address=${mintAddr}&network=${networkParams[1]}`:`#`}>Update NFT</Link> */}
                                 </div>

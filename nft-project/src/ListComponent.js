@@ -11,6 +11,7 @@ import ListLoader from "./Loaders/ListLoader";
 
 import { signAndConfirmTransaction } from "./utility/common";
 import SuccessLoader from "./Loaders/SuccessLoader";
+import FailedLoader from "./Loaders/FailedLoader";
 
 
 const ListAll = () => {
@@ -21,6 +22,10 @@ const ListAll = () => {
     
     const [nfts, setNfts] = useState(null);
     const [loaded,setLoaded] = useState(false);
+
+    
+    const [got_listings,setGotListings] = useState(null);
+    const [mpListings,setMplisting] = useState([]);
 
     const [mssg,setMssg] = useState("");
 
@@ -33,14 +38,65 @@ const ListAll = () => {
             setWalletId(waddress);
         }
     }, []);
-    
+
+    //Required Code to fetch marketplace listings
+    useEffect(() => {
+      const xKey = process.env.REACT_APP_API_KEY;
+      const endPoint = process.env.REACT_APP_URL_EP;
+      const marketplaceAddress = process.env.REACT_APP_MARKPLACE; 
+      setMssg("");
+
+      let nftUrl = `${endPoint}marketplace/active_listings?network=devnet&marketplace_address=${marketplaceAddress}`;
+
+      axios({
+          // Endpoint to get NFTs
+          url: nftUrl,
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "x-api-key": xKey,
+          },
+        })
+          // Handle the response from backend here
+          .then((res) => {
+            console.log(res.data);
+            if(res.data.success === true)
+            {
+              setGotListings(res.data.result);
+            }  
+            else
+            {
+                setMplisting([]);
+            }
+          })
+          // Catch errors if any
+          .catch((err) => {
+            console.warn(err);
+            
+          });
+  },[]);
+
+  useEffect(()=>{
+    if(got_listings!=null)
+    {
+      let arr_listng = [];
+      got_listings.forEach((listing) => {
+        arr_listng.push(listing.nft_address);
+      })
+      setMplisting(arr_listng);
+      //console.log("MP Listings: ",mpListings);
+    }
+  },[got_listings,nfts]);
+
     //Required Code
     useEffect(() => {
+
+        
         const xKey = process.env.REACT_APP_API_KEY.toString();
         const endPoint = process.env.REACT_APP_URL_EP;
         setMssg("");
         
-        let nftUrl = `${endPoint}nft/read_all?network=${network}&address=${waddress}&refresh=refresh`;
+        let nftUrl = `${endPoint}nft/read_all?network=${network}&address=${waddress}`;
 
         axios({
             // Endpoint to get NFTs
@@ -81,6 +137,7 @@ const ListAll = () => {
     const [listingPrice,setListingPrice] = useState(0);
     const [showLister,setShowLister] = useState(false);
     const [okModal,setOkModal] = useState(false);
+    const [failedModal,setFailedModal] = useState(false);
 
     const [errMessg,setErrMessg] = useState('');
     
@@ -103,11 +160,13 @@ const ListAll = () => {
         else
         {
           console.log('failed');
+          setFailedModal(true);
         }
         setOkModal(false);
       } catch (error) {
         console.log('failed');
         setOkModal(false);
+        setFailedModal(true);
       }
       
     }
@@ -154,13 +213,20 @@ const ListAll = () => {
                   console.log(ret_result);
                   setListingPrice(0);
                 }
+                else
+                {
+                  setFailedModal(true);
+                  setShowLister(false);
+                }
                 
               })
               // Catch errors if any
               .catch((err) => {
                 console.warn(err);
                 setErrMessg(err.message);
-                navigate(`/my-listings`);
+                setFailedModal(true);
+                setShowLister(false);
+                // navigate(`/my-listings`);
                 setListingPrice(0);
                 //setShowLister(false);
               });
@@ -178,6 +244,7 @@ const ListAll = () => {
         {!loaded && <FetchLoader />}
         {showLister && <ListLoader listingNFT={listingNFT} listingName={listingName} listingURI={listingURI} listingPrice={listingPrice} setListingPrice={setListingPrice} listNFT={listNFT} closePopupList={closePopupList} errMessg={errMessg} setErrMessg={setErrMessg} />}
         {okModal && <SuccessLoader />}
+        {failedModal && <FailedLoader closer={setFailedModal} />}
         <div className="right-al-container">
           <div className="container-lg">
 
@@ -230,7 +297,7 @@ const ListAll = () => {
                           style={{ textDecoration: "none" }}
                         >
                           <div className="inner-box-img-container">
-                            <img src={nft.image_uri} alt="NftImage" />
+                            <img src={nft.cached_image_uri} alt="NftImage" />
                           </div>
                         </Link>
                         <div className="row pt-3 pb-2">
@@ -265,7 +332,8 @@ const ListAll = () => {
                             )}
                           </div> */}
                           <div className="col-12 col-xl-6 pt-1 px-3">
-                            <div className="white-button-container-sm" ><button onClick={() => lister(nft.mint,nft.name,nft.image_uri)}>List</button></div>
+                            {(mpListings.includes(nft.mint))?<div className="white-button-container-sm" ><button disabled>Listed</button></div>:<div className="white-button-container-sm disabled" ><button onClick={() => lister(nft.mint,nft.name,nft.cached_image_uri)}>List</button></div>}
+                           
                           </div>
                         </div>
                       </div>

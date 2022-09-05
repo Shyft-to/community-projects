@@ -112,7 +112,7 @@ const SideNav = () => {
         <a id="cls-button" className="closebtn" onClick={closeNav}>
           Dismiss
         </a>
-        <Link className={(location_get.pathname===`/wallet/${walletId}`&&location_get.pathname==='/')?"active":""} to={(walletId===null)?`/`:`/wallet/${walletId}`}>
+        <Link className={(location_get.pathname===`/wallet/${walletId}`)?"active":""} to={(walletId===null)?`/`:`/wallet/${walletId}`}>
         {/* <Link to={(walletId===null)?`/`:`/wallet/${walletId}`}> */}
             <div className="row sidemenu-anc">
               <div className="col-3">

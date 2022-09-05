@@ -2077,8 +2077,8 @@ h4 {
 {
   width: 100%;
   max-width: 400px;
-  height: 100%;
-  max-height: 400px;
+  /* height: 100%; */
+  /* min-height: 400px; */
   background-color: white;
   border-radius: 20px;
   padding: 30px 20px;

@@ -19,11 +19,11 @@ const NftOne = (props) => {
             },
         })
             .then((res) => {
-                console.log(res.data.success);
+                console.log(res.data);
                 
                 if (res.data.success) {
                     setName(res.data.result.name)
-                    setImage(res.data.result.image_uri)
+                    setImage(res.data.result.cached_image_uri)
                 }
                 
 
