@@ -2098,11 +2098,25 @@ h4 {
 }
 .full-overlay .list-square img
 {
-  width: 150px !important;
-  height: 150px;
+  width: 80% !important;
+  height: 250px;
   object-fit: cover;
   border: 2px solid rgba(117, 159, 191, 0.6);
   border-radius: 10px;
+}
+.full-overlay .closecross-section
+{
+  margin-bottom: 40px;
+  margin-top: -15px;
+  width: 100%;
+}
+.full-overlay .closecross-section button
+{
+  border: 2px solid #112F4A;
+  border-radius: 100%;
+  padding: 2px 8px;
+  color: #112F4A;
+  background: transparent;
 }
 
 .white-button-container-sm {

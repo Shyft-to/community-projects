@@ -46,27 +46,28 @@ const NftOne = (props) => {
                         <img src={image} alt="NftImage" />
                     </div>
 
-                    <div className="row pt-3">
-                        <div className="col-7 col-xl-7">
-                            <p
+                    <div className="row pt-3 pb-2">
+                        <div className="col-12 col-xl-12">
+                            <div
                                 className="port-para-2 text-start"
                                 style={{ wordWrap: "break-word" }}
                             >
                                 {name}
-                            </p>
+                            </div>
                         </div>
-                        <div className="col-5 col-xl-5">
+                        
+
+                    </div>
+                    <div className="row pb-1">
+                        <div className="col-6">
                             <p
-                                className="port-para-2 text-end text-xl-end"
+                                className="port-para-2 text-start text-xl-start"
                                 style={{ wordWrap: "break-word" }}
                             >
                                 {JSON.stringify(props.nft.price) }{" "+props.nft.currency_symbol}
                             </p>
                         </div>
-
-                    </div>
-                    <div className="row pb-3">
-                        <div className="col-10 col-xl-6 mx-auto">
+                        <div className="col-6">
                             <div className="white-button-container-sm" ><button onClick={() => {props.buyList(props.nft.nft_address,props.nft.seller_address,props.nft.price)}}>Buy</button></div>
                         </div>
                         

@@ -155,7 +155,7 @@ const ListAll = () => {
         if(signature.err === null)
         {
           console.log('ok');
-          navigate(`/my-listings`);
+          navigate(`/marketplace`);
         }
         else
         {
