@@ -122,7 +122,7 @@ const SideNav = () => {
                 <img src={dashIcon} alt="dashboard" />
               </div>
               <div className="col-9">
-                <p>All NFTs</p>
+                <p>My NFTs</p>
               </div>
             </div>
         </Link>
@@ -167,7 +167,7 @@ const SideNav = () => {
               </div>
             </div>
         </Link>
-        <Link to="/">
+        <Link to="/statistics" className={(location_get.pathname==='/statistics')?"active":""}>
             <div className="row sidemenu-anc">
               <div className="col-3">
                 <img src={statsIcon} alt="stats" />

@@ -6,7 +6,6 @@ import FetchLoaderGen from "./Loaders/FetchLoaderGen";
 
 const Transactions = () => {
     const { walletId } = useContext(WalletContext);
-
     const [sellLoaded,setSellLoaded] = useState(false);
     const [sells,setSells] = useState(null);
     const [loadSell,setLoadSell] = useState(false);
@@ -16,7 +15,6 @@ const Transactions = () => {
     const [loadBuy,setLoadBuy] = useState(false);
 
     const [mssg,setMssg] = useState('');
-
 
     useEffect(() => {
         const xKey = process.env.REACT_APP_API_KEY;

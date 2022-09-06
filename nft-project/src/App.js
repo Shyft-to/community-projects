@@ -25,9 +25,11 @@ import Footer from './footerComponent/footer';
 import ConnectWalletCreate from './ConnectWalletCreate';
 // import MarketplaceCreator from './MarketplaceCreator';
 import TheMarketplace from './TheMarketplace';
-import Transactions from './Transactions';
-import ListedNFTs from './ListedNfts';
-
+// import Transactions from './Transactions';
+// import ListedNFTs from './ListedNfts';
+import TransactionsMaster from './TransactionsMaster';
+import StatsMaster from './StatsMaster';
+import MyListingsMaster from './MyListingsMaster';
 
 // import Wallet from './Wallet';
 
@@ -50,14 +52,16 @@ function App() {
               <Routes>
                 <Route exact path="/" element={<ConnectWallet  />} />
                 <Route path="/wallet/:waddress" element={<ListAll />} />
-                <Route exact path="/connect-wallet" element={<ConnectWalletCreate />} />
+                <Route exact path="/connect-wallet" element={<ConnectWalletCreate heading="Create NFTs and make magic happen" subHeading="Connect your wallet to get superpowers." navigateTo="/create" />} />
                 <Route exact path="/get-details" element={<GetDetails />} />
                 <Route exact path="/create" element={<Create />} />
                 <Route exact path="/update" element={<Update />} />
                 {/* <Route exact path="/mark" element={<MarketplaceCreator />} /> */}
                 <Route exact path="/marketplace" element={<TheMarketplace />} />
-                <Route exact path="/transactions" element={<Transactions />} />
-                <Route exact path="/my-listings" element={<ListedNFTs />} />
+                <Route exact path="/transactions" element={<TransactionsMaster />} />
+                <Route exact path="/my-listings" element={<MyListingsMaster />} />
+                <Route exact path="/statistics" element={<StatsMaster />} />
+                
                 
                 <Route exact path="*" element={<ConnectWallet />} />
               </Routes>
