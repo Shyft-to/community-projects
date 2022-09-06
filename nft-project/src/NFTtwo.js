@@ -52,7 +52,7 @@ const NftTwo = (props) => {
                                 className="port-para-2 text-start"
                                 style={{ wordWrap: "break-word" }}
                             >
-                                {name}
+                                {(name.length>10)?name.substring(0, 10)+'...':name}
                             </p>
                         </div>
                         <div className="col-12 col-xl-5">

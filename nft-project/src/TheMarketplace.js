@@ -123,15 +123,15 @@ const TheMarketplace = () => {
     setSure(false);
   }
 
-  useEffect(() => {
-      if (!walletId) {
-          console.log('Wallet Not connected')
-          navigate('/');
-      }
-      // else {
-      //     setWalletId(waddress);
-      // }
-  }, []);
+  // useEffect(() => {
+  //     if (!walletId) {
+  //         console.log('Wallet Not connected')
+  //         navigate('/');
+  //     }
+  //     // else {
+  //     //     setWalletId(waddress);
+  //     // }
+  // }, []);
 
   //Required Code to fetch data from the marketplace
   useEffect(() => {
@@ -245,7 +245,7 @@ const TheMarketplace = () => {
                 
                 {loaded &&
                 nfts.map((nft) => (
-                    <NftOne buyList={buyList} nft={nft} key={nft.nft_address}/>
+                    <NftOne buyList={buyList} nft={nft} walletId={walletId} key={nft.nft_address}/>
                 ))}
             </div>
           </div>

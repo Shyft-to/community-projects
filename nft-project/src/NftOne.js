@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect,useState } from "react";
+import { Link } from "react-router-dom";
 
 const NftOne = (props) => {
     const [name,setName] = useState('');
@@ -52,14 +53,14 @@ const NftOne = (props) => {
                                 className="port-para-2 text-start"
                                 style={{ wordWrap: "break-word" }}
                             >
-                                {name}
+                                {(name.length>10)?name.substring(0, 10)+'...':name}
                             </div>
                         </div>
                         
 
                     </div>
                     <div className="row pb-1">
-                        <div className="col-6">
+                        <div className="col-sm-12 col-md-6">
                             <p
                                 className="port-para-2 text-start text-xl-start"
                                 style={{ wordWrap: "break-word" }}
@@ -67,9 +68,21 @@ const NftOne = (props) => {
                                 {JSON.stringify(props.nft.price) }{" "+props.nft.currency_symbol}
                             </p>
                         </div>
-                        <div className="col-6">
-                            <div className="white-button-container-sm" ><button onClick={() => {props.buyList(props.nft.nft_address,props.nft.seller_address,props.nft.price)}}>Buy</button></div>
+                        {(!props.walletId)?
+                            <div className="col-sm-12 col-md-6">
+                            <div className="white-sm-btn-upd">
+                                <Link
+                                  className="btn linker"
+                                  to={`/`}
+                                >
+                                  Buy
+                                </Link>
+                            </div>
+                        </div>:
+                        <div className="col-sm-12 col-md-6">
+                            <div className="white-button-container-sm">((props.nft.seller_address===props.walletId)?<button>Listed</button>:<button onClick={() => {props.buyList(props.nft.nft_address,props.nft.seller_address,props.nft.price)}}>Buy</button>)</div>
                         </div>
+                        }
                         
 
                     </div>

@@ -30,6 +30,7 @@ import TheMarketplace from './TheMarketplace';
 import TransactionsMaster from './TransactionsMaster';
 import StatsMaster from './StatsMaster';
 import MyListingsMaster from './MyListingsMaster';
+import Statistics from './Statistics';
 
 // import Wallet from './Wallet';
 
@@ -60,7 +61,8 @@ function App() {
                 <Route exact path="/marketplace" element={<TheMarketplace />} />
                 <Route exact path="/transactions" element={<TransactionsMaster />} />
                 <Route exact path="/my-listings" element={<MyListingsMaster />} />
-                <Route exact path="/statistics" element={<StatsMaster />} />
+                {/* <Route exact path="/statistics" element={<StatsMaster />} /> */}
+                <Route exact path="/statistics" element={<Statistics />} />
                 
                 
                 <Route exact path="*" element={<ConnectWallet />} />

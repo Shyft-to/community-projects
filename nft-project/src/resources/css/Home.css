@@ -2220,15 +2220,25 @@ h4 {
   border: none;
   border-radius: 2.5rem;
   background-color: rgba(89, 101, 243, 0.29);
-  background: linear-gradient(94.8deg, #0aeeff 5.22%, #009eeb 97.41%);
-  color: #fff;
+  background: linear-gradient(to right, #e0499b, #5965f3);
+  color: #fff !important;
   font: 500 0.8rem/1.2rem "Poppins", sans-serif !important;
   letter-spacing: 0.1em;
   text-decoration: none !important;
   transition: all 0.3s ease;
 }
+.btn-solid-grad-xs-2 a
+{
+  color: #fff !important;
+}
 .btn-solid-grad-xs-2:hover
 {
   transform: scale(1.05);
   color: #fff;
+}
+
+.cards-outer-port .large-text
+{
+  font: 400 4rem/4.5rem "Poppins", sans-serif;
+  color: #112F4A;
 }

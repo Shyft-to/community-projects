@@ -309,7 +309,7 @@ const ListAll = () => {
                               className="port-para-2 text-center text-xl-start"
                               style={{ wordWrap: "break-word" }}
                             >
-                              {nft.name}
+                              {(nft.name.length>10)?nft.name.substring(0, 10)+'...':nft.name}
                             </p>
                           </div>
                           {/* <div className="col-12 col-xl-6 pt-1">
