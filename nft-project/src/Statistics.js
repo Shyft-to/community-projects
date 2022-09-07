@@ -40,7 +40,13 @@ const Statistics = () => {
           const todaysDate = new Date();
           const markedDate = new Date(dateTwo);
           if(markedDate<todaysDate)
-            nftUrl += `&end_date=${dateTwo}`
+          {
+            const markedDateFrom = new Date(dateOne);
+            if(dateOne!=='' && markedDateFrom<markedDate)
+              nftUrl += `&end_date=${dateTwo}`
+            else
+              setErr('Error in Dates, displaying stats untill today');
+          }
         }
           
         axios({
@@ -59,10 +65,10 @@ const Statistics = () => {
               if(res.data.success === true)
               {
                 setTSales(res.data.result.total_sales);
-                setTVolume(res.data.result.sales_volume);
+                setTVolume(res.data.result.sales_volume.toFixed(2));
                 setTListing(res.data.result.total_listings);
                 setTSellers(res.data.result.total_sellers);
-                setListedVolumes(res.data.result.listed_volume);
+                setListedVolumes(res.data.result.listed_volume.toFixed(2));
                 
               }
               else
@@ -129,7 +135,7 @@ const Statistics = () => {
                             <p className="port-para-2 text-center text-xl-start" style={{ wordWrap: "break-word" }}>
                               Total Sales
                             </p>
-                            <p className="large-text text-end">{JSON.stringify(tSales)}</p>
+                            <p className="large-text text-end">{tSales}</p>
                           </div>
                         </div>
                       </div>
