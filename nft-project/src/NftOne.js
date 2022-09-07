@@ -80,7 +80,7 @@ const NftOne = (props) => {
                             </div>
                         </div>:
                         <div className="col-sm-12 col-md-6">
-                            <div className="white-button-container-sm">((props.nft.seller_address===props.walletId)?<button>Listed</button>:<button onClick={() => {props.buyList(props.nft.nft_address,props.nft.seller_address,props.nft.price)}}>Buy</button>)</div>
+                            <div className="white-button-container-sm">{((props.nft.seller_address===props.walletId)?<button>Listed</button>:<button onClick={() => {props.buyList(props.nft.nft_address,props.nft.seller_address,props.nft.price)}}>Buy</button>)}</div>
                         </div>
                         }
                         

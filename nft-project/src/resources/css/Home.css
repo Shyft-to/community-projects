@@ -2200,6 +2200,10 @@ h4 {
 {
   padding-top: 30px;
 }
+.statistics-page
+{
+  padding-top: 30px;
+}
 
 .faded-text-closer
 {
@@ -2241,4 +2245,8 @@ h4 {
 {
   font: 400 4rem/4.5rem "Poppins", sans-serif;
   color: #112F4A;
+}
+.cards-outer-port .large-text small
+{
+  font: 600 1rem "Poppins", sans-serif !important;
 }

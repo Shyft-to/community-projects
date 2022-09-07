@@ -2,6 +2,7 @@ import { useContext } from "react";
 //import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { connectTheWallet } from "./utility/common";
+import { ReactSession } from "react-client-session";
 //import { DomainContext } from "./Context/DomainContext";
 import { WalletContext } from "./Context/WalletContext";
 //import { NetworkContext } from "./Context/NetworkContext";
@@ -10,9 +11,11 @@ const ConnectWalletCreate = (props) => {
     const navigate = useNavigate();
     const { setWalletId } = useContext(WalletContext);
     const solanaConnect = async () => {
+        ReactSession.set("connected_wallet", '');
         console.log('clicked solana connect');
         const resp = await connectTheWallet();
-        console.log(resp);
+        //console.log(resp);
+        ReactSession.set("connected_wallet", resp.addr);
         setWalletId(resp.addr);
         navigate(props.navigateTo);
     }

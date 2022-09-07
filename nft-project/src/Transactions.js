@@ -113,7 +113,7 @@ const Transactions = () => {
         <div>
             {!loadSell && !loadBuy && <FetchLoaderGen message="Loading" />}
             <div className="right-al-container mb-2">
-                <div className="container-lg p-2">
+                <div className="container-lg p-4">
                     <div className="transaction-lp mt-4">
                         <h2 className="section-mid-heading mb-4">Your Listings in the marketplace</h2>
                         <div className="row dark-head-table">
@@ -122,8 +122,8 @@ const Transactions = () => {
                             <div className="col-12 col-sm-4 content">Price</div>
                         </div>
                         {sellLoaded && sells.map(sell => (
-                            <div className="row light-table-body">
-                                <div className="col-12 col-sm-8 content">{sell.nft_address.substring(1, 6)}...</div>
+                            <div className="row light-table-body" key={Math.random()}>
+                                <div className="col-12 col-sm-8 content">{sell.nft_address.substring(0)}</div>
                                 {/* <div className="col-12 col-sm-5 content">{sell.seller_address}</div> */}
                                 <div className="col-12 col-sm-4 content"> {sell.price} {sell.currency_symbol}</div>
                             </div>
@@ -145,12 +145,12 @@ const Transactions = () => {
                             <div className="col-12 col-sm-4 content">Bought From</div>
                             <div className="col-12 col-sm-3 content">Time</div>
                         </div>
-                        {buyLoaded && buys.map(buy => (
-                            <div className="row light-table-body">
-                                <div className="col-12 col-sm-2 content"> {buy.price} SOL</div>
-                                <div className="col-12 col-sm-5 content">{buy.nft_address.substring(1, 6)}...</div>
-                                <div className="col-12 col-sm-5 content">{buy.seller_address.substring(1, 6)}...</div>
-                                <div className="col-12 col-sm-5 content">{new Date(buy.created_at).toString()}</div>
+                        {buyLoaded && buys.map((buy) => (
+                            <div className="row light-table-body" key={Math.random()}>
+                                <div className="col-12 col-sm-2 content ps-4"> {buy.price} SOL</div>
+                                <div className="col-12 col-sm-3 content">{buy.nft_address.substring(0, 25)}...</div>
+                                <div className="col-12 col-sm-4 content">{buy.seller_address.substring(0, 25)}...</div>
+                                <div className="col-12 col-sm-3 content">{new Date(buy.created_at).toString().substring(3, 15)}</div>
                             </div>
                         )
 
