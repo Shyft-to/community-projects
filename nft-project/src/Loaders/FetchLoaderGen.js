@@ -6,7 +6,7 @@ const FetchLoaderGen = (props) => {
             <div className="loading-square">
                 <div className='text-center pt-4'>
                     <img src={nft} alt="nftloader" style={{width: "50%"}}/>
-                <p className="p-para pt-2">{props.message}</p>
+                <p className="p-para pt-2 px-1">{props.message}</p>
                 </div>
             </div>
         </div>

@@ -8,6 +8,7 @@ import { WalletContext } from "./Context/WalletContext";
 import { NetworkContext } from "./Context/NetworkContext";
 
 import FetchLoader from "./Loaders/FetchComponent";
+import FetchLoaderGen from "./Loaders/FetchLoaderGen";
 import ListLoader from "./Loaders/ListLoader";
 
 import { signAndConfirmTransaction } from "./utility/common";
@@ -142,6 +143,8 @@ const ListAll = () => {
     const [okModal,setOkModal] = useState(false);
     const [failedModal,setFailedModal] = useState(false);
 
+    const [isListing,setIsListing] = useState(false);
+
     const [errMessg,setErrMessg] = useState('');
     
     const lister = (nft_addr,nftname,nfturi) => {
@@ -175,6 +178,7 @@ const ListAll = () => {
     }
 
     const listNFT = (nft_addr) => {
+        setIsListing(true);
         const xKey = process.env.REACT_APP_API_KEY;
         const endPoint = process.env.REACT_APP_URL_EP;
         const marketplaceAddress = process.env.REACT_APP_MARKPLACE;
@@ -207,6 +211,7 @@ const ListAll = () => {
               // Handle the response from backend here
               .then(async (res) => {
                 console.log(res.data);
+                setIsListing(false);
                 if(res.data.success === true)
                 {
                   setOkModal(true);
@@ -218,6 +223,7 @@ const ListAll = () => {
                 }
                 else
                 {
+                  
                   setFailedModal(true);
                   setShowLister(false);
                 }
@@ -227,6 +233,7 @@ const ListAll = () => {
               .catch((err) => {
                 console.warn(err);
                 setErrMessg(err.message);
+                setIsListing(false);
                 setFailedModal(true);
                 setShowLister(false);
                 // navigate(`/my-listings`);
@@ -245,6 +252,7 @@ const ListAll = () => {
     return (
       <div>
         {!loaded && <FetchLoader />}
+        {isListing && <FetchLoaderGen message="Listing NFT"/>}
         {showLister && <ListLoader listingNFT={listingNFT} listingName={listingName} listingURI={listingURI} listingPrice={listingPrice} setListingPrice={setListingPrice} listNFT={listNFT} closePopupList={closePopupList} errMessg={errMessg} setErrMessg={setErrMessg} />}
         {okModal && <SuccessLoaderWithClose closer={setOkModal} />}
         {failedModal && <FailedLoader closer={setFailedModal} />}
