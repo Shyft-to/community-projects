@@ -8,6 +8,7 @@ import { signAndConfirmTransaction } from "./utility/common";
 import BuyLoader from "./Loaders/BuyLoader";
 import SuccessLoaderWithClose from "./Loaders/SuccessLoaderWithClose";
 import FailedLoader from "./Loaders/FailedLoader";
+import FetchLoaderGen from "./Loaders/FetchLoaderGen";
 
 const TheMarketplace = () => {
   const navigate = useNavigate();
@@ -29,6 +30,7 @@ const TheMarketplace = () => {
   const [sure,setSure] = useState(false);
   const [okModal,setOkModal] = useState(false);
   const [failedModal,setFailedModal] = useState(false);
+  const [isBuying,setIsBuying] = useState(false);
 
   const[errorMsgBuy,setErrorMsgBuy] = useState('');
 
@@ -67,6 +69,8 @@ const TheMarketplace = () => {
   }
 
   const buyNow = (nftAddr) => {
+    setIsBuying(true);
+    setSure(false);
     const xKey = process.env.REACT_APP_API_KEY;
         const endPoint = process.env.REACT_APP_URL_EP;
         const marketplaceAddress = process.env.REACT_APP_MARKPLACE;
@@ -95,9 +99,9 @@ const TheMarketplace = () => {
             // Handle the response from backend here
             .then(async (res) => {
               console.log(res.data);
+              setIsBuying(false);
               if(res.data.success === true)
               {
-                setSure(false);
                 setOkModal(true);
                 const transaction = res.data.result.encoded_transaction;
                 const ret_result = await signAndConfirmTransaction('devnet',transaction,callback);
@@ -113,6 +117,7 @@ const TheMarketplace = () => {
             .catch((err) => {
               console.warn(err);
               setErrorMsgBuy(err.message);
+              setIsBuying(false);
               setOkModal(false);
               setFailedModal(true);
               // setSure(false);
@@ -176,6 +181,7 @@ const TheMarketplace = () => {
 
   return (
     <div>
+      {isBuying && <FetchLoaderGen message="Buying NFT" />}
      {sure && <BuyLoader closePopupList={closePopupList} buyNow={buyNow} nfAddr={nfAddr} errorMsgBuy={errorMsgBuy} />}
       {okModal && <SuccessLoaderWithClose />}
       {failedModal && <FailedLoader closer={setFailedModal} />}

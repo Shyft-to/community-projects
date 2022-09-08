@@ -179,6 +179,7 @@ const ListAll = () => {
 
     const listNFT = (nft_addr) => {
         setIsListing(true);
+        setShowLister(false);
         const xKey = process.env.REACT_APP_API_KEY;
         const endPoint = process.env.REACT_APP_URL_EP;
         const marketplaceAddress = process.env.REACT_APP_MARKPLACE;
@@ -215,7 +216,7 @@ const ListAll = () => {
                 if(res.data.success === true)
                 {
                   setOkModal(true);
-                  setShowLister(false);
+                  
                   const transaction = res.data.result.encoded_transaction;
                   const ret_result = await signAndConfirmTransaction('devnet',transaction,callback);
                   console.log(ret_result);
@@ -225,7 +226,7 @@ const ListAll = () => {
                 {
                   
                   setFailedModal(true);
-                  setShowLister(false);
+                  //setShowLister(false);
                 }
                 
               })
