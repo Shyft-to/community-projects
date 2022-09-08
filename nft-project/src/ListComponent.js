@@ -31,6 +31,7 @@ const ListAll = () => {
     const [conn_wall,setConnWall] = useState(null);
 
     const [mssg,setMssg] = useState("");
+    const [LoadingConf,setLoadingConf] = useState(false);
 
     useEffect(() => {
       setConnWall(ReactSession.get("connected_wallet"));
@@ -100,7 +101,7 @@ const ListAll = () => {
         const endPoint = process.env.REACT_APP_URL_EP;
         setMssg("");
         
-        let nftUrl = `${endPoint}nft/read_all?network=${network}&address=${waddress}`;
+        let nftUrl = `${endPoint}nft/read_all?network=${network}&address=${waddress}&refresh=refresh`;
 
         axios({
             // Endpoint to get NFTs
@@ -157,22 +158,28 @@ const ListAll = () => {
     const callback = (signature,result) => {
       console.log("Signature ",signature);
       console.log("result ",result);
+      setLoadingConf(true);
       try {
         if(signature.err === null)
         {
           console.log('ok');
-          navigate(`/marketplace`);
+          //navigate(`/marketplace`);
+          setTimeout(() => {
+            navigate(`/marketplace`);
+          }, 5000);
         }
         else
         {
           console.log('failed');
           setFailedModal(true);
+          setLoadingConf(false);
         }
         setOkModal(false);
       } catch (error) {
         console.log('failed');
         setOkModal(false);
         setFailedModal(true);
+        setLoadingConf(false);
       }
       
     }
@@ -253,6 +260,7 @@ const ListAll = () => {
     return (
       <div>
         {!loaded && <FetchLoader />}
+        {LoadingConf && <FetchLoaderGen message="Loading" />}
         {isListing && <FetchLoaderGen message="Listing NFT"/>}
         {showLister && <ListLoader listingNFT={listingNFT} listingName={listingName} listingURI={listingURI} listingPrice={listingPrice} setListingPrice={setListingPrice} listNFT={listNFT} closePopupList={closePopupList} errMessg={errMessg} setErrMessg={setErrMessg} />}
         {okModal && <SuccessLoaderWithClose closer={setOkModal} />}

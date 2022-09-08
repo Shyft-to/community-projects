@@ -31,29 +31,36 @@ const TheMarketplace = () => {
   const [okModal,setOkModal] = useState(false);
   const [failedModal,setFailedModal] = useState(false);
   const [isBuying,setIsBuying] = useState(false);
+  const [LoadingConf,setLoadingConf] = useState(false);
 
   const[errorMsgBuy,setErrorMsgBuy] = useState('');
 
   const callback = (signature,result) => {
     console.log("Signature ",signature);
     console.log("result ",result);
+    setLoadingConf(true);
     try {
       if(signature.err === null)
       {
         console.log('ok');
-        navigate(`/wallet/${walletId}`);
+        setTimeout(() => {
+          navigate(`/wallet/${walletId}`);
+        }, 5000);
+        //navigate(`/wallet/${walletId}`);
       }
       else
       {
         console.log('failed');
         //navigate(`/wallet/${walletId}`);
         setFailedModal(true);
+        setLoadingConf(false);
       }
       setOkModal(false);
     } catch (error) {
       console.log('failed');
       setOkModal(false);
       setFailedModal(true);
+      setLoadingConf(false);
       //navigate(`/wallet/${walletId}`);
     }
     
@@ -182,6 +189,7 @@ const TheMarketplace = () => {
   return (
     <div>
       {isBuying && <FetchLoaderGen message="Buying NFT" />}
+      {LoadingConf && <FetchLoaderGen message="Loading" />}
      {sure && <BuyLoader closePopupList={closePopupList} buyNow={buyNow} nfAddr={nfAddr} errorMsgBuy={errorMsgBuy} />}
       {okModal && <SuccessLoaderWithClose />}
       {failedModal && <FailedLoader closer={setFailedModal} />}
