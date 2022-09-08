@@ -141,15 +141,15 @@ const Transactions = () => {
                         <h2 className="section-mid-heading mt-4 mb-4">Your Buy History</h2>
                         <div className="row dark-head-table">
                             <div className="col-12 col-sm-2 content">Price</div>
-                            <div className="col-12 col-sm-3 content">NFT</div>
-                            <div className="col-12 col-sm-4 content">Bought From</div>
-                            <div className="col-12 col-sm-3 content">Time</div>
+                            <div className="col-12 col-sm-3 content text-center">NFT Address</div>
+                            <div className="col-12 col-sm-4 content text-center">Bought From</div>
+                            <div className="col-12 col-sm-3 content text-center">Time</div>
                         </div>
                         {buyLoaded && buys.map((buy) => (
                             <div className="row light-table-body" key={Math.random()}>
                                 <div className="col-12 col-sm-2 content ps-4"> {buy.price} SOL</div>
-                                <div className="col-12 col-sm-3 content">{buy.nft_address.substring(0, 25)}...</div>
-                                <div className="col-12 col-sm-4 content">{buy.seller_address.substring(0, 25)}...</div>
+                                <div className="col-12 col-sm-3 content text-center">{buy.nft_address.substring(0, 22)}...</div>
+                                <div className="col-12 col-sm-4 content text-center">{buy.seller_address.substring(0, 22)}...</div>
                                 <div className="col-12 col-sm-3 content">{new Date(buy.created_at).toString().substring(3, 15)}</div>
                             </div>
                         )

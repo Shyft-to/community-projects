@@ -13,7 +13,7 @@ import wallIcon from '../resources/images/sidebar/wallet-icon.svg';
 import dashIcon from '../resources/images/sidebar/dashboard-icon.svg';
 import createIcon from '../resources/images/sidebar/create-icon.svg';
 import markerPlaceIcon from '../resources/images/sidebar/marketplace.svg';
-import myListingIcon from '../resources/images/sidebar/mylistings.svg';
+import myListingIcon from '../resources/images/sidebar/my-listings-2.svg';
 import historyIcon from '../resources/images/sidebar/history.svg';
 import statsIcon from '../resources/images/sidebar/stats.svg';
 

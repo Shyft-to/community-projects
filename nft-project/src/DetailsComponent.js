@@ -311,7 +311,7 @@ const GetDetails = () => {
                                 <div className="text-center">
                                     {
                                         (updAuth === walletId)? 
-                                            (<Link className="btn-solid-grad px-5 m-1" to={`/update?token_address=${mintAddr}&network=${networkParams[1]}`}>Update NFT</Link>):
+                                            (<Link className="btn-solid-grad px-5 mx-1 my-1" to={`/update?token_address=${mintAddr}&network=${networkParams[1]}`}>Update NFT</Link>):
                                             (<a className={"btn-solid-grad disabled px-5 mx-4"} data-bs-toggle="tooltip" title="You do not have update authority for this NFT">Update NFT</a>
                                             
                                             )
@@ -320,7 +320,7 @@ const GetDetails = () => {
                                     }
                                     {
                                         (updAuth === walletId)? 
-                                            (<button className="btn-solid-grad px-5 mx-4" onClick={handleBurn}>Burn NFT</button>):
+                                            (<button className="btn-solid-grad px-5 mx-1 my-1 " onClick={handleBurn}>&nbsp;&nbsp;Burn NFT&nbsp;&nbsp;</button>):
                                             ("")  
                                     }
                                     {/* {

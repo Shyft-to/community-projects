@@ -165,7 +165,7 @@ const ListAll = () => {
           console.log('ok');
           //navigate(`/marketplace`);
           setTimeout(() => {
-            navigate(`/marketplace`);
+            navigate(`/my-listings`);
           }, 5000);
         }
         else

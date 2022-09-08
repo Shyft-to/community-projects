@@ -353,6 +353,7 @@ const Update = () => {
                     />
                   </div>
                 </div>
+                
               </div>
 
               <div className="col-sm-12 col-md-7">
@@ -753,11 +754,20 @@ const Update = () => {
                     {/* {externalUrl} */}
                     <div className="white-form-group">
                       <button
-                        className="btn-solid-grad"
+                        className="btn-solid-grad m-1"
                         type="submit"
                         onClick={handleUpload}
                       >
                         Update NFT
+                      </button>
+                      <button
+                        className="btn-solid-grad m-1"
+                        onClick={(e)=>{
+                          e.preventDefault();
+                          navigate(-1);
+                        }}
+                      >
+                        &nbsp;&nbsp;Cancel&nbsp;&nbsp;
                       </button>
                     </div>
                     <p className="p-para text-danger">{mainErr}</p>

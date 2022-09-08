@@ -187,6 +187,7 @@ const ListedNFTs = () => {
           <div className="container-lg">
             <div className="your-listings">
               <h2 className="section-heading">Your Marketplace Listings</h2>
+              <p className="p-para px-2">You can also view these listings on the marketplace.</p>
               {mssg && (
                 <div className="pt-5 text-center">
                   <p className="p-para">{mssg}</p>
