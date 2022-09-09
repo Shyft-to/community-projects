@@ -101,7 +101,7 @@ const ListAll = () => {
         const endPoint = process.env.REACT_APP_URL_EP;
         setMssg("");
         
-        let nftUrl = `${endPoint}nft/read_all?network=${network}&address=${waddress}&refresh=refresh`;
+        let nftUrl = `${endPoint}nft/read_all?network=${network}&address=${waddress}`;
 
         axios({
             // Endpoint to get NFTs
