@@ -317,7 +317,7 @@ const ListAll = () => {
                           style={{ textDecoration: "none" }}
                         >
                           <div className="inner-box-img-container">
-                            <img src={nft.cached_image_uri} alt="NftImage" />
+                            <img src={nft.image_uri} alt="NftImage" />
                           </div>
                         </Link>
                         <div className="row pt-3 pb-2">

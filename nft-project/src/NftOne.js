@@ -24,7 +24,7 @@ const NftOne = (props) => {
                 
                 if (res.data.success) {
                     setName(res.data.result.name)
-                    setImage(res.data.result.cached_image_uri)
+                    setImage(res.data.result.image_uri)
                 }
                 
 

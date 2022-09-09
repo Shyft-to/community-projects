@@ -79,7 +79,7 @@ const GetDetails = () => {
         // setApiResponse(JSON.stringify(data.result));
         setName(data.result.name);
         setDesc(data.result.description);
-        setImgs(data.result.cached_image_uri);
+        setImgs(data.result.image_uri);
         setSym(data.result.symbol);
         setSym(data.result.symbol);
         setOwnAddr(data.result.owner);
