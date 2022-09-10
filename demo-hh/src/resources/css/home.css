@@ -1,0 +1,751 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
+
+@font-face {
+    font-family: RoundyRainbows;
+    src: url("../fonts/roundy-rainbows.ttf");
+}
+body
+{
+    background-color: #00011C;
+}
+
+.background-container {
+    background: radial-gradient(106.35% 186.99% at 0% 18.78%, #111216 0%, #000239 100%); 
+    /* height: 100vh; */
+}
+
+.main-heading {
+    font: 400 4rem/4.625rem "RoundyRainbows", sans-serif;
+    color: #fff;
+    letter-spacing: 2px;
+}
+.sub-heading-1
+{
+    font: 400 40px/48px "RoundyRainbows", sans-serif;
+    color: #fff;
+    letter-spacing: 2px;
+}
+.sub-heading-2
+{
+    font: 400 56px/64px "RoundyRainbows", sans-serif;
+    color: #fff;
+    letter-spacing: 2px;
+}
+
+.p-para {
+    font: 300 1rem/1.625rem "Poppins", sans-serif;
+    letter-spacing: 2px;
+    color: #fff;
+}
+.p-para-emphasis
+{
+    font: 400 1.2rem/1.875rem "Poppins", sans-serif !important;
+}
+.p-para-xtra {
+    font: 700 1.2rem/2rem "Poppins", sans-serif;
+    letter-spacing: 1px;
+    color: #fff;
+    text-align: justify;
+}
+
+.btn-solid-grad {
+    display: inline-block;
+    padding: 1rem 1.825rem 1rem 1.825rem;
+    border: none;
+    border-radius: 2.5rem;
+    background-color: rgba(89, 101, 243, 0.29);
+    background: linear-gradient(94.8deg, #0aeeff 5.22%, #009eeb 97.41%);
+    color: #fff;
+    font: 600 0.8rem/1.2rem "Poppins", sans-serif;
+    letter-spacing: 0.1em;
+    text-decoration: none !important;
+    transition: all 0.2s;
+}
+
+.btn-solid-grad:hover {
+    transform: scale(1.1);
+}
+
+.btn-solid-grad-wide {
+    display: inline-block;
+    padding: 1rem 1.825rem 1rem 1.825rem;
+    border: none;
+    border-radius: 2.5rem;
+    background-color: rgba(89, 101, 243, 0.29);
+    background: linear-gradient(94.8deg, #0aeeff 5.22%, #009eeb 97.41%);
+    color: #fff;
+    font: 400 1rem/1.2rem "Poppins", sans-serif;
+    letter-spacing: 0.1em;
+    text-decoration: none !important;
+    transition: all 0.2s;
+    padding: 16px 64px;
+}
+
+.btn-solid-grad-wide:hover {
+    transform: scale(1.1);
+}
+
+.btn-solid-grad-xs {
+    display: inline-block;
+    padding: 0.5rem 1.0rem;
+    border: none;
+    border-radius: 2.5rem;
+    background-color: rgba(89, 101, 243, 0.29);
+    background: linear-gradient(94.8deg, #0aeeff 5.22%, #009eeb 97.41%);
+    color: #fff;
+    font: 400 0.8rem/1.2rem "Poppins", sans-serif;
+    letter-spacing: 0.1em;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+}
+.btn-solid-grad-xs:hover
+{
+    transform: scale(1.05);
+}
+.btn-solid-grad-xs-2 {
+    display: inline-block;
+    padding: 0.4rem 1.0rem;
+    border: none;
+    border-radius: 2.5rem;
+    background-color: rgba(89, 101, 243, 0.29);
+    background: linear-gradient(94.8deg, #0aeeff 5.22%, #009eeb 97.41%);
+    color: #fff;
+    font: 500 0.8rem/1.2rem "Poppins", sans-serif !important;
+    letter-spacing: 0.1em;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+}
+.btn-solid-grad-xs-2:hover
+{
+    transform: scale(1.05);
+    color: #fff;
+}
+
+.btn-solid-coin-xs-2 {
+    display: inline-block;
+    padding: 0.3rem 1.0rem;
+    border: none;
+    border-radius: 2.5rem;
+    background: #ec008c; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ec008c, #fc6767); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ec008c, #fc6767); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #fff;
+    font: 600 0.9rem/1.2rem "Poppins", sans-serif !important;
+    letter-spacing: 0.1em;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+}
+
+.btn-solid-grad-outline
+{
+    background: linear-gradient(154.8deg, #0aeeff 5.22%, #009eeb 97.41%);
+    padding: 2px;
+    border-radius: 28px;
+    display: inline-block;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.btn-solid-grad-outline div
+{
+    padding: 0.9rem 1.825rem 0.9rem 1.825rem;
+    background-color: #010222;
+    border-radius: 25px;
+    font: 500 0.8rem/1.2rem "Poppins", sans-serif !important;
+    color: #fff;
+    letter-spacing: 1px;
+
+}
+.btn-solid-grad-outline:hover
+{
+    transform: scale(1.1);
+}
+a.btn-solid-grad:hover
+{
+    text-decoration: none;
+    color: #fff;
+}
+
+.transparent-btn
+{
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+.transparent-btn.move
+{
+    position: absolute;
+    margin-left: 10px;
+    margin-top: -30px;
+}
+
+
+.connect-wallet .btn-solid-grad-wide {
+    margin-top: 40px;
+}
+
+.our-navbar {
+    background-color: #00011C99;
+    
+    opacity: 1;
+    backdrop-filter: blur(8px);
+}
+
+.our-navbar a {
+    text-decoration: none;
+    color: #fff;
+    font: 600 0.9rem/1.75rem "Poppins", sans-serif;
+}
+.icons-menu
+{
+    margin-left: auto;
+}
+.icons-menu a
+{
+    color: #fff;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+.icons-menu a:hover
+{
+    color: #009EEB;
+}
+.icons-menu a.btn-solid-grad-xs-2:hover
+{
+    color: #fff; 
+}
+
+.connect-wallet .main-heading {
+    padding-top: 30%;
+}
+
+.connect-wallet-back {
+    background: url("../images/stars.png"), url("../images/sky-planet.png"),
+        url("../images/purple-planet.png"), url("../images/purple-cloud.png");
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+    background-position: 0% 0%, 100% 0%, -10% 100%, 0% 110%;
+    background-size: 100% 95%, 500px 550px, 200px, 100%;
+    min-height: 88.5vh;
+}
+
+.connect-wallet .p-para {
+    margin-top: 50px;
+}
+
+.connect-wallet img {
+    padding-top: 350px;
+    width: 70%;
+    display: block;
+    margin: 0 auto;
+}
+.connect-wallet .powered-by-img
+{
+    width: 180px;
+    padding-top: 30px;
+    
+    margin-left: 40px;
+    
+}
+
+.all-nft
+{
+    background: radial-gradient(106.35% 186.99% at 0% 18.78%, #111216 0%, #000239 100%); 
+}
+.all-nft .content
+{
+    background: url('../images/purple-rock-planet.png'),url('../images/stars-2.png');
+    background-position: 100% 0%,0% 0%;
+    min-height: 88.5vh;
+    background-repeat: no-repeat;
+    background-size: auto, cover;
+}
+.all-nft .main-heading
+{
+    padding-top: 32px;
+    padding-bottom: 40px;
+    line-height: 1.5em;
+}
+
+.dark-cards
+{
+    width: 100%;
+    height: 320px;
+    background-color: #02001699;
+    padding: 12px;
+    border-radius: 15px;
+    border: 1px solid #0AEEFF;
+}
+.dark-cards .image-container
+{
+    border-radius: 10px;
+    background-color: green;
+    height: 80%;
+}
+.dark-cards .image-container img
+{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+.dark-cards .p-name
+{
+    font: 500 1rem/1.625rem "Poppins", sans-serif;
+    letter-spacing: 1px;
+    color: #fff;
+}
+.dark-cards .small-btn-outline
+{
+    width: 100px;
+    padding: 2px;
+    background: linear-gradient(91.09deg, #0AEEFF 1.89%, #009EEB 95.72%);
+    border-radius: 50px;
+
+}
+.dark-cards .small-btn-outline button
+{
+    padding: 8px 8px;
+    width: 100%;
+    border: none;
+    font: 300 12px/14px "Poppins", sans-serif;
+    border-radius: 50px;
+    background-color: #020016;
+    color: #fff;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+.dark-cards .small-btn-outline button:hover
+{
+    background-color: transparent;
+}
+.dark-cards .text-section
+{
+    padding-top: 16px;
+}
+
+.dark-cards-mp
+{
+    width: 100%;
+    height: 340px;
+    background-color: #02001699;
+    padding: 12px;
+    border-radius: 15px;
+    border: 1px solid #0AEEFF;
+}
+.dark-cards-mp .image-container
+{
+    border-radius: 10px;
+    background-color: green;
+    height: 70%;
+}
+.dark-cards-mp .image-container img
+{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+.dark-cards-mp .p-name
+{
+    font: 300 1rem/1.2rem "Poppins", sans-serif;
+    letter-spacing: 1px;
+    color: #fff;
+}
+.dark-cards-mp .small-btn-outline
+{
+    width: 100px;
+    padding: 2px;
+    background: linear-gradient(91.09deg, #0AEEFF 1.89%, #009EEB 95.72%);
+    border-radius: 50px;
+
+}
+.dark-cards-mp .small-btn-outline button
+{
+    padding: 8px 8px;
+    width: 100%;
+    border: none;
+    font: 300 12px/14px "Poppins", sans-serif;
+    border-radius: 50px;
+    background-color: #020016;
+    color: #fff;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+.dark-cards-mp .small-btn-outline button:hover
+{
+    background-color: transparent;
+}
+.dark-cards-mp .text-section
+{
+    padding-top: 0px;
+    margin-top: -10px;
+}
+.dark-cards-mp .text-section-1
+{
+    padding-top: 20px;
+}
+.dark-cards-mp .p-name-1
+{
+    font: 500 1rem/1.625rem "Poppins", sans-serif;
+    letter-spacing: 1px;
+    color: #fff;
+}
+.dark-cards-mp .full-blue-btn
+{
+    width: 100%;
+    border-radius: 20px;
+    background: linear-gradient(180deg, #0AEEFF 0%, #04ADFF 100%);
+    font: 500 0.9rem/1.625rem "Poppins", sans-serif;
+    color: #fff;
+    letter-spacing: 1px;
+    border: 1px solid #000;
+    transition: all 0.4s ease;
+}
+.dark-cards-mp .full-blue-btn:hover
+{
+    background: transparent;
+    border: 1px solid #04ADFF;
+}
+
+.market-place
+{
+    background: radial-gradient(106.35% 186.99% at 0% 18.78%, #111216 0%, #000239 100%); 
+}
+.market-place .content
+{
+    background: url('../images/mp-corner.png'),url('../images/stars-2.png');
+    background-position: 0% 0%,0% 0%;
+    min-height: 88.5vh;
+    background-repeat: no-repeat;
+    background-size: 20%, cover;
+}
+.market-place .main-heading
+{
+    padding-top: 96px;
+    padding-bottom: 64px;
+    line-height: 1.5em;
+}
+
+.footer-white
+{
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  background: rgba(0, 1, 28, 1);
+  padding: 15px 5px 5px;
+  /* border-top: 1px solid #ffffffcc; */
+  min-height: 10vh;
+}
+.white-footer-icons img
+{
+  width: 70%;
+}
+.landing-page
+{
+    background: radial-gradient(106.35% 186.99% at 0% 18.78%, #111216 0%, #000239 100%); 
+}
+.landing-page .content
+{
+    min-height: 90vh;
+    background: url('../images/space-ship.png'),url('../images/rocks.png'),url('../images/stars-2.png');
+    background-position: 103% -15%, 0% 165%,0% 0%;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-size: 18%, 40%, cover;
+}
+
+.landing-page .content .main-heading
+{
+    margin-top: 100px;
+}
+.landing-page .content .img-container
+{
+    padding-top: 80px;
+}
+
+
+.full-overlay
+{
+  position: fixed;
+  height: 120vh;
+  width: 100vw;
+  z-index: 99;
+  background-color: #112f4a55;
+  overflow: hidden !important;
+  margin-top: -150px;
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.full-overlay .loading-square
+{
+  width: 100%;
+  max-width: 600px;
+  min-height: 250px;
+  background: #010222;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.full-overlay .loading-square img
+{
+  width: 200px;
+}
+.full-overlay .loading-square .p-para
+{
+    font-weight: 300;
+    color: #fff;
+    padding-top: 30px;
+}
+
+.landing-page-2
+{
+    background: radial-gradient(106.35% 186.99% at 0% 18.78%, #111216 0%, #000239 100%); 
+}
+.landing-page-2 .content
+{
+    min-height: 88.8vh;
+    background: url('../images/space-ship.png'),url('../images/ontherocks.png'),url('../images/stars-2.png');
+    background-position:  100% 0%, -20% 155%,0% 0%;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-size: 12%, 30%, cover;
+}
+
+.landing-page-2 .content .main-heading
+{
+    margin-top: 100px;
+}
+.landing-page-2 .content .img-container
+{
+    padding-top: 80px;
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+#facts
+{
+    opacity: 0;
+    transition: all 0.2s ease;
+}
+.planet-outer
+{
+    padding: 50px;
+    padding-top: 5%;
+    position: relative;
+}
+.planet-container
+{
+    width: 500px;
+    height: 500px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    animation-name: spin;
+    animation-duration: 30000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear; 
+
+}
+#hover:hover + #facts
+{
+    opacity: 1;
+}
+
+.xtra-font
+{
+    font: 500 24px/16px "RoundyRainbows", sans-serif;
+    
+}
+.no-decor
+{
+    text-decoration: none;
+}
+
+.planet-info
+{
+    position: absolute;
+    top: 50px;
+    left: 300px;
+    width: 500px;
+    height: 500px;
+}
+.planet-info i
+{
+    font-size: 20px;
+    color: #ffdb58;
+
+}
+
+.planet-information-box
+{
+    max-width: 150px;
+    padding: 10px 20px;
+    margin: 10px 0px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+.pi-box-1
+{
+    opacity: 0.0;
+}
+.planet-info i:hover + .pi-box-1
+{
+    opacity: 0.9;
+}
+.pi-box-2
+{
+    opacity: 0.0;
+}
+.planet-info i:hover + .pi-box-2
+{
+    opacity: 0.9;
+}
+.pi-box-3
+{
+    opacity: 0.0;
+}
+.planet-info i:hover + .pi-box-3
+{
+    opacity: 0.9;
+}
+.stays-icon
+{
+    margin-top: 8vh;
+    margin-left: 15vw;
+}
+.bites-icon
+{
+    margin-top: 5vh;
+    margin-left: 9vw;
+}
+.pubs-icon
+{
+    margin-top: 3vh;
+    margin-left: 18vw;
+}
+#hide-on-lg
+{
+    display: none;
+}
+#hide-on-md
+{
+    display: inline-block;
+}
+
+.blue-headings
+{
+    font: 500 24px/24px "RoundyRainbows", sans-serif;
+    background: linear-gradient(180deg, #0AEEFF 0%, #04ADFF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+.button-section
+{
+    display: flex;
+    padding-top: 20px;
+}
+
+@media screen and (max-width: 992px)
+{
+    #hide-on-lg
+    {
+        display: inline-block;
+    }
+    #hide-on-md
+    {
+        display: none;
+    }
+    .connect-wallet img {
+        padding-top: 40px;
+        width: 70%;
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 20px;
+    }
+    .icons-menu {
+        margin: 0 auto;
+        padding: 12px 0px;
+    }
+    .connect-wallet-back {
+        background: url("../images/stars.png"), url("../images/sky-planet.png"),
+            url("../images/purple-planet.png"), url("../images/purple-cloud.png");
+        background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+        background-position: 0% 0%, 100% 0%, -10% 100%, 0% 110%;
+        background-size: 100% 95%, 200px 250px, 200px, 100%;
+        min-height: 88.5vh;
+    }
+
+    .all-nft .content
+    {
+        background: url('../images/purple-rock-planet.png'),url('../images/stars-2.png');
+        background-position: 100% 0%,0% 0%;
+        background-repeat: no-repeat;
+        background-size: 40%, cover;
+    }
+    .dark-cards
+    {
+        height: 400px;
+    }
+}
+
+
+.planet-bg-val
+{
+    background: url('../images/planets/val-boy.png');
+    background-repeat: no-repeat;
+    background-position: 85% 130%;
+    background-size: 24%;
+    height: 89vh;
+}
+.planet-bg-gan
+{
+    background: url('../images/planets/gan-boy.png');
+    background-repeat: no-repeat;
+    background-position: 85% 130%;
+    background-size: 24%;
+    height: 89vh;
+}
+.planet-bg-iso
+{
+    background: url('../images/planets/iso-boy.png');
+    background-repeat: no-repeat;
+    background-position: 85% 130%;
+    background-size: 24%;
+    height: 89vh;
+}
+
+.planet-bg-val-mm
+{
+    background: url('../images/planets/val-boy-sm-min.png');
+    background-repeat: no-repeat;
+    background-position: 105% 150%;
+    background-size: 24%;
+    height: 88.5vh;
+}
+.planet-bg-gan-mm
+{
+    background: url('../images/planets/gan-boy-sm-min.png');
+    background-repeat: no-repeat;
+    background-position: 85% 130%;
+    background-size: 24%;
+    height: 88.5vh;
+}
+.planet-bg-iso-mm
+{
+    background: url('../images/planets/iso-boy-sm-min.png');
+    background-repeat: no-repeat;
+    background-position: 85% 130%;
+    background-size: 24%;
+    height: 88.5vh;
+}
