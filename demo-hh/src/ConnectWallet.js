@@ -60,9 +60,13 @@ const ConnectWallet = () => {
     const resp = await connectTheWallet();
 
     console.log("Your Wallet Address: ", resp);
-    setWalletId(resp.addr);
-    //ReactSession.set("from_wallet", true);
-    navigate("/mint");
+    if(resp.addr)
+    {
+      setWalletId(resp.addr);
+      //ReactSession.set("from_wallet", true);
+      navigate("/mint");
+    }
+    
     
     // if (resp.success === true) {
     //   setWalletId(resp.addr);
@@ -136,9 +140,10 @@ const ConnectWallet = () => {
             <div className="row connect-wallet">
               <div className="col-md-12 col-lg-7">
                 <div>
-                  <h2 className="main-heading">SHYFT Landing Pass Check</h2>
+                  <h2 className="main-heading">SHYFT Space Station Check.</h2>
                   <p className="p-para p-para-emphasis">
-                    You need a landing pass to land on a planet. Connect your wallet to check.
+                  Connect your wallet. Mint Landing Passes. Travel to 
+                  different planets.
                   </p>
                   {/* <p className="p-para">
                     Connect your wallet to discover more.
@@ -147,7 +152,7 @@ const ConnectWallet = () => {
                     className="btn-solid-grad-wide"
                     onClick={solanaConnect}
                   >
-                    Connect Phantom
+                    Start Your Journey
                   </button>
                   {/* <div className="pe-2">
                     <img className="powered-by-img" src={shyftlogo} alt="" />

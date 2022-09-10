@@ -13,7 +13,7 @@ const CoinsLoader = (props) => {
                         
                     </div>
                     <img style={{width:"25%"}} src={astroCoin} alt="You got Coins" />
-                    <p className="p-para">{props.message} <b>{props.name}</b><br /> {props.message2} <b> {(props.name === 'Ganymede')?'10 coins':(props.name === 'Valetudo')?'15 coins':'5 coins'}</b></p>
+                    <p className="p-para">{props.message} <b>{props.name}</b><br /><b> {(props.name === 'Ganymede')?'10 SHYFT coins':(props.name === 'Valetudo')?'15 SHYFT coins':'5 SHYFT coins'}</b> {props.message2}<br /> {props.message3}</p>
                     <p className="p-para"></p>
                 </div>
             </div>

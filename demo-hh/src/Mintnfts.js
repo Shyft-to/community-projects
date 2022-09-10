@@ -129,13 +129,6 @@ const Mintnfts = () => {
           setLoading(false);
           setSuccess(false);
         }
-    
-        
-          
-        //console.log("minted: ",minted);
-        //setComMinted(true);
-       
-    
       }
     
 
@@ -223,17 +216,17 @@ const Mintnfts = () => {
                     {/* {coinsMinted && <CoinsLoader message="Yay! Congratulations you received 100 SHYFT coins" closer={setCoinsMinted}/>} */}
                     {success && <SuccessLoader2 message="Yayy! Landing pass added to your wallet" navigateHome={navigateHome} />}
                     <div className="container-lg">
-                        <div className="row pt-3">
+                        <div className="row pt-5">
                             <div className="col-sm-12 col-md-10">
                                 <h2 className="main-heading">
-                                
+                                SHYFT Space Station
                                 </h2>
                             </div>
                         </div>
                         {(present.length>0)?(<div className="row px-2">
                             <div className="col-sm-12 col-md-11">
-                                <h2 className="sub-heading-2">All your planet VISAs to traverse the SHYFT metaverse.</h2>
-                                <p className="p-para mt-3">Travel around the planets with these VISAs and buy SHYFT collectibles.</p>
+                                <h2 className="sub-heading-3">My Landing Passes</h2>
+                                <p className="p-para mt-3">All your planet VISAs to traverse the SHYFT metaverse.Travel around the planets with these VISAs and buy SHYFT collectibles.</p>
                             </div>
                         </div>):""}
                         <div className="row">
@@ -305,14 +298,14 @@ const Mintnfts = () => {
                         <div className="row pt-3">
                             <div className="col-sm-12 col-md-10">
                                 <h2 className="main-heading">
-                                
+                                 
                                 </h2>
                             </div>
                         </div>
                         {(!(present.includes('Valetudo')&&present.includes('Ganymede')&&present.includes('Isonoe')))?<div className="row px-2">
                             <div className="col-sm-12 col-md-12">
-                                <h2 className="sub-heading-2">Grab your planet visa and Embrace exploration</h2>
-                                <p className="p-para mt-3">Get a planet Visa for the planet you want to travel to.</p>
+                                <h2 className="sub-heading-3">Get more landing passes</h2>
+                                <p className="p-para mt-3">Grab your planet visa and embrace exploration. Get a planet Visa for the planet you want to travel to.</p>
                             </div>
                         </div>:""}
                         

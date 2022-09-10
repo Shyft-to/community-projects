@@ -66,6 +66,14 @@ const Header = () => {
                                 </li>
                                 
                                 <li className="nav-item icons-menu">
+                                
+                                  <div class="postman-run-button"
+                                  data-postman-action="collection/fork"
+                                  data-postman-var-1="18419720-f8e4000d-066d-4476-9790-01620490471b"
+                                  data-postman-collection-url="entityId=18419720-f8e4000d-066d-4476-9790-01620490471b&entityType=collection&workspaceId=8d164192-365d-4e69-8eec-54da86979a9e"
+                                  data-postman-param="env%5BShyft%5D=W3sia2V5IjoidXJsIiwidmFsdWUiOiJodHRwczovL2FwaS5zaHlmdC50by9zb2wvdjEiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCJ9XQ=="></div>
+                                
+                                
                                     <a className="mx-3 pt-1" href="https://docs.shyft.to/" target="_blank" rel="noreferrer">Read Docs</a>
                                     {/* <a className="btn-solid-grad-xs-2 mx-3" href="https://shyft.to/" target="_blank" rel="noreferrer">Get API key</a> */}
                                     <span className="btn-solid-coin-xs-2 mx-3">{balanc} SFC</span>

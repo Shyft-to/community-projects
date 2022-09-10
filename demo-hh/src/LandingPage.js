@@ -143,7 +143,7 @@ const LandingPage = () => {
     <div className="landing-page">
       <div className="content">
         {loading && <PlanetLoader message="Sit Tight! We are travelling at the speed of light..."/>}
-        {coinsAwarded && <CoinsLoader message="Hello space traveller!! Welcome to" message2="Here is a welcome gift for you: " name={name} closer={setCoinsAwarded}/>}
+        {coinsAwarded && <CoinsLoader message="Hello space traveller!! Welcome to" message2="have been airdropped to your wallet." message3="Happy Shopping." name={name} closer={setCoinsAwarded}/>}
         <div className={(name==='Ganymede')?"planet-bg-gan":(name==='Isonoe')?"planet-bg-iso":"planet-bg-val"}>
           <div className="container-lg">
             <div className="row">
@@ -176,7 +176,7 @@ const LandingPage = () => {
                   </div>
                   <div className="pe-3">
                     <Link to="/marketplace" className="btn-solid-grad">
-                      Go To Market
+                      Explore {name}
                     </Link>
                   </div>
                 </div>

@@ -5,45 +5,45 @@ import { Link } from "react-router-dom";
 const ListCard = (props) => {
     const [name,setName] = useState('');
     const [image,setImage] = useState('');
-    useEffect(() => {
-        const endPoint = process.env.REACT_APP_URL_EP;
-        const xKey = process.env.REACT_APP_API_KEY;
+    // useEffect(() => {
+    //     const endPoint = process.env.REACT_APP_URL_EP;
+    //     const xKey = process.env.REACT_APP_API_KEY;
 
-        let reqUrl = `${endPoint}nft/read?network=devnet&token_address=${props.nft.nft_address}`;
+    //     let reqUrl = `${endPoint}nft/read?network=devnet&token_address=${props.nft.nft_address}`;
 
-        axios({
-            url: reqUrl,
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "x-api-key": xKey,
-            },
-        })
-            .then((res) => {
-                console.log(res.data);
+    //     axios({
+    //         url: reqUrl,
+    //         method: "GET",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             "x-api-key": xKey,
+    //         },
+    //     })
+    //         .then((res) => {
+    //             console.log(res.data);
                 
-                if (res.data.success) {
-                    setName(res.data.result.name)
-                    setImage(res.data.result.image_uri)
-                }
-                
-
-            })
-            .catch((err) => {
-                console.warn(err);
+    //             if (res.data.success) {
+    //                 setName(res.data.result.name)
+    //                 setImage(res.data.result.image_uri)
+    //             }
                 
 
-            });
-    }, [props.nft.nft_address]);
+    //         })
+    //         .catch((err) => {
+    //             console.warn(err);
+                
+
+    //         });
+    // }, [props.nft.nft_address]);
     return (
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 p-4">
             <div className="dark-cards-mp">
                 <div className="image-container">
-                    <img src={image} alt="Planet-1" />
+                    <img src={props.nft.nft.image_uri} alt="Planet-1" />
                 </div>
                 <div className="text-section-1 ">
                     <div>
-                        <p className="p-name-1">{(name.length>20)?name.substring(0, 10)+'...':name}</p>
+                        <p className="p-name-1">{(props.nft.nft.name.length>20)?props.nft.nft.name.substring(0, 10)+'...':props.nft.nft.name}</p>
                     </div>
                     
                 </div>

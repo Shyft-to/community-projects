@@ -174,8 +174,14 @@ a.btn-solid-grad:hover
 .transparent-btn.move
 {
     position: absolute;
-    margin-left: 10px;
-    margin-top: -30px;
+    margin-left: 5px;
+    margin-top: -50px;
+}
+.sub-heading-3
+{
+    font: 400 48px/56px "RoundyRainbows", sans-serif;
+    color: #fff;
+    letter-spacing: 2px;
 }
 
 
@@ -748,4 +754,11 @@ a.btn-solid-grad:hover
     background-position: 85% 130%;
     background-size: 24%;
     height: 88.5vh;
+}
+
+.postman-run-button
+{
+    position: absolute !important;
+    right: 30px;
+    top: 13px;
 }
