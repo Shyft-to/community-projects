@@ -27,6 +27,7 @@ const Mintnfts = () => {
     const [present,setPresent] = useState(['Valetudo']);
 
     const [coinsMinted,setCoinsMinted] = useState(false);
+    const[recall,setRecall] = useState(false);
 
     // useEffect(() => {
     //     const auth_checker = ReactSession.get("auth") ?? false;
@@ -93,12 +94,13 @@ const Mintnfts = () => {
         
     
       
-    }, [walletId])
+    }, [walletId,recall])
     
 
     const navigateHome = () => {
         setSuccess(false);
-        navigate('/mint');
+        //navigate('/mint');
+        setRecall(!recall);
     }
     const callback = (signature,result) => {
         console.log("Signature ",signature);
