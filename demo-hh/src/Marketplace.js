@@ -27,7 +27,7 @@ const Marketplace = () => {
 
   const { walletId } = useContext(WalletContext);
   const { money,setMoney } = useContext(MoneyContext);
-
+  const plaName = ReactSession.get("nft_name");
 
   //code for buy
   const net = "devnet";
@@ -220,13 +220,13 @@ const Marketplace = () => {
             {sure && <BuyLoader closePopupList={closePopupList} buyNow={buyNow} nfAddr={nfAddr} errorMsgBuy={errorMsgBuy} price={price}/>}
             {buyComplete && <SuccessLoader2 message="Item Bought Successfully. Please check your wallet." navigateHome={afterBuy}/>}
            <div className="content">
-           <div className="planet-bg-val-mm">
+           <div className={(plaName==='Ganymede')?"planet-bg-gan-mm":(plaName==='Isonoe')?"planet-bg-iso-mm":"planet-bg-val-mm"}>
 
            
             <div className="container-lg">
                 <div className="row">
                     <div className="col-sm-12">
-                        <h2 className="main-heading text-start">Welcome Space Traveller!</h2>
+                        <h2 className="main-heading text-start">{plaName} Marketplace</h2>
                     </div>
                 </div>
             </div>
@@ -335,8 +335,9 @@ const Marketplace = () => {
                     
                 </div>
                 <div className="row mt-4">
-                    <div className="col-12 text-center">
-                        <Link to="/mint" className="btn-solid-grad" >To Space Station</Link>
+                    <div className="col-12 text-start">
+                        <Link to="/mint" className="btn-solid-grad me-3" >To Space Station</Link>
+                        <Link to="/landing-pages" className="btn-solid-grad me-3" >Back To Planet</Link>
                     </div>
                 </div>
                 {mssg}
