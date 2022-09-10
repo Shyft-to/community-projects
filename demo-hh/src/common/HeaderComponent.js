@@ -77,6 +77,7 @@ const Header = () => {
                                     <a className="mx-3 pt-1" href="https://docs.shyft.to/" target="_blank" rel="noreferrer">Read Docs</a>
                                     {/* <a className="btn-solid-grad-xs-2 mx-3" href="https://shyft.to/" target="_blank" rel="noreferrer">Get API key</a> */}
                                     <span className="btn-solid-coin-xs-2 mx-3">{balanc} SFC</span>
+                                    {/* <span className="btn-solid-coin-xs-2 mx-3">{walletId}</span> */}
                                     <a type="button" className="btn btn-link px-2" href="https://github.com/Shyft-to/community-projects/tree/main/nft-gated-dapp" target="_blank" rel="noreferrer"> <img src={github} alt="Connect to Discord" /> </a>
                                     {/*<a type="button" className="btn btn-link px-1 me-2" href="https://www.linkedin.com/company/shyft-to/" target="_blank" rel="noreferrer"> <img src={linkedIn} alt="Connect on LinkedIn" /> </a>
                                     <a type="button" className="btn btn-link px-1 me-2" href="https://twitter.com/shyft_to" target="_blank" rel="noreferrer"> <img src={twitter} alt="Tweet about Us" /> </a> */}

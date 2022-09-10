@@ -9,7 +9,7 @@ import CoinsLoader from "./loaders/CoinsLoader";
 import { MoneyContext } from "./context/MoneyContext";
 
 const LandingPage = () => {
-  const { walletId } = useContext(WalletContext);
+  const { walletId,setWalletId } = useContext(WalletContext);
   const { money,setMoney } = useContext(MoneyContext);
   const navigate = useNavigate();
 
@@ -33,6 +33,16 @@ const LandingPage = () => {
       // if(nft_key === 0)
       //     navigate('/');
   }, [])
+  useEffect(() => {
+        
+    if(walletId === null)
+    {
+        const get_wall = ReactSession.get("user_wallet_addr");
+        setWalletId(get_wall);
+
+    }
+        
+}, []);
   
   
   useEffect(() => {
@@ -144,7 +154,7 @@ const LandingPage = () => {
     <div className="landing-page">
       <div className="content">
         {loading && <PlanetLoader message="Sit Tight! We are travelling at the speed of light..."/>}
-        {coinsAwarded && <CoinsLoader message="Hello space traveller!! Welcome to" message2="have been airdropped to your wallet." message3="Happy Shopping." name={name} closer={setCoinsAwarded}/>}
+        {coinsAwarded && <CoinsLoader message="Hello space traveller!! Welcome to" message2="have been airdropped to your wallet." message3="Happy Exploring." name={name} closer={setCoinsAwarded}/>}
         <div className={(name==='Ganymede')?"planet-bg-gan":(name==='Isonoe')?"planet-bg-iso":"planet-bg-val"}>
           <div className="container-lg">
             <div className="row">

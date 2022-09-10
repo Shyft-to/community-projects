@@ -15,7 +15,7 @@ import CoinsLoader from './loaders/CoinsLoader.js';
 
 const Mintnfts = () => {
     const navigate = useNavigate();
-    const { walletId } = useContext(WalletContext);
+    const { walletId,setWalletId } = useContext(WalletContext);
     const [mssg,setMssg] = useState("");
     const [loading,setLoading] = useState(false);
     const [getting,setGetting] = useState(false);
@@ -37,15 +37,16 @@ const Mintnfts = () => {
     //         navigate('/');
     // }, []);
 
-    // useEffect(() => {
-    //     const auth_checker = ReactSession.get("from_wallet") ?? false;
-    //     if(auth_checker === true)
-    //     {
-    //         ReactSession.set("from_wallet", true);
-    //         setCoinsMinted(true);
-    //     } 
+    useEffect(() => {
+        
+        if(walletId === null)
+        {
+            const get_wall = ReactSession.get("user_wallet_addr");
+            setWalletId(get_wall);
+
+        }
             
-    // }, []);
+    }, []);
 
     useEffect(() => {
         const xKey = process.env.REACT_APP_API_KEY;
@@ -322,7 +323,7 @@ const Mintnfts = () => {
                                         </div>
                                         <div>
                                             <div className="small-btn-outline">
-                                                <button onClick={() => MintNow('CTkSfvM2WeWBRpphRhgeVCReJK8T7woHMqddY9nCUW34','Valetudo')}>Get Pass</button>
+                                                <button onClick={() => MintNow('CTkSfvM2WeWBRpphRhgeVCReJK8T7woHMqddY9nCUW34','Valetudo')}>Get VISA</button>
                                             </div>
                                         </div>
                                     </div>
@@ -339,7 +340,7 @@ const Mintnfts = () => {
                                         </div>
                                         <div>
                                             <div className="small-btn-outline">
-                                                <button onClick={() => MintNow('FKV3spQLfp4SZj14atVomA9X7HCcCrEMmrDJF5ENVfwh','Ganymede')}>Get Pass</button>
+                                                <button onClick={() => MintNow('FKV3spQLfp4SZj14atVomA9X7HCcCrEMmrDJF5ENVfwh','Ganymede')}>Get VISA</button>
                                             </div>
                                         </div>
                                     </div>
@@ -356,7 +357,7 @@ const Mintnfts = () => {
                                         </div>
                                         <div>
                                             <div className="small-btn-outline">
-                                                <button onClick={() => MintNow('Gj9awCwtCqTAq77SMXeHH434jc3DSoweeZHEmqynMLSd','Isonoe')}>Get Pass</button>
+                                                <button onClick={() => MintNow('Gj9awCwtCqTAq77SMXeHH434jc3DSoweeZHEmqynMLSd','Isonoe')}>Get VISA</button>
                                             </div>
                                         </div>
                                     </div>

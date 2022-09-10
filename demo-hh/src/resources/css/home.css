@@ -743,7 +743,7 @@ a.btn-solid-grad:hover
 {
     background: url('../images/planets/gan-boy-sm-min.png');
     background-repeat: no-repeat;
-    background-position: 85% 130%;
+    background-position: 105% 120%;
     background-size: 24%;
     min-height: 88.5vh;
 }
@@ -751,7 +751,7 @@ a.btn-solid-grad:hover
 {
     background: url('../images/planets/iso-boy-sm-min.png');
     background-repeat: no-repeat;
-    background-position: 85% 130%;
+    background-position: 105% 120%;
     background-size: 24%;
     min-height: 88.5vh;
 }

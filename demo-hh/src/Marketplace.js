@@ -25,7 +25,7 @@ const Marketplace = () => {
   const [nfts, setNfts] = useState(null);
   const [mssg, setMssg] = useState("");
 
-  const { walletId } = useContext(WalletContext);
+  const { walletId,setWalletId } = useContext(WalletContext);
   const { money,setMoney } = useContext(MoneyContext);
   const plaName = ReactSession.get("nft_name");
   ReactSession.set("from_pass", false);
@@ -50,6 +50,17 @@ const Marketplace = () => {
   const [collect,setCollect] = useState([]);
   const [loadedColl,setLoadedColl] = useState(false);
   const [triggerColl,setTriggerColl] = useState(false);
+
+  useEffect(() => {
+        
+    if(walletId === null)
+    {
+        const get_wall = ReactSession.get("user_wallet_addr");
+        setWalletId(get_wall);
+
+    }
+        
+}, []);
 
   useEffect(() => {
         setLoadedColl(false);
@@ -138,7 +149,7 @@ const Marketplace = () => {
     setRecallMark(!recallMark);
     setTimeout(() => {
         setTriggerColl(!triggerColl)
-    }, 3000);
+    }, 2000);
     //navigate(`/marketplace`);
   }
 
@@ -309,11 +320,11 @@ const Marketplace = () => {
                 </div>
 
                 <div className="container-lg">
-                        <div className="row pt-5">
+                        {(collect.length>0) && (<div className="row pt-5 mt-5">
                             <div className="col-sm-12">
-                                <h2 className="sub-heading-3 text-start">All Your Collectibles</h2>
+                                <h2 className="sub-heading-3 text-start">Your Collectibles</h2>
                             </div>
-                        </div>
+                        </div>)}
                     <div className="row">
                         {loadedColl &&
                             collect.map((nft) => (

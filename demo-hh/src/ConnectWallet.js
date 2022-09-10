@@ -60,6 +60,7 @@ const ConnectWallet = () => {
     const resp = await connectTheWallet();
 
     console.log("Your Wallet Address: ", resp);
+    ReactSession.set("user_wallet_addr", resp.addr);
     if(resp.addr)
     {
       setWalletId(resp.addr);
