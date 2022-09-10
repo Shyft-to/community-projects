@@ -45,6 +45,58 @@ const Marketplace = () => {
   const [buyComplete,setBuyComplete] = useState(false);
 
   const [recallMark,setRecallMark] = useState(false);
+
+  const [collect,setCollect] = useState([]);
+  const [loadedColl,setLoadedColl] = useState(false);
+  const [triggerColl,setTriggerColl] = useState(false);
+
+  useEffect(() => {
+        setLoadedColl(false);
+        const xKey = process.env.REACT_APP_API_KEY;
+        const endPoint = process.env.REACT_APP_URL_EP;
+        const updtAuth = process.env.REACT_APP_MINTER_UPDT;
+        let nftUrl1 = `1231${endPoint}nft/read_all?network=mainnet-beta&address=${walletId}&update_authority=${updtAuth}&refresh=refresh`;
+
+        axios({
+            // Endpoint to list
+            url: nftUrl1,
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "x-api-key": xKey,
+            },
+            
+          })
+            // Handle the response from backend here
+            .then(async (res) => {
+              //console.log(res.data);
+              if(res.data.success === true)
+              {
+                setCollect(res.data.result);
+                
+              }
+              else
+              {
+                setCollect([]);
+              }
+              
+              
+            })
+            // Catch errors if any
+            .catch((err) => {
+              console.warn(err);
+              setCollect([]);
+            });
+  }, [triggerColl])
+
+  useEffect(() => {
+    if(collect.length>0)
+    {
+        setLoadedColl(true);
+    }
+  }, [collect])
+  
+  
   
 
   const callback = (signature,result) => {
@@ -341,6 +393,43 @@ const Marketplace = () => {
                     </div>
                 </div>
                 {mssg}
+           </div>
+           <div className="conatiner-lg">
+           
+                {(collect.length>0) && (<div className="row">
+                    <div className="col-sm-12">
+                        <h2 className="main-heading text-start">Your Collectibles</h2>
+                    </div>
+                </div>)}
+                <div className="row">
+                    {loadedColl &&
+                        collect.map((nft) => (
+                        <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 p-4" key={nft.mint}>
+                            <div className="dark-cards-mp">
+                                <div className="image-container">
+                                    <img src={nft.image_uri} alt="Planets" />
+                                </div>
+                                <div className="text-section-1">
+                                    <div>
+                                        <p className="p-name-1">{nft.name}</p>
+                                    </div>
+                                    
+                                </div>
+                                {/* <div className="text-section d-flex flex-wrap justify-content-between">
+                                    <div>
+                                        <p className="p-name pt-2">2.3 SFK</p>
+                                    </div>
+                                    <div>
+                                        <div className="small-btn-outline">
+                                            <button onClick={() => {}}>Buy</button>
+                                        </div>
+                                    </div>
+                                </div> */}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            
            </div>
            </div>
         </div> 

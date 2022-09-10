@@ -142,7 +142,7 @@ const ConnectWallet = () => {
                 <div>
                   <h2 className="main-heading">SHYFT Space Station Check.</h2>
                   <p className="p-para p-para-emphasis">
-                  Connect your wallet. Mint Landing Passes. Travel to 
+                  Connect your wallet. Mint Planet VISAs. Travel to 
                   different planets.
                   </p>
                   {/* <p className="p-para">
