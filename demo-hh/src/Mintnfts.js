@@ -229,8 +229,8 @@ const Mintnfts = () => {
                         </div>
                         {(present.length>0)?(<div className="row px-2">
                             <div className="col-sm-12 col-md-9">
-                                <h2 className="sub-heading-2">All Your landing passes to travel around shyft planets</h2>
-                                <p className="p-para mt-3">Travel around the planets with these landing passes and explore SHYFT space environments.</p>
+                                <h2 className="sub-heading-2">All your planet VISAs to traverse the SHYFT metaverse.</h2>
+                                <p className="p-para mt-3">Travel around the planets with these VISAs and buy SHYFT collectibles.</p>
                             </div>
                         </div>):""}
                         <div className="row">
@@ -308,8 +308,8 @@ const Mintnfts = () => {
                         </div>
                         {(!(present.includes('Valetudo')&&present.includes('Ganymede')&&present.includes('Isonoe')))?<div className="row px-2">
                             <div className="col-sm-12 col-md-10">
-                                <h2 className="sub-heading-2">Adventure awaits. Grab your planet visa and Embrace exploration</h2>
-                                <p className="p-para mt-3">Get a landing pass for the planet you want to land on.</p>
+                                <h2 className="sub-heading-2">Grab your planet visa and Embrace exploration</h2>
+                                <p className="p-para mt-3">Get a planet Visa for the planet you want to travel to.</p>
                             </div>
                         </div>:""}
                         
