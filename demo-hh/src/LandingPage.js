@@ -85,52 +85,65 @@ const LandingPage = () => {
   }, [nft_key]);
 
   useEffect(() => {
-    const xKey = process.env.REACT_APP_API_KEY;
-    const endPoint = process.env.REACT_APP_URL_EP;
-    const privateKey = process.env.REACT_APP_TOKEN_PKEY;
-    const TokenAddr = process.env.REACT_APP_TOKEN_ADDRESS;
-    let coinUrl = `${endPoint}token/mint`;
-    axios({
-      // Endpoint to get NFTs
-      url: coinUrl,
-      method: "POST",
-      headers: {
-      "Content-Type": "application/json",
-      "x-api-key": xKey,
-      },
-      data:{
-        network: "devnet",
-        private_key: privateKey,
-        "token_address": TokenAddr,
-        "receiver":walletId,
-        "amount": 10
-      }
-      })
-      // Handle the response from backend here
-      .then((res) => {
-        console.log(res.data.success);
-        if(res.data.success === true)
-        {
-          setCoinsAwarded(true);
-          setMoney(!money);
+    if(name !== '')
+    {
+      const xKey = process.env.REACT_APP_API_KEY;
+      const endPoint = process.env.REACT_APP_URL_EP;
+      const privateKey = process.env.REACT_APP_TOKEN_PKEY;
+      const TokenAddr = process.env.REACT_APP_TOKEN_ADDRESS;
+      let amount = 0;
+
+      if(name === 'Valetudo')
+        amount = 15;
+      else if(name === 'Ganymede')
+        amount = 10;
+      else
+        amount = 5;
+
+      let coinUrl = `${endPoint}token/mint`;
+      axios({
+        // Endpoint to get NFTs
+        url: coinUrl,
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json",
+        "x-api-key": xKey,
+        },
+        data:{
+          network: "devnet",
+          private_key: privateKey,
+          "token_address": TokenAddr,
+          "receiver":walletId,
+          "amount": amount
         }
-        
+        })
+        // Handle the response from backend here
+        .then((res) => {
+          console.log(res.data.success);
+          if(res.data.success === true)
+          {
+            setCoinsAwarded(true);
+            setMoney(!money);
+          }
+          
+      
+        })
+        // Catch errors if any
+        .catch((err) => {
+            console.warn(err);
+        });
+    }
     
-      })
-      // Catch errors if any
-      .catch((err) => {
-          console.warn(err);
-      });
       
     
-  }, [])
+  }, [name])
   
 
   return (
     <div className="landing-page">
       <div className="content">
         {loading && <PlanetLoader message="Sit Tight! We are travelling at the speed of light..."/>}
-        {coinsAwarded && <CoinsLoader message="Yayy! Congratulations you received " message2="10 SHYFT coins" closer={setCoinsAwarded}/>}
+        {coinsAwarded && <CoinsLoader message="Hello space traveller!! Welcome to" message2="Here is a welcome gift for you: " name={name} closer={setCoinsAwarded}/>}
         <div className={(name==='Ganymede')?"planet-bg-gan":(name==='Isonoe')?"planet-bg-iso":"planet-bg-val"}>
           <div className="container-lg">
             <div className="row">
