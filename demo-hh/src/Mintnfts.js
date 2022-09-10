@@ -97,7 +97,8 @@ const Mintnfts = () => {
     
 
     const navigateHome = () => {
-        navigate('/');
+        setSuccess(false);
+        navigate('/mint');
     }
     const callback = (signature,result) => {
         console.log("Signature ",signature);
