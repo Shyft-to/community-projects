@@ -712,7 +712,7 @@ a.btn-solid-grad:hover
     background-repeat: no-repeat;
     background-position: 85% 130%;
     background-size: 24%;
-    height: 89vh;
+    min-height: 89vh;
 }
 .planet-bg-gan
 {
@@ -720,7 +720,7 @@ a.btn-solid-grad:hover
     background-repeat: no-repeat;
     background-position: 85% 130%;
     background-size: 24%;
-    height: 89vh;
+    min-height: 89vh;
 }
 .planet-bg-iso
 {
@@ -728,7 +728,7 @@ a.btn-solid-grad:hover
     background-repeat: no-repeat;
     background-position: 85% 130%;
     background-size: 24%;
-    height: 89vh;
+    min-height: 89vh;
 }
 
 .planet-bg-val-mm
@@ -737,7 +737,7 @@ a.btn-solid-grad:hover
     background-repeat: no-repeat;
     background-position: 105% 150%;
     background-size: 24%;
-    height: 88.5vh;
+    min-height: 88.5vh;
 }
 .planet-bg-gan-mm
 {
@@ -745,7 +745,7 @@ a.btn-solid-grad:hover
     background-repeat: no-repeat;
     background-position: 85% 130%;
     background-size: 24%;
-    height: 88.5vh;
+    min-height: 88.5vh;
 }
 .planet-bg-iso-mm
 {
@@ -753,7 +753,7 @@ a.btn-solid-grad:hover
     background-repeat: no-repeat;
     background-position: 85% 130%;
     background-size: 24%;
-    height: 88.5vh;
+    min-height: 88.5vh;
 }
 
 .postman-run-button

@@ -85,7 +85,8 @@ const LandingPage = () => {
   }, [nft_key]);
 
   useEffect(() => {
-    if(name !== '')
+    const from_mark = ReactSession.get("from_pass") ?? false;
+    if(name !== '' && from_mark === true)
     {
       const xKey = process.env.REACT_APP_API_KEY;
       const endPoint = process.env.REACT_APP_URL_EP;

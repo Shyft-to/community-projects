@@ -28,6 +28,7 @@ const Marketplace = () => {
   const { walletId } = useContext(WalletContext);
   const { money,setMoney } = useContext(MoneyContext);
   const plaName = ReactSession.get("nft_name");
+  ReactSession.set("from_pass", false);
 
   //code for buy
   const net = "devnet";
@@ -55,12 +56,12 @@ const Marketplace = () => {
         const xKey = process.env.REACT_APP_API_KEY;
         const endPoint = process.env.REACT_APP_URL_EP;
         const updtAuth = process.env.REACT_APP_MINTER_UPDT;
-        let nftUrl1 = `1231${endPoint}nft/read_all?network=mainnet-beta&address=${walletId}&update_authority=${updtAuth}&refresh=refresh`;
+        let nftUrl1 = `${endPoint}nft/read_all?network=devnet&address=${walletId}&update_authority=${updtAuth}&refresh=refresh`;
 
         axios({
             // Endpoint to list
             url: nftUrl1,
-            method: "POST",
+            method: "GET",
             headers: {
               "Content-Type": "application/json",
               "x-api-key": xKey,
@@ -135,6 +136,9 @@ const Marketplace = () => {
     setMoney(!money);
     setBuyComplete(false);
     setRecallMark(!recallMark);
+    setTimeout(() => {
+        setTriggerColl(!triggerColl)
+    }, 3000);
     //navigate(`/marketplace`);
   }
 
@@ -275,162 +279,71 @@ const Marketplace = () => {
            <div className={(plaName==='Ganymede')?"planet-bg-gan-mm":(plaName==='Isonoe')?"planet-bg-iso-mm":"planet-bg-val-mm"}>
 
            
-            <div className="container-lg">
-                <div className="row">
-                    <div className="col-sm-12">
-                        <h2 className="main-heading text-start">{plaName} Marketplace</h2>
+                    <div className="container-lg">
+                        <div className="row">
+                            <div className="col-sm-12">
+                                <h2 className="main-heading text-start">{plaName} Marketplace</h2>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
 
 
-            <div className="container-lg">
-                
-                
-                <div className="row">
-                    {loaded &&
-                    nfts.map((nft) => (
-                        <ListCard buyList={buyList} nft={nft} walletId={walletId} key={nft.nft_address}/>
-                    ))}
-                    {/* <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 p-4">
-                        <div className="dark-cards-mp">
-                            <div className="image-container">
-                                <img src={aster32} alt="Planet-1" />
-                            </div>
-                            <div className="text-section-1 ">
-                                <div>
-                                    <p className="p-name-1">Aster 32</p>
-                                </div>
-                                
-                            </div>
-                            <div className="text-section d-flex flex-wrap justify-content-between">
-                                <div>
-                                    <p className="p-name pt-2">2.3 SFK</p>
-                                </div>
-                                <div>
-                                    <div className="small-btn-outline">
-                                        <button onClick={() => {}}>Buy</button>
-                                    </div>
-                                </div>
+                    <div className="container-lg">
+                        
+                        
+                        <div className="row">
+                            {loaded &&
+                            nfts.map((nft) => (
+                                <ListCard buyList={buyList} nft={nft} walletId={walletId} key={nft.nft_address}/>
+                            ))}
+                            
+                            
+                        </div>
+                        <div className="row mt-4">
+                            <div className="col-12 text-start">
+                                <Link to="/mint" className="btn-solid-grad me-3" >To Space Station</Link>
+                                <Link to="/landing-pages" className="btn-solid-grad me-3" >Back To Planet</Link>
                             </div>
                         </div>
-                    </div>
-                    <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 p-4">
-                        <div className="dark-cards-mp">
-                            <div className="image-container">
-                                <img src={aquacharm} alt="Planet-1" />
-                            </div>
-                            <div className="text-section-1 ">
-                                <div>
-                                    <p className="p-name-1">Aquacharm</p>
-                                </div>
-                                
-                            </div>
-                            <div className="text-section d-flex flex-wrap justify-content-between">
-                                <div>
-                                    <p className="p-name pt-2">2.3 SFK</p>
-                                </div>
-                                <div>
-                                    <div className="small-btn-outline">
-                                        <button onClick={() => {}}>Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 p-4">
-                        <div className="dark-cards-mp">
-                            <div className="image-container">
-                                <img src={SpShip} alt="Planet-1" />
-                            </div>
-                            <div className="text-section-1 ">
-                                <div>
-                                    <p className="p-name-1">ThrustFloater</p>
-                                </div>
-                                
-                            </div>
-                            <div className="text-section d-flex flex-wrap justify-content-between">
-                                <div>
-                                    <p className="p-name pt-2">2.3 SFK</p>
-                                </div>
-                                <div>
-                                    <div className="small-btn-outline">
-                                        <button onClick={() => {}}>Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 p-4">
-                        <div className="dark-cards-mp">
-                            <div className="image-container">
-                                <img src={Amber} alt="Planet-1" />
-                            </div>
-                            <div className="text-section-1 ">
-                                <div>
-                                    <p className="p-name-1">Amber</p>
-                                </div>
-                                
-                            </div>
-                            <div className="text-section d-flex flex-wrap justify-content-between">
-                                <div>
-                                    <p className="p-name pt-2">2.3 SFK</p>
-                                </div>
-                                <div>
-                                    <div className="small-btn-outline">
-                                        <button onClick={() => {}}>Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> */}
-                    
+                        {mssg}
                 </div>
-                <div className="row mt-4">
-                    <div className="col-12 text-start">
-                        <Link to="/mint" className="btn-solid-grad me-3" >To Space Station</Link>
-                        <Link to="/landing-pages" className="btn-solid-grad me-3" >Back To Planet</Link>
-                    </div>
-                </div>
-                {mssg}
-           </div>
-           <div className="conatiner-lg">
-           
-                {(collect.length>0) && (<div className="row">
-                    <div className="col-sm-12">
-                        <h2 className="main-heading text-start">Your Collectibles</h2>
-                    </div>
-                </div>)}
-                <div className="row">
-                    {loadedColl &&
-                        collect.map((nft) => (
-                        <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 p-4" key={nft.mint}>
-                            <div className="dark-cards-mp">
-                                <div className="image-container">
-                                    <img src={nft.image_uri} alt="Planets" />
-                                </div>
-                                <div className="text-section-1">
-                                    <div>
-                                        <p className="p-name-1">{nft.name}</p>
+
+                <div className="container-lg">
+                        <div className="row pt-5">
+                            <div className="col-sm-12">
+                                <h2 className="sub-heading-3 text-start">All Your Collectibles</h2>
+                            </div>
+                        </div>
+                    <div className="row">
+                        {loadedColl &&
+                            collect.map((nft) => (
+                            <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 p-4" key={nft.mint}>
+                                <div className="dark-cards-mp">
+                                    <div className="image-container">
+                                        <img src={nft.image_uri} alt="Planets" />
                                     </div>
-                                    
-                                </div>
-                                {/* <div className="text-section d-flex flex-wrap justify-content-between">
-                                    <div>
-                                        <p className="p-name pt-2">2.3 SFK</p>
-                                    </div>
-                                    <div>
-                                        <div className="small-btn-outline">
-                                            <button onClick={() => {}}>Buy</button>
+                                    <div className="text-section-1">
+                                        <div>
+                                            <p className="p-name-1">{nft.name}</p>
                                         </div>
+                                        
                                     </div>
-                                </div> */}
+                                    {/* <div className="text-section d-flex flex-wrap justify-content-between">
+                                        <div>
+                                            <p className="p-name pt-2">2.3 SFK</p>
+                                        </div>
+                                        <div>
+                                            <div className="small-btn-outline">
+                                                <button onClick={() => {}}>Buy</button>
+                                            </div>
+                                        </div>
+                                    </div> */}
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
-            
-           </div>
+           
            </div>
         </div> 
     </div>

@@ -201,6 +201,7 @@ const Mintnfts = () => {
         ReactSession.set("nft_key", nft_key);
         ReactSession.set("nft_name", nft_name);
         ReactSession.set("nft_marketplace", markaddr);
+        ReactSession.set("from_pass", true);
 
         setTimeout(() => {
             navigate('/landing-pages');
