@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { ReactSession } from "react-client-session";
 import { WalletContext } from "./context/WalletContext";
 import spaceBoyFlag from "./resources/images/space-boy-2.png";
+import { signAndConfirmTransaction } from './utilityfunc.js';
 import PlanetLoader from "./loaders/PlanetLoader";
 import CoinsLoader from "./loaders/CoinsLoader";
 import { MoneyContext } from "./context/MoneyContext";
@@ -33,15 +34,15 @@ const LandingPage = () => {
       // if(nft_key === 0)
       //     navigate('/');
   }, [])
-  useEffect(() => {
-        
+  useEffect(() => {    
     if(walletId === null)
     {
         const get_wall = ReactSession.get("user_wallet_addr");
-        setWalletId(get_wall);
-
-    }
-        
+        if(get_wall!==null)
+          setWalletId(get_wall);
+        else
+          navigate('/');
+    }  
 }, []);
   
   
@@ -93,14 +94,23 @@ const LandingPage = () => {
       
     
   }, [nft_key]);
+  const [giftLoader,setGiftLoader] = useState(false);
+  const callback = () =>
+  {
+    setGiftLoader(false);
+    setCoinsAwarded(true);
+    setMoney(!money);
+  }
 
   useEffect(() => {
     const from_mark = ReactSession.get("from_pass") ?? false;
     if(name !== '' && from_mark === true)
     {
+      setGiftLoader(true);
       const xKey = process.env.REACT_APP_API_KEY;
       const endPoint = process.env.REACT_APP_URL_EP;
       const privateKey = process.env.REACT_APP_TOKEN_PKEY;
+      const tokenOwner = process.env.REACT_APP_PUBLIC_KEY;
       const TokenAddr = process.env.REACT_APP_TOKEN_ADDRESS;
       let amount = 0;
 
@@ -111,7 +121,7 @@ const LandingPage = () => {
       else
         amount = 5;
 
-      let coinUrl = `${endPoint}token/mint`;
+      let coinUrl = `${endPoint}token/mint_detach`;
       axios({
         // Endpoint to get NFTs
         url: coinUrl,
@@ -122,19 +132,25 @@ const LandingPage = () => {
         },
         data:{
           network: "devnet",
-          private_key: privateKey,
-          "token_address": TokenAddr,
-          "receiver":walletId,
-          "amount": amount
+          // private_key: privateKey,
+          token_address: TokenAddr,
+          wallet: tokenOwner,
+          receiver: walletId,
+          amount: amount
         }
         })
         // Handle the response from backend here
-        .then((res) => {
+        .then(async(res) => {
           console.log(res.data.success);
           if(res.data.success === true)
           {
-            setCoinsAwarded(true);
-            setMoney(!money);
+            const transaction = res.data.result.encoded_transaction;
+            const ret_result = await signAndConfirmTransaction('devnet',transaction,callback,privateKey); //flow from here goes to utility func
+            console.log(ret_result);
+          }
+          else
+          {
+            setGiftLoader(false);
           }
           
       
@@ -142,6 +158,7 @@ const LandingPage = () => {
         // Catch errors if any
         .catch((err) => {
             console.warn(err);
+            setGiftLoader(false);
         });
     }
     
@@ -154,6 +171,7 @@ const LandingPage = () => {
     <div className="landing-page">
       <div className="content">
         {loading && <PlanetLoader message="Sit Tight! We are travelling at the speed of light..."/>}
+        {giftLoader && <PlanetLoader message="Please Wait! Fetching you a welcome gift..."/>}
         {coinsAwarded && <CoinsLoader message="Hello space traveller!! Welcome to" message2="have been airdropped to your wallet." message3="Happy Exploring." name={name} closer={setCoinsAwarded}/>}
         <div className={(name==='Ganymede')?"planet-bg-gan":(name==='Isonoe')?"planet-bg-iso":"planet-bg-val"}>
           <div className="container-lg">

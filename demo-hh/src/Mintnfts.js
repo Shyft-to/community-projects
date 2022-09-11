@@ -40,11 +40,13 @@ const Mintnfts = () => {
     useEffect(() => {
         
         if(walletId === null)
-        {
-            const get_wall = ReactSession.get("user_wallet_addr");
-            setWalletId(get_wall);
-
-        }
+    {
+        const get_wall = ReactSession.get("user_wallet_addr");
+        if(get_wall!==null)
+          setWalletId(get_wall);
+        else
+          navigate('/');
+    }
             
     }, []);
 
