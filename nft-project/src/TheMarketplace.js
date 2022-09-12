@@ -169,7 +169,7 @@ const TheMarketplace = () => {
             if(res.data.success === true)
             {
               setNfts(res.data.result);
-              ReactSession.set("NumberNfts", res.data.result.length);
+              //ReactSession.set("NumberNfts", res.data.result.length);
             }
             else
             {
