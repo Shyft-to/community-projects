@@ -167,7 +167,10 @@ const TheMarketplace = () => {
           .then((res) => {
             console.log(res.data);
             if(res.data.success === true)
+            {
               setNfts(res.data.result);
+              ReactSession.set("NumberNfts", res.data.result.length);
+            }
             else
             {
                 setMssg("Some Error Occured");

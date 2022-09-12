@@ -9,6 +9,7 @@ const Statistics = () => {
     const [tListing,setTListing] = useState(0);
     const [tSellers,setTSellers] = useState(0);
     const [listedVolumes,setListedVolumes] = useState(0);
+    const [activList,setActivList] = useState(0);
 
     const [dateOne,setDateOne] = useState('');
     const [dateTwo,setDateTwo] = useState('');
@@ -69,7 +70,9 @@ const Statistics = () => {
                 setTListing(res.data.result.total_listings);
                 setTSellers(res.data.result.total_sellers);
                 setListedVolumes(res.data.result.listed_volume.toFixed(2));
-                
+                const active_list = ReactSession.get("NumberNfts") ?? 0;
+                setActivList(active_list);
+
               }
               else
               {
@@ -205,7 +208,22 @@ const Statistics = () => {
                       </div>
                     </div>
                   </div>
-                  
+                  <div
+                    className="col-6 col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-4"
+                  >
+                    <div className="cards-outer-port">
+                      <div className="inner-box">
+                        <div className="row px-3 pb-2">
+                          <div className="col-12 col-xl-12">
+                            <p className="port-para-2 text-center text-xl-start" style={{ wordWrap: "break-word" }}>
+                              Active Listings
+                            </p>
+                            <p className="large-text text-end">{tListing-activList}</p> 
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div className="row pt-4">
                   <div className="col-md-12">

@@ -4,37 +4,37 @@ import { useEffect,useState } from "react";
 const NftTwo = (props) => {
     const [name,setName] = useState('');
     const [image,setImage] = useState('');
-    useEffect(() => {
-        const endPoint = process.env.REACT_APP_URL_EP;
-        const xKey = process.env.REACT_APP_API_KEY;
+    // useEffect(() => {
+    //     const endPoint = process.env.REACT_APP_URL_EP;
+    //     const xKey = process.env.REACT_APP_API_KEY;
 
-        let reqUrl = `${endPoint}nft/read?network=devnet&token_address=${props.nft.nft_address}`;
+    //     let reqUrl = `${endPoint}nft/read?network=devnet&token_address=${props.nft.nft_address}`;
 
-        axios({
-            url: reqUrl,
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "x-api-key": xKey,
-            },
-        })
-            .then((res) => {
-                console.log(res.data.success);
+    //     axios({
+    //         url: reqUrl,
+    //         method: "GET",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             "x-api-key": xKey,
+    //         },
+    //     })
+    //         .then((res) => {
+    //             console.log(res.data.success);
                 
-                if (res.data.success) {
-                    setName(res.data.result.name)
-                    setImage(res.data.result.image_uri)
-                }
-                
-
-            })
-            .catch((err) => {
-                console.warn(err);
+    //             if (res.data.success) {
+    //                 setName(res.data.result.name)
+    //                 setImage(res.data.result.image_uri)
+    //             }
                 
 
-            });
+    //         })
+    //         .catch((err) => {
+    //             console.warn(err);
+                
 
-    }, [props.nft.nft_address]);
+    //         });
+
+    // }, [props.nft.nft_address]);
     return (
         <div
             className="col-6 col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 port-cust-padding"
@@ -43,7 +43,7 @@ const NftTwo = (props) => {
                 <div className="inner-box">
 
                     <div className="inner-box-img-container">
-                        <img src={image} alt="NftImage" />
+                        <img src={props.nft.nft.cached_image_uri} alt="NftImage" />
                     </div>
 
                     <div className="row pt-3">
@@ -52,7 +52,7 @@ const NftTwo = (props) => {
                                 className="port-para-2 text-start"
                                 style={{ wordWrap: "break-word" }}
                             >
-                                {(name.length>9)?name.substring(0, 9)+'...':name}
+                                {(props.nft.nft.name.length>9)?props.nft.nft.name.substring(0, 9)+'...':props.nft.nft.name}
                             </p>
                         </div>
                         <div className="col-12 col-xl-5">
