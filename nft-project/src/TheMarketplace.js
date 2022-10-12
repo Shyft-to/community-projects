@@ -262,7 +262,7 @@ const TheMarketplace = () => {
                 
                 {loaded &&
                 nfts.map((nft) => (
-                    <NftOne buyList={buyList} nft={nft} walletId={walletId} key={nft.nft_address}/>
+                  (nft)?<NftOne buyList={buyList} nft={nft} walletId={walletId} key={nft.nft_address}/>:""
                 ))}
             </div>
           </div>

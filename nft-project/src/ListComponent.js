@@ -82,11 +82,13 @@ const ListAll = () => {
   },[]);
 
   useEffect(()=>{
+    console.log("Got Listings: ",got_listings);
     if(got_listings!=null)
     {
       let arr_listng = [];
       got_listings.forEach((listing) => {
-        arr_listng.push(listing.nft_address);
+        if(listing)
+          arr_listng.push(listing.nft_address);
       })
       setMplisting(arr_listng);
       //console.log("MP Listings: ",mpListings);
