@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect,useState } from "react";
 
+import imgThumb from './resources/images/img-thumb.png';
+
 const NftTwo = (props) => {
     const [name,setName] = useState('');
     const [image,setImage] = useState('');
@@ -43,7 +45,7 @@ const NftTwo = (props) => {
                 <div className="inner-box">
 
                     <div className="inner-box-img-container">
-                        <img src={props.nft.nft.cached_image_uri} alt="NftImage" />
+                        <img src={props.nft.nft.cached_image_uri ?? props.nft.nft.image_uri ?? imgThumb} alt="NftImage" />
                     </div>
 
                     <div className="row pt-3">

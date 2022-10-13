@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect,useState } from "react";
 import { Link } from "react-router-dom";
+import imgThumb from './resources/images/img-thumb.png';
 
 const NftOne = (props) => {
     const [name,setName] = useState('');
@@ -44,7 +45,7 @@ const NftOne = (props) => {
                 <div className="inner-box">
 
                     <div className="inner-box-img-container">
-                        <img src={props.nft.nft.cached_image_uri} alt="NftImage" />
+                        <img src={props.nft.nft.cached_image_uri ?? props.nft.nft.image_uri ?? imgThumb} alt="NftImage" />
                     </div>
 
                     <div className="row pt-3 pb-2">
