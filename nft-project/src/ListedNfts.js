@@ -13,7 +13,7 @@ const ListedNFTs = () => {
     const navigate = useNavigate();
     //const { waddress } = useParams();
     const network = "devnet";
-    const [loaded, setLoaded] = useState(true);
+    const [loaded, setLoaded] = useState(false);
     const [nfts, setNfts] = useState([
       {
         network: "devnet",
@@ -180,7 +180,7 @@ const ListedNFTs = () => {
               setLoaded(true);
             });
     },[walletId]);
-  
+    
     return (
       <div>
         <div className="right-al-container mb-2">

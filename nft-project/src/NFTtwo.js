@@ -6,6 +6,7 @@ import imgThumb from './resources/images/img-thumb.png';
 const NftTwo = (props) => {
     const [name,setName] = useState('');
     const [image,setImage] = useState('');
+    //console.log("Current NFT printed",props.nft);
     // useEffect(() => {
     //     const endPoint = process.env.REACT_APP_URL_EP;
     //     const xKey = process.env.REACT_APP_API_KEY;
@@ -38,6 +39,8 @@ const NftTwo = (props) => {
 
     // }, [props.nft.nft_address]);
     return (
+
+        //(props.nft&&
         <div
             className="col-6 col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 port-cust-padding"
         >
