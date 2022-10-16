@@ -6,7 +6,6 @@ const CreateToken = () => {
 
   return (
     <div className="right-al-container">
-      <button onClick={() => setWalletId("Updating")}>Update</button>
       <div className="container-xl mint-single">
         <div className="row page-heading-container">
           <div className="col-sm-12 col-md-12">
