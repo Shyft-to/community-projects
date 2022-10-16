@@ -1,8 +1,74 @@
 import { useContext, useState } from "react";
 import { WalletContext } from "./WalletContext";
+import axios from "axios";
 
 const CreateToken = () => {
   const {walletId,setWalletId} = useContext(WalletContext);
+
+
+  const [net,setNet] = useState("devnet");
+  
+  const [name,setName] = useState("");
+  const [symbol,setSymbol] = useState("");
+  const [desc,setDesc] = useState("");
+  const [decis,setDesics] = useState(0);
+  const [img,setImg] = useState(null);
+
+  const createToken = () => {
+    const xKey = process.env.REACT_APP_API_KEY.toString();
+    const endPoint = process.env.REACT_APP_URL_EP;
+    const formData = new FormData();
+    formData.append("name",name);
+    formData.append("symbol",symbol);
+    formData.append("desc",desc);
+    formData.append("decimals",decis);
+    formData.append("file",img);
+    axios({
+      // Endpoint to send files
+      url: `${endPoint}token/create_detach`,
+      method: "POST",
+      headers: {
+        "Content-Type": "multipart/form-data",
+        "x-api-key": xKey,
+        Accept: "*/*",
+        "Access-Control-Allow-Origin": "*",
+      },
+
+      // Attaching the form data
+      data: formData,
+    })
+      // Handle the response from backend here
+      .then(async (res) => {
+        console.log(res);
+        if(res.data.success === true)
+        {
+          // const transaction = res.data.result.encoded_transaction;
+          // setMinted(res.data.result.mint);
+          // const ret_result = await signAndConfirmTransaction(network,transaction,callback);
+          // console.log(ret_result);
+          
+          // //const minted = res.data.result.mint;
+          // setSuccessful(true);
+         
+          
+        }
+        else
+        {
+          // setMainErr(res.data.message);
+          // setloading(false);
+        }
+        
+          
+      })
+
+      // Catch errors if any
+      .catch((err) => {
+        console.warn(err);
+        console.log(err.message)
+        // setMainErr(err.message);
+        // setloading(false);
+      });
+  }
 
   return (
     <div className="right-al-container">
@@ -62,10 +128,11 @@ const CreateToken = () => {
                     <select
                       name="network"
                       className="form-control form-select"
-                      id=""
+                      id="" onChange={(e) => setNet(e.target.value)}
                     >
                       <option value="devnet">Devnet</option>
                       <option value="testnet">Testnet</option>
+                      <option value="mainnet-beta">Mainnet</option>
                     </select>
                   </div>
                   <div className="white-form-group">
@@ -77,7 +144,8 @@ const CreateToken = () => {
                       name="name"
                       className="form-control"
                       placeholder="Enter Name"
-                      required
+                      value={name}
+                      onChange={(e)=>setName(e.target.value)}
                     />
                   </div>
                   <div className="white-form-group">
@@ -89,46 +157,25 @@ const CreateToken = () => {
                       name="symbol"
                       className="form-control"
                       placeholder="Enter Symbol"
-                      required
+                      value={symbol}
+                      onChange={(e) => setSymbol(e.target.value)}
                     />
                   </div>
                   <div className="white-form-group">
                     <label htmlFor="bio" className="form-label">
                       Description
                     </label>
-                    <p>Some Description asd a asdwadasew asd awda sdaw dasd</p>
+                    <p>Add a small story about the token</p>
                     <textarea
                       name="desc"
                       className="form-control"
                       placeholder="Write a short product description"
                       rows="5"
-                      required
+                      value={desc}
+                      onChange={(e) => setDesc(e.target.value)}
                     ></textarea>
                   </div>
-                  <div className="white-form-group">
-                    <label className="form-label" htmlFor="name">
-                      Freeze Authority
-                    </label>
-                    <input
-                      type="text"
-                      name="frezeAuth"
-                      className="form-control"
-                      placeholder="Enter Private Key"
-                      required
-                    />
-                  </div>
-                  <div className="white-form-group">
-                    <label className="form-label" htmlFor="maxSupply">
-                      Mint Authority
-                    </label>
-                    <input
-                      type="text"
-                      name="mintauth"
-                      className="form-control"
-                      placeholder="Enter Max Supply Value"
-                      required
-                    />
-                  </div>
+                  
 
                   <div className="white-form-group">
                     <label className="form-label" htmlFor="decimal">
@@ -139,7 +186,8 @@ const CreateToken = () => {
                       name="decimal"
                       className="form-control"
                       placeholder="Enter Max Supply Value"
-                      required
+                      value={decis}
+                      onChange={(e) => setDesics(e.target.value)}
                     />
                   </div>
                   
