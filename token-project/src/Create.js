@@ -16,61 +16,97 @@ const CreateToken = () => {
 
   const [dispFile,setDispFile] = useState("");
 
+  const [nameErr,setNameErr] = useState("");
+  const [symErr,setSymErr] = useState("");
+  const [descErr,setDescErr] = useState("");
+  const [deciErr,setDeciErr] = useState("");
+  const [imgErr,setImgErr] = useState("");
+  const [mainErr,setMainErr] = useState("");
+
   const createToken = () => {
-    const xKey = process.env.REACT_APP_API_KEY.toString();
-    const endPoint = process.env.REACT_APP_URL_EP;
-    const formData = new FormData();
-    formData.append("network",net);
-    formData.append("name",name);
-    formData.append("symbol",symbol);
-    formData.append("desc",desc);
-    formData.append("decimals",decis);
-    formData.append("file",img);
-    axios({
-      // Endpoint to send files
-      url: `${endPoint}token/create_detach`,
-      method: "POST",
-      headers: {
-        "Content-Type": "multipart/form-data",
-        "x-api-key": xKey,
-        Accept: "*/*",
-        "Access-Control-Allow-Origin": "*",
-      },
+    var errorOcc = 0;
+    setMainErr("");
+    if(name == "")
+    {
+      setMainErr("Name is required");
+      errorOcc = 1;
+    }
+    else if(symbol == "")
+    {
+      setMainErr("Symbol is required");
+      errorOcc = 1;
+    }
+    else if(desc == "")
+    {
+      setMainErr("Desc is required");
+      errorOcc = 1;
+    }
+    else if(img === null)
+    {
+      setMainErr("Token Image is required");
+      errorOcc = 1;
+    }
 
-      // Attaching the form data
-      data: formData,
-    })
-      // Handle the response from backend here
-      .then(async (res) => {
-        console.log(res);
-        if(res.data.success === true)
-        {
-          // const transaction = res.data.result.encoded_transaction;
-          // setMinted(res.data.result.mint);
-          // const ret_result = await signAndConfirmTransaction(network,transaction,callback);
-          // console.log(ret_result);
-          
-          // //const minted = res.data.result.mint;
-          // setSuccessful(true);
-         
-          
-        }
-        else
-        {
-          // setMainErr(res.data.message);
-          // setloading(false);
-        }
-        
-          
+    if(errorOcc === 0)
+    {
+
+      const xKey = process.env.REACT_APP_API_KEY.toString();
+      const endPoint = process.env.REACT_APP_URL_EP;
+      const formData = new FormData();
+      formData.append("network",net);
+      formData.append("name",name);
+      formData.append("symbol",symbol);
+      formData.append("desc",desc);
+      formData.append("decimals",decis);
+      formData.append("file",img);
+      axios({
+        // Endpoint to send files
+        url: `${endPoint}token/create_detach`,
+        method: "POST",
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "x-api-key": xKey,
+          Accept: "*/*",
+          "Access-Control-Allow-Origin": "*",
+        },
+
+        // Attaching the form data
+        data: formData,
       })
+        // Handle the response from backend here
+        .then(async (res) => {
+          console.log(res);
+          if(res.data.success === true)
+          {
+            // const transaction = res.data.result.encoded_transaction;
+            // setMinted(res.data.result.mint);
+            // const ret_result = await signAndConfirmTransaction(network,transaction,callback);
+            // console.log(ret_result);
+            
+            // //const minted = res.data.result.mint;
+            // setSuccessful(true);
+          
+            
+          }
+          else
+          {
+            // setMainErr(res.data.message);
+            // setloading(false);
+          }
+          
+            
+        })
 
-      // Catch errors if any
-      .catch((err) => {
-        console.warn(err);
-        console.log(err.message)
-        // setMainErr(err.message);
-        // setloading(false);
-      });
+        // Catch errors if any
+        .catch((err) => {
+          console.warn(err);
+          console.log(err.message)
+          // setMainErr(err.message);
+          // setloading(false);
+        });
+    }
+
+    
   }
 
   return (
@@ -146,9 +182,16 @@ const CreateToken = () => {
                       className="form-control"
                       placeholder="Enter Name"
                       value={name}
-                      onChange={(e)=>setName(e.target.value)}
+                      onChange={(e)=>{
+                        if(e.target.value === "")
+                          setNameErr("Name cannot be Empty")
+                        else
+                          setNameErr("")
+                        setName(e.target.value)
+                      }}
                     />
                   </div>
+                  <small className="p-para-light text-danger">{nameErr}</small>
                   <div className="white-form-group">
                     <label className="form-label" htmlFor="symbol">
                       Symbol
@@ -159,9 +202,16 @@ const CreateToken = () => {
                       className="form-control"
                       placeholder="Enter Symbol"
                       value={symbol}
-                      onChange={(e) => setSymbol(e.target.value)}
+                      onChange={(e) => {
+                        if(e.target.value === "")
+                          setSymErr("Symbol cannot be Empty")
+                        else
+                          setSymErr("")
+                        setSymbol(e.target.value)
+                      }}
                     />
                   </div>
+                  <small className="p-para-light text-danger">{symErr}</small>
                   <div className="white-form-group">
                     <label htmlFor="bio" className="form-label">
                       Description
@@ -172,10 +222,16 @@ const CreateToken = () => {
                       placeholder="Write a short product description"
                       rows="5"
                       value={desc}
-                      onChange={(e) => setDesc(e.target.value)}
+                      onChange={(e) => {
+                        if(e.target.value === "")
+                          setDescErr("Please Enter a small description");
+                        else
+                        setDescErr("");
+                        setDesc(e.target.value)
+                      }}
                     ></textarea>
                   </div>
-                  
+                  <small className="p-para-light text-danger">{descErr}</small>
 
                   <div className="white-form-group">
                     <label className="form-label" htmlFor="decimal">
@@ -185,7 +241,8 @@ const CreateToken = () => {
                       type="text"
                       name="decimal"
                       className="form-control"
-                      placeholder="Enter Max Supply Value"
+                      placeholder="Enter Token Decimals"
+                      min={0}
                       value={decis}
                       onChange={(e) => setDesics(e.target.value)}
                     />
@@ -195,7 +252,7 @@ const CreateToken = () => {
                   <div className="white-form-group">
                     <button
                       className="btn-solid-grad"
-                      type="submit"
+                      
                     >
                       Create
                     </button>
