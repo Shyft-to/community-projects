@@ -1591,3 +1591,38 @@ h4 {
 .custom-file-input-1:active::before {
   background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9); 
 }
+
+.full-overlay
+{
+  position: fixed;
+  height: 105vh;
+  width: 100vw;
+  z-index: 99;
+  background-color: #112f4a55;
+  overflow: hidden !important;
+  margin-top: -200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.full-overlay .loading-square
+{
+  width: 200px;
+  height: 200px;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.full-overlay .loading-square img
+{
+  width: 80px;
+}
+.subtext-msg
+{
+  font: 600 0.9em/1.4em "Poppins", sans-serif !important;
+  color: #112f4a;
+  padding: 0px 2px 16px;
+  text-align: center;
+}

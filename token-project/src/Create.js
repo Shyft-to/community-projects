@@ -1,11 +1,19 @@
 import { useContext, useState } from "react";
 import { WalletContext } from "./WalletContext";
 import axios from "axios";
+import { useNavigate  } from "react-router-dom";
+
+import { signAndConfirmTransaction } from './utility/common';
+
+import imgPlcHldr from './resources/images/img-thumb.png';
+import CreateLoader from "./loaders/CreateLoader";
+import SuccessLoader from "./loaders/SuccessLoader";
 
 const CreateToken = () => {
-  const {walletId,setWalletId} = useContext(WalletContext);
+  const {walletId} = useContext(WalletContext);
+  const navigate = useNavigate();
 
-
+  const [minted,setMinted] = useState("");
   const [net,setNet] = useState("devnet");
   
   const [name,setName] = useState("");
@@ -14,7 +22,10 @@ const CreateToken = () => {
   const [decis,setDesics] = useState(9);
   const [img,setImg] = useState(null);
 
-  const [dispFile,setDispFile] = useState("");
+  const [dispFile,setDispFile] = useState(imgPlcHldr);
+
+  const [creating,setCreating] = useState(false);
+  const [signing,setSigning] = useState(false);
 
   const [nameErr,setNameErr] = useState("");
   const [symErr,setSymErr] = useState("");
@@ -23,20 +34,43 @@ const CreateToken = () => {
   const [imgErr,setImgErr] = useState("");
   const [mainErr,setMainErr] = useState("");
 
-  const createToken = () => {
+  const callback = (signature,result) => {
+    console.log("Signature ",signature);
+    console.log("result ",result);
+
+    try {
+      if(signature.err === null)
+      {
+        setSigning(false);
+        navigate(`/view-details?token_address=${minted}&network=${net}`);
+      }
+      else
+      {
+        setMainErr("Signature Failed");
+        setSigning(false);
+      }
+    } catch (error) {
+      setMainErr("Signature Failed, but check your wallet");
+      setSigning(false);
+    }
+
+  }
+
+  const createAToken = (e) => {
+    e.preventDefault()
     var errorOcc = 0;
     setMainErr("");
-    if(name == "")
+    if(name === "")
     {
       setMainErr("Name is required");
       errorOcc = 1;
     }
-    else if(symbol == "")
+    else if(symbol === "")
     {
       setMainErr("Symbol is required");
       errorOcc = 1;
     }
-    else if(desc == "")
+    else if(desc === "")
     {
       setMainErr("Desc is required");
       errorOcc = 1;
@@ -49,11 +83,12 @@ const CreateToken = () => {
 
     if(errorOcc === 0)
     {
-
+      setCreating(true);
       const xKey = process.env.REACT_APP_API_KEY.toString();
       const endPoint = process.env.REACT_APP_URL_EP;
       const formData = new FormData();
       formData.append("network",net);
+      formData.append("wallet",walletId)
       formData.append("name",name);
       formData.append("symbol",symbol);
       formData.append("desc",desc);
@@ -76,22 +111,19 @@ const CreateToken = () => {
         // Handle the response from backend here
         .then(async (res) => {
           console.log(res);
+          setCreating(false);
           if(res.data.success === true)
           {
-            // const transaction = res.data.result.encoded_transaction;
-            // setMinted(res.data.result.mint);
-            // const ret_result = await signAndConfirmTransaction(network,transaction,callback);
-            // console.log(ret_result);
-            
-            // //const minted = res.data.result.mint;
-            // setSuccessful(true);
-          
-            
+            const transaction = res.data.result.encoded_transaction;
+            setMinted(res.data.result.mint);
+            setSigning(true);
+            const ret_result = await signAndConfirmTransaction(net,transaction,callback);
+            console.log(ret_result);
           }
           else
           {
-            // setMainErr(res.data.message);
-            // setloading(false);
+            setMainErr(res.data.message);
+            setCreating(false);
           }
           
             
@@ -101,8 +133,8 @@ const CreateToken = () => {
         .catch((err) => {
           console.warn(err);
           console.log(err.message)
-          // setMainErr(err.message);
-          // setloading(false);
+          setMainErr(err.message);
+          setCreating(false);
         });
     }
 
@@ -110,17 +142,22 @@ const CreateToken = () => {
   }
 
   return (
+    <div>
+    <div>
+      {creating && <CreateLoader />}
+      {signing && <SuccessLoader />}
+    </div>
     <div className="right-al-container">
       <div className="container-xl mint-single">
         <div className="row page-heading-container">
           <div className="col-sm-12 col-md-12">
-            <h2 className="section-headings">Create A Token</h2>
+            <h2 className="section-heading">Create A Token</h2>
           </div>
         </div>
 
         <form>
           <div className="row">
-            <div className="col-sm-12 col-md-6 p-3">
+            <div className="col-sm-12 col-md-5 p-3">
               <div className="image-section">
                 <div className="image-container">
                   <div className="inner">
@@ -252,11 +289,12 @@ const CreateToken = () => {
                   <div className="white-form-group">
                     <button
                       className="btn-solid-grad"
-                      
+                      onClick={createAToken}
                     >
                       Create
                     </button>
                   </div>
+                  <div className="p-para-light text-danger">{mainErr}</div>
                 </div>
               </div>
             </div>
@@ -264,6 +302,8 @@ const CreateToken = () => {
         </form>
       </div>
     </div>
+    </div>
+    
   );
 };
 
