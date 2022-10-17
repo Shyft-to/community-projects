@@ -1548,3 +1548,46 @@ h4 {
   letter-spacing: 1px;
   padding: 20px 5px;
 }
+
+.custom-file-input-1 {
+  color: transparent;
+  width: 150px;
+  display: block;
+  margin: 0 auto;
+}
+.custom-file-input-1::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.custom-file-input-1::before {
+  content: 'Select Image*';
+  color: black;
+  display: inline-block;
+  background: linear-gradient(
+    90.8deg,
+    rgba(224, 73, 155, 1) 3.34%,
+    rgba(89, 101, 243, 1) 100%
+  );
+  font-family: "Poppins", sans-serif;
+  font-weight: 300 !important;
+
+  border: 1px solid #999;
+  border-radius: 10px;
+  padding: 5px 20px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  
+  font-weight: 700;
+  font-size: 10pt;
+  color:white;
+}
+.custom-file-input-1:hover::before {
+  border-color: black;
+}
+.custom-file-input-1:active {
+  outline: 0;
+}
+.custom-file-input-1:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9); 
+}

@@ -11,13 +11,16 @@ const CreateToken = () => {
   const [name,setName] = useState("");
   const [symbol,setSymbol] = useState("");
   const [desc,setDesc] = useState("");
-  const [decis,setDesics] = useState(0);
+  const [decis,setDesics] = useState(9);
   const [img,setImg] = useState(null);
+
+  const [dispFile,setDispFile] = useState("");
 
   const createToken = () => {
     const xKey = process.env.REACT_APP_API_KEY.toString();
     const endPoint = process.env.REACT_APP_URL_EP;
     const formData = new FormData();
+    formData.append("network",net);
     formData.append("name",name);
     formData.append("symbol",symbol);
     formData.append("desc",desc);
@@ -85,30 +88,28 @@ const CreateToken = () => {
               <div className="image-section">
                 <div className="image-container">
                   <div className="inner">
-                    <img src="" alt="" />
+                    <img className="img-fluid" src={dispFile} alt="" />
                   </div>
                 </div>
                 <div className="button-container">
-                  <button className="btn-solid-grad-fullwidth text-center">
-                    Upload File
-                  </button>
-
-                  <br></br>
-                  <input
-                    type="file"
-                    id="testFile"
-                    style={{
-                      marginTop: "-54px",
-                      position: "absolute",
-                      width: "500px",
-                      height: "50px",
-                      border: "2px solid black",
-                      zIndex: 3,
-                      opacity: 0,
-                    }}
                     
-                  />
-                </div>
+                    <input
+                      type="file"
+                      id="testFile"
+                      // {...register("file")}
+                      className="custom-file-input-1"
+                      
+                      onChange={(e) => {
+                        const [fileDisp] = e.target.files;
+                        //setFile(e.target.files[0]);
+                        console.log(e.target.files[0]);
+                        setImg(e.target.files[0]);
+                        //setFileErr("");
+                        setDispFile(URL.createObjectURL(fileDisp));
+                        //console.log(typeof file);
+                      }}
+                    />
+                  </div>
               </div>
             </div>
 
@@ -165,7 +166,6 @@ const CreateToken = () => {
                     <label htmlFor="bio" className="form-label">
                       Description
                     </label>
-                    <p>Add a small story about the token</p>
                     <textarea
                       name="desc"
                       className="form-control"
@@ -179,7 +179,7 @@ const CreateToken = () => {
 
                   <div className="white-form-group">
                     <label className="form-label" htmlFor="decimal">
-                      Decimal
+                      Decimals
                     </label>
                     <input
                       type="text"
