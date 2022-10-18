@@ -30,8 +30,8 @@ const CreateToken = () => {
   const [nameErr,setNameErr] = useState("");
   const [symErr,setSymErr] = useState("");
   const [descErr,setDescErr] = useState("");
-  const [deciErr,setDeciErr] = useState("");
-  const [imgErr,setImgErr] = useState("");
+  // const [deciErr,setDeciErr] = useState("");
+  // const [imgErr,setImgErr] = useState("");
   const [mainErr,setMainErr] = useState("");
 
   const callback = (signature,result) => {

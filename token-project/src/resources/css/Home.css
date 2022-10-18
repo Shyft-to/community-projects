@@ -1626,3 +1626,28 @@ h4 {
   padding: 0px 2px 16px;
   text-align: center;
 }
+
+.full-overlay .loading-square-form
+{
+  width: 300px;
+  /* height: 200px; */
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.full-overlay .loading-square-form .form-control
+{
+  margin-top: 16px;
+}
+.cross-button
+{
+  background-color: transparent;
+  float: right;
+  border: none !important;
+  margin-bottom: 16px;
+  margin-top: -12px;
+  margin-right: -16px;
+  color: #a0a0a0;
+}
