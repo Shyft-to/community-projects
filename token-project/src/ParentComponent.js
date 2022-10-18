@@ -6,12 +6,14 @@ import { DomainContext } from './DomainContext';
 import { NetworkContext } from './NetworkContext';
 
 import ListAll from './ListAll';
-import CreateToken from './Create';
+// import CreateToken from './Create';
 import SideNav from './sidebarComponent/SideNav';
-import Airdrop from './Airdrop';
+// import Airdrop from './Airdrop';
 import ViewToken from './ViewToken';
 import ConnectWallet from './ConnectWallet';
 import Footer from './footerComponent/footer';
+import CreateComponent from './CreateComponent';
+import AirdropComponent from './AirdropComponent';
 
 const ParentComponent = () => {
     const [walletId, setWalletId] = useState(null);
@@ -28,8 +30,8 @@ const ParentComponent = () => {
                         </DomainContext.Provider>
                         <Routes>
                             <Route exact path="/" element={<ConnectWallet />} />
-                            <Route exact path="/create" element={<CreateToken />} />
-                            <Route exact path="/airdrop" element={<Airdrop />} />
+                            <Route exact path="/create" element={<CreateComponent />} />
+                            <Route exact path="/airdrop" element={<AirdropComponent />} />
                             <Route exact path="/view-details" element={<ViewToken />} />
                             <Route exact path="/wallet/:waddress" element={<ListAll />} />
                             <Route exact path="*" element={<ConnectWallet />} />

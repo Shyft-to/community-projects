@@ -31,7 +31,7 @@ const ListAll = () => {
         const endPoint = process.env.REACT_APP_URL_EP;
         const xKey = process.env.REACT_APP_API_KEY.toString();
 
-        let reqUrl = `123132${endPoint}wallet/all_tokens?network=${network}&wallet=${waddress}`;
+        let reqUrl = `${endPoint}wallet/all_tokens?network=${network}&wallet=${waddress}`;
         setLoading(true);
         axios({
             url: reqUrl,
@@ -97,7 +97,7 @@ const ListAll = () => {
                         </div>
 
                         <div className="row dark-head-table">
-                            <div className="col-12 col-sm-10 content">Token Address</div>
+                            <div className="col-12 col-sm-10 content">Token Details</div>
                             <div className="col-12 col-sm-2 content">Balance</div>
                         </div>
                         
@@ -122,9 +122,27 @@ const ListAll = () => {
                         {
                             coins && coins.map((coin) => (
                                 <Link to={`/view-details?token_address=${coin.address}&network=${network}`} className="no-decor text-dark" key={coin.address}>
-                                    <div className="row light-table-body">
+                                    {/* <div className="row light-table-body">
                                         <div className="col-12 col-sm-10 content"><span className="me-2"><img src={coinLogo} alt="token" /></span> {coin.address}</div>
                                         <div className="col-12 col-sm-2 content">{coin.balance}</div>
+                                    </div> */}
+                                    <div className="row g-0 py-4">
+                                        <div className="col-12 col-md-1">
+                                            <div className="tok-img-container">
+                                                <img src={coin.info.image} alt="" />
+                                            </div>
+                                        </div>
+                                        <div className="col-12 col-md-7">
+                                            <div className="tok-name-cont">
+                                                <h3>{coin.info.name}</h3>
+                                                <h5>{coin.address}</h5>
+                                            </div>
+                                        </div>
+                                        <div className="col-12 col-md-4">
+                                            <div className="tok-balance">
+                                                {coin.balance} {coin.info.symbol}
+                                            </div>
+                                        </div>
                                     </div>
                                 </Link>
 
@@ -135,7 +153,7 @@ const ListAll = () => {
                             <div className="col-12 col-sm-10 content"><span className="me-2"><img src={coinLogo} alt="token" /></span>asdaAvS3avds0asd1123123assad41d1e1</div>
                             <div className="col-12 col-sm-2 content">12.1 ETH</div>
                         </div> */}
-                        <div className="row g-0">
+                        {/* <div className="row g-0">
                             <div className="col-12 col-md-1">
                                 <div className="tok-img-container">
                                     <img src="" alt="" />
@@ -152,7 +170,7 @@ const ListAll = () => {
                                     485 Coins
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
                     </div>
 

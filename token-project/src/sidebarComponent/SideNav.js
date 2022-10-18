@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useNavigate  } from "react-router-dom";
+import { useNavigate,useLocation  } from "react-router-dom";
 import {  clusterApiUrl, Connection,PublicKey } from "@solana/web3.js";
 import { PhantomWalletAdapter } from '@solana/wallet-adapter-phantom';
 import axios from "axios";
@@ -20,6 +20,7 @@ const SideNav = () => {
   const { walletId, setWalletId } = useContext(WalletContext);
   const { solDomain, setSolDomain } = useContext(DomainContext);
   const navigate = useNavigate();
+  const location_get = useLocation();
 
   const [isOpen, setOpen] = useState(true);
   const openNav = () => {
@@ -140,23 +141,23 @@ const SideNav = () => {
             </div>
           </div>
         </Link>
-        <Link to="/create">
+        <Link to="/create" className={(location_get.pathname==='/create')?"active":""}>
           <div className="row sidemenu-anc">
             <div className="col-3">
               <img src={createIcon} alt="Create" />
             </div>
             <div className="col-9">
-              <p>Create Token <small>(coming soon)</small></p>
+              <p>Create Token</p>
             </div>
           </div>
         </Link>
-        <Link to="/airdrop">
+        <Link to="/airdrop" className={(location_get.pathname==='/airdrop')?"active":""}>
           <div className="row sidemenu-anc">
             <div className="col-3">
-              <img src={airdropIcon} alt="Create" />
+              <img src={airdropIcon} alt="Airdrop" />
             </div>
             <div className="col-9">
-              <p>Airdrop Token <small>(coming soon)</small></p>
+              <p>Airdrop Token</p>
             </div>
           </div>
         </Link>
