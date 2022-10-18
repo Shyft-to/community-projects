@@ -140,7 +140,7 @@ const SideNav = () => {
             </div>
           </div>
         </Link>
-        <Link to="/">
+        <Link to="/create">
           <div className="row sidemenu-anc">
             <div className="col-3">
               <img src={createIcon} alt="Create" />
@@ -150,7 +150,7 @@ const SideNav = () => {
             </div>
           </div>
         </Link>
-        <Link to="/">
+        <Link to="/airdrop">
           <div className="row sidemenu-anc">
             <div className="col-3">
               <img src={airdropIcon} alt="Create" />

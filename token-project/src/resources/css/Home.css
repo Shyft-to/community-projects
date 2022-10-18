@@ -1651,3 +1651,27 @@ h4 {
   margin-right: -16px;
   color: #a0a0a0;
 }
+.tok-img-container img
+{
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+}
+.tok-name-cont h3
+{
+  font: 600 1.2em/1.6em "Poppins", sans-serif !important;
+  color: #112f4a;
+  letter-spacing: 1px;
+}
+.tok-name-cont h5
+{
+  font: 600 0.8em/0 "Poppins", sans-serif !important;
+  color: #112f4a99;
+}
+.tok-balance
+{
+  text-align: end;
+  font: 600 1.1rem/1.6rem "Poppins", sans-serif !important;
+  color: #112f4a;
+  padding-right: 25px;
+}

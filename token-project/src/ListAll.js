@@ -31,7 +31,7 @@ const ListAll = () => {
         const endPoint = process.env.REACT_APP_URL_EP;
         const xKey = process.env.REACT_APP_API_KEY.toString();
 
-        let reqUrl = `${endPoint}wallet/all_tokens?network=${network}&wallet=${waddress}`;
+        let reqUrl = `123132${endPoint}wallet/all_tokens?network=${network}&wallet=${waddress}`;
         setLoading(true);
         axios({
             url: reqUrl,
@@ -135,6 +135,24 @@ const ListAll = () => {
                             <div className="col-12 col-sm-10 content"><span className="me-2"><img src={coinLogo} alt="token" /></span>asdaAvS3avds0asd1123123assad41d1e1</div>
                             <div className="col-12 col-sm-2 content">12.1 ETH</div>
                         </div> */}
+                        <div className="row g-0">
+                            <div className="col-12 col-md-1">
+                                <div className="tok-img-container">
+                                    <img src="" alt="" />
+                                </div>
+                            </div>
+                            <div className="col-12 col-md-7">
+                                <div className="tok-name-cont">
+                                    <h3>SHYFT COIns</h3>
+                                    <h5>123123213123132131</h5>
+                                </div>
+                            </div>
+                            <div className="col-12 col-md-4">
+                                <div className="tok-balance">
+                                    485 Coins
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
 

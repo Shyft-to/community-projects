@@ -60,11 +60,13 @@ const ViewToken = () => {
     axios({
         // Endpoint Burn Request
         url: `${endPoint}token/burn_detach`,
-        method: "DEL",
+        method: "DELETE",
         headers: {
           "Content-Type": "application/json",
           "x-api-key": xKey,
         },
+        Accept: "*/*",
+        "Access-Control-Allow-Origin": "*",
 
         // Attaching the data
         data: {

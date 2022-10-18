@@ -13,7 +13,9 @@ const CreateToken = () => {
   const {walletId} = useContext(WalletContext);
   const navigate = useNavigate();
 
-  const [minted,setMinted] = useState("");
+  var valueMinted = "";
+
+  // const [minted,setMinted] = useState("");
   const [net,setNet] = useState("devnet");
   
   const [name,setName] = useState("");
@@ -42,7 +44,8 @@ const CreateToken = () => {
       if(signature.err === null)
       {
         setSigning(false);
-        navigate(`/view-details?token_address=${minted}&network=${net}`);
+        // navigate(`/view-details?token_address=${valueMinted}&network=${net}`);
+        navigate(`/airdrop?token_address=${valueMinted}&network=${net}`);
       }
       else
       {
@@ -115,15 +118,19 @@ const CreateToken = () => {
           if(res.data.success === true)
           {
             const transaction = res.data.result.encoded_transaction;
-            setMinted(res.data.result.mint);
+            // setMinted(res.data.result.mint);
+            valueMinted = res.data.result.mint;
+            console.log('RespMint',res.data.result.mint);
             setSigning(true);
             const ret_result = await signAndConfirmTransaction(net,transaction,callback);
             console.log(ret_result);
+            console.log('minted',valueMinted);
           }
           else
           {
             setMainErr(res.data.message);
             setCreating(false);
+            setSigning(false);
           }
           
             
@@ -135,6 +142,7 @@ const CreateToken = () => {
           console.log(err.message)
           setMainErr(err.message);
           setCreating(false);
+          setSigning(false);
         });
     }
 
@@ -151,7 +159,7 @@ const CreateToken = () => {
       <div className="container-xl mint-single">
         <div className="row page-heading-container">
           <div className="col-sm-12 col-md-12">
-            <h2 className="section-heading">Create A Token</h2>
+            <h2 className="section-heading" style={{ marginTop: "-60px" }}>Create A Token</h2>
           </div>
         </div>
 

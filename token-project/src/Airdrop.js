@@ -1,15 +1,17 @@
 import { useState, useContext } from "react";
 import { WalletContext } from "./WalletContext";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 
 import { signAndConfirmTransaction } from "./utility/common";
 
 import TokenLoader from "./loaders/TokenLoader";
 import SuccessLoader from "./loaders/SuccessLoader";
+import { useEffect } from "react";
 
 const Airdrop = () => {
   const navigate = useNavigate();
+  const search = useLocation().search;
   const { walletId } = useContext(WalletContext);
 
   const [net, setNet] = useState("devnet");
@@ -22,6 +24,18 @@ const Airdrop = () => {
 
   const [sending, setSending] = useState(false);
   const [signing, setSigning] = useState(false);
+
+  useEffect(() => {
+    const tokAddrs = new URLSearchParams(search).get('token_address');
+    const networks = new URLSearchParams(search).get('network');
+    console.log("Token: ",tokAddrs);
+    console.log("network: ",networks);
+    if(tokAddrs)
+      setTokAddr(tokAddrs);
+    if(networks)
+      setNet(networks);
+  }, [])
+  
 
   const callback = (signature, result) => {
     console.log("Signature ", signature);
@@ -141,6 +155,7 @@ const Airdrop = () => {
                         name="network"
                         className="form-control form-select"
                         id=""
+                        value={net}
                         onChange={(e) => setNet(e.target.value)}
                       >
                         <option value="devnet">Devnet</option>
@@ -154,6 +169,7 @@ const Airdrop = () => {
                         type="text"
                         className="form-control"
                         placeholder="Enter Receiver Address"
+                        value={recAddr}
                         onChange={(e) => {
                           setRecAddr(e.target.value);
                         }}
@@ -167,6 +183,7 @@ const Airdrop = () => {
                         name="frezeAuth"
                         className="form-control"
                         placeholder="Enter here"
+                        value={tokAddr}
                         onChange={(e) => {
                           setTokAddr(e.target.value);
                         }}
@@ -182,6 +199,7 @@ const Airdrop = () => {
                         name="decimal"
                         className="form-control"
                         placeholder="Enter Amount to be Airdropped"
+                        value={amt}
                         onChange={(e) => {
                           setAmt(e.target.value);
                         }}
@@ -193,6 +211,7 @@ const Airdrop = () => {
                       <textarea
                         className="form-control"
                         placeholder="Enter here"
+                        value={mssg}
                         onChange={(e) => {
                           setMssg(e.target.value);
                         }}
