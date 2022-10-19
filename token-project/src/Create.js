@@ -165,7 +165,7 @@ const CreateToken = () => {
 
         <form>
           <div className="row">
-            <div className="col-sm-12 col-md-4 col-lg-6 col-xl-4 p-3">
+            <div className="col-sm-12 col-md-5 col-lg-6 col-xl-4 p-3">
               <div className="image-section">
                 <div className="image-container">
                   <div className="inner">
@@ -194,7 +194,7 @@ const CreateToken = () => {
               </div>
             </div>
 
-            <div className="col-sm-12 col-md-8 col-lg-6 col-xl-6 ps-1 ps-xl-3">
+            <div className="col-sm-12 col-md-7 col-lg-6 col-xl-6 ps-1 ps-xl-3">
               <div className="form-section">
                 <div className="form-elements-container">
                   <div className="white-form-group">

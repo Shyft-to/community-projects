@@ -849,3 +849,11 @@
     background: linear-gradient(95.13deg, #e0499b 8.58%, #5965f3 93.37%);
   }
 }
+@media (min-width: 992px) and (max-width: 1600px)
+{
+  .right-al-container
+  {
+    padding-left: 32px;
+
+  }
+}
