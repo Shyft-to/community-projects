@@ -7,7 +7,7 @@ const AirdropComponent = () => {
     const { walletId } = useContext(WalletContext);  
     if(!walletId)
     {
-        return ( <ConnectWalletGen heading="Airdrop A Custom Token" subheading="Connect your wallet to airdrop Tokens" navigateTo="/airdrop" /> );
+        return ( <ConnectWalletGen heading="Airdrop Custom Tokens with SHYFT" subheading="Connect your wallet and start minting custom tokens" navigateTo="/airdrop" /> );
     } 
     else
     {

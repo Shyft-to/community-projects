@@ -7,7 +7,7 @@ const CreateComponent = () => {
     const { walletId } = useContext(WalletContext);  
     if(!walletId)
     {
-        return ( <ConnectWalletGen heading="Create Your Own Tokens" subheading="Connect your wallet to create Tokens" navigateTo="/create" /> );
+        return ( <ConnectWalletGen heading="Create Your Own Custom Tokens with SHYFT" subheading="Connect your wallet and create your tokens" navigateTo="/create" /> );
     } 
     else
     {

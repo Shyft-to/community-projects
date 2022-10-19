@@ -1519,7 +1519,7 @@ h4 {
 {
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
-  text-align: end;
+  text-align: center;
   padding-right: 20px;
 }
 
@@ -1671,8 +1671,35 @@ h4 {
 }
 .tok-balance
 {
-  text-align: end;
+  text-align: center;
   font: 600 1.1rem/1.6rem "Poppins", sans-serif !important;
   color: #112f4a;
-  padding-right: 25px;
+  /* padding-right: 25px; */
+}
+
+.btn-solid-grad-xs-2 {
+  display: inline-block;
+  padding: 0.4rem 1.0rem;
+  border: none;
+  border-radius: 2.5rem;
+  background-color: rgba(89, 101, 243, 0.29);
+  background: linear-gradient(to right, #e0499b, #5965f3);
+  color: #fff !important;
+  font: 500 0.8rem/1.2rem "Poppins", sans-serif !important;
+  letter-spacing: 0.1em;
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+}
+.btn-solid-grad-xs-2 a
+{
+  color: #fff !important;
+}
+.btn-solid-grad-xs-2:hover
+{
+  transform: scale(1.05);
+  color: #fff;
+}
+.icons-menu
+{
+  margin-left: auto;
 }

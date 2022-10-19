@@ -1,4 +1,5 @@
 import logo from "../resources/images/shyft-logo.svg";
+import github from "../resources/images/footer/github-2.svg";
 const NavBarComponent = ({ openNav }) => {
   return (
     <div>
@@ -41,12 +42,12 @@ const NavBarComponent = ({ openNav }) => {
                   <a
                     type="button"
                     className="btn btn-link px-2"
-                    href="https://github.com/Shyft-to/community-projects/tree/main/nft-project"
+                    href="https://github.com/Shyft-to/community-projects/tree/main/token-project"
                     target="_blank"
                     rel="noreferrer"
                   >
                     {" "}
-                    {/* <img src={github} alt="Github Repo" />{" "} */}
+                    <img src={github} alt="Github Repo" />{" "}
                   </a>
                   {/*<a type="button" className="btn btn-link px-1 me-2" href="https://www.linkedin.com/company/shyft-to/" target="_blank" rel="noreferrer"> <img src={linkedIn} alt="Connect on LinkedIn" /> </a>
                                     <a type="button" className="btn btn-link px-1 me-2" href="https://twitter.com/shyft_to" target="_blank" rel="noreferrer"> <img src={twitter} alt="Tweet about Us" /> </a> */}

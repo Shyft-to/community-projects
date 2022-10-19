@@ -132,13 +132,13 @@ const ListAll = () => {
                                                 <img src={coin.info.image} alt="" />
                                             </div>
                                         </div>
-                                        <div className="col-12 col-md-7">
+                                        <div className="col-12 col-md-9">
                                             <div className="tok-name-cont">
                                                 <h3>{coin.info.name}</h3>
                                                 <h5>{coin.address}</h5>
                                             </div>
                                         </div>
-                                        <div className="col-12 col-md-4">
+                                        <div className="col-12 col-md-2">
                                             <div className="tok-balance">
                                                 {coin.balance} {coin.info.symbol}
                                             </div>
