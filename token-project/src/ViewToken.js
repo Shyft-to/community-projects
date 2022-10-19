@@ -1,14 +1,17 @@
 import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import BurnTokens from "./BurnTokens";
 import chainloader from "./resources/images/chainloader.gif";
 import { WalletContext } from "./WalletContext";
 import BurnLoader from "./loaders/BurnLoader";
+
 
 import axios from "axios";
 import { signAndConfirmTransaction } from "./utility/common";
 
 const ViewToken = () => {
   const { walletId } = useContext(WalletContext);
+  const navigate = useNavigate();
   const xKey = process.env.REACT_APP_API_KEY;
   const endPoint = process.env.REACT_APP_URL_EP;
 
@@ -36,6 +39,7 @@ const ViewToken = () => {
     console.log("Signature ",signature);
     console.log("result ",result);
     setLoading(false);
+    navigate(`/wallet/${walletId}`);
     // try {
     //   if(signature.err === null)
     //   {
@@ -73,7 +77,7 @@ const ViewToken = () => {
             "network": networkParams[1],
             "wallet": walletId,
             "token_address": tokAddr,
-            "amount": amtBurned
+            "amount": Number(amtBurned)
 
         },
       })
@@ -176,9 +180,9 @@ const ViewToken = () => {
                       <h6>View Original</h6>
                     </a>
                   </div>
-                  <div className="text-center">
+                  {walletId && <div className="text-center">
                     <button className="btn-solid-grad" onClick={() => setBurnPopup(true)}>Burn Token</button>
-                  </div>
+                  </div>}
                 </div>
               </div>
 

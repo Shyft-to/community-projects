@@ -44,7 +44,7 @@ const Airdrop = () => {
     try {
       if (signature.err === null) {
         setSigning(false);
-        navigate(`/`);
+        navigate(`/wallet/${walletId}`);
       } else {
         setMainErr("Signature Failed");
         setSigning(false);
@@ -86,14 +86,18 @@ const Airdrop = () => {
         url: `${endPoint}token/mint_detach`,
         method: "POST",
         headers: {
-          "Content-Type": "multipart/form-data",
+          "Content-Type": "application/json",
           "x-api-key": xKey,
-          Accept: "*/*",
-          "Access-Control-Allow-Origin": "*",
         },
 
-        // Attaching the form data
-        data: formData,
+        // Attaching the  data
+        data: {
+          "network": net,
+          "wallet": walletId,
+          "token_address": tokAddr,
+          "amount": Number(amt),
+          "receiver":recAddr
+        },
       })
         // Handle the response from backend here
         .then(async (res) => {

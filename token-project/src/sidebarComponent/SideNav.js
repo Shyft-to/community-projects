@@ -131,7 +131,7 @@ const SideNav = () => {
         <a id="cls-button" className="closebtn" onClick={closeNav}>
           Dismiss
         </a>
-        <Link className={(walletId==='Failed to connect wallet' || walletId===null)?` `:`active`} to={(walletId==='Failed to connect wallet' || walletId===null)?`/`:`/wallet/${walletId}`}>
+        <Link className={(location_get.pathname!=='/create'&&location_get.pathname!=='/airdrop')?"active":""} to={(walletId==='Failed to connect wallet' || walletId===null)?`/`:`/wallet/${walletId}`}>
           <div className="row sidemenu-anc">
             <div className="col-3">
               <img src={(walletId==='Failed to connect wallet' || walletId===null)?(dashDisc):(dashIcon)} alt="dashboard" />
