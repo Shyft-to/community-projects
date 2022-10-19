@@ -4,6 +4,8 @@ import discord from '../resources/images/footer/discord.svg';
 import linkedin from '../resources/images/footer/lnkedin.svg';
 import twitter from '../resources/images/footer/twitter.svg';
 import github from '../resources/images/footer/github.svg';
+import medium from '../resources/images/footer/medium.svg';
+
 const Footer = () => {
     return ( 
         <div>
@@ -39,6 +41,11 @@ const Footer = () => {
                     <div className=''>
                         <a href="https://github.com/Shyft-to" target="_blank" rel='noreferrer'>
                             <img src={github} alt="Clone Our Code" />
+                        </a>
+                    </div>
+                    <div className=''>
+                        <a href="https://medium.com/shyft-to" target="_blank" rel='noreferrer'>
+                            <img src={medium} alt="Our Blogs" />
                         </a>
                     </div>
                 </div>
