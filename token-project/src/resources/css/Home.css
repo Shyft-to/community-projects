@@ -916,11 +916,14 @@ h4 {
 }
 
 .white-form-group {
-  padding: 15px 0px;
+  padding: 10px 0px;
 }
-
+.white-form-group:first-of-type
+{
+  padding-top: 8px;
+}
 .white-form-group label {
-  font: 600 16px/29px "Poppins", sans-serif;
+  font: 600 16px/22px "Poppins", sans-serif;
   letter-spacing: 1px;
 }
 
@@ -1323,12 +1326,12 @@ h4 {
   margin: 120px auto;
 }
 .mint-single .page-heading-container {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 .mint-single .image-section .image-container {
   border-radius: 25px;
-  width: 90%;
-  height: 380px;
+  max-width: 350px;
+  max-height: 350px;
   padding: 3px;
   background: linear-gradient(95.13deg, #e0499b 8.58%, #5965f3 93.37%);
 }

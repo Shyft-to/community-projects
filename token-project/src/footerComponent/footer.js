@@ -32,7 +32,7 @@ const Footer = () => {
                         </a>
                     </div>
                     <div className=''>
-                        <a href="https://discord.com/invite/VS5ThWVRMn" target="_blank" rel='noreferrer'>
+                        <a href="https://discord.gg/8JyZCjRPmr" target="_blank" rel='noreferrer'>
                             <img src={discord} alt="Join Server" />
                         </a>
                     </div>
