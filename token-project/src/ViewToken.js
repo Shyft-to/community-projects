@@ -165,7 +165,7 @@ const ViewToken = () => {
           </div>
           <div className="container-xl">
             <div className="row">
-              <div className="col-sm-12 col-md-12 col-lg-4">
+              <div className="col-sm-12 col-md-12 col-lg-4 col-xl-3">
                 <div className="image-sub-section">
                   <div className="image-container">
                     <img className="image-nft" src={logo} alt="NFT" />

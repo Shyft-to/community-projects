@@ -1305,7 +1305,7 @@ h4 {
 .fixed-price-page .image-container {
   margin-bottom: 30px;
   width: 100%;
-  height: 450px;
+  height: 300px;
   background-color: #ccc;
   border-radius: 30px;
 
@@ -1314,7 +1314,7 @@ h4 {
 
 .fixed-price-page .image-container img {
   width: 100%;
-  object-fit: cover;
+  object-fit: contain;
   height: 100%;
 }
 
@@ -1328,7 +1328,7 @@ h4 {
 .mint-single .image-section .image-container {
   border-radius: 25px;
   width: 90%;
-  height: 500px;
+  height: 380px;
   padding: 3px;
   background: linear-gradient(95.13deg, #e0499b 8.58%, #5965f3 93.37%);
 }
