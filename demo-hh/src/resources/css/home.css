@@ -412,6 +412,110 @@ a.btn-solid-grad:hover
     border: 1px solid #04ADFF;
 }
 
+/*new style deactive card */
+.dark-cards-deactv
+{
+    width: 100%;
+    height: 340px;
+    background-color: #02001699;
+    padding: 12px;
+    border-radius: 15px;
+    border: 1px solid #0AEEFF;
+}
+.dark-cards-deactv .image-container
+{
+    border-radius: 10px;
+    background-color: green;
+    height: 70%;
+    opacity: 50%;
+}
+.dark-cards-deactv .image-container img
+{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+.dark-cards-deactv .p-name
+{
+    font: 300 1rem/1.2rem "Poppins", sans-serif;
+    letter-spacing: 1px;
+    color: #fff;
+}
+.dark-cards-deactv .small-btn-outline
+{
+    width: 100px;
+    padding: 2px;
+    background: linear-gradient(91.09deg, #0AEEFF 1.89%, #009EEB 95.72%);
+    border-radius: 50px;
+
+}
+.dark-cards-deactv .small-btn-outline button
+{
+    padding: 8px 8px;
+    width: 100%;
+    border: none;
+    font: 300 12px/14px "Poppins", sans-serif;
+    border-radius: 50px;
+    background-color: #020016;
+    color: #fff;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+.dark-cards-deactv .small-btn-outline button:hover
+{
+    background-color: transparent;
+}
+.dark-cards-deactv .text-section
+{
+    padding-top: 0px;
+    margin-top: -10px;
+}
+.dark-cards-deactv .text-section-1
+{
+    padding-top: 20px;
+}
+.dark-cards-deactv .p-name-1
+{
+    font: 500 1rem/1.625rem "Poppins", sans-serif;
+    letter-spacing: 1px;
+    color: #ffffff88;
+}
+.dark-cards-deactv .full-blue-btn
+{
+    width: 100%;
+    border-radius: 20px;
+    background: #02001699;
+    font: 500 0.9rem/1.625rem "Poppins", sans-serif;
+    color: #fff;
+    letter-spacing: 1px;
+    border: 1px solid #0AEEFF;
+    transition: all 0.4s ease;
+}
+.dark-cards-deactv .full-blue-btn:hover
+{
+    background: transparent;
+    border: 1px solid #04ADFF;
+}
+.dark-cards-deactv .lock-container
+{
+    position: relative;
+    z-index: 5;
+    margin-top: -30px;
+    margin-bottom: -20px;
+    /* margin-left: auto; */
+    /* background-color: pink; */
+}
+.dark-cards-deactv .lock-container img
+{
+    position: relative;
+    width: 50px;
+    margin-left: 95%;
+}
+/* end of deactive cards */
+
+
+
 .market-place
 {
     background: radial-gradient(106.35% 186.99% at 0% 18.78%, #111216 0%, #000239 100%); 
@@ -506,6 +610,69 @@ a.btn-solid-grad:hover
     padding-top: 30px;
 }
 
+.full-overlay .loading-square-pass
+{
+  width: 100%;
+  max-width: 650px;
+  min-height: 250px;
+  background: #010222;
+  border-radius: 20px;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  padding: 10px 20px;
+  
+}
+.popup-title
+{
+    font: 400 2rem/2.625rem "RoundyRainbows", sans-serif;
+    color: #fff;
+    padding: 16px 0px;
+}
+.popup-name
+{
+    text-align: start;
+    font: 500 1rem/1.625rem "Poppins", sans-serif;
+    color: #fff;
+    letter-spacing: 1px;
+}
+.full-overlay .loading-square-pass h4
+{
+    font: 600 1.2rem/1.625rem "RoundyRainbows", sans-serif;
+    background: linear-gradient(180deg, #0AEEFF 0%, #04ADFF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    letter-spacing: 1px;
+    text-align: start;
+}
+.popup-story
+{
+    text-align: start;
+    font: 400 0.9rem/1.4rem "Poppins", sans-serif;
+    color: #fff;
+    word-wrap: break-word;
+}
+.popup-button
+{
+    width: 100%;
+    border-radius: 20px;
+    background: linear-gradient(180deg, #0AEEFF 0%, #04ADFF 100%);
+    font: 500 0.9rem/1.625rem "Poppins", sans-serif;
+    color: #fff;
+    letter-spacing: 1px;
+    border: 1px solid #000;
+    transition: all 0.4s ease;
+}
+.popup-closer
+{
+    background-color: transparent;
+    border: none;
+    float: right;
+    margin-right: -12px;
+    margin-top: 10px;
+}
 .landing-page-2
 {
     background: radial-gradient(106.35% 186.99% at 0% 18.78%, #111216 0%, #000239 100%); 
