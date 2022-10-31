@@ -153,7 +153,6 @@ const LandingPage = () => {
             setGiftLoader(false);
           }
           
-      
         })
         // Catch errors if any
         .catch((err) => {
@@ -161,17 +160,14 @@ const LandingPage = () => {
             setGiftLoader(false);
         });
     }
-    
-      
-    
   }, [name])
   
 
   return (
     <div className="landing-page">
       <div className="content">
-        {loading && <PlanetLoader message="Sit Tight! We are travelling at the speed of light..."/>}
-        {giftLoader && <PlanetLoader message="Please Wait! Fetching you a welcome gift..."/>}
+        {loading && <PlanetLoader message="Sit Tight! We are travelling to the planet" message5="& your welcome gift awaits"/>}
+        {giftLoader && <PlanetLoader message="Sit Tight! We are travelling to the planet" message5="& your welcome gift awaits"/>}
         {coinsAwarded && <CoinsLoader message="Hello space traveller!! Welcome to" message2="have been airdropped to your wallet." message3="Happy Exploring." name={name} closer={setCoinsAwarded}/>}
         <div className={(name==='Ganymede')?"planet-bg-gan":(name==='Isonoe')?"planet-bg-iso":"planet-bg-val"}>
           <div className="container-lg">

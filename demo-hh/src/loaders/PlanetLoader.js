@@ -8,6 +8,7 @@ const PlanetLoader = (props) => {
                 <div className='text-center'>
                     <img src={planets} alt="PlanetLoader" />
                     <p className="p-para">{props.message}<b>{props.message2}</b></p>
+                    <p className="p-para" style={{marginTop: "-44px"}}>{props.message5}</p>
                 </div>
             </div>
         </div>
