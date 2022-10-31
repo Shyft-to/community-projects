@@ -23,15 +23,16 @@ const Mintnfts = () => {
     const [loading,setLoading] = useState(false);
     const [getting,setGetting] = useState(false);
 
-    const [currMint,setCurrMint] = useState('');
+    //const [currMint,setCurrMint] = useState('');
+    var currMint = '';
 
     const [success,setSuccess] = useState(false);
 
     const [present,setPresent] = useState(['Valetudo']);
     
-    const [descVal,setDescVal] = useState('Valetudo is a planet in the SHYFT solar system. It was discovered by a team of shyfters working hard providing services. There are a lot of planets such as Minter, Tokenizer, Walloter, Destroyer, Metamine which revolve around the central star, which is known as SHYFT solar. Valetudo is an important part of the SHYFT solar system.');
-    const [descIso,setDescIso] = useState('Isonoe is a planet in the SHYFT solar system. It was discovered by a team of shyfters working on Natural Falling Transobjects. There are a lot of planets such as Minter, Tokenizer, Walloter, Destroyer, Metamine which revolve around the central star, which is known as SHYFT solar. Isonoe is an important part of the SHYFT solar system.');
-    const [descGan,setDescGan] = useState('Ganymede is a planet in the SHYFT solar system. It was discovered by a team of shyfters working on Natural Falling Transobjects. There are a lot of planets such as Minter, Tokenizer, Walloter, Destroyer, Metamine which revolve around the central star, which is known as SHYFT solar. Ganymede is an important part of the SHYFT solar system.');
+    const descVal = useState('Valetudo is a planet in the SHYFT solar system. It was discovered by a team of shyfters working hard providing services. There are a lot of planets such as Minter, Tokenizer, Walloter, Destroyer, Metamine which revolve around the central star, which is known as SHYFT solar. Valetudo is an important part of the SHYFT solar system.');
+    const descIso = useState('Isonoe is a planet in the SHYFT solar system. It was discovered by a team of shyfters working on Natural Falling Transobjects. There are a lot of planets such as Minter, Tokenizer, Walloter, Destroyer, Metamine which revolve around the central star, which is known as SHYFT solar. Isonoe is an important part of the SHYFT solar system.');
+    const descGan = useState('Ganymede is a planet in the SHYFT solar system. It was discovered by a team of shyfters working on Natural Falling Transobjects. There are a lot of planets such as Minter, Tokenizer, Walloter, Destroyer, Metamine which revolve around the central star, which is known as SHYFT solar. Ganymede is an important part of the SHYFT solar system.');
 
     const [viewPass,setViewPass] = useState(false);
     const [nam,setNam] = useState('');
@@ -138,7 +139,7 @@ const Mintnfts = () => {
     const navigateHome = () => {
         setSuccess(false);
         //navigate('/mint');
-        setRecall(!recall);
+        //setRecall(!recall);
     }
     const callback = (signature,result) => {
         console.log("Signature ",signature);
@@ -150,7 +151,10 @@ const Mintnfts = () => {
             //setComMinted(true);
             const arr = present;
             arr.push(currMint);
+            console.log("Minting:", currMint);
             setPresent(arr);
+            
+            console.log("Minted:", present);
             setLoading(false);
             setSuccess(true);
           }
@@ -178,7 +182,9 @@ const Mintnfts = () => {
         const publicKey = process.env.REACT_APP_PUBLIC_KEY;
         let nftUrl = `${endPoint}nft/mint_detach`;
         setLoading(true);
-        setCurrMint(name);
+        //setCurrMint(name);
+        currMint = name;
+        console.log("assigning Name: ",currMint);
         axios({
             // Endpoint to get NFTs
             url: nftUrl,
@@ -276,12 +282,12 @@ const Mintnfts = () => {
                                 <p className="p-para mt-3">all Your landing passes to travel around shyft planets.</p>
                             </div>
                         </div>
-                        {(present.length>0)?(<div className="row px-2">
+                        {/* {(present.length>0)?(<div className="row px-2">
                             <div className="col-sm-12 col-md-11">
                                 <h2 className="sub-heading-3">all Your landing passes to travel around shyft planets</h2>
                                 <p className="p-para mt-3">all Your landing passes to travel around shyft planets.</p>
                             </div>
-                        </div>):""}
+                        </div>):""} */}
                         <div className="row">
                             {
                                 (present.includes('Valetudo'))?(<div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 p-4">
