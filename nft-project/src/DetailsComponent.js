@@ -48,6 +48,7 @@ const GetDetails = () => {
     const [roy, setRoy] = useState();
     const [attrib, setAttrib] = useState("");
     const [updAuth,setUpdAuth] = useState("");
+    // const[ownerAddr,setOwnerAddr] = useState("");
 
     const [success,setSuccess] = useState(false);
     const [burning,setBurning] = useState(false);
@@ -319,7 +320,7 @@ const GetDetails = () => {
                                             
                                     }
                                     {
-                                        (updAuth === walletId)? 
+                                        (ownAddr === walletId)? 
                                             (<button className="btn-solid-grad px-5 mx-1 my-1 " onClick={handleBurn}>&nbsp;&nbsp;Burn NFT&nbsp;&nbsp;</button>):
                                             ("")  
                                     }
