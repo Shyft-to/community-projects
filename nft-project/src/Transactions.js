@@ -121,7 +121,7 @@ const Transactions = () => {
                             {/* <div className="col-12 col-sm-5 content"></div> */}
                             <div className="col-12 col-sm-4 content">Price</div>
                         </div>
-                        {sellLoaded && sells.map(sell => (
+                        {sellLoaded && sells.filter(sell => sell !== null).map(sell => (
                             <div className="row light-table-body" key={Math.random()}>
                                 <div className="col-12 col-sm-8 content">{sell.nft_address.substring(0)}</div>
                                 {/* <div className="col-12 col-sm-5 content">{sell.seller_address}</div> */}
@@ -145,7 +145,7 @@ const Transactions = () => {
                             <div className="col-12 col-sm-4 content text-center">Bought From</div>
                             <div className="col-12 col-sm-3 content text-center">Time</div>
                         </div>
-                        {buyLoaded && buys.map((buy) => (
+                        {buyLoaded && buys.filter(buy => buy !== null).map((buy) => (
                             <div className="row light-table-body" key={Math.random()}>
                                 <div className="col-12 col-sm-2 content ps-4"> {buy.price} SOL</div>
                                 <div className="col-12 col-sm-3 content text-center">{buy.nft_address.substring(0, 22)}...</div>

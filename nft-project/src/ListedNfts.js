@@ -198,11 +198,11 @@ const ListedNFTs = () => {
               <div className="row mt-4">
                   
                   {loaded &&
-                  nfts.filter(nft=>nft.seller_address === walletId).map((nft) => (
+                  nfts.filter(nft => nft !== null).filter(nft => nft.seller_address === walletId).map((nft) => (
                       <NftTwo buyList={buyList} nft={nft} key={nft.nft_address} />
                   ))}
                   {
-                    loaded && ((nfts.filter(nft=>nft.seller_address === walletId).length <=0)?<div className="p-para text-center">You have not Listed any NFTs</div>:"")
+                    loaded && ((nfts.filter(nft => nft !== null).filter(nft=>nft.seller_address === walletId).length <=0)?<div className="p-para text-center">You have not Listed any NFTs</div>:"")
                   }
               </div>
             </div>
