@@ -334,7 +334,7 @@ const Marketplace = () => {
                             <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 p-4" key={nft.mint}>
                                 <div className="dark-cards-mp">
                                     <div className="image-container">
-                                        <img src={nft.image_uri} alt="Planets" />
+                                        <img src={nft.cached_image_uri} alt="Planets" />
                                     </div>
                                     <div className="text-section-1">
                                         <div>
