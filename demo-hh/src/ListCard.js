@@ -39,7 +39,7 @@ const ListCard = (props) => {
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 p-4">
             <div className="dark-cards-mp">
                 <div className="image-container">
-                    <img src={props.nft.nft.image_uri} alt="Planet-1" />
+                    <img src={props.nft.nft.cached_image_uri} alt="Planet-1" />
                 </div>
                 <div className="text-section-1 ">
                     <div>
