@@ -147,6 +147,16 @@ const SideNav = () => {
               </div>
             </div>
         </Link>
+        <Link to="/transfer" className={(location_get.pathname==='/transfer')?"active":""}>
+            <div className="row sidemenu-anc">
+              <div className="col-3">
+                <img src={markerPlaceIcon} alt="Create" />
+              </div>
+              <div className="col-9">
+                <p>Transfer</p>
+              </div>
+            </div>
+        </Link>
         <Link to="/my-listings" className={(location_get.pathname==='/my-listings')?"active":""}>
             <div className="row sidemenu-anc">
               <div className="col-3">

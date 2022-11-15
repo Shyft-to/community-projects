@@ -31,6 +31,7 @@ import TransactionsMaster from './TransactionsMaster';
 import StatsMaster from './StatsMaster';
 import MyListingsMaster from './MyListingsMaster';
 import Statistics from './Statistics';
+import Transfer from './Transfer';
 
 // import Wallet from './Wallet';
 
@@ -42,6 +43,7 @@ function App() {
     // console.log("Rendering this state super page");
     return (
       <div className="App">
+        
         <div className='red-sphere-back'>
         <WalletContext.Provider value={{walletId, setWalletId}}>
           <NetworkContext.Provider value={{network, setNetwork}}>
@@ -63,6 +65,7 @@ function App() {
                 <Route exact path="/my-listings" element={<MyListingsMaster />} />
                 {/* <Route exact path="/statistics" element={<StatsMaster />} /> */}
                 <Route exact path="/statistics" element={<Statistics />} />
+                <Route exact path="/transfer" element={<Transfer />} />
                 
                 
                 <Route exact path="*" element={<ConnectWallet />} />
