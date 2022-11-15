@@ -15,6 +15,7 @@ import { signAndConfirmTransaction } from "./utility/common";
 import SuccessLoaderWithClose from "./Loaders/SuccessLoaderWithClose";
 import FailedLoader from "./Loaders/FailedLoader";
 import TransferLoader from "./Loaders/TransferLoader";
+import TransitLoader from "./Loaders/TransitLoader";
 
 
 const Transfer = () => {
@@ -28,7 +29,10 @@ const Transfer = () => {
 
     const [transferArr,setTransferArr] = useState([]);
     const [transAddr,setTransAddr] = useState('');
-    const [transPop,setTransPop] = useState(true);
+    const [transPop,setTransPop] = useState(false);
+
+    const [transit,setTransit] = useState(false);
+    const [complete,setComplete] = useState(false);
     
     const [mssg,setMssg] = useState("");
     const [LoadingConf,setLoadingConf] = useState(false);
@@ -73,10 +77,21 @@ const Transfer = () => {
             });
     },[walletId,network]);
 
+
     const addToList = (item) => {
-      var tempArr = transferArr;
-      tempArr.push(item);
-      setTransferArr(tempArr);
+      if(transferArr.length<7)
+      {
+        setMssg("");
+        setTransferArr((currentAttribs) => [
+          ...currentAttribs,
+          item
+        ]);
+      }
+      else
+      {
+        setMssg("You cannot transfer more than 7 NFTs at once")
+      }
+      
     }
 
     const remFromList = (value) => {
@@ -85,40 +100,91 @@ const Transfer = () => {
       setTransferArr(tempArr);
     }
 
-
-    
+  
     const callback = (signature,result) => {
       console.log("Signature ",signature);
       console.log("result ",result);
-      setLoadingConf(true);
+      setComplete(false);
       try {
         if(signature.err === null)
         {
           console.log('ok');
-          //navigate(`/marketplace`);
           setTimeout(() => {
-            navigate(`/my-listings`);
-          }, 5000);
+            navigate(`/wallet/${walletId}`);
+          }, 3000);
         }
         else
         {
           console.log('failed');
-        //   setFailedModal(true);
-          setLoadingConf(false);
+          setComplete(false);
         }
-        // setOkModal(false);
+       
       } catch (error) {
         console.log('failed');
-        // setOkModal(false);
-        // setFailedModal(true);
-        setLoadingConf(false);
+        setComplete(false);
       }
       
     }
 
     
-    const closePopupList = () => {
-    //   setShowLister(false);
+    const startListing = () => {
+      setTransit(true);
+      const xKey = process.env.REACT_APP_API_KEY;
+      const endPoint = process.env.REACT_APP_URL_EP;
+      const marketplaceAddress = process.env.REACT_APP_MARKPLACE;
+      
+      if(transferArr.length > 7 || transAddr !== '')
+      {
+        setMssg("Enter Wallet Address of the receiver");
+      }
+      else
+      {
+        let nftUrl = `${endPoint}nft/transfer_many`;
+
+        axios({
+            // Endpoint to list
+            url: nftUrl,
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "x-api-key": xKey,
+            },
+            data: {
+                network: network,
+                token_address: marketplaceAddress,
+                from_address: transAddr,
+                to_address: walletId
+                
+            }
+          })
+            // Handle the response from backend here
+            .then(async (res) => {
+              console.log(res.data);
+              setTransit(false);
+              
+              if(res.data.success === true)
+              {
+                setComplete(true);
+                
+                const transaction = res.data.result.encoded_transaction;
+                const ret_result = await signAndConfirmTransaction('devnet',transaction,callback);
+                console.log(ret_result);
+                
+              }
+              else
+              {
+                
+                
+                //setShowLister(false);
+              }
+              
+            })
+            // Catch errors if any
+            .catch((err) => {
+              console.warn(err);
+              setTransit(false);
+            });
+      }
     }
     
     
@@ -127,25 +193,22 @@ const Transfer = () => {
         {!loaded && <FetchLoader />}
         {LoadingConf && <FetchLoaderGen message="Loading" />}
         {transPop && <TransferLoader setTransPop={setTransPop} setTransAddr={setTransAddr} transAddr={transAddr}/>}
+        {transit && <TransitLoader />}
+        {complete && <SuccessLoaderWithClose closer={setComplete} />}
         {/* {isListing && <FetchLoaderGen message="Listing NFT"/>} */}
         {/* {showLister && <ListLoader listingNFT={listingNFT} listingName={listingName} listingURI={listingURI} listingPrice={listingPrice} setListingPrice={setListingPrice} listNFT={listNFT} closePopupList={closePopupList} errMessg={errMessg} setErrMessg={setErrMessg} />} */}
-        {/* {okModal && <SuccessLoaderWithClose closer={setOkModal} />} */}
         {/* {failedModal && <FailedLoader closer={setFailedModal} />} */}
         <div className="right-al-container">
-          <div className="container-lg">
+          <div className="container-lg pt-4">
 
             <div className="row">
-              <div className="col-12 col-md-7">
+              <div className="col-12 col-md-8">
                 <h2 className="section-heading">
-                  {loaded && `${nfts.length} NFT(s) Found`}
+                  {/* {loaded && `${nfts.length} NFT(s) Found`} */}
+                  Select NFTs to Transfer
                 </h2>
               </div>
               <div className="col-12 col-md-2">
-                <div className="white-form-group">
-                    <button className="btn-solid-grad px-5" onClick={() => {}}>Transfer</button>
-                </div>
-              </div>
-              <div className="col-12 col-md-3">
                 <div className="white-form-group">
                   <select
                     name="network"
@@ -164,12 +227,18 @@ const Transfer = () => {
                   </select>
                 </div>
               </div>
+              <div className="col-12 col-md-2">
+                <div className="white-form-group">
+                    <button className="btn-solid-grad px-5" onClick={() => {setTransPop(true)}}>Transfer</button>
+                </div>
+              </div>
             </div>
             {mssg && (
               <div className="pt-5 text-center">
-                <p className="p-para">{mssg}</p>
+                <p className="p-para">Hellov {mssg}</p>
               </div>
             )}
+            <div>{JSON.stringify(transferArr)}</div>
             <div className="row">
 
               {loaded &&
@@ -199,7 +268,7 @@ const Transfer = () => {
                           </div>
                           
                           <div className="col-12 col-xl-6 pt-1 px-3">
-                            {(transferArr.includes(nft.mint))?<div className="white-button-container-sm disabled"><button onClick={() => {addToList(nft.mint)}}> + </button></div>:<div className="white-button-container-sm disabled"><button onClick={() => {remFromList(nft.mint)}}> - </button></div>}
+                            {(transferArr.includes(nft.mint))?<div className="white-button-container-sm disabled"><button onClick={() => {remFromList(nft.mint)}}> - </button></div>:<div className="white-button-container-sm disabled"><button onClick={() => {addToList(nft.mint)}}> + </button></div>}
                           </div>
                         </div>
                       </div>
