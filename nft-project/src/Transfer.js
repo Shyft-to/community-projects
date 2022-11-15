@@ -11,7 +11,7 @@ import FetchLoader from "./Loaders/FetchComponent";
 import FetchLoaderGen from "./Loaders/FetchLoaderGen";
 // import ListLoader from "./Loaders/ListLoader";
 
-import { signAndConfirmTransaction } from "./utility/common";
+import { signAndConfirmTransactions } from "./utility/common";
 import SuccessLoaderWithClose from "./Loaders/SuccessLoaderWithClose";
 import FailedLoader from "./Loaders/FailedLoader";
 import TransferLoader from "./Loaders/TransferLoader";
@@ -131,9 +131,8 @@ const Transfer = () => {
       setTransit(true);
       const xKey = process.env.REACT_APP_API_KEY;
       const endPoint = process.env.REACT_APP_URL_EP;
-      const marketplaceAddress = process.env.REACT_APP_MARKPLACE;
       
-      if(transferArr.length > 7 || transAddr !== '')
+      if(transferArr.length > 7 || transAddr === '')
       {
         setMssg("Enter Wallet Address of the receiver");
       }
@@ -151,9 +150,9 @@ const Transfer = () => {
             },
             data: {
                 network: network,
-                token_address: marketplaceAddress,
-                from_address: transAddr,
-                to_address: walletId
+                token_addresses: transferArr,
+                from_address: walletId,
+                to_address: transAddr
                 
             }
           })
@@ -166,8 +165,8 @@ const Transfer = () => {
               {
                 setComplete(true);
                 
-                const transaction = res.data.result.encoded_transaction;
-                const ret_result = await signAndConfirmTransaction('devnet',transaction,callback);
+                const transactions = res.data.result.encoded_transactions;
+                const ret_result = await signAndConfirmTransactions(network,transactions,callback);
                 console.log(ret_result);
                 
               }
@@ -192,7 +191,7 @@ const Transfer = () => {
       <div>
         {!loaded && <FetchLoader />}
         {LoadingConf && <FetchLoaderGen message="Loading" />}
-        {transPop && <TransferLoader setTransPop={setTransPop} setTransAddr={setTransAddr} transAddr={transAddr}/>}
+        {transPop && <TransferLoader setTransPop={setTransPop} setTransAddr={setTransAddr} transAddr={transAddr} startListing={startListing}/>}
         {transit && <TransitLoader />}
         {complete && <SuccessLoaderWithClose closer={setComplete} />}
         {/* {isListing && <FetchLoaderGen message="Listing NFT"/>} */}
@@ -205,8 +204,9 @@ const Transfer = () => {
               <div className="col-12 col-md-8">
                 <h2 className="section-heading">
                   {/* {loaded && `${nfts.length} NFT(s) Found`} */}
-                  Select NFTs to Transfer
+                  Transfer Multiple NFTs
                 </h2>
+                <p className="p-para">Select the NFTs you want to transfer from your wallet to someone else's</p>
               </div>
               <div className="col-12 col-md-2">
                 <div className="white-form-group">

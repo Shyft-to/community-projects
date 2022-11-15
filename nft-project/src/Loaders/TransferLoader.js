@@ -18,9 +18,8 @@ const TransferLoader = (props) => {
                             placeholder="Enter Wallet Address"
                         />
                         </div>
-                        
                         <div className="pt-1">
-                            <button className="btn-solid-grad" onClick={() => props.buyNow()}>Transfer</button>
+                            <button className="btn-solid-grad" onClick={props.startListing}>Transfer</button>
                             <button className="btn-solid-grad" onClick={() => props.setTransPop(false)}>Cancel</button>
                         </div>
                         <div className="p-para text-danger">{props.errorMsgBuy}</div>

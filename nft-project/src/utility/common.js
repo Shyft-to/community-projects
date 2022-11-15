@@ -59,3 +59,18 @@ export async function signAndConfirmTransaction(network,transaction,callback)
     connection.onSignature(ret,callback,'finalized')
     return ret;
 }
+export async function signAndConfirmTransactions(network,transactions,callback)
+{
+    const phantom = new PhantomWalletAdapter();
+    await phantom.connect();
+    const rpcUrl = clusterUrl(network);
+    const connection = new Connection(rpcUrl,"confirmed");
+    //console.log(connection.rpcEndpoint);
+    var ret = "";
+    transactions.forEach(async (transaction) => {
+        ret = await confirmTransactionFromFrontend(connection,transaction,phantom);
+        console.log(ret);
+    });
+    connection.onSignature(ret,callback,'finalized')
+    return ret;
+}
