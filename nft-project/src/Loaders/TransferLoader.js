@@ -20,7 +20,7 @@ const TransferLoader = (props) => {
                             <button className="btn-solid-grad" onClick={props.startListing}>Transfer</button>
                             <button className="btn-solid-grad" onClick={() => props.setTransPop(false)}>Cancel</button>
                         </div>
-                        <div className="p-para text-danger">{props.errorMsgBuy}</div>
+                        <div className="p-para text-danger pt-3">{props.recErr}</div>
                     </div>
                 </div>
             </div>

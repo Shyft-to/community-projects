@@ -31,7 +31,6 @@ export async function confirmTransactionFromFrontend(connection, encodedTransact
   return confirmTransaction;
 }
 export async function confirmTransactionsFromFrontend(connection, encodedTransactions, wallet) {
-  //console.log(encodedTransaction);
   
   const recoveredTransactions = encodedTransactions.map((tx) => {
     return Transaction.from(
@@ -39,17 +38,7 @@ export async function confirmTransactionsFromFrontend(connection, encodedTransac
     );
   });
 
-
   const signedTx = await wallet.signAllTransactions(recoveredTransactions);
-  console.log("Length",signedTx);
-  // await Promise.all( signedTx.forEach(async (tx,index) => {
-  //   const confirmTransaction = await connection.sendRawTransaction(
-  //       tx.serialize()
-  //     );
-  //     console.log("Confirm Transaction",confirmTransaction);
-  //     if(index === (signedTx.length-1))
-  //       return confirmTransaction;
-  // }));
   var sentTxns = [];
   for await(const tx of signedTx)
   {
@@ -61,9 +50,5 @@ export async function confirmTransactionsFromFrontend(connection, encodedTransac
   }
   console.log(sentTxns);
   return sentTxns;
-  // const confirmTransaction = await connection.sendRawTransaction(
-  //   signedTx.serialize()
-  // );
-  // const confirmTransaction = 
-  // return confirmTransaction;
+  
 }

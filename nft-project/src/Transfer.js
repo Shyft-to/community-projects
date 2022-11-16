@@ -30,6 +30,7 @@ const Transfer = () => {
     const [transferArr,setTransferArr] = useState([]);
     const [transAddr,setTransAddr] = useState('');
     const [transPop,setTransPop] = useState(false);
+    const [recErr,setRecErr] = useState('');
 
     const [transit,setTransit] = useState(false);
     const [complete,setComplete] = useState(false);
@@ -104,14 +105,14 @@ const Transfer = () => {
     const callback = (signature,result) => {
       console.log("Signature ",signature);
       console.log("result ",result);
-      setComplete(false);
       try {
         if(signature.err === null)
         {
           console.log('ok');
           setTimeout(() => {
+            setComplete(false);
             navigate(`/wallet/${walletId}`);
-          }, 3000);
+          }, 4000);
         }
         else
         {
@@ -128,16 +129,18 @@ const Transfer = () => {
 
     
     const startListing = () => {
-      setTransit(true);
+      
       const xKey = process.env.REACT_APP_API_KEY;
       const endPoint = process.env.REACT_APP_URL_EP;
       
       if(transAddr === '')
       {
-        setMssg("Enter Wallet Address of the receiver");
+        setRecErr("Wallet Address cannot be empty");
       }
       else
       {
+        setTransit(true);
+        setTransPop(false);
         let nftUrl = `${endPoint}nft/transfer_many`;
 
         axios({
@@ -172,15 +175,15 @@ const Transfer = () => {
               }
               else
               {
-                
-                
                 //setShowLister(false);
+                setMssg("The API request failed");
               }
               
             })
             // Catch errors if any
             .catch((err) => {
               console.warn(err);
+              setMssg(err.message);
               setTransit(false);
             });
       }
@@ -191,7 +194,7 @@ const Transfer = () => {
       <div>
         {!loaded && <FetchLoader />}
         {LoadingConf && <FetchLoaderGen message="Loading" />}
-        {transPop && <TransferLoader setTransPop={setTransPop} setTransAddr={setTransAddr} transAddr={transAddr} startListing={startListing}/>}
+        {transPop && <TransferLoader setTransPop={setTransPop} setTransAddr={setTransAddr} transAddr={transAddr} startListing={startListing} recErr={recErr}/>}
         {transit && <TransitLoader />}
         {complete && <SuccessLoaderWithClose closer={setComplete} />}
         {/* {isListing && <FetchLoaderGen message="Listing NFT"/>} */}

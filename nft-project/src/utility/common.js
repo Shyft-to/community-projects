@@ -87,8 +87,9 @@ export async function signAndConfirmTransactions(network,transactions,callback)
     const rpcUrl = clusterUrl(network);
     const connection = new Connection(rpcUrl,"confirmed");
     const ret = await confirmTransactionsFromFrontend(connection,transactions,phantom);
-    console.log("After return");
-    console.log(ret);
+    // console.log("After return");
+    // console.log(ret);
+    console.log("Finalizing Transaction");
     connection.onSignature(ret[0],callback,'finalized')
     return ret;
     
