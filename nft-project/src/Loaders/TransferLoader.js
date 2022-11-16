@@ -2,13 +2,11 @@ const TransferLoader = (props) => {
     return ( 
         <div>
             <div className="full-overlay">
-                <div className="list-square" style={{height: "220px"}}>
+                <div className="list-square" style={{minHeight: "240px"}}>
                     <div className='text-center p-1'>
+                        
                         <div className="white-form-group">
-                        <label className="form-label" htmlFor="name">
-                            Address of the NFT receiver
-                        </label>
-
+                        <p className="p-para">Receiver Wallet Address</p>
                         <input
                             type="text"
                             name="externalUrl"

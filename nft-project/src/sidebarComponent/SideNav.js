@@ -16,6 +16,7 @@ import markerPlaceIcon from '../resources/images/sidebar/marketplace.svg';
 import myListingIcon from '../resources/images/sidebar/my-listings-2.svg';
 import historyIcon from '../resources/images/sidebar/history.svg';
 import statsIcon from '../resources/images/sidebar/stats.svg';
+import transferIcon from "../resources/images/sidebar/transfer.svg";
 
 
 const SideNav = () => {
@@ -150,7 +151,7 @@ const SideNav = () => {
         <Link to="/transfer" className={(location_get.pathname==='/transfer')?"active":""}>
             <div className="row sidemenu-anc">
               <div className="col-3">
-                <img src={markerPlaceIcon} alt="Create" />
+                <img src={transferIcon} alt="Create" />
               </div>
               <div className="col-9">
                 <p>Transfer</p>

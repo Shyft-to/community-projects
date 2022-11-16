@@ -1,7 +1,7 @@
 import {  clusterApiUrl, Connection,PublicKey } from "@solana/web3.js";
 import { PhantomWalletAdapter } from '@solana/wallet-adapter-phantom';
 
-import { confirmTransactionFromFrontend } from './shyft';
+import { confirmTransactionFromFrontend,confirmTransactionsFromFrontend } from './shyft';
 import { clusterUrl } from "./utilityfunc";
 
 export async function connectTheWallet()
@@ -59,24 +59,37 @@ export async function signAndConfirmTransaction(network,transaction,callback)
     connection.onSignature(ret,callback,'finalized')
     return ret;
 }
+// export async function signAndConfirmTransactions(network,transactions,callback)
+// {
+//     const phantom = new PhantomWalletAdapter();
+//     await phantom.connect();
+//     const rpcUrl = clusterUrl(network);
+//     const connection = new Connection(rpcUrl,"confirmed");
+//     //console.log(connection.rpcEndpoint);
+//     var ret = "";
+//     await transactions.forEach(async (transaction,index) => {
+//         ret = await confirmTransactionFromFrontend(connection,transaction,phantom);
+        
+//         if(index === (transactions.length - 1))
+//         {
+//             connection.onSignature(ret,callback,'finalized')
+//             return ret;
+//         }
+//     });
+//     // console.log("Signing Complete");
+//     // return "Signing Complete";
+    
+// }
 export async function signAndConfirmTransactions(network,transactions,callback)
 {
     const phantom = new PhantomWalletAdapter();
     await phantom.connect();
     const rpcUrl = clusterUrl(network);
     const connection = new Connection(rpcUrl,"confirmed");
-    //console.log(connection.rpcEndpoint);
-    var ret = "";
-    await transactions.forEach(async (transaction,index) => {
-        ret = await confirmTransactionFromFrontend(connection,transaction,phantom);
-        
-        if(index === (transactions.length - 1))
-        {
-            connection.onSignature(ret,callback,'finalized')
-            return ret;
-        }
-    });
-    // console.log("Signing Complete");
-    // return "Signing Complete";
+    const ret = await confirmTransactionsFromFrontend(connection,transactions,phantom);
+    console.log("After return");
+    console.log(ret);
+    connection.onSignature(ret[0],callback,'finalized')
+    return ret;
     
 }

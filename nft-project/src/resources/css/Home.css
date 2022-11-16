@@ -2143,6 +2143,30 @@ h4 {
   letter-spacing: 1px;
   transition: all 0.2s;
 }
+.white-button-container-select button
+{
+  font: 600 18px/0 "Poppins", sans-serif;
+  color: #112f4a;
+  padding: 13px 6px 12px 7px;
+  border-radius: 20px;
+  border: 2px solid #112F4A;
+  background-color: #fff;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+  float: right;
+}
+.white-button-container-selected button
+{
+  font: 600 18px/0 "Poppins", sans-serif;
+  color: #fff;
+  padding: 13px 6px 12px 7px;
+  border-radius: 20px;
+  border: 2px solid #fff;
+  background-color: #112F4A;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+  float: right;
+}
 
 .light-table-body .content
 {
@@ -2249,4 +2273,9 @@ h4 {
 .cards-outer-port .large-text small
 {
   font: 600 1rem "Poppins", sans-serif !important;
+}
+.pill-badges
+{
+  padding: 4px 6px 2px;
+  font-size: 0.8rem;
 }

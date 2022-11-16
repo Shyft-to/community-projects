@@ -132,7 +132,7 @@ const Transfer = () => {
       const xKey = process.env.REACT_APP_API_KEY;
       const endPoint = process.env.REACT_APP_URL_EP;
       
-      if(transferArr.length > 7 || transAddr === '')
+      if(transAddr === '')
       {
         setMssg("Enter Wallet Address of the receiver");
       }
@@ -206,7 +206,7 @@ const Transfer = () => {
                   {/* {loaded && `${nfts.length} NFT(s) Found`} */}
                   Transfer Multiple NFTs
                 </h2>
-                <p className="p-para">Select the NFTs you want to transfer from your wallet to someone else's</p>
+                {(transferArr.length > 0)?<p className="p-para text-success">{transferArr.length} NFT(s) Selected for TRANSFER</p>:<p className="p-para">Select the NFTs you want to transfer from your wallet to someone else's</p>}
               </div>
               <div className="col-12 col-md-2">
                 <div className="white-form-group">
@@ -229,16 +229,16 @@ const Transfer = () => {
               </div>
               <div className="col-12 col-md-2">
                 <div className="white-form-group">
-                    <button className="btn-solid-grad px-5" onClick={() => {setTransPop(true)}}>Transfer</button>
+                    {(transferArr.length > 0)?<button className="btn-solid-grad px-5" onClick={() => {setTransPop(true)}}>Transfer <span className="badge rounded-pill bg-light text-dark pill-badges">{transferArr.length}</span></button>:<button className="btn-solid-grad disabled px-5">Transfer</button>}
+                    
                 </div>
               </div>
             </div>
             {mssg && (
               <div className="pt-5 text-center">
-                <p className="p-para">Hellov {mssg}</p>
+                <p className="p-para">{mssg}</p>
               </div>
             )}
-            <div>{JSON.stringify(transferArr)}</div>
             <div className="row">
 
               {loaded &&
@@ -268,7 +268,7 @@ const Transfer = () => {
                           </div>
                           
                           <div className="col-12 col-xl-6 pt-1 px-3">
-                            {(transferArr.includes(nft.mint))?<div className="white-button-container-sm disabled"><button onClick={() => {remFromList(nft.mint)}}> - </button></div>:<div className="white-button-container-sm disabled"><button onClick={() => {addToList(nft.mint)}}> + </button></div>}
+                            {(transferArr.includes(nft.mint))?<div className="white-button-container-selected"><button onClick={() => {remFromList(nft.mint)}}> - </button></div>:<div className="white-button-container-select"><button onClick={() => {addToList(nft.mint)}}> + </button></div>}
                           </div>
                         </div>
                       </div>
