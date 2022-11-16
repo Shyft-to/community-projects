@@ -67,10 +67,16 @@ export async function signAndConfirmTransactions(network,transactions,callback)
     const connection = new Connection(rpcUrl,"confirmed");
     //console.log(connection.rpcEndpoint);
     var ret = "";
-    transactions.forEach(async (transaction) => {
+    await transactions.forEach(async (transaction,index) => {
         ret = await confirmTransactionFromFrontend(connection,transaction,phantom);
-        console.log(ret);
+        
+        if(index === (transactions.length - 1))
+        {
+            connection.onSignature(ret,callback,'finalized')
+            return ret;
+        }
     });
-    connection.onSignature(ret,callback,'finalized')
-    return ret;
+    // console.log("Signing Complete");
+    // return "Signing Complete";
+    
 }

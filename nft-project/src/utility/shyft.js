@@ -30,3 +30,14 @@ export async function confirmTransactionFromFrontend(connection, encodedTransact
   );
   return confirmTransaction;
 }
+// export async function confirmTransactionsFromFrontend(connection, encodedTransactions, wallet) {
+//   //console.log(encodedTransaction);
+//   const recoveredTransaction = Transaction.from(
+//     Buffer.from(encodedTransaction, 'base64')
+//   );
+//   const signedTx = await wallet.signTransaction(recoveredTransaction);
+//   const confirmTransaction = await connection.sendRawTransaction(
+//     signedTx.serialize()
+//   );
+//   return confirmTransaction;
+// }
