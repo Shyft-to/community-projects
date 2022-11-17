@@ -42,13 +42,13 @@ export async function confirmTransactionsFromFrontend(connection, encodedTransac
   var sentTxns = [];
   for await(const tx of signedTx)
   {
-    console.log("LogginTX",tx);
+    //console.log("LogginTX",tx);
     const confirmTransaction = await connection.sendRawTransaction(
       tx.serialize()
     );
     sentTxns.push(confirmTransaction);
   }
-  console.log(sentTxns);
+  //console.log(sentTxns);
   return sentTxns;
   
 }
