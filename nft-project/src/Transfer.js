@@ -80,18 +80,11 @@ const Transfer = () => {
 
 
     const addToList = (item) => {
-      if(transferArr.length<7)
-      {
-        setMssg("");
         setTransferArr((currentAttribs) => [
           ...currentAttribs,
           item
         ]);
-      }
-      else
-      {
-        setMssg("You cannot transfer more than 7 NFTs at once")
-      }
+      
       
     }
 
