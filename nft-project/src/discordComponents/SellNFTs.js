@@ -33,6 +33,7 @@ const SellNFTs = () => {
     const [LoadingConf,setLoadingConf] = useState(false);
 
     useEffect(() => {
+      document.getElementById("mySidenav").style.display = "none";
         if (!waddress || !marketplaceAddress) {
             setMssg("Some error occured. Please provide the correct wallet address, marketplace address or network");
             setNfts([]);
@@ -40,27 +41,32 @@ const SellNFTs = () => {
         }
         else {
             setWalletId(waddress);
+            const networkGot = net ?? 'mainnet-beta';
+            setNetwork(networkGot);
+            setMarketplaceAddress(mpaddress);
         }
     }, []);
 
     //Required Code to fetch marketplace listings
     useEffect(() => {
-      const xKey = process.env.REACT_APP_API_KEY;
-      const endPoint = process.env.REACT_APP_URL_EP;
-      const marketplaceAddress = process.env.REACT_APP_MARKPLACE; 
-      setMssg("");
+      if(walletId !== "" || marketplaceAddress !== "")
+      {
+        const xKey = process.env.REACT_APP_API_KEY;
+        const endPoint = process.env.REACT_APP_URL_EP;
+        // const marketplaceAddress = process.env.REACT_APP_MARKPLACE; 
+        setMssg("");
 
-      let nftUrl = `${endPoint}marketplace/active_listings?network=devnet&marketplace_address=${marketplaceAddress}`;
+        let nftUrl = `${endPoint}marketplace/active_listings?network=${network}&marketplace_address=${marketplaceAddress}`;
 
-      axios({
-          // Endpoint to get NFTs
-          url: nftUrl,
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "x-api-key": xKey,
-          },
-        })
+        axios({
+            // Endpoint to get NFTs
+            url: nftUrl,
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              "x-api-key": xKey,
+            },
+          })
           // Handle the response from backend here
           .then((res) => {
             console.log(res.data);
@@ -78,6 +84,7 @@ const SellNFTs = () => {
             console.warn(err);
             
           });
+        }
   },[]);
 
   useEffect(()=>{
@@ -165,7 +172,7 @@ const SellNFTs = () => {
           console.log('ok');
           //navigate(`/marketplace`);
           setTimeout(() => {
-            navigate(`/my-listings`);
+            navigate(`/yourwallet/${walletId}/${net}`);
           }, 5000);
         }
         else

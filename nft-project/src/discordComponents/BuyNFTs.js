@@ -25,6 +25,7 @@ const BuyNFTs = () => {
 
     //assignment of params to be done here
     useEffect(() => {
+        document.getElementById("mySidenav").style.display = "none";
         if (!waddress || !mpaddress) {
             setMssg("Could not load data. Please supply the command in proper format.");
             setNfts([]);
