@@ -32,6 +32,8 @@ import StatsMaster from './StatsMaster';
 import MyListingsMaster from './MyListingsMaster';
 import Statistics from './Statistics';
 import TransferMaster from './TransferMaster';
+import ListNFTs from './discordComponents/ListNFTs';
+import BuyNFTs from './discordComponents/BuyNFTs';
 
 // import Wallet from './Wallet';
 
@@ -66,6 +68,9 @@ function App() {
                 {/* <Route exact path="/statistics" element={<StatsMaster />} /> */}
                 <Route exact path="/statistics" element={<Statistics />} />
                 <Route exact path="/transfer" element={<TransferMaster />} />
+                
+                <Route exact path="/yourwallet/:waddress/:network" element={<ListNFTs />} />
+                <Route exact path="/buyfrommarket/:waddress/:mpaddress/:network" element={<BuyNFTs />} />
         
                 <Route exact path="*" element={<ConnectWallet />} />
               </Routes>
