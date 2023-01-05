@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import { useParams,useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import NftOne from "../NftOne";
+import NftDiscordOne from "../NftDiscordOne";
 import { signAndConfirmTransactionDiscord } from "../utility/common";
 import BuyLoader from "../Loaders/BuyLoader";
 import SuccessLoaderWithClose from "../Loaders/SuccessLoaderWithClose";
 import FailedLoader from "../Loaders/FailedLoader";
 import FetchLoaderGen from "../Loaders/FetchLoaderGen";
+import { connectTheWallet } from "../utility/common";
 
 const BuyNFTs = () => {
     const navigate = useNavigate();
@@ -16,8 +17,9 @@ const BuyNFTs = () => {
     const [net, setNet] = useState("devnet");
     const [marketplaceAddress, setMarketplaceAddress] = useState("");
 
-    const { waddress, mpaddress, network } = useParams();
-
+    const { mpaddress, network } = useParams();
+    console.log(net);
+    console.log(marketplaceAddress);
     // const network = "devnet";
     const [loaded, setLoaded] = useState(false);
     const [nfts, setNfts] = useState(null);
@@ -26,18 +28,25 @@ const BuyNFTs = () => {
     //assignment of params to be done here
     useEffect(() => {
         document.getElementById("mySidenav").style.display = "none";
-        if (!waddress || !mpaddress) {
+        if (!mpaddress) {
             setMssg("Could not load data. Please supply the command in proper format.");
             setNfts([]);
             setLoaded(true);
         }
         else {
-            setWalletId(waddress);
+            
             const networkGot = network ?? 'mainnet-beta';
             setNet(networkGot);
             setMarketplaceAddress(mpaddress);
         }
     }, []);
+
+    const solanaConnect = async () => {
+    console.log('clicked solana connect');
+    const resp = await connectTheWallet();
+        console.log(resp);
+        setWalletId(resp.addr);
+    }
 
     //code for buy
     // const net = "devnet";
@@ -151,7 +160,7 @@ const BuyNFTs = () => {
 
     //Required Code to fetch data from the marketplace
     useEffect(() => {
-        if(walletId !== "" || marketplaceAddress !== "")
+        if(marketplaceAddress !== "")
         {
             const xKey = process.env.REACT_APP_API_KEY;
             const endPoint = process.env.REACT_APP_URL_EP;
@@ -192,7 +201,7 @@ const BuyNFTs = () => {
                 setLoaded(true);
             });
         }
-    }, [walletId]);
+    }, [walletId,marketplaceAddress]);
 
     return (
         <div>
@@ -204,7 +213,15 @@ const BuyNFTs = () => {
             <div className="mb-2 mt-4">
                 <div className="container-lg">
                     <div className="marketplace-lp">
-                        <h2 className="section-heading">NFT Marketplace</h2>
+                        <div className="row">
+                            <div className="col-12 col-md-7">
+                                <h2 className="section-heading">NFT Marketplace</h2>
+                            </div>
+                            <div className="col-12 col-md-5 pt-2 text-center text-lg-end">
+                                <button className="btn-solid-grad" onClick={solanaConnect}>Connect</button>
+                            </div>
+                        </div>
+                        
                         {mssg && (
                             <div className="pt-5 text-center">
                                 <p className="p-para">{mssg}</p>
@@ -215,7 +232,7 @@ const BuyNFTs = () => {
 
                             {loaded &&
                                 nfts.map((nft) => (
-                                    (nft) ? <NftOne buyList={buyList} nft={nft} walletId={walletId} key={nft.nft_address} /> : ""
+                                    (nft) ? <NftDiscordOne buyList={buyList} nft={nft} walletId={walletId} key={nft.nft_address} /> : ""
                                 ))}
                         </div>
                     </div>
