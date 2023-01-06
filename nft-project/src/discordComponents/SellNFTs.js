@@ -302,6 +302,11 @@ const SellNFTs = () => {
                 {loaded && `${nfts.length} NFT(s) Found`}
               </h2>
             </div>
+            <div className="col-12 col-md-4 text-center text-md-end">
+              <p className="p-para text-success">
+                Network: {network}
+              </p>
+            </div>
 
           </div>
           {mssg && (
@@ -338,7 +343,8 @@ const SellNFTs = () => {
                         </div>
 
                         <div className="col-12 col-xl-6 pt-1 px-3">
-                          {(conn_wall === walletId && network === 'devnet') ? (mpListings.includes(nft.mint)) ? <div className="white-button-container-sm"><button disabled>Listed</button></div> : <div className="white-button-container-sm disabled" ><button onClick={() => lister(nft.mint, nft.name, nft.cached_image_uri)}>List</button></div> : ""}
+                          {/* {(conn_wall === walletId && network === 'devnet') ? (mpListings.includes(nft.mint)) ? <div className="white-button-container-sm"><button disabled>Listed</button></div> : <div className="white-button-container-sm disabled" ><button onClick={() => lister(nft.mint, nft.name, nft.cached_image_uri)}>List</button></div> : ""} */}
+                          {( walletId !== "" && network === 'devnet') ? (mpListings.includes(nft.mint)) ? <div className="white-button-container-sm"><button disabled>Listed</button></div> : <div className="white-button-container-sm disabled" ><button onClick={() => lister(nft.mint, nft.name, nft.cached_image_uri)}>List</button></div> : ""}
 
                         </div>
                       </div>

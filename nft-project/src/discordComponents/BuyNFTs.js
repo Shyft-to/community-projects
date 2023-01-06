@@ -218,7 +218,12 @@ const BuyNFTs = () => {
                                 <h2 className="section-heading">NFT Marketplace</h2>
                             </div>
                             <div className="col-12 col-md-5 pt-2 text-center text-lg-end">
-                                <button className="btn-solid-grad" onClick={solanaConnect}>Connect</button>
+                                {(walletId === "")?<button className="btn-solid-grad" onClick={solanaConnect}>Connect</button>:
+                                    <div className="p-para text-success">
+                                        <span className="mb-2">Wallet Connected</span><br />
+                                        <span>{network}</span>
+                                    </div>
+                                }
                             </div>
                         </div>
                         
