@@ -323,12 +323,12 @@ const ListAll = () => {
                           </div>
                         </Link>
                         <div className="row pt-3 pb-2">
-                          <div className="col-12 col-xl-6">
+                          <div className="col-12 col-xl-7">
                             <p
                               className="port-para-2 text-center text-xl-start"
                               style={{ wordWrap: "break-word" }}
                             >
-                              {(nft.name.length>8)?nft.name.substring(0, 8)+'...':nft.name}
+                              {(nft.name.length>13)?nft.name.substring(0, 13)+'...':nft.name}
                             </p>
                           </div>
                           {/* <div className="col-12 col-xl-6 pt-1">
@@ -353,7 +353,7 @@ const ListAll = () => {
                               </div>
                             )}
                           </div> */}
-                          <div className="col-12 col-xl-6 pt-1 px-3">
+                          <div className="col-12 col-xl-5 pt-1 px-3">
                             {(conn_wall === walletId && network==='devnet')?(mpListings.includes(nft.mint))?<div className="white-button-container-sm"><button disabled>Listed</button></div>:<div className="white-button-container-sm disabled" ><button onClick={() => lister(nft.mint,nft.name,nft.cached_image_uri)}>List</button></div>:""}
                            
                           </div>
