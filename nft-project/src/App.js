@@ -71,8 +71,8 @@ function App() {
                 <Route exact path="/transfer" element={<TransferMaster />} />
                 
                 <Route exact path="/yourwallet/:waddress/:network" element={<ListNFTs />} />
-                <Route exact path="/buyfrommarket/:waddress/:mpaddress/:network" element={<BuyNFTs />} />
-                <Route exact path="/listonmarket/:waddress/:mpaddress/:net" element={<SellNFTs />} />
+                <Route exact path="/activelistings/:mpaddress/:network" element={<BuyNFTs />} />
+                <Route exact path="/listonmarket/:mpaddress/:net" element={<SellNFTs />} />
         
                 <Route exact path="*" element={<ConnectWallet />} />
               </Routes>
