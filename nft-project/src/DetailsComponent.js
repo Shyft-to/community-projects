@@ -1,6 +1,8 @@
 import { useState, useEffect,useContext } from "react";
 import { Link,useNavigate } from 'react-router-dom';
 import axios from "axios";
+import {ReactSession} from 'react-client-session';
+
 import { signAndConfirmTransaction } from "./utility/common";
 import SuccessLoader from "./Loaders/SuccessLoader";
 import BurnLoader from "./Loaders/BurnLoader";
@@ -13,6 +15,8 @@ const GetDetails = () => {
     const { walletId } = useContext(WalletContext);
     const xKey = process.env.REACT_APP_API_KEY.toString();
     const endPoint = process.env.REACT_APP_URL_EP;
+
+    const connWall = ReactSession.get("connected_wallet") ?? false;
     
     useEffect(() => {
         const urlParams11 = new URLSearchParams(window.location.search);
@@ -309,7 +313,7 @@ const GetDetails = () => {
                                         <h6>View Original</h6>
                                     </a>
                                 </div>
-                                <div className="text-center">
+                                {(connWall !== false )?<div className="text-center">
                                     {
                                         (updAuth === walletId)? 
                                             (<Link className="btn-solid-grad px-5 mx-1 my-1" to={`/update?token_address=${mintAddr}&network=${networkParams[1]}`}>Update NFT</Link>):
@@ -331,7 +335,7 @@ const GetDetails = () => {
                                     } */}
                                     
                                     {/* <Link className={(updAuth === walletId)?"btn-solid-grad px-5":"btn-solid-grad disabled px-5"} to={(updAuth === walletId)?`/update?token_address=${mintAddr}&network=${networkParams[1]}`:`#`}>Update NFT</Link> */}
-                                </div>
+                                </div>:<></>}
                                 
                             </div>
                         </div>

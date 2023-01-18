@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import axios from "axios";
+import {ReactSession} from "react-client-session";
 
 import { WalletContext } from "./Context/WalletContext";
 import NftOne from "./NftOne";
@@ -32,6 +33,8 @@ const TheMarketplace = () => {
   const [failedModal,setFailedModal] = useState(false);
   const [isBuying,setIsBuying] = useState(false);
   const [LoadingConf,setLoadingConf] = useState(false);
+
+  const connWall = ReactSession.get("connected_wallet") ?? false;
 
   const[errorMsgBuy,setErrorMsgBuy] = useState('');
 
@@ -262,7 +265,7 @@ const TheMarketplace = () => {
                 
                 {loaded &&
                 nfts.map((nft) => (
-                  (nft)?<NftOne buyList={buyList} nft={nft} walletId={walletId} key={nft.nft_address}/>:""
+                  (nft)?<NftOne buyList={buyList} nft={nft} walletId={walletId} key={nft.nft_address} is_conn={connWall} />:""
                 ))}
             </div>
           </div>

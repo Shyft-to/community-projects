@@ -12,6 +12,7 @@ import file1 from "./resources/images/inner-box.png";
 import CreateLoader from "./Loaders/CreateLoader";
 // import {confirmTransactionFromFrontend} from './utility/shyft';
 import { signAndConfirmTransaction } from "./utility/common";
+import {ReactSession} from 'react-client-session';
 import SuccessLoader from "./Loaders/SuccessLoader";
 
 const Create = () => {
@@ -19,9 +20,10 @@ const Create = () => {
     const xKey = process.env.REACT_APP_API_KEY.toString();
     const endPoint = process.env.REACT_APP_URL_EP;
     const {walletId} = useContext(WalletContext);
-    console.log("walletid: ",walletId);
+    // console.log("walletid: ",walletId);
+    const connWall = ReactSession.get("connected_wallet") ?? false;
     useEffect(() => {
-      if(!walletId)
+      if(!walletId || connWall === false)
         navigate('/connect-wallet');
     }, [])
     
