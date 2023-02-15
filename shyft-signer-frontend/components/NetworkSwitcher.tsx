@@ -1,12 +1,8 @@
 import { FC } from 'react';
 import { useNetworkConfiguration } from '../contexts/NetworkConfigurationProvider';
-import { useConnection } from '@solana/wallet-adapter-react';
 
 export const NetworkSwitcher: FC = () => {
   const { networkConfiguration, setNetworkConfiguration } = useNetworkConfiguration();
-
-	const { connection } = useConnection();
-	console.log(connection.rpcEndpoint);	
 
   return (
 		<div className="w-100">
