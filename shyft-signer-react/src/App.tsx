@@ -5,9 +5,8 @@ import { UnsafeBurnerWalletAdapter } from '@solana/wallet-adapter-wallets';
 import { clusterApiUrl } from '@solana/web3.js';
 import React, { FC, ReactNode, useMemo, useState } from 'react';
 
-import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 import { confirmTransactionFromFrontend, Network, ShyftWallet } from '@shyft-to/js';
-
 
 require('./App.css');
 require('@solana/wallet-adapter-react-ui/styles.css');
@@ -61,30 +60,27 @@ const Content: FC = () => {
     const { connection } = useConnection();
     const { signTransaction, signAllTransactions } = useWallet();
 
-    const [txn,setTxn] = useState('');
-    const [signature,setSignature] = useState('');
-    const [success,setSuccess] = useState(false);
-    const [isErrorOccured,setErrorOccured] = useState(false);
+    const [txn, setTxn] = useState('');
+    const [signature, setSignature] = useState('');
+    const [success, setSuccess] = useState(false);
+    const [isErrorOccured, setErrorOccured] = useState(false);
     const signTxn = async () => {
-        if (typeof signTransaction !== "undefined" && typeof signAllTransactions !== "undefined") { 
-            const wallet: ShyftWallet = {
-                signTransaction,
-                signAllTransactions,
-              }
-              try {
-                const signature = await confirmTransactionFromFrontend(connection,txn,wallet)
-                setSignature(signature);
-                setSuccess(true);
-                setErrorOccured(false);
-                console.log(signature);
-              } catch (error) {
-                setSuccess(false);
-                setErrorOccured(true);
-                console.error(error);
-              }     
+        const wallet: ShyftWallet = {
+            signTransaction: signTransaction!,
+            signAllTransactions: signAllTransactions!,
+        };
+        try {
+            const signature = await confirmTransactionFromFrontend(connection, txn, wallet);
+            setSignature(signature);
+            setSuccess(true);
+            setErrorOccured(false);
+            console.log(signature);
+        } catch (error) {
+            setSuccess(false);
+            setErrorOccured(true);
+            console.error(error);
         }
-        
-    }
+    };
     return (
         <div className="App">
             <div className="container pt-4">
@@ -92,55 +88,54 @@ const Content: FC = () => {
                     <div className="col-6">
                         <WalletMultiButton />
                     </div>
-                    <div className="col-6">
-
-                    </div>
-                    
+                    <div className="col-6"></div>
                 </div>
                 <div className="row pt-4">
                     <div className="col-6">
-                        <div style={{paddingTop: "10px"}}>
-                            <textarea className='form-control bg-dark text-light' value={txn} onChange={(e) => setTxn(e.target.value)}></textarea>
-                            <div className='pt-3'>
-                                <button onClick={signTxn} className="btn btn-warning">Sign Transaction</button>
-
+                        <div style={{ paddingTop: '10px' }}>
+                            <textarea
+                                className="form-control bg-dark text-light"
+                                value={txn}
+                                onChange={(e) => setTxn(e.target.value)}
+                            ></textarea>
+                            <div className="pt-3">
+                                <button onClick={signTxn} className="btn btn-warning">
+                                    Sign Transaction
+                                </button>
                             </div>
-
                         </div>
                     </div>
                     <div className="text-danger">
-                    {isErrorOccured ? (
-                        <>
-                        <hr />
-                        Could not Sign
-                        </>
-                    ) : (
-                        <></>
-                    )}
+                        {isErrorOccured ? (
+                            <>
+                                <hr />
+                                Could not Sign
+                            </>
+                        ) : (
+                            <></>
+                        )}
 
-                    {success ? (
-                        <>
-                        <hr />
-                        <div className="alert alert-success" role="alert">
-                            Transaction signature: {""}
-                            <a style={{ wordWrap: "break-word" }}
-                            href={`https://explorer.solana.com/tx/${signature}?cluster=devnet`}
-                                            target="_blank"
-                                            rel="noreferrer"
-                            >
-                            { signature }
-                            </a>
-                        </div>
-                        </>
-                    ) : (
-                        <></>
-                    )}
+                        {success ? (
+                            <>
+                                <hr />
+                                <div className="alert alert-success" role="alert">
+                                    Transaction signature: {''}
+                                    <a
+                                        style={{ wordWrap: 'break-word' }}
+                                        href={`https://explorer.solana.com/tx/${signature}?cluster=devnet`}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
+                                        {signature}
+                                    </a>
+                                </div>
+                            </>
+                        ) : (
+                            <></>
+                        )}
                     </div>
-                    
                 </div>
             </div>
-            
-            
         </div>
     );
 };
