@@ -6,7 +6,7 @@ import { clusterApiUrl } from '@solana/web3.js';
 import React, { FC, ReactNode, useMemo, useState } from 'react';
 
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
-import { confirmTransactionFromFrontend, Network, ShyftWallet } from '@shyft-to/js';
+import { confirmTxn, Network, ShyftWallet } from '@shyft-to/js';
 
 require('./App.css');
 require('@solana/wallet-adapter-react-ui/styles.css');
@@ -70,7 +70,7 @@ const Content: FC = () => {
             signAllTransactions: signAllTransactions!,
         };
         try {
-            const signature = await confirmTransactionFromFrontend(connection, txn, wallet);
+            const signature = await confirmTxn(connection, txn, wallet);
             setSignature(signature);
             setSuccess(true);
             setErrorOccured(false);
