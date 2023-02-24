@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;700&display=swap');
+
+.heading_section
+{
+  padding-top: 40px;
+}
+.background
+{
+  position: relative;
+  background: radial-gradient(#2a0855 8%, #0a0215 75%);
+  z-index: 0;
+  height: 100vh;
+}
+.main_heading
+{
+  font: 300 24px/24px "Montserrat", sans-serif;
+  color: #fff;
+}
+.main_heading span
+{
+  font: 500 40px/48px "Odibee Sans", sans-serif;
+  background: -webkit-linear-gradient(280deg, #FF008A 3%, #F3DD59 75%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 1px;
+}
+.wallet_balance_indicator
+{
+  font: 400 40px/48px "Odibee Sans", sans-serif;
+  color: #fff;
+}

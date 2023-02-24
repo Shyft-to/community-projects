@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;700&display=swap');
+
+.background
+{
+  position: relative;
+  background: radial-gradient(#2a0855 8%, #0a0215 75%);
+  z-index: 0;
+  height: 100vh;
+}
+.middle_layer
+{
+  position: absolute;
+  z-index:2;
+  height: 100vh;
+  top: 0;
+  width: 100vw;
+  background: url("../public/images/waves.png"),url("../public/images/stars-and-planet.png");
+  background-size: 90%,70%;
+  background-repeat: no-repeat,no-repeat;
+  background-position: 60% 70%,50% 50%;
+}
+.middle_layer .dotted_top
+{
+  position: absolute;
+}
+.middle_layer .blue_planet
+{
+  position: absolute;
+  bottom: 0;
+}
+.middle_layer .red_planet
+{
+  position: absolute;
+  right:0;
+}
+.middle_layer .dotted_bottom
+{
+  position: absolute;
+  right:0;
+  bottom: 0;
+}
+.top_layer
+{
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  width: 100vw;
+
+}
+.content_area
+{
+  position: relative;
+  z-index: 5;
+  width: 100vw;
+  padding: 40px 0px;
+}
+.text_and_form
+{
+  padding-top: 25%;
+}
+.main_heading
+{
+  font: 600 64px/72px "Odibee Sans", sans-serif;
+  background: -webkit-linear-gradient(280deg, #FF008A 3%, #F3DD59 75%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 6px;
+}
+.description_text
+{
+  font: 300 16px/24px "Montserrat", sans-serif;
+  color: #fff;
+  letter-spacing: 1px;
+}
+.form_container
+{
+  padding-top: 20px;
+}
+.form_container label
+{
+  font: 500 16px/24px "Montserrat", sans-serif;
+  color: #fff;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+.form_field_outer
+{
+  position: relative;
+  padding: 2px;
+  border-radius: 25px;
+  background: linear-gradient(90deg,#FF00FF 12%, #07F0FF 70%);
+
+}
+.form_field_outer .form_field_inner
+{
+  background-color: #2a0855;
+  border-radius: 25px;
+  padding: 8px 16px;
+}
+.form_field_outer .form_field_inner input
+{
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  color: #fff;
+  font: 500 16px/18px "Montserrat", sans-serif;
+  letter-spacing: 1px;
+}
+.form_field_outer .form_field_inner input:focus
+{
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+.btn_solid_grad
+{
+  display: inline-block;
+  /* padding: 0.8rem 2.5rem 0.8rem 2.5rem; */
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+  min-width: 180px;
+  border: none;
+  border-radius: 2.5rem;
+  background-color: rgba(89, 101, 243, 0.29);
+  background: linear-gradient(
+    90.8deg,
+    #FF00FF 3.34%,
+    #07F0FF 100%
+  );
+  color: #fff;
+  font: 600 0.8rem/1.2rem "Montserrat", sans-serif;
+  letter-spacing: 1px;
+  text-align: center;
+  text-decoration: none !important;
+  transition: all 0.2s;
+}
+.btn_solid_grad:hover
+{
+  transform: scale(1.05);
+}

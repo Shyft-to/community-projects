@@ -1,0 +1,37 @@
+/* Each Token Styles */
+.token_container
+{
+    padding: 10px 20px;
+}
+.token_image
+{
+    padding: 4px;
+    height: 100px;
+    width: 100px;
+    border-radius: 90px;
+    display: block;
+    margin: 0 auto;
+}
+.token_image img
+{
+    max-width: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 90px;
+}
+.token_container .title
+{
+    padding-top: 6px;
+    text-align: center;
+    font: 400 14px/18px "Montserrat", sans-serif;
+    color: #fff;
+    letter-spacing: 1px;
+}
+.token_container .balance
+{
+    padding-top: 2px;
+    text-align: center;
+    font: 400 12px/16px "Montserrat", sans-serif;
+    color: #ffffff99;
+    letter-spacing: 1px;
+}
