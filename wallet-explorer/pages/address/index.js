@@ -1,6 +1,7 @@
 import AllNfts from "@/components/AllNfts";
 import AllTokens from "@/components/AllTokens";
 import StandardHead from "@/components/StandardHead";
+import Transactions from "@/components/TransactionComponent/Transactions";
 import styles from "@/styles/WalletAddress.module.css";
 const WalletDetails = () => {
     return (
@@ -27,6 +28,9 @@ const WalletDetails = () => {
                 </div>
                 <div className="pt-5">
                     <AllNfts />
+                </div>
+                <div className="pt-5">
+                    <Transactions />
                 </div>
             </div>
         </div>

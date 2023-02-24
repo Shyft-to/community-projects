@@ -5,8 +5,8 @@ const nft = () => {
     return ( 
         <div className="background">
             <div className="container pt-5">
-                {/* <NftExpanded /> */}
-                <TokenExpanded />
+                <NftExpanded />
+                {/* <TokenExpanded /> */}
             </div>
         </div>
      );

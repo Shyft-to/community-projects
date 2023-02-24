@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;700&display=swap');
+
+.each_txn
+{
+    min-height: 200px;
+    background-color: blueviolet;
+    border-radius: 14px;
+    padding: 16px;
+    transition: all 0.8s ease;
+}
+.each_txn .toggle_button
+{
+    text-align: end;
+}
+.each_txn .fieldset_2
+{
+    background-color: yellow;
+    padding: 10px;
+}
