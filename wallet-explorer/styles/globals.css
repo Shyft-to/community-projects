@@ -3,3 +3,10 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
 }
+.background
+{
+  position: relative;
+  background: radial-gradient(#2a0855 8%, #0a0215 75%);
+  z-index: 0;
+  height: 100vh;
+}
