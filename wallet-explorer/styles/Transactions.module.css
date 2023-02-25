@@ -3,18 +3,62 @@
 
 .each_txn
 {
-    min-height: 200px;
-    background-color: blueviolet;
+    position: relative;
+    min-height: 150px;
+    background-color: #321d49;
+    backdrop-filter: blur(10px);
     border-radius: 14px;
     padding: 16px;
-    transition: all 0.8s ease;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
 }
 .each_txn .toggle_button
 {
-    text-align: end;
+    position: absolute;
+    right: 16px;
 }
+.each_txn .tx_image
+{
+    width: 100%;
+    height: 100%;
+    max-width: 120px;
+    max-height: 120px;
+    display: block;
+    margin: 0 auto;   
+}
+.each_txn .tx_image img
+{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 70px;
+}
+.each_txn .tx_field
+{
+    margin-bottom: 16px;
+}
+.each_txn .tx_field .tx_top
+{
+    font: 300 18px/20px "Montserrat",sans-serif;
+    color: #fff;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-top: 10px;
+    padding-bottom: 24px;
+}
+.each_txn .tx_field .tx_bottom
+{
+    font: 500 18px/20px "Montserrat",sans-serif;
+    color: #fff;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-top: 24px;
+}
+
 .each_txn .fieldset_2
 {
     background-color: yellow;
-    padding: 10px;
+    overflow: hidden;
 }
