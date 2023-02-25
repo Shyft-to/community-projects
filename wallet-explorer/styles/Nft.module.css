@@ -1,3 +1,16 @@
+.nft_all_section .main_heading
+{
+    font: 500 22px/24px "Montserrat",sans-serif;
+    color: #fff;
+    padding-bottom: 12px;
+    letter-spacing: 1px;
+}
+.nft_all_section .main_heading span
+{
+    font: 300 16px/24px "Montserrat",sans-serif;
+    letter-spacing: 0px;
+    margin-left: 8px;
+}
 /* Each NFT */
 
 .nft_container

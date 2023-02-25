@@ -16,3 +16,29 @@ body {
 .toggle_down {
   transform: rotate(0);
 }
+
+
+.our-navbar {
+  background-color: #00011C22;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.our-navbar a {
+  text-decoration: none;
+  color: #fff;
+  font: 600 0.9rem/1.75rem "Montserrat", sans-serif;
+}
+.our-navbar a.btn-solid-grad
+{
+  padding: 4px 12px;
+  border-radius: 25px;
+  background: linear-gradient(
+    90.8deg,
+    rgba(224, 73, 155, 1) 3.34%,
+    rgba(89, 101, 243, 1) 100%
+  );
+  min-width: 160px;
+  text-align: center;
+  margin-top: 5px;
+}

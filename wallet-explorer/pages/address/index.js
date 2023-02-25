@@ -1,5 +1,6 @@
 import AllNfts from "@/components/AllNfts";
 import AllTokens from "@/components/AllTokens";
+import HeaderComponent from "@/components/HeaderComponent";
 import StandardHead from "@/components/StandardHead";
 import Transactions from "@/components/TransactionComponent/Transactions";
 import styles from "@/styles/WalletAddress.module.css";
@@ -7,6 +8,7 @@ const WalletDetails = () => {
     return (
         <>
         <StandardHead />
+        <HeaderComponent />
         <div className={styles.background}>
             <div className="container pt-4">
                 <div className={styles.heading_section}>
