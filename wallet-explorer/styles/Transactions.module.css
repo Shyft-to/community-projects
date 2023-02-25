@@ -17,6 +17,14 @@
     position: absolute;
     right: 16px;
 }
+
+.each_txn .toggle_button button
+{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+}
 .each_txn .tx_image
 {
     width: 100%;
@@ -56,9 +64,36 @@
     text-overflow: ellipsis;
     padding-top: 24px;
 }
-
+.each_txn .tx_field_sub
+{
+    padding: 0px 24px 0px 0px;
+    margin-bottom: 16px;
+}
+.each_txn .tx_field_sub .tx_top
+{
+    font: 300 18px/20px "Montserrat",sans-serif;
+    color: #fff;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-top: 10px;
+    padding-bottom: 8px;
+}
+.each_txn .tx_field_sub .tx_bottom
+{
+    font: 500 18px/20px "Montserrat",sans-serif;
+    color: #fff;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-top: 8px;
+}
 .each_txn .fieldset_2
 {
-    background-color: yellow;
     overflow: hidden;
+    padding: 12px 0px;
+}
+.each_txn .third_row
+{
+    padding-top: 12px;
 }
