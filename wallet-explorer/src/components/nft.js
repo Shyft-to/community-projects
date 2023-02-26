@@ -5,7 +5,7 @@ import ok_bear from "../resources/images/ok_bear.png"
 
 const NFTs = () => {
     return ( 
-        <div className='p-3'>
+        <div className='py-3 px-1'>
             <div className={styles.nft_container}>
                 <div className={styles.image_container}>
                     <img src={ok_bear} alt="nft" />

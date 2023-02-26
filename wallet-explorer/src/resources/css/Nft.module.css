@@ -20,6 +20,7 @@
     min-height: 200px;
     padding: 12px;
     border-radius: 20px;
+    box-shadow: 10px -10px #532F7A;
 }
 .nft_container .image_container
 {

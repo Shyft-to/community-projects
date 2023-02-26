@@ -140,3 +140,26 @@
 {
   transform: scale(1.05);
 }
+
+/* @media screen and (max-width:767px) {
+  .middle_layer .dotted_top img
+  {
+    width: 50%;
+  }
+  .middle_layer .blue_planet
+  {
+    width: 50%;
+  }
+  .middle_layer .red_planet
+  {
+    width: 50%;
+  }
+  .middle_layer .dotted_bottom
+  {
+    width: 50%;
+    position: absolute;
+    right:-80px;
+    bottom: 0;
+  }
+  
+} */

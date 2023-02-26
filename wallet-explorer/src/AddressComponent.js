@@ -80,9 +80,9 @@ const AddressComponent = () => {
                 <div className="pt-5">
                     <AllNfts />
                 </div>
-                <div className="pt-5">
+                {/* <div className="pt-5">
                     <Transactions address={addr} cluster={cluster} />
-                </div>
+                </div> */}
             </div>
         </div>
         </div> 
