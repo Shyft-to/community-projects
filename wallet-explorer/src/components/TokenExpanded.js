@@ -1,4 +1,5 @@
-import styles from "@/styles/NftExpanded.module.css";
+import styles from "../resources/css/NftExpanded.module.css";
+
 const TokenExpanded = () => {
   return (
     <div>
