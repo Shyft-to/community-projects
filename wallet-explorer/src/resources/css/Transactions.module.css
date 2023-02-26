@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;700&display=swap');
+
+.txn_section .main_heading
+{
+    font: 500 22px/24px "Montserrat",sans-serif;
+    color: #fff;
+    padding-bottom: 12px;
+    letter-spacing: 1px;
+}
+.each_txn
+{
+    position: relative;
+    min-height: 150px;
+    background-color: #321d49;
+    backdrop-filter: blur(10px);
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+.each_txn .toggle_button
+{
+    position: absolute;
+    right: 16px;
+}
+
+.each_txn .toggle_button button
+{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+}
+.each_txn .tx_image
+{
+    width: 100%;
+    height: 100%;
+    max-width: 120px;
+    max-height: 120px;
+    display: block;
+    margin: 0 auto;   
+}
+.each_txn .tx_image img
+{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 70px;
+}
+.each_txn .tx_field
+{
+    margin-bottom: 16px;
+}
+.each_txn .tx_field .tx_top
+{
+    font: 300 18px/20px "Montserrat",sans-serif;
+    color: #fff;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-top: 10px;
+    padding-bottom: 24px;
+}
+.each_txn .tx_field .tx_bottom
+{
+    font: 500 18px/20px "Montserrat",sans-serif;
+    color: #fff;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-top: 24px;
+}
+.each_txn .tx_field_sub
+{
+    padding: 0px 24px 0px 0px;
+    margin-bottom: 16px;
+}
+.each_txn .tx_field_sub .tx_top
+{
+    font: 300 18px/20px "Montserrat",sans-serif;
+    color: #fff;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-top: 10px;
+    padding-bottom: 8px;
+}
+.each_txn .tx_field_sub .tx_bottom
+{
+    font: 500 18px/20px "Montserrat",sans-serif;
+    color: #fff;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-top: 8px;
+}
+.each_txn .fieldset_2
+{
+    overflow: hidden;
+    padding: 12px 0px;
+}
+.each_txn .third_row
+{
+    padding-top: 12px;
+}
