@@ -81,7 +81,7 @@ export async function getWalletData(network, address) {
 
   try {
     await axios({
-      url: `${endpoint}wallet/get_balance`,
+      url: `${endpoint}wallet/balance`,
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -162,6 +162,56 @@ export async function getWalletData(network, address) {
   }
 }
 
+// export async function categorizeAddress(network, address) {
+//   var data = {
+//     success: false,
+//     type: "UNKNOWN",
+//     details: null,
+//   };
+//   try {
+//     const nftCheck = await getNFTData(network, address);
+//     if (nftCheck.type === "NFT") {
+//       data = {
+//         success: true,
+//         type: "NFT",
+//         details: nftCheck.details,
+//       };
+//     } else {
+//       const tokenCheck = await getTokenData(network, address);
+//       if (tokenCheck.type === "TOKEN") {
+//         data = {
+//           success: true,
+//           type: "TOKEN",
+//           details: tokenCheck.details,
+//         };
+//       } else {
+//         const walletCheck = await getWalletData(network, address);
+//         if (walletCheck.type === "WALLET") {
+//           data = {
+//             success: true,
+//             type: "WALLET",
+//             details: walletCheck.details,
+//           };
+//         } else {
+//           data = {
+//             success: false,
+//             type: "UNKNOWN",
+//             details: null,
+//           };
+//         }
+//       }
+//     }
+
+//     return data;
+//   } catch (err) {
+//     return {
+//       success: false,
+//       type: "UNKNOWN",
+//       details: null,
+//     };
+//   }
+// }
+
 export async function categorizeAddress(network, address) {
   var data = {
     success: false,
@@ -177,14 +227,6 @@ export async function categorizeAddress(network, address) {
         details: nftCheck.details,
       };
     } else {
-      const tokenCheck = await getTokenData(network, address);
-      if (tokenCheck.type === "TOKEN") {
-        data = {
-          success: true,
-          type: "TOKEN",
-          details: tokenCheck.details,
-        };
-      } else {
         const walletCheck = await getWalletData(network, address);
         if (walletCheck.type === "WALLET") {
           data = {
@@ -199,7 +241,7 @@ export async function categorizeAddress(network, address) {
             details: null,
           };
         }
-      }
+      
     }
 
     return data;

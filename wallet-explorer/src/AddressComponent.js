@@ -24,7 +24,7 @@ const AddressComponent = () => {
 
     useEffect(() => {
         setLoading(true);
-        // getClassifiedData();
+        getClassifiedData();
     }, [cluster]);
 
     const getClassifiedData = async() => {
@@ -73,12 +73,12 @@ const AddressComponent = () => {
                         <div className="row">
                             <div className="col-12 col-lg-7">
                                 <div className={styles.main_heading}>
-                                    <span>Space Overview</span> (Easdfe2asd13as123123131asc3131)
+                                    <span>Space Overview</span> ({addr})
                                 </div>
                             </div>
                             <div className="col-12 col-lg-4 text-end">
                                 <div className={styles.wallet_balance_indicator}>
-                                    0.21717296 SOL
+                                    {data.balance} SOL
                                 </div>
                             </div>
                             <div className="col-12 col-lg-1 text-end">
@@ -94,11 +94,11 @@ const AddressComponent = () => {
                         </div>
                     </div>
                     <div className="pt-5">
-                        <AllTokens />
+                        <AllTokens tokens={data.tokens} address={addr} network={cluster} />
                     </div>
-                    <div className="pt-5">
-                        <AllNfts />
-                    </div>
+                    {/* <div className="pt-5">
+                        <AllNfts collections={data.collections} address={addr} network={cluster}/>
+                    </div> */}
                     
                 </div>}
                 <div className="container pt-4">

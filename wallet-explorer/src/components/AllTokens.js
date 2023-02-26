@@ -4,13 +4,16 @@ import 'owl.carousel/dist/assets/owl.theme.default.css';
 
 import Token from "./Token";
 import styles from "../resources/css/Token.module.css";
-const AllTokens = () => {
+const AllTokens = ({tokens,address,network}) => {
+
   return (
     <div>
+
       <div className={styles.token_section}>
         <div className={styles.main_heading}>
-            Tokens in your Space<span>(19 Tokens)</span>
+            Tokens in your Space<span>({tokens.length} Token(s))</span>
         </div>
+        {(tokens.length > 0) &&
         <OwlCarousel 
                     className='owl-theme' 
                     margin={40} 
@@ -24,19 +27,25 @@ const AllTokens = () => {
                             items:3
                         },
                         1100:{
-                            items:9
+                            items:7
                         }
                     }}
                     dots
                     autoplay
                 >
-                  <Token />
-                  <Token />
-                  <Token />
-                  <Token />
+                  
+                  {tokens.map(token => (
+                    <Token token={token} address={address} network={network} />
+                  ))}
+                  {/* <Token /> */}
                 </OwlCarousel>
-          
-        
+        }  
+        {
+          (tokens.length < 1) &&
+            <div className='pt-2 not_found_text'>
+              No Tokens Found
+            </div>
+        }
       </div>
     </div>
     

@@ -73,3 +73,11 @@ body {
 {
   background-color: #2a0855;
 }
+
+.not_found_text
+{
+  font-style: italic;
+  color: #fff;
+  font: 400 0.9rem/1.5rem "Montserrat", sans-serif;
+  text-align: center;
+}
