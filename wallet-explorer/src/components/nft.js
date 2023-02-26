@@ -1,11 +1,14 @@
-import Image from 'next/image';
-import styles from '@/styles/Nft.module.css';
+import styles from '../resources/css/Nft.module.css';
+
+import i_icon from "../resources/images/i_icon.svg";
+import ok_bear from "../resources/images/ok_bear.png"
+
 const NFTs = () => {
     return ( 
         <div className='p-3'>
             <div className={styles.nft_container}>
                 <div className={styles.image_container}>
-                    <img src="/images/ok_bear.png" alt="nft" />
+                    <img src={ok_bear} alt="nft" />
                 </div>
                 <div className={styles.name_section}>
                     <div className="row">
@@ -21,7 +24,7 @@ const NFTs = () => {
                         <div className="col-6">
                             <div className={styles.i_hover_section}>
                                 <div className={styles.i_indicator}>
-                                    <Image src="/images/i_icon.svg" width={20} height={20} />
+                                    <img src={i_icon} alt="details" style={{width:"20px", height:"20px"}} />
                                 </div>
                                 <div className={styles.desc_area}>
                                     NFTs: 8

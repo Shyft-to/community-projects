@@ -1,11 +1,10 @@
-import Image from "next/image";
-import logo from "@/public/images/shyft-logo.svg";
+import logo from "../resources/images/shyft-logo.svg";
 const HeaderComponent = () => {
   return (
     <nav className="navbar navbar-expand-sm navbar-dark fixed-top our-navbar">
         <div className="container-lg">
-            <a className="navbar-brand" href="#">
-                <Image src={logo} />
+            <a className="navbar-brand" href="/">
+                <img src={logo} style={{width:"80px"}} alt="SHYFT Logo" />
             </a>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
             <span className="navbar-toggler-icon"></span>

@@ -1,5 +1,5 @@
 import Token from "./Token";
-import styles from "@/styles/Token.module.css";
+import styles from "../resources/css/Token.module.css";
 const AllTokens = () => {
   return (
     <div>

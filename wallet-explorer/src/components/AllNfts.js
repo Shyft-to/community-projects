@@ -1,5 +1,5 @@
 import NFTs from "./nft";
-import styles from '@/styles/Nft.module.css';
+import styles from '../resources/css/Nft.module.css';
 const AllNfts = () => {
     return ( 
         <div>
