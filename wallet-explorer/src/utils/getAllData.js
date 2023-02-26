@@ -138,7 +138,7 @@ export async function getWalletData(network, address) {
     })
       .then((res) => {
         if (res.data.success === true) {
-          details = { ...details, collections: res.data.collections };
+          details = { ...details, collections: res.data.result.collections };
         }
       })
       .catch((err) => {

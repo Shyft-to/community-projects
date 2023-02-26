@@ -5,15 +5,15 @@ import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 
-const AllNfts = () => {
+const AllNfts = ({collections,address,network}) => {
     return ( 
         <div>
-            <div className={styles.nft_all_section}>
+            {<div className={styles.nft_all_section}>
                 <div className={styles.main_heading}>
-                    NFT Collections in your Space<span>(08 Collections)</span>
+                    NFT Collections in your Space<span>({collections.length} Collection)</span>
                 </div>
-                
-                <OwlCarousel 
+                {(collections.length > 0) && <div>
+                    <OwlCarousel 
                     className='owl-theme' 
                     margin={40} 
                     nav={true}
@@ -32,21 +32,28 @@ const AllNfts = () => {
                     dots
                     autoplay
                 >
-                    <div>
-                        <NFTs />
-                    </div>
-                    <div>
-                        <NFTs />
-                    </div>
-                    <div>
-                        <NFTs />
-                    </div>
                     
-                </OwlCarousel>
+                    {collections.map(coll => (
+                        <div>
+                            <NFTs collection={coll} />
+                        </div>
+                    ))}
+                    {/* <div>
+                        <NFTs />
+                    </div> */}
+                    </OwlCarousel>
+
+                </div>}
+                {
+                    (collections.length < 1) && 
+                    <div className='pt-2 not_found_text'>
+                        No Collections Found
+                    </div>
+                }
                     
 
                 
-            </div>
+            </div>}
         </div>
      );
 }

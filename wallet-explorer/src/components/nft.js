@@ -3,7 +3,7 @@ import styles from '../resources/css/Nft.module.css';
 import i_icon from "../resources/images/i_icon.svg";
 import ok_bear from "../resources/images/ok_bear.png"
 
-const NFTs = () => {
+const NFTs = ({collection}) => {
     return ( 
         <div className='py-3 px-1'>
             <div className={styles.nft_container}>
@@ -14,7 +14,7 @@ const NFTs = () => {
                     <div className="row">
                         <div className="col-12">
                             <div className={styles.name_text}>
-                                Ok BEars #2
+                                {collection.name ?? "--"}
                             </div>
                         </div>
                     </div>
@@ -27,7 +27,7 @@ const NFTs = () => {
                                     <img src={i_icon} alt="details" style={{width:"20px", height:"20px"}} />
                                 </div>
                                 <div className={styles.desc_area}>
-                                    NFTs: 8
+                                    NFTs: {collection.nft_count ?? "--"}
                                 </div>
                             </div>
                             
