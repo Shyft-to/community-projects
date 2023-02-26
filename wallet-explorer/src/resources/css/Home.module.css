@@ -15,7 +15,7 @@
   height: 100vh;
   top: 0;
   width: 100vw;
-  background: url("../public/images/waves.png"),url("../public/images/stars-and-planet.png");
+  background: url("../images/waves.png"),url("../images/stars-and-planet.png");
   background-size: 90%,70%;
   background-repeat: no-repeat,no-repeat;
   background-position: 60% 70%,50% 50%;
