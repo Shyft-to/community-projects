@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react";
-import {useSearchParams,useParams} from "react-router-dom";
+import {useSearchParams,useParams,useNavigate} from "react-router-dom";
 import { categorizeAddress } from "./utils/getAllData";
 
 import styles from "./resources/css/WalletAddress.module.css";
@@ -14,14 +14,18 @@ const AddressComponent = () => {
     let [searchParams, setSearchParams] = useSearchParams();
     const { addr } = useParams();
     const cluster = searchParams.get("cluster");
+    const navigate = useNavigate();
+
+    
     const [isLoading,setLoading] = useState(true);
     const [data,setData] = useState(null);
-    const [type,setType] = useState('');
+    const [contentType,setType] = useState('');
     const [errOccured,setErrOccured] = useState(false);
 
     useEffect(() => {
-        getClassifiedData();
-    }, []);
+        setLoading(true);
+        // getClassifiedData();
+    }, [cluster]);
 
     const getClassifiedData = async() => {
       
@@ -48,42 +52,62 @@ const AddressComponent = () => {
     }
     
     useEffect(() => {
-      if(data !== null && type!== '' && errOccured === false)
+      if(data !== null && contentType!== '' && errOccured === false)
       {
         setLoading(false);
       }
-    }, [data,type])
+    }, [data,contentType])
     
+    const changeCluster = (networkCluster) => {
+        if(networkCluster !== cluster)
+            navigate(`/address/${addr}?cluster=${networkCluster}`)
+    }
     
     return ( 
         <div>
         <HeaderComponent />
-        <div className={styles.background}>
-            <div className="container pt-4">
-                <div className={styles.heading_section}>
-                    <div className="row">
-                        <div className="col-12 col-lg-7">
-                            <div className={styles.main_heading}>
-                                <span>Space Overview</span> (Easdfe2asd13as123123131asc3131)
+        <div className={styles.background_super}>
+            {!isLoading && <div>
+                {(contentType === "WALLET") && <div className="container pt-4">
+                    <div className={styles.heading_section}>
+                        <div className="row">
+                            <div className="col-12 col-lg-7">
+                                <div className={styles.main_heading}>
+                                    <span>Space Overview</span> (Easdfe2asd13as123123131asc3131)
+                                </div>
                             </div>
-                        </div>
-                        <div className="col-12 col-lg-5 text-end">
-                            <div className={styles.wallet_balance_indicator}>
-                                0.21717296 SOL
+                            <div className="col-12 col-lg-4 text-end">
+                                <div className={styles.wallet_balance_indicator}>
+                                    0.21717296 SOL
+                                </div>
+                            </div>
+                            <div className="col-12 col-lg-1 text-end">
+                                <div className="select_container" value={cluster} onChange={(e) => changeCluster(e.target.value)}>
+                                    <select>
+                                        <option value="mainnet-beta">Mainnet</option>
+                                        <option value="devnet">Devnet</option>
+                                        <option value="testnet">Testnet</option>
+                                    </select>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
+                    <div className="pt-5">
+                        <AllTokens />
+                    </div>
+                    <div className="pt-5">
+                        <AllNfts />
+                    </div>
+                    
+                </div>}
+                <div className="container pt-4">
+                    {/* <div className="pt-5">
+                        <Transactions address={addr} cluster={cluster} />
+                    </div> */}
                 </div>
-                <div className="pt-5">
-                    <AllTokens />
-                </div>
-                <div className="pt-5">
-                    <AllNfts />
-                </div>
-                {/* <div className="pt-5">
-                    <Transactions address={addr} cluster={cluster} />
-                </div> */}
-            </div>
+            </div>}
+            
         </div>
         </div> 
     );

@@ -13,6 +13,18 @@
   min-height: 100vh;
   padding: 40px 0px;
 }
+.background_super
+{
+  position: relative;
+  min-height: 100vh;
+  background: url("../images/waves-flipped.png"),radial-gradient(#2a0855 8%, #0a0215 75%);
+  background-size: 60%,100%;
+  background-repeat: no-repeat,no-repeat;
+  background-position: 0% 170%,100% 100%;
+  background-attachment: fixed,fixed;
+  padding: 40px 0px;
+
+}
 .main_heading
 {
   font: 300 24px/24px "Montserrat", sans-serif;

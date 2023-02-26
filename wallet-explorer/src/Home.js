@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styles from "./resources/css/Home.module.css";
 
 import spottedPlanetTop from "./resources/images/spotted-planet-top.png";
@@ -6,6 +7,8 @@ import redPlanet from "./resources/images/red-planet.png";
 import spottedPlanetBottom from "./resources/images/spotted-planet-bottom.png";
 
 const Home = () => {
+  const [wallet,setWallet] = useState('');
+  const [network,setNetwork] = useState('mainnet-beta')  
   return (
     <div>
       <div className={styles.background}>
@@ -43,14 +46,22 @@ const Home = () => {
                         <label>Enter Wallet Address</label>
                         <div className={styles.form_field_outer}>
                           <div className={styles.form_field_inner}>
-                            <input type="text" />
+                            <div className="d-flex justify-content-between">
+                              <input type="text" placeholder="Eg. 72wfh121jnh2b12jeb1jhebk1y2ejkqhbwyeq" value={wallet} onChange={(e) => setWallet(e.target.value)}/>
+                              <select value={network} onChange={(e) => setNetwork(e.target.value)}>
+                                <option value="mainnet-beta">Mainnet</option>
+                                <option value="devnet">Devnet</option>
+                                <option value="testnet">Testnet</option>
+                              </select>
+
+                            </div>
                           </div>
                         </div>
                       </div>
                       <div className="pt-5 mt-1">
-                        <button className={styles.btn_solid_grad}>
+                        <a href={`/address/${wallet}?cluster=${network}`} className={styles.btn_solid_grad}>
                           Continue
-                        </button>
+                        </a>
                       </div>
                     </div>
                     <div className={styles.rocket_container}></div>

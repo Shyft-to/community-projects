@@ -10,6 +10,15 @@ body {
   z-index: 0;
   height: 100vh;
 }
+.background_super
+{
+  min-height: 100vh;
+  background: url("./resources/images/waves-flipped.png"),radial-gradient(#2a0855 8%, #0a0215 75%);
+  background-size: 90%,70%,100%;
+  background-repeat: no-repeat,no-repeat;
+  background-position: 60% 70%,100% 100%;
+  background-attachment: fixed,fixed;
+}
 .toggle_up {
   transform: rotate(180deg);
 }
@@ -42,4 +51,25 @@ body {
   min-width: 160px;
   text-align: center;
   margin-top: 5px;
+}
+
+.select_container select
+{
+  background-color: #2a0855;
+  border: none;
+  box-shadow: none;
+  color: #fff;
+  font: 700 16px/18px "Montserrat", sans-serif;
+  letter-spacing: 1px;
+  padding: 12px 6px;
+}
+.select_container select:focus
+{
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+.select_container option
+{
+  background-color: #2a0855;
 }
