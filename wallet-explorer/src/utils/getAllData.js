@@ -1,13 +1,14 @@
 import axios from "axios";
 const endpoint = process.env.REACT_APP_API_EP ?? "";
 const xKey = process.env.REACT_APP_API_KEY ?? "";
+
 export async function getNFTData(network, address) {
   var data = {
     success: false,
-    is_nft: true,
+    type: "UNKNOWN",
     details: null,
   };
-    await axios({
+  await axios({
     url: `${endpoint}nft/read`,
     method: "GET",
     headers: {
@@ -15,23 +16,148 @@ export async function getNFTData(network, address) {
       "x-api-key": xKey,
     },
     params: {
-        network:network,
-        token_address: address
-    }
+      network: network,
+      token_address: address,
+    },
   })
     .then((res) => {
-      if(res.data.success === true)
-      {
+      if (res.data.success === true) {
         data = {
-            success: true,
-            is_nft: true,
-            details: res.data.result
-        }
+          success: true,
+          type: "NFT",
+          details: res.data.result,
+        };
       }
     })
     .catch((err) => {
       console.warn(err);
     });
 
+  return data;
+}
+
+export async function getTokenData(network, address) {
+  var data = {
+    success: false,
+    type: "UNKNOWN",
+    details: null,
+  };
+  await axios({
+    url: `${endpoint}token/get_info`,
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": xKey,
+    },
+    params: {
+      network: network,
+      token_address: address,
+    },
+  })
+    .then((res) => {
+      if (res.data.success === true) {
+        data = {
+          success: true,
+          type: "TOKEN",
+          details: res.data.result,
+        };
+      }
+    })
+    .catch((err) => {
+      console.warn(err);
+    });
+
+  return data;
+}
+
+export async function getWalletData(network, address) {
+  var data = {
+    success: false,
+    type: "WALLET",
+    details: null,
+  };
+  var details = {};
+  var errorOccured = false;
+
+  try {
+    await axios({
+      url: `${endpoint}wallet/get_balance`,
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": xKey,
+      },
+      params: {
+        network: network,
+        wallet: address,
+      },
+    })
+      .then((res) => {
+        if (res.data.success === true) {
+          details = { ...details, balance: res.data.result.balance };
+        }
+      })
+      .catch((err) => {
+        console.warn(err);
+        errorOccured = true;
+      });
+
+    await axios({
+      url: `${endpoint}wallet/all_tokens`,
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": xKey,
+      },
+      params: {
+        network: network,
+        wallet: address,
+      },
+    })
+      .then((res) => {
+        if (res.data.success === true) {
+          details = { ...details, tokens: res.data.result };
+        }
+      })
+      .catch((err) => {
+        console.warn(err);
+        errorOccured = true;
+      });
+
+    await axios({
+      url: `${endpoint}wallet/collections`,
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": xKey,
+      },
+      params: {
+        network: network,
+        wallet_address: address,
+      },
+    })
+      .then((res) => {
+        if (res.data.success === true) {
+          details = { ...details, collections: res.data.collections };
+        }
+      })
+      .catch((err) => {
+        console.warn(err);
+        errorOccured = true;
+      });
+    data = {
+      success: true,
+      type: "WALLET",
+      details: details,
+    };
+
     return data;
+  } catch (error) {
+    console.log(error);
+    return {
+      success: false,
+      type: "UNKNOWN",
+      details: null,
+    };
+  }
 }
