@@ -1,14 +1,35 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import $ from "jquery";
 import { IconContext } from "react-icons";
 import { FaAngleDown } from "react-icons/fa";
 
-const TokenTransfer = ({ styles, id }) => {
+import placeholder from "../../resources/images/txnImages/unknown.png";
+import { getTokenData } from "../../utils/getAllData";
+
+
+const TokenTransfer = ({ styles, id, data, address, cluster }) => {
+
+  const [image,setImage] = useState(placeholder);
+  const [name,setName] = useState('');
+
   useEffect(() => {
     $(`#${id}`).animate({
       height: "hide",
     });
+    
+    getData(address,cluster);
+    
   }, []);
+
+  const getData = async (address,cluster) => {
+    const res = await getTokenData(address,cluster);
+    if(res.success === true)
+    {
+      setImage(res.details.image_uri);
+      setName(res.details.name);
+    }
+  }
+  
 
   const togglePanel = (event,div_id) => {
     // const clickedButton = event.target;
@@ -34,7 +55,7 @@ const TokenTransfer = ({ styles, id }) => {
             <div className="col-12 col-lg-2">
               <div className={styles.tx_image}>
                 <img
-                  src="/images/ok_bear.png"
+                  src={image}
                   className="img-fluid"
                   alt="Token Container"
                 />
@@ -51,7 +72,11 @@ const TokenTransfer = ({ styles, id }) => {
                   </div>
                 </div>
                 <div className="col-12 col-md-2">
-                  <div className={styles.tx_image_type}></div>
+                  <div className={styles.tx_image_type}>
+                    <div className="text-light">
+                      {data.type ?? ""}
+                    </div>
+                  </div>
                 </div>
                 <div className="col-12 col-md-5">
                   <div className={styles.tx_field}>

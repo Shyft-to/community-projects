@@ -1,22 +1,121 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import styles from "../../resources/css/Transactions.module.css";
 import TokenTransfer from "./TokenTransfer";
 
-const Transactions = () => {
-    return ( 
-        <div>
-            <div className={styles.txn_section}>
-                <h3 className={styles.main_heading}>
-                    Transactions
-                </h3>
-                <div className={styles.token_section}>
-                    <TokenTransfer styles={styles} id="trans1"/>
-                    <TokenTransfer styles={styles} id="trans2"/>
-                    <TokenTransfer styles={styles} id="trans3"/>
+const endpoint = process.env.REACT_APP_API_EP ?? "";
+const xKey = process.env.REACT_APP_API_KEY ?? "";
 
-                </div>
-            </div>
-        </div> 
-    );
-}
- 
+const Transactions = ({ address, cluster }) => {
+  const [loaded, setLoaded] = useState(false);
+  const [errOcc,setErrOcc] = useState(false);
+  const [txnOne, setTxnOne] = useState("");
+  const [txnLast, setTxnLast] = useState("");
+  const [txnLastInitial, setTxnLastInitial] = useState("");
+
+  const [txns, setTxns] = useState([]);
+
+  useEffect(() => {
+    var params = {
+      network: cluster,
+      account: address,
+    };
+    //   if(txnLast !== '')
+    //   {
+    //     params = {
+    //         ...params,
+    //         before_tx_signature:txnLast
+    //     }
+    //   }
+    axios({
+      url: `${endpoint}transaction/history`,
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": xKey,
+      },
+      params: params,
+    })
+      .then((res) => {
+        if (res.data.success === true && res.data.result.length > 0) {
+          const txnReceived = res.data.result;
+          if (txnLastInitial === "")
+            setTxnLastInitial(
+              txnReceived[txnReceived.length - 1].signatures[0]
+            );
+
+          setTxnLast(txnReceived[txnReceived.length - 1].signatures[0]);
+          setTxnOne(txnReceived[0].signatures[0]);
+          setTxns(txnReceived);
+        }
+      })
+      .catch((err) => {
+        setErrOcc(true);
+        console.warn(err);
+      });
+  }, []);
+
+  const getPrevNext = (value) => {
+    var params = {
+      network: cluster,
+      account: address,
+    };
+    if (value === "prev") {
+      params = {
+        ...params,
+        before_tx_signature: txnOne,
+      };
+    } else {
+      params = {
+        ...params,
+        before_tx_signature: txnLast,
+      };
+    }
+    axios({
+      url: `${endpoint}transaction/history`,
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": xKey,
+      },
+      params: params,
+    })
+      .then((res) => {
+        if (res.data.success === true && res.data.result.length > 0) {
+          const txnReceived = res.data.result;
+          setTxns(txnReceived);
+          setTxnLast(txnReceived[txnReceived.length - 1].signatures[0]);
+          setTxnOne(txnReceived[0].signatures[0]); 
+        }
+        setLoaded(true);
+      })
+      .catch((err) => {
+        setErrOcc(true);
+        console.warn(err);
+      });
+  };
+
+  return (
+    <div>
+      <div className={styles.txn_section}>
+      
+        <h3 className={styles.main_heading}>Transactions</h3>
+        
+        <div className={styles.token_section}>
+         {
+            (txns.length>0)?
+                (
+                    txns.map((each_txn) => <TokenTransfer styles={styles} id={each_txn.signatures[0]} data={each_txn} />)
+                ):""
+            
+         }
+          
+          {/* <TokenTransfer styles={styles} id="trans2" />
+          <TokenTransfer styles={styles} id="trans3" /> */}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default Transactions;

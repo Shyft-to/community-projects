@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react";
 import {useSearchParams,useParams} from "react-router-dom";
-import { getNFTData } from "./utils/getAllData";
+import { categorizeAddress } from "./utils/getAllData";
 
 import styles from "./resources/css/WalletAddress.module.css";
 
@@ -13,7 +13,7 @@ import Transactions from "./components/TransactionComponent/Transactions";
 const AddressComponent = () => {
     let [searchParams, setSearchParams] = useSearchParams();
     const { addr } = useParams();
-    
+    const cluster = searchParams.get("cluster");
     const [isLoading,setLoading] = useState(true);
     const [data,setData] = useState(null);
     const [type,setType] = useState('');
@@ -24,22 +24,25 @@ const AddressComponent = () => {
     }, []);
 
     const getClassifiedData = async() => {
-      const cluster = searchParams.get("cluster");
+      
         try{
-            const res = await getNFTData(cluster,addr);
-            if(res.is_nft === true)
+            const res = await categorizeAddress(cluster,addr);
+            console.log(res);
+            if(res.success === true)
             {
-                setData(res);
-                setType('NFT');
+                setData(res.details);
+                setType(res.type);
             }
             else
             {
-
+                setErrOccured(true);
+                setLoading(false);
             }
         }
         catch(err)
         {
             setErrOccured(true);
+            setLoading(false);
         }
         
     }
@@ -78,7 +81,7 @@ const AddressComponent = () => {
                     <AllNfts />
                 </div>
                 <div className="pt-5">
-                    <Transactions />
+                    <Transactions address={addr} cluster={cluster} />
                 </div>
             </div>
         </div>
