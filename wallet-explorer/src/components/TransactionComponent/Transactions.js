@@ -1,4 +1,4 @@
-import styles from "../resources/css/Transactions.module.css";
+import styles from "../../resources/css/Transactions.module.css";
 import TokenTransfer from "./TokenTransfer";
 
 const Transactions = () => {
