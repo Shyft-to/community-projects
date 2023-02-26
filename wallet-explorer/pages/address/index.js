@@ -1,9 +1,13 @@
+import { getNFTData } from "@/utils/getAllData";
+import { useRouter } from "next/router";
+
 import AllNfts from "@/components/AllNfts";
 import AllTokens from "@/components/AllTokens";
 import HeaderComponent from "@/components/HeaderComponent";
 import StandardHead from "@/components/StandardHead";
 import Transactions from "@/components/TransactionComponent/Transactions";
 import styles from "@/styles/WalletAddress.module.css";
+
 const WalletDetails = () => {
     return (
         <>
@@ -15,7 +19,7 @@ const WalletDetails = () => {
                     <div className="row">
                         <div className="col-12 col-lg-7">
                             <div className={styles.main_heading}>
-                                <span>Space Overview</span> (Easdfe2asd13as123123131asc3131)
+                                <span>Space Overview </span> (Easdfe2asd13as123123131asc3131)
                             </div>
                         </div>
                         <div className="col-12 col-lg-5 text-end">
