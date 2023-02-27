@@ -105,7 +105,7 @@ const Transactions = ({ address, cluster }) => {
          {
             (txns.length>0)?
                 (
-                    txns.map((each_txn) => <TokenTransfer styles={styles} id={each_txn.signatures[0]} data={each_txn} />)
+                    txns.map((each_txn) => <TokenTransfer styles={styles} id={each_txn.signatures[0]} data={each_txn} address={address} cluster={cluster} />)
                 ):""
             
          }
