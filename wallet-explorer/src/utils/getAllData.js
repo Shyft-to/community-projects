@@ -70,6 +70,40 @@ export async function getTokenData(network, address) {
   return data;
 }
 
+export async function getCollectionsData(network, address) {
+  var data = {
+    success: false,
+    type: "UNKNOWN",
+    details: null,
+  };
+  await axios({
+    url: `${endpoint}wallet/collections`,
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": xKey,
+      },
+      params: {
+        network: network,
+        wallet_address: address,
+      },
+  })
+    .then((res) => {
+      if (res.data.success === true) {
+        data = {
+          success: true,
+          type: "COLLECTIONS",
+          details: res.data.result.collections,
+        };
+      }
+    })
+    .catch((err) => {
+      console.warn(err);
+    });
+
+  return data;
+}
+
 export async function getWalletData(network, address) {
   var data = {
     success: false,
