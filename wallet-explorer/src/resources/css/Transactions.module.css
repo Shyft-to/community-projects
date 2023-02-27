@@ -12,7 +12,8 @@
 {
     position: relative;
     min-height: 150px;
-    background-color: #321d49;
+    background-color: #321d49aa;
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border-radius: 14px;
     padding: 16px;

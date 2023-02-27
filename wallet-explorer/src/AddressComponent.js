@@ -8,6 +8,7 @@ import AllNfts from "./components/AllNfts";
 import AllTokens from "./components/AllTokens";
 import HeaderComponent from "./components/HeaderComponent";
 import Transactions from "./components/TransactionComponent/Transactions";
+import NftExpanded from "./components/NftExpanded";
 
 
 const AddressComponent = () => {
@@ -101,6 +102,12 @@ const AddressComponent = () => {
                     </div>
                     
                 </div>}
+                {
+                    (contentType === "NFT") && 
+                    <div className="container pt-4">
+                        <NftExpanded nft={data}/>
+                    </div>
+                }
                 <div className="container pt-4">
                     <div className="pt-5">
                         <Transactions address={addr} cluster={cluster} />
