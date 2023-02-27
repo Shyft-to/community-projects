@@ -89,6 +89,7 @@
     font: 400 12px/0 "Montserrat", sans-serif;
     color: #fff;
     width: 100%;
+    text-align: center;
 }
 .btn_sm_outline_outer:hover
 {

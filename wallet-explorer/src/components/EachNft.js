@@ -81,11 +81,14 @@ const EachNft = ({nft,cluster}) => {
                     </div>
                     <div className="col-6">
                       <div className={styles.details_button}>
-                        <button className={styles.btn_sm_outline_outer}>
-                          <div className={styles.btn_sm_outline_inner}>
-                            Details
+                        <a href={`/address/${nft.mint}?cluster=${cluster}`}>
+                          <div className={styles.btn_sm_outline_outer}>
+                            <div className={styles.btn_sm_outline_inner}>
+                              Details
+                            </div>
                           </div>
-                        </button>
+                        </a>
+                        
                       </div>
                     </div>
                   </div>

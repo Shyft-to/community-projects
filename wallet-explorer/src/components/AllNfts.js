@@ -35,7 +35,7 @@ const AllNfts = ({collections,address,network}) => {
                     
                     {collections.map(coll => (
                         <div>
-                            <NFTs collection={coll} />
+                            <NFTs collection={coll} address={address} network={network} />
                         </div>
                     ))}
                     {/* <div>

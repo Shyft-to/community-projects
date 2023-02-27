@@ -1,14 +1,33 @@
+import {useState,useEffect} from "react";
+
 import styles from '../resources/css/Nft.module.css';
 
 import i_icon from "../resources/images/i_icon.svg";
 import ok_bear from "../resources/images/ok_bear.png"
+import { getNFTData } from "../utils/getAllData";
 
-const NFTs = ({collection}) => {
+const NFTs = ({collection,address,network}) => {
+    const [image,setImage] = useState(ok_bear);
+
+    const getData = async (address, cluster) => {
+        const res = await getNFTData(address, cluster);
+        if (res.success === true) {
+          setImage(res.details.image_uri);
+        }
+      };
+    
+    useEffect(() => {
+      getData(address,network);
+    
+      
+    }, [])
+    
+
     return ( 
         <div className='py-3 px-1'>
             <div className={styles.nft_container}>
                 <div className={styles.image_container}>
-                    <img src={ok_bear} alt="nft" />
+                    <img src={image} alt="nft" />
                 </div>
                 <div className={styles.name_section}>
                     <div className="row">
@@ -35,11 +54,14 @@ const NFTs = ({collection}) => {
                         </div>
                         <div className="col-6">
                             <div className={styles.details_button}>
-                                <button className={styles.btn_sm_outline_outer}>
+                            <a href={`/collections/${address}?cluster=${network}`}>
+                                <div className={styles.btn_sm_outline_outer}>
                                     <div className={styles.btn_sm_outline_inner}>
                                         Details
                                     </div>
-                                </button>
+                                </div>
+                            </a>
+                                
                             </div>
                         </div>
                     </div>

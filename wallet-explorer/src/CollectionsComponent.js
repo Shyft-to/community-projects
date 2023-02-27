@@ -3,6 +3,8 @@ import {useSearchParams,useParams} from "react-router-dom";
 
 import styles from "./resources/css/CollectionRow.module.css";
 import CollectionRow from "./components/CollectionRow";
+import PlanetLoader from "./components/loaders/loaders";
+
 import { getCollectionsData } from "./utils/getAllData";
 
 const CollectionsComponent = () => {
@@ -54,6 +56,7 @@ const CollectionsComponent = () => {
     return ( 
         <div>
             <div className="background_super">
+                {isLoading && <PlanetLoader />}
                 {!isLoading && 
                     <div className={styles.all_collections_page}>
                     <div className="container-lg pt-4">
