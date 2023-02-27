@@ -5,9 +5,10 @@ import { FaAngleDown } from "react-icons/fa";
 
 import placeholder from "../../resources/images/txnImages/unknown.png";
 import { getTokenData } from "../../utils/getAllData";
+import NFT_BID from "../../resources/images/txnImages/bid.png"
 
 
-const TokenMint = ({ styles, id, data, address, cluster }) => {
+const TokenMint = ({ styles, id}) => {
 
   const [image,setImage] = useState(placeholder);
   const [name,setName] = useState('');
@@ -17,7 +18,6 @@ const TokenMint = ({ styles, id, data, address, cluster }) => {
       height: "hide",
     });
     
-    getData(address,cluster);
     
   }, []);
 
@@ -73,8 +73,11 @@ const TokenMint = ({ styles, id, data, address, cluster }) => {
                 </div>
                 <div className="col-12 col-md-2">
                   <div className={styles.tx_image_type}>
-                    <div className="text-light">
-                      {data.type ?? ""}
+                    <div className={styles.tx_type_image}>
+                      <img src={NFT_BID} alt="" />
+                    </div>
+                    <div className={styles.tx_type_text}>
+                      TOKEN_TRANSFER
                     </div>
                   </div>
                 </div>

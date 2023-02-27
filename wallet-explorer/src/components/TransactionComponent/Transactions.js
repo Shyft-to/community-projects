@@ -109,6 +109,11 @@ const Transactions = ({ address, cluster }) => {
                 ):""
             
          }
+         {
+          (errOcc) && <div className="text-light text-center lead">
+            Could Not Load Transactions
+          </div>
+         }
           
           {/* <TokenTransfer styles={styles} id="trans2" />
           <TokenTransfer styles={styles} id="trans3" /> */}

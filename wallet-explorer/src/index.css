@@ -83,3 +83,43 @@ body {
   font: 400 0.9rem/1.5rem "Montserrat", sans-serif;
   text-align: center;
 }
+.full-overlay
+{
+  position: fixed;
+  height: 120vh;
+  width: 100vw;
+  z-index: 99;
+  background-color: #112f4a55;
+  overflow: hidden !important;
+  margin-top: -150px;
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.full-overlay .loading-square
+{
+  width: 100%;
+  max-width: 600px;
+  min-height: 250px;
+  background: #010222;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.full-overlay .loading-square img
+{
+  width: 200px;
+}
+.full-overlay .loading-square .p-para
+{
+    font-weight: 400;
+    color: #fffc;
+    padding-top: 30px;
+    letter-spacing: 1px;
+    font-family: "Montserrat",sans-serif;
+    font-size: 18px;
+}

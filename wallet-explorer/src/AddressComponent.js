@@ -9,7 +9,7 @@ import AllTokens from "./components/AllTokens";
 import HeaderComponent from "./components/HeaderComponent";
 import Transactions from "./components/TransactionComponent/Transactions";
 import NftExpanded from "./components/NftExpanded";
-
+import PlanetLoader from "./components/loaders/loaders";
 
 const AddressComponent = () => {
     let [searchParams, setSearchParams] = useSearchParams();
@@ -68,6 +68,7 @@ const AddressComponent = () => {
         <div>
         <HeaderComponent />
         <div className={styles.background_super}>
+            {isLoading && <PlanetLoader />}
             {!isLoading && <div>
                 {(contentType === "WALLET") && <div className="container pt-4">
                     <div className={styles.heading_section}>

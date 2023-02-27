@@ -6,10 +6,36 @@ import { FaAngleDown } from "react-icons/fa";
 import placeholder from "../../resources/images/txnImages/unknown.png";
 import { getTokenData } from "../../utils/getAllData";
 
+import SOL_TRANSFER from "../../resources/images/txnImages/token_create.png";
+
+import NFT_MINT from "../../resources/images/txnImages/mint.png";
+import NFT_BURN from "../../resources/images/txnImages/burn.png";
+import NFT_TRANSFER from "../../resources/images/txnImages/transfer.png";
+
+import TOKEN_CREATE from "../../resources/images/txnImages/token_create.png";
+import TOKEN_MINT from "../../resources/images/txnImages/token_create.png";
+import TOKEN_BURN from "../../resources/images/txnImages/token_create.png";
+import TOKEN_TRANSFER from "../../resources/images/txnImages/token_create.png";
+
+import NFT_SALE from "../../resources/images/txnImages/sale.png";
+import NFT_BID from "../../resources/images/txnImages/buy.png";
+import NFT_LIST from "../../resources/images/txnImages/sale.png";
+import NFT_LIST_CANCEL from "../../resources/images/txnImages/sale.png";
+import MARKETPLACE_WITHDRAW from "../../resources/images/txnImages/sale.png";
+
+import UNKNOWN from "../../resources/images/txnImages/blue_unknown.png";
+
+
+
+
 const TokenTransfer = ({ styles, id, data, address, cluster }) => {
   const [image, setImage] = useState(placeholder);
   const [name, setName] = useState("");
   const [relField, setRelField] = useState("");
+
+  const [typeImage,setTypeImage] = useState(UNKNOWN);
+
+
 
   const [varFields, setVarFields] = useState({
     first_field: {
@@ -73,6 +99,7 @@ const TokenTransfer = ({ styles, id, data, address, cluster }) => {
           name: "Token",
           value: "SOLANA",
         };
+        setTypeImage(TOKEN_CREATE);
       } else if (data.type === "TOKEN_TRANSFER") {
         first_field = {
           name: "From",
@@ -91,6 +118,7 @@ const TokenTransfer = ({ styles, id, data, address, cluster }) => {
           value: data.actions[0].info.token_address ?? "--",
         };
         setRelField(data.actions[0].info.token_address ?? "");
+        setTypeImage(TOKEN_TRANSFER);
       } else if (data.type === "NFT_TRANSFER") {
         first_field = {
           name: "From",
@@ -109,6 +137,7 @@ const TokenTransfer = ({ styles, id, data, address, cluster }) => {
           value: data.actions[0].info.nft_address ?? "--",
         };
         setRelField(data.actions[0].info.nft_address ?? "");
+        setTypeImage(NFT_TRANSFER);
       } else if (data.type === "TOKEN_MINT") {
         first_field = {
           name: "Token Address",
@@ -127,6 +156,7 @@ const TokenTransfer = ({ styles, id, data, address, cluster }) => {
           value: name ?? "--",
         };
         setRelField(data.actions[0].info.token_address ?? "");
+        setTypeImage(TOKEN_MINT);
       } else if (data.type === "NFT_MINT") {
         first_field = {
           name: "NFT Address",
@@ -145,6 +175,7 @@ const TokenTransfer = ({ styles, id, data, address, cluster }) => {
           value: name ?? "--",
         };
         setRelField(data.actions[0].info.nft_address ?? "");
+        setTypeImage(NFT_MINT);
       } else if (data.type === "NFT_BURN") {
         first_field = {
           name: "NFT Address",
@@ -163,6 +194,7 @@ const TokenTransfer = ({ styles, id, data, address, cluster }) => {
           value: name ?? "--",
         };
         setRelField(data.actions[0].info.nft_address ?? "");
+        setTypeImage(NFT_BURN);
       } else if (data.type === "TOKEN_BURN") {
         first_field = {
           name: "Token Address",
@@ -181,6 +213,7 @@ const TokenTransfer = ({ styles, id, data, address, cluster }) => {
           value: name ?? "--",
         };
         setRelField(data.actions[0].info.token_address ?? "");
+        setTypeImage(TOKEN_BURN);
       } else if (data.type === "TOKEN_CREATE") {
         first_field = {
           name: "Token Address",
@@ -199,6 +232,7 @@ const TokenTransfer = ({ styles, id, data, address, cluster }) => {
         //   value: (name ?? "--")
         // }
         setRelField(data.actions[0].info.token_address ?? "");
+        setTypeImage(TOKEN_CREATE);
       } else if (data.type === "NFT_LIST") {
         first_field = {
           name: "Seller",
@@ -217,6 +251,7 @@ const TokenTransfer = ({ styles, id, data, address, cluster }) => {
           value: data.actions[0].info.marketplace ?? "--",
         };
         setRelField(data.actions[0].info.nft_address ?? "");
+        setTypeImage(NFT_LIST);
       } else if (data.type === "NFT_SALE") {
         first_field = {
           name: "Seller",
@@ -235,6 +270,7 @@ const TokenTransfer = ({ styles, id, data, address, cluster }) => {
           value: data.actions[0].info.marketplace ?? "--",
         };
         setRelField(data.actions[0].info.nft_address ?? "");
+        setTypeImage(NFT_SALE);
       } else if (data.type === "NFT_LIST_CANCEL") {
         first_field = {
           name: "Seller",
@@ -253,6 +289,7 @@ const TokenTransfer = ({ styles, id, data, address, cluster }) => {
           value: data.actions[0].info.marketplace ?? "--",
         };
         setRelField(data.actions[0].info.nft_address ?? "");
+        setTypeImage(NFT_LIST_CANCEL);
       } else if (data.type === "NFT_BID") {
         first_field = {
           name: "Bidder",
@@ -271,6 +308,7 @@ const TokenTransfer = ({ styles, id, data, address, cluster }) => {
           value: data.actions[0].info.marketplace ?? "--",
         };
         setRelField(data.actions[0].info.nft_address ?? "");
+        setTypeImage(NFT_BID);
       } else if (data.type === "MARKETPLACE_WITHDRAW") {
         first_field = {
           name: "Marketplace",
@@ -288,6 +326,7 @@ const TokenTransfer = ({ styles, id, data, address, cluster }) => {
           name: "Treasury Ac",
           value: data.actions[0].info.treasury_account ?? "--",
         };
+        setTypeImage(MARKETPLACE_WITHDRAW);
       }
 
       setVarFields({
@@ -342,7 +381,12 @@ const TokenTransfer = ({ styles, id, data, address, cluster }) => {
                 </div>
                 <div className="col-12 col-md-2">
                   <div className={styles.tx_image_type}>
-                    <div className="text-light">{data.type ?? ""}</div>
+                    <div className={styles.tx_type_image}>
+                      <img src={typeImage} alt="" />
+                    </div>
+                    <div className={styles.tx_type_text}>
+                      {data.type ?? "--"}
+                    </div>
                   </div>
                 </div>
                 <div className="col-12 col-md-5">

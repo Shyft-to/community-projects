@@ -105,3 +105,36 @@
 {
     padding-top: 12px;
 }
+
+.each_txn .tx_image_type
+{
+    margin-bottom: 16px;
+}
+.each_txn .tx_image_type .tx_type_image
+{
+    /* font: 300 18px/20px "Montserrat",sans-serif;
+    color: #fff;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; */
+    padding-top: 10px;
+    padding-bottom: 4px;
+    
+}
+.each_txn .tx_image_type .tx_type_image img
+{
+    display: block;
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+}
+.each_txn .tx_image_type .tx_type_text
+{
+    font: 600 10px/14px "Montserrat",sans-serif;
+    color: #fff;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-top: 18px;
+    text-align: center;
+}
