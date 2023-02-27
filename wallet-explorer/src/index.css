@@ -123,3 +123,9 @@ body {
     font-family: "Montserrat",sans-serif;
     font-size: 18px;
 }
+
+.no_decor
+{
+  text-decoration: none;
+  color: #fff;
+}

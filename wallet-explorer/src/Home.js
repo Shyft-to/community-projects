@@ -5,6 +5,7 @@ import spottedPlanetTop from "./resources/images/spotted-planet-top.png";
 import bluePlanet from "./resources/images/blue_planet.png";
 import redPlanet from "./resources/images/red-planet.png";
 import spottedPlanetBottom from "./resources/images/spotted-planet-bottom.png";
+import rocket from "./resources/images/rocket.png";
 
 const Home = () => {
   const [wallet,setWallet] = useState('');
@@ -24,6 +25,9 @@ const Home = () => {
           </div>
           <div className={styles.dotted_bottom}>
             <img src={spottedPlanetBottom} alt="planet bottom" />
+          </div>
+          <div className={styles.rocket_container}>
+            <img src={rocket} alt="Rocket" className="img-fluid" />
           </div>
 
           <div className={styles.top_layer}>
@@ -64,7 +68,7 @@ const Home = () => {
                         </a>
                       </div>
                     </div>
-                    <div className={styles.rocket_container}></div>
+                    
                   </div>
                   <div className="col-12 col-lg-6"></div>
                 </div>

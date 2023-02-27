@@ -99,7 +99,7 @@ const TokenTransfer = ({ styles, id, data, address, cluster }) => {
           name: "Token",
           value: "SOLANA",
         };
-        setTypeImage(TOKEN_CREATE);
+        setTypeImage(SOL_TRANSFER);
       } else if (data.type === "TOKEN_TRANSFER") {
         first_field = {
           name: "From",
@@ -436,7 +436,7 @@ const TokenTransfer = ({ styles, id, data, address, cluster }) => {
                     <div className={styles.tx_bottom}>
                       {Array.isArray(data.signatures) &&
                       data.signatures.length > 0
-                        ? data.signatures[0]
+                        ? <a href={`https://explorer.solana.com/address/${data.signatures[0]}?cluster=${cluster}`} target="_blank"  rel="noreferrer" className="no_decor">{data.signatures[0]}</a>
                         : "--"}
                     </div>
                   </div>

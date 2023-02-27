@@ -40,6 +40,16 @@
   right:0;
   bottom: 0;
 }
+.middle_layer .rocket_container
+{
+  position: absolute;
+  left:15%;
+  bottom: 0;
+}
+/* .middle_layer .rocket_container img
+{
+  width: 50%;
+} */
 .top_layer
 {
   position: absolute;
@@ -161,6 +171,19 @@
 {
   transform: scale(1.05);
   color: #fff;
+}
+@media screen and (max-width: 767px)
+{
+  .middle_layer .rocket_container
+  {
+    position: absolute;
+    left:15%;
+    bottom: 0;
+  }
+  .middle_layer .rocket_container img
+  {
+    width: 70%;
+  }
 }
 
 /* @media screen and (max-width:767px) {
