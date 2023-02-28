@@ -12,7 +12,7 @@ const EachNft = ({nft,cluster}) => {
 
     useEffect(() => {
         if(nft.mint)
-            getData(nft.mint,cluster);
+            getData(cluster,nft.mint);
         
     }, []);
     const getData = async (address, cluster) => {

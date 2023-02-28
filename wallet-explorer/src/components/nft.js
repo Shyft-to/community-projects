@@ -12,12 +12,13 @@ const NFTs = ({collection,address,network}) => {
     const getData = async (address, cluster) => {
         const res = await getNFTData(address, cluster);
         if (res.success === true) {
-          setImage(res.details.image_uri);
+          setImage(res.details.cached_image_uri ?? res.details.image_uri);
         }
       };
     
     useEffect(() => {
-      getData(address,network);
+        if(collection.address)
+            getData(network,collection.address);
     
       
     }, [])
@@ -26,9 +27,12 @@ const NFTs = ({collection,address,network}) => {
     return ( 
         <div className='py-3 px-1'>
             <div className={styles.nft_container}>
-                <div className={styles.image_container}>
-                    <img src={image} alt="nft" />
-                </div>
+                <a href={`/nft/${address}?cluster=${network}`} target="_blank" rel="noreferrer">
+                    <div className={styles.image_container}>
+                        <img src={image} alt="nft" />
+                    </div>
+                </a>
+                
                 <div className={styles.name_section}>
                     <div className="row">
                         <div className="col-12">

@@ -68,7 +68,7 @@ const TokenTransfer = ({ styles, id, data, address, cluster }) => {
       getData(relField, cluster);
   }, [relField]);
 
-  const getData = async (address, cluster) => {
+  const getData = async (cluster,address,) => {
     const res = await getTokenData(address, cluster);
     if (res.success === true) {
       setImage(res.details.image_uri);
@@ -422,7 +422,7 @@ const TokenTransfer = ({ styles, id, data, address, cluster }) => {
             <div className={styles.second_row}>
               <div className="row">
                 <div className="col-12 col-md-2"></div>
-                <div className="col-12 col-md-5">
+                <div className="col-12 col-md-3">
                   <div className={styles.tx_field_sub}>
                     <div className={styles.tx_top}>{varFields.fourth_field.name ?? "--"}</div>
                     <div className={styles.tx_bottom}>
@@ -430,7 +430,7 @@ const TokenTransfer = ({ styles, id, data, address, cluster }) => {
                     </div>
                   </div>
                 </div>
-                <div className="col-12 col-md-5">
+                <div className="col-12 col-md-7">
                   <div className={styles.tx_field_sub}>
                     <div className={styles.tx_top}>Signature</div>
                     <div className={styles.tx_bottom}>
@@ -446,7 +446,7 @@ const TokenTransfer = ({ styles, id, data, address, cluster }) => {
             <div className={styles.third_row}>
               <div className="row">
                 <div className="col-12 col-md-2"></div>
-                <div className="col-12 col-md-5">
+                <div className="col-12 col-md-3">
                   <div className={styles.tx_field_sub}>
                     <div className={styles.tx_top}>Signers</div>
                     <div className={styles.tx_bottom}>

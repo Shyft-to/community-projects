@@ -1,24 +1,21 @@
 import styles from "../resources/css/NftExpanded.module.css";
 
-const TokenExpanded = () => {
+const TokenExpanded = ({token}) => {
   return (
     <div>
       <div className="row">
         <div className="col-12 col-lg-5">
           <div className={styles.nft_image_container}>
-            <img src="/images/ok_bear.png" className="img-fluid" />
+            <img src={token.image} className="img-fluid" alt="token" />
           </div>
         </div>
         <div className="col-12 col-lg-7">
           <div className={styles.nft_desc_section}>
-            <h2 className={styles.nft_name}>Fox # 7815</h2>
+            <h2 className={styles.nft_name}>{token.name}</h2>
             <div className={styles.nft_section}>
               <h6 className={styles.section_heading}>Description</h6>
               <p className={styles.section_desc}>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Veritatis quisquam quibusdam culpa commodi, ratione numquam aut
-                doloremque rerum itaque natus voluptas doloribus in maxime quas
-                quia accusamus nesciunt qui mollitia.
+                {token.description}
               </p>
             </div>
             <div className={styles.nft_section}>
@@ -32,43 +29,43 @@ const TokenExpanded = () => {
                         </div>
                         <div className="col-8">
                             <div className={styles.table_field_value}>
-                                FOX
+                                {token.symbol}
                             </div>
                         </div>
                     </div>
                     <div className={`row ${styles.each_row}`}>
                         <div className="col-4">
                             <div className={styles.table_field_name}>
-                                Royalty
+                                Decimals
                             </div>
                         </div>
                         <div className="col-8">
                             <div className={styles.table_field_value}>
-                                4.5 %
+                                {token.decimals}
                             </div>
                         </div>
                     </div>
                     <div className={`row ${styles.each_row}`}>
                         <div className="col-4">
                             <div className={styles.table_field_name}>
-                                Mint Address
-                            </div>
-                        </div>
-                        <div className="col-8">
-                            <div className={styles.table_field_value}>
-                                aTjagsyuGUYGUSjgJGuyGgY12314y14214ygGSHSGYSG
-                            </div>
-                        </div>
-                    </div>
-                    <div className={`row ${styles.each_row}`}>
-                        <div className="col-4">
-                            <div className={styles.table_field_name}>
-                                Owner Address
+                                Address
                             </div>
                         </div>
                         <div className="col-8">
                             <div className={styles.table_field_value}>
                                 aTjagsyuGUYGUSjgJGuyGgY12314y14214ygGSHSGYSG
+                            </div>
+                        </div>
+                    </div>
+                    <div className={`row ${styles.each_row}`}>
+                        <div className="col-4">
+                            <div className={styles.table_field_name}>
+                                Current Supply
+                            </div>
+                        </div>
+                        <div className="col-8">
+                            <div className={styles.table_field_value}>
+                                {token.current_supply}
                             </div>
                         </div>
                     </div>
