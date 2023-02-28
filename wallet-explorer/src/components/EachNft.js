@@ -30,11 +30,14 @@ const EachNft = ({nft,cluster}) => {
         }
     };
     return ( 
-        <div className=" py-2 pe-3">
+        <div className=" py-4 pe-4">
               <div className={styles.nft_container}>
-                <div className={styles.image_container}>
-                  <img src={image} alt="nft" />
-                </div>
+                <a href={`/address/${nft.mint}?cluster=${cluster}`}>
+                  <div className={styles.image_container}>
+                    <img src={image} alt="nft" />
+                  </div>
+                </a>
+                
                 <div className={styles.name_section}>
                   <div className="row">
                     <div className="col-12">
@@ -42,7 +45,7 @@ const EachNft = ({nft,cluster}) => {
                     </div>
                   </div>
                 </div>
-                <div className={styles.button_section}>
+                {/* <div className={styles.button_section}>
                   <div className="row">
                     <div className="col-6">
                       <div className={styles.i_hover_section}>
@@ -92,7 +95,7 @@ const EachNft = ({nft,cluster}) => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
      );

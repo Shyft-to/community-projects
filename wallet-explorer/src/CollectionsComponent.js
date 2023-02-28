@@ -6,6 +6,7 @@ import CollectionRow from "./components/CollectionRow";
 import PlanetLoader from "./components/loaders/loaders";
 
 import { getCollectionsData } from "./utils/getAllData";
+import Transactions from "./components/TransactionComponent/Transactions";
 
 const CollectionsComponent = () => {
     let [searchParams, setSearchParams] = useSearchParams();
@@ -71,6 +72,11 @@ const CollectionsComponent = () => {
 
                     </div>
                 }
+                <div className="container pt-4">
+                    <div className="pt-5">
+                        <Transactions address={addr} cluster={cluster} />
+                    </div>
+                </div>
             </div>            
         </div>
      );

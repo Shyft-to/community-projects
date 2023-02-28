@@ -9,9 +9,21 @@ const AllNfts = ({collections,address,network}) => {
     return ( 
         <div>
             {<div className={styles.nft_all_section}>
-                <div className={styles.main_heading}>
-                    NFT Collections in your Space<span>({collections.length} Collection)</span>
+                <div className="row">
+                    <div className="col-12 col-lg-6">
+                    <div className={styles.main_heading}>
+                        NFT Collections in your Space<span>({collections.length} Collection)</span>
+                    </div>
+                    </div>
+                    <div className="col-12 col-lg-6 text-end">
+                        <a className="no_underline" href={`/collections/${address}?cluster=${network}`}>
+                            <div className={styles.view_all_text}>
+                                View All
+                            </div>
+                        </a>
+                    </div>
                 </div>
+                
                 {(collections.length > 0) && <div>
                     <OwlCarousel 
                     className='owl-theme' 

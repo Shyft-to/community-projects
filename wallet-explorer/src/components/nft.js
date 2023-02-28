@@ -27,7 +27,7 @@ const NFTs = ({collection,address,network}) => {
     return ( 
         <div className='pt-4 px-1 pb-5'>
             <div className={styles.nft_container}>
-                <a href={`/nft/${address}?cluster=${network}`} target="_blank" rel="noreferrer">
+                <a href={`/collections/${address}?cluster=${network}`} target="_blank" rel="noreferrer">
                     <div className={styles.image_container}>
                         <img src={image} alt="nft" />
                     </div>

@@ -1,4 +1,5 @@
 import styles from "../resources/css/NftExpanded.module.css";
+import unknown from "../resources/images/ok_bear.png";
 const NftExpanded = ({ nft }) => {
   return (
     <div>
@@ -6,7 +7,8 @@ const NftExpanded = ({ nft }) => {
         <div className="col-12 col-lg-5">
           <div className={styles.nft_image_container}>
             <img
-              src={nft.cached_image_uri ?? nft.image_uri ?? ""}
+              src={( nft.image_uri === "" )?unknown:nft.image_uri}
+               
               className="img-fluid"
               alt="nft"
             />

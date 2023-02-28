@@ -1,4 +1,5 @@
 import styles from "../resources/css/NftExpanded.module.css";
+import unknown from "../resources/images/ok_bear.png";
 
 const TokenExpanded = ({token}) => {
   return (
@@ -6,12 +7,12 @@ const TokenExpanded = ({token}) => {
       <div className="row">
         <div className="col-12 col-lg-5">
           <div className={styles.nft_image_container}>
-            <img src={token.image} className="img-fluid" alt="token" />
+            <img src={(!token?.image || token?.image === "" )?unknown:token.image} className="img-fluid" alt="token" />
           </div>
         </div>
         <div className="col-12 col-lg-7">
           <div className={styles.nft_desc_section}>
-            <h2 className={styles.nft_name}>{token.name}</h2>
+            <h2 className={styles.nft_name}>{token?.name}</h2>
             <div className={styles.nft_section}>
               <h6 className={styles.section_heading}>Description</h6>
               <p className={styles.section_desc}>
@@ -29,7 +30,7 @@ const TokenExpanded = ({token}) => {
                         </div>
                         <div className="col-8">
                             <div className={styles.table_field_value}>
-                                {token.symbol}
+                                {token?.symbol}
                             </div>
                         </div>
                     </div>
