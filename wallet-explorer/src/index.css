@@ -55,15 +55,23 @@ body {
   margin-top: 5px;
 }
 
+.select_container
+{
+  width: 140px;
+  background-color: #8254b066;
+  border-radius: 26px;
+}
 .select_container select
 {
-  background-color: #2a0855;
+  background-color: transparent;
   border: none;
   box-shadow: none;
   color: #fff;
   font: 700 16px/18px "Montserrat", sans-serif;
   letter-spacing: 1px;
   padding: 12px 6px;
+  display: block;
+  margin: 0 auto;
 }
 .select_container select:focus
 {
@@ -127,5 +135,11 @@ body {
 .no_decor
 {
   text-decoration: none;
-  color: #fff;
+  color: #0AEEFF;
+  transition: all 0.5s ease;
+}
+.no_decor:hover
+{
+  text-decoration: none;
+  color: #E0499B;
 }

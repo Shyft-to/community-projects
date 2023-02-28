@@ -25,7 +25,7 @@ const NFTs = ({collection,address,network}) => {
     
 
     return ( 
-        <div className='py-3 px-1'>
+        <div className='pt-4 px-1 pb-5'>
             <div className={styles.nft_container}>
                 <a href={`/nft/${address}?cluster=${network}`} target="_blank" rel="noreferrer">
                     <div className={styles.image_container}>
@@ -47,7 +47,7 @@ const NFTs = ({collection,address,network}) => {
                         <div className="col-6">
                             <div className={styles.i_hover_section}>
                                 <div className={styles.i_indicator}>
-                                    <img src={i_icon} alt="details" style={{width:"20px", height:"20px"}} />
+                                    <img src={i_icon} alt="details" style={{width:"23px", height:"23px"}} />
                                 </div>
                                 <div className={styles.desc_area}>
                                     NFTs: {collection.nft_count ?? "--"}

@@ -362,12 +362,12 @@ const TokenTransfer = ({ styles, id, data, address, cluster }) => {
         </div>
         <div className={styles.fieldset_1}>
           <div className="row">
-            <div className="col-12 col-lg-2">
+            <div className="col-12 col-lg-1">
               <div className={styles.tx_image}>
                 <img src={image} className="img-fluid" alt="Token Container" />
               </div>
             </div>
-            <div className="col-12 col-lg-6">
+            <div className="col-12 col-lg-7">
               <div className="row">
                 <div className="col-12 col-md-5">
                   <div className={styles.tx_field}>
@@ -401,7 +401,7 @@ const TokenTransfer = ({ styles, id, data, address, cluster }) => {
             </div>
             <div className="col-12 col-lg-4">
               <div className="row">
-                <div className="col-6">
+                <div className="col-6 text-center">
                   <div className={styles.tx_field}>
                     <div className={styles.tx_top}>{varFields.third_field.name ?? "--"}</div>
                     <div className={styles.tx_bottom}>{varFields.third_field.value ?? "--"}</div>
@@ -421,8 +421,8 @@ const TokenTransfer = ({ styles, id, data, address, cluster }) => {
           <div id={id} className={styles.fieldset_2}>
             <div className={styles.second_row}>
               <div className="row">
-                <div className="col-12 col-md-2"></div>
-                <div className="col-12 col-md-3">
+                <div className="col-12 col-md-1"></div>
+                <div className="col-12 col-md-4">
                   <div className={styles.tx_field_sub}>
                     <div className={styles.tx_top}>{varFields.fourth_field.name ?? "--"}</div>
                     <div className={styles.tx_bottom}>
@@ -445,8 +445,8 @@ const TokenTransfer = ({ styles, id, data, address, cluster }) => {
             </div>
             <div className={styles.third_row}>
               <div className="row">
-                <div className="col-12 col-md-2"></div>
-                <div className="col-12 col-md-3">
+                <div className="col-12 col-md-1"></div>
+                <div className="col-12 col-md-4">
                   <div className={styles.tx_field_sub}>
                     <div className={styles.tx_top}>Signers</div>
                     <div className={styles.tx_bottom}>

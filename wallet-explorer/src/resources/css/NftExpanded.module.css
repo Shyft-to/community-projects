@@ -4,7 +4,7 @@
 /* NFT page styles */
 .nft_image_container
 {
-    width: 100%;
+    width: 80%;
     padding: 0px 10px;
     max-height: 500px;
     border-radius: 16px;   
@@ -20,7 +20,7 @@
 .nft_name
 {
     font: 600 40px/48px "Odibee Sans", sans-serif;
-    background: -webkit-linear-gradient(270deg, #FF008A 3%, #F3DD59 85%);
+    background: -webkit-linear-gradient(278deg, #FF008A 3%, #F3DD59 35%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -43,13 +43,13 @@
 .nft_section .table_container
 {
     border-radius: 10px;
-    background-color: #8254b077;
+    background-color: #8254b033;
     padding: 24px 24px;
     backdrop-filter: blur(10px);
 }
 .nft_section .table_container .each_row
 {
-    padding-top:16px;
+    padding-top:28px;
 }
 .nft_section .table_container .each_row:first-of-type
 {
@@ -77,7 +77,7 @@
 } */
 .nft_section .attributes_section .each_attribute
 {
-    background-color: #8254b077;
+    background-color: #8254b033;
     padding: 16px;
     border-radius: 12px;
     margin-top: 14px;

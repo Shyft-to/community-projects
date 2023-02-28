@@ -36,7 +36,7 @@
 .main_heading span
 {
   font: 500 40px/48px "Odibee Sans", sans-serif;
-  background: -webkit-linear-gradient(280deg, #FF008A 3%, #F3DD59 75%);
+  background: -webkit-linear-gradient(280deg, #FF008A 12%, #F3DD59 95%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
