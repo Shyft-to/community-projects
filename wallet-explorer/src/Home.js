@@ -40,11 +40,12 @@ const Home = () => {
                         Explore Your Space In Shyft Metaverse
                       </h1>
                       <p className={styles.description_text}>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing
-                        elit. Animi harum fugiat accusamus. Accusantium,
-                        voluptatem eius esse doloremque incidunt itaque atque
-                        rerum, ut at illo, nisi facilis dignissimos quas fuga
-                        hic.
+                        
+                        Welcome to the SHYFT Metaverse. Enter your wallet address 
+                        and get started on an interesting galactic journey. we have
+                        attempted to create a crossover between fungible and non-fungible
+                        universe. Feel free to give it a try. (This is still under 
+                        development, feel free to share your feedback)
                       </p>
                       <div className={styles.form_container}>
                         <label>Enter Wallet Address</label>

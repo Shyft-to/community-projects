@@ -1,4 +1,4 @@
-import TokenImage from "../resources/images/ok_bear.png"
+import TokenImage from "../resources/images/unknown_token.svg"
 import styles from "../resources/css/Token.module.css";
 
 const Token = ({token,address,network}) => {

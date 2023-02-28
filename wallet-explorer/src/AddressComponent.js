@@ -109,11 +109,11 @@ const AddressComponent = () => {
                         <NftExpanded nft={data}/>
                     </div>
                 }
-                {/* <div className="container pt-4">
+                <div className="container pt-4">
                     <div className="pt-5">
                         <Transactions address={addr} cluster={cluster} />
                     </div>
-                </div> */}
+                </div>
             </div>}
             
         </div>

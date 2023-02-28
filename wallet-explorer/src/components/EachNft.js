@@ -15,13 +15,13 @@ const EachNft = ({nft,cluster}) => {
             getData(cluster,nft.mint);
         
     }, []);
-    const getData = async (address, cluster) => {
+    const getData = async (cluster,address) => {
         setMsg("Loading");
-        const res = await getNFTData(address, cluster);
+        const res = await getNFTData(cluster, address);
 
         if (res.success === true) {
         if(res.details.cached_image_uri !== "")
-            setImage(res.details.image_uri);
+            setImage(res.details.cached_image_uri);
 
         if(res.details.attributes_array?.length > 0)
             setAttributes(res.details.attributes_array);
@@ -81,7 +81,7 @@ const EachNft = ({nft,cluster}) => {
                     </div>
                     <div className="col-6">
                       <div className={styles.details_button}>
-                        <a href={`/address/${nft.mint}?cluster=${cluster}`}>
+                        <a className="no_underline" href={`/address/${nft.mint}?cluster=${cluster}`}>
                           <div className={styles.btn_sm_outline_outer}>
                             <div className={styles.btn_sm_outline_inner}>
                               Details

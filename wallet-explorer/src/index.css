@@ -110,23 +110,23 @@ body {
   width: 100%;
   max-width: 600px;
   min-height: 250px;
-  background: #010222;
+  background: #1e003d;
   border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  
+  padding-top: 10px;
 }
 
 .full-overlay .loading-square img
 {
-  width: 200px;
+  width: 120px;
 }
 .full-overlay .loading-square .p-para
 {
     font-weight: 400;
     color: #fffc;
-    padding-top: 30px;
+    padding-top: 20px;
     letter-spacing: 1px;
     font-family: "Montserrat",sans-serif;
     font-size: 18px;
@@ -142,4 +142,16 @@ body {
 {
   text-decoration: none;
   color: #E0499B;
+}
+
+.no_underline
+{
+  text-decoration: none;
+  color: #FFF;
+  transition: all 0.5s ease;
+}
+.no_underline:hover
+{
+  text-decoration: none;
+  color: #FFF;
 }

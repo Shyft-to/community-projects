@@ -1,5 +1,5 @@
 
-import planets from '../../resources/images/planet-loader.gif'
+import planets from '../../resources/images/planet_loader_2.gif'
 const PlanetLoader = () => {
     return ( 
     <div>

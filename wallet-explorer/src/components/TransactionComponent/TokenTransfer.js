@@ -4,7 +4,7 @@ import { IconContext } from "react-icons";
 import { FaAngleDown } from "react-icons/fa";
 
 import placeholder from "../../resources/images/txnImages/unknown.png";
-import { getTokenData } from "../../utils/getAllData";
+import { getNFTData } from "../../utils/getAllData";
 
 import SOL_TRANSFER from "../../resources/images/txnImages/token_create.png";
 
@@ -25,17 +25,12 @@ import MARKETPLACE_WITHDRAW from "../../resources/images/txnImages/sale.png";
 
 import UNKNOWN from "../../resources/images/txnImages/blue_unknown.png";
 
-
-
-
 const TokenTransfer = ({ styles, id, data, address, cluster }) => {
   const [image, setImage] = useState(placeholder);
   const [name, setName] = useState("");
   const [relField, setRelField] = useState("");
 
-  const [typeImage,setTypeImage] = useState(UNKNOWN);
-
-
+  const [typeImage, setTypeImage] = useState(UNKNOWN);
 
   const [varFields, setVarFields] = useState({
     first_field: {
@@ -64,14 +59,14 @@ const TokenTransfer = ({ styles, id, data, address, cluster }) => {
   }, []);
 
   useEffect(() => {
-    if (relField !== "") 
-      getData(relField, cluster);
+    if (relField !== "") getData(cluster, relField);
   }, [relField]);
 
-  const getData = async (cluster,address,) => {
-    const res = await getTokenData(address, cluster);
+  const getData = async (cluster, address) => {
+    const res = await getNFTData(cluster, address);
     if (res.success === true) {
-      setImage(res.details.image_uri);
+      if (res.details.image_uri)
+        setImage(res.details.cached_image_uri ?? res.details.image_uri);
       setName(res.details.name);
     }
   };
@@ -375,7 +370,7 @@ const TokenTransfer = ({ styles, id, data, address, cluster }) => {
                       {varFields.first_field.name ?? "--"}
                     </div>
                     <div className={styles.tx_bottom}>
-                    {varFields.first_field.value ?? "--"}
+                      {varFields.first_field.value ?? "--"}
                     </div>
                   </div>
                 </div>
@@ -391,7 +386,9 @@ const TokenTransfer = ({ styles, id, data, address, cluster }) => {
                 </div>
                 <div className="col-12 col-md-5">
                   <div className={styles.tx_field}>
-                    <div className={styles.tx_top}>{varFields.second_field.name ?? "--"}</div>
+                    <div className={styles.tx_top}>
+                      {varFields.second_field.name ?? "--"}
+                    </div>
                     <div className={styles.tx_bottom}>
                       {varFields.second_field.value ?? "--"}
                     </div>
@@ -403,14 +400,20 @@ const TokenTransfer = ({ styles, id, data, address, cluster }) => {
               <div className="row">
                 <div className="col-6 text-center">
                   <div className={styles.tx_field}>
-                    <div className={styles.tx_top}>{varFields.third_field.name ?? "--"}</div>
-                    <div className={styles.tx_bottom}>{varFields.third_field.value ?? "--"}</div>
+                    <div className={styles.tx_top}>
+                      {varFields.third_field.name ?? "--"}
+                    </div>
+                    <div className={styles.tx_bottom}>
+                      {varFields.third_field.value ?? "--"}
+                    </div>
                   </div>
                 </div>
                 <div className="col-6">
                   <div className={styles.tx_field}>
                     <div className={styles.tx_top}>Time</div>
-                    <div className={styles.tx_bottom}>{data.timestamp ?? "--"}</div>
+                    <div className={styles.tx_bottom}>
+                      {data.timestamp ?? "--"}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -424,19 +427,20 @@ const TokenTransfer = ({ styles, id, data, address, cluster }) => {
                 <div className="col-12 col-md-1"></div>
                 <div className="col-12 col-md-4">
                   <div className={styles.tx_field_sub}>
-                    <div className={styles.tx_top}>{varFields.fourth_field.name ?? "--"}</div>
+                    <div className={styles.tx_top}>
+                      {varFields.fourth_field.name ?? "--"}
+                    </div>
                     <div className={styles.tx_bottom}>
                       {varFields.fourth_field.value ?? "--"}
                     </div>
                   </div>
                 </div>
                 <div className="col-12 col-md-7">
-                  <div className={styles.tx_field_sub}>
-                    <div className={styles.tx_top}>Signature</div>
+                  <div className={styles.tx_field_sub_2}>
+                    <div className={styles.tx_top}>Signers</div>
                     <div className={styles.tx_bottom}>
-                      {Array.isArray(data.signatures) &&
-                      data.signatures.length > 0
-                        ? <a href={`https://explorer.solana.com/address/${data.signatures[0]}?cluster=${cluster}`} target="_blank"  rel="noreferrer" className="no_decor">{data.signatures[0]}</a>
+                      {Array.isArray(data.signers) && data.signers.length > 0
+                        ? data.signers[0]
                         : "--"}
                     </div>
                   </div>
@@ -448,16 +452,26 @@ const TokenTransfer = ({ styles, id, data, address, cluster }) => {
                 <div className="col-12 col-md-1"></div>
                 <div className="col-12 col-md-4">
                   <div className={styles.tx_field_sub}>
-                    <div className={styles.tx_top}>Signers</div>
+                    <div className={styles.tx_top}>Signature</div>
                     <div className={styles.tx_bottom}>
-                      {Array.isArray(data.signers) && data.signers.length > 0
-                        ? data.signers[0]
-                        : "--"}
+                      {Array.isArray(data.signatures) &&
+                      data.signatures.length > 0 ? (
+                        <a
+                          href={`https://explorer.solana.com/address/${data.signatures[0]}?cluster=${cluster}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="no_decor"
+                        >
+                          {data.signatures[0]}
+                        </a>
+                      ) : (
+                        "--"
+                      )}
                     </div>
                   </div>
                 </div>
                 <div className="col-6 col-md-3">
-                  <div className={styles.tx_field_sub}>
+                  <div className={styles.tx_field_sub_2}>
                     <div className={styles.tx_top}>Protocol</div>
                     <div className={styles.tx_bottom}>
                       {data.protocol?.name ?? "--"}

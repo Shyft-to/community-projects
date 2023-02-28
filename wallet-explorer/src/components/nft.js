@@ -9,8 +9,8 @@ import { getNFTData } from "../utils/getAllData";
 const NFTs = ({collection,address,network}) => {
     const [image,setImage] = useState(ok_bear);
 
-    const getData = async (address, cluster) => {
-        const res = await getNFTData(address, cluster);
+    const getData = async (cluster,address) => {
+        const res = await getNFTData(cluster,address);
         if (res.success === true) {
           setImage(res.details.cached_image_uri ?? res.details.image_uri);
         }
@@ -58,7 +58,7 @@ const NFTs = ({collection,address,network}) => {
                         </div>
                         <div className="col-6">
                             <div className={styles.details_button}>
-                            <a href={`/collections/${address}?cluster=${network}`}>
+                            <a className="no_underline" href={`/collections/${address}?cluster=${network}`}>
                                 <div className={styles.btn_sm_outline_outer}>
                                     <div className={styles.btn_sm_outline_inner}>
                                         Details
