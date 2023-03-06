@@ -164,3 +164,61 @@
     padding-top: 14px;
     text-align: center;
 }
+
+.each_txn_2
+{
+    position: relative;
+    min-height: 100px;
+    background-color: #a254b033;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-radius: 14px;
+    padding: 16px 24px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+.each_txn_2 .toggle_button
+{
+    position: absolute;
+    right: 20px;
+}
+
+.each_txn_2 .toggle_button .sol_icon img
+{
+    width: 20px;
+    height: 20px;
+}
+.each_txn_2 .txn_name
+{
+    font: 500 16px/20px "Montserrat",sans-serif;
+    padding: 10px 0px;
+    color: #FDF41B;
+}
+.each_txn_2 .dynamic_field
+{
+    font: 400 14px/14px "Montserrat",sans-serif;
+    letter-spacing: 1px;
+    padding: 4px 0px;
+    color: #FFFA;
+}
+.each_txn_2 .dynamic_field_2
+{
+    font: 400 16px/16px "Montserrat",sans-serif;
+    letter-spacing: 1px;
+    padding: 14px 0px;
+    color: #FFFFFF;
+}
+.each_txn_2 .field_1
+{
+    font: 400 16px/16px "Montserrat",sans-serif;
+    padding: 14px 0px;
+    color: #FFF;
+}
+.each_txn_2 .field_1.plus
+{
+    color: #FDF41B; 
+}
+.each_txn_2 .field_1.minus
+{
+    color: #FF5454; 
+}
