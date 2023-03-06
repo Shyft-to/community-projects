@@ -22,14 +22,16 @@
     height: 100px;
     width: 100px;
     border-radius: 90px;
+    border: 1px solid #7640b2;
     display: block;
     margin: 0 auto;
 }
 .token_image img
 {
-    max-width: 100%;
     width: 100%;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain;
+    background-color: #7640b2;
     border-radius: 90px;
 }
 .token_container .title
@@ -39,6 +41,9 @@
     font: 400 14px/18px "Montserrat", sans-serif;
     color: #fff;
     letter-spacing: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .token_container .balance
 {
@@ -47,4 +52,7 @@
     font: 600 14px/22px "Montserrat", sans-serif;
     color: #FDF41B;
     letter-spacing: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
