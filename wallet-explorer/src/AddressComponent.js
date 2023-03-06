@@ -103,7 +103,7 @@ const AddressComponent = () => {
                     </div>
                     
                 </div>}
-                {
+                {/* {
                     (contentType === "NFT") && 
                     <div className="container pt-4">
                         <NftExpanded nft={data}/>
@@ -113,7 +113,7 @@ const AddressComponent = () => {
                     <div className="pt-5">
                         <Transactions address={addr} cluster={cluster} />
                     </div>
-                </div>
+                </div> */}
             </div>}
             
         </div>

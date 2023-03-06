@@ -25,12 +25,25 @@
 
 .nft_container
 {
+    position: relative;
     background-color: #442863;
-    min-width: 180px;
+    width: 224px;
     min-height: 200px;
     padding: 12px;
     border-radius: 20px;
-    box-shadow: 10px -10px #7640b2;
+    z-index: 2;
+    transform: rotate(4deg);
+    /* box-shadow: 10px -10px #7640b2; */
+}
+.nft_container_outer
+{
+    position: relative;
+    z-index: 1;
+    width: 224px;
+    border-radius: 20px;
+    background-color: #7640b2;
+    transform: rotate(-4deg);
+    
 }
 .nft_container .image_container
 {
@@ -102,6 +115,21 @@
     text-align: center;
 }
 .btn_sm_outline_outer:hover
+{
+    transform: scale(1.05);
+}
+.btn_sm_outline
+{
+    background-color: #3d1b61;
+    padding: 11px 12px;
+    border-radius: 14px;
+    font: 400 12px/0 "Montserrat", sans-serif;
+    border: 2px solid #FDF41B;
+    color: #fff;
+    text-align: center;
+    transition: all 0.1s ease-in;
+}
+.btn_sm_outline:hover
 {
     transform: scale(1.05);
 }
