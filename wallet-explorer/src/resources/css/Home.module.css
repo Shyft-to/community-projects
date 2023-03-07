@@ -100,7 +100,7 @@
   position: relative;
   padding: 2px;
   border-radius: 25px;
-  background: linear-gradient(90deg,#FF00FF 12%, #07F0FF 70%);
+  background: linear-gradient(90deg,#E0499B 12%, #FDF41B 70%);
 
 }
 .form_field_outer .form_field_inner
@@ -149,16 +149,16 @@
 {
   display: inline-block;
   /* padding: 0.8rem 2.5rem 0.8rem 2.5rem; */
-  padding-top: 0.8rem;
-  padding-bottom: 0.8rem;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
   min-width: 180px;
   border: none;
   border-radius: 2.5rem;
   background-color: rgba(89, 101, 243, 0.29);
   background: linear-gradient(
     90.8deg,
-    #FF00FF 3.34%,
-    #07F0FF 100%
+    #E0499B 3.34%,
+    #FDF41B 100%
   );
   color: #fff;
   font: 600 0.8rem/1.2rem "Montserrat", sans-serif;
