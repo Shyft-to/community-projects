@@ -25,7 +25,7 @@ import MARKETPLACE_WITHDRAW from "../../resources/images/txnImages/blue_unknown.
 
 import UNKNOWN from "../../resources/images/txnImages/blue_unknown.png";
 
-const TransactionStructure = ({ styles, id, data, address, cluster }) => {
+const TransactionStructureToken = ({ styles, id, data, address, cluster }) => {
     const [image, setImage] = useState(placeholder);
   const [name, setName] = useState("");
   const [relField, setRelField] = useState("");
@@ -118,8 +118,8 @@ const TransactionStructure = ({ styles, id, data, address, cluster }) => {
             value: "TOKEN Transfer"
         }
         dynamic_field_1 = {
-            name: "To",
-            value: data.actions[0].info.receiver ?? "--",
+            from: data.actions[0].info.sender ?? "--",
+            to: data.actions[0].info.receiver ?? "--",
             arrow:true
         };
         dynamic_field_2 = {
@@ -139,8 +139,8 @@ const TransactionStructure = ({ styles, id, data, address, cluster }) => {
             value: "NFT Transfer"
         }
         dynamic_field_1 = {
-            name: "To",
-            value: data.actions[0].info.receiver ?? "--",
+            from: data.actions[0].info.sender ?? "--",
+            to: data.actions[0].info.receiver ?? "--",
             arrow:true
         };
         dynamic_field_2 = {
@@ -450,7 +450,19 @@ const TransactionStructure = ({ styles, id, data, address, cluster }) => {
                             <div className="col-6 col-lg-12">
                                 <div className={styles.dynamic_field}>
                                     {
-                                        (varFields.dynamic_field_1.arrow)?
+                                        (varFields.type_field.value === "NFT Transfer" || varFields.type_field.value === "TOKEN Transfer")?
+                                            <div className="d-flex">
+                                                <div className="pe-1">
+                                                   From: {varFields.dynamic_field_1.from ?? ""}
+                                                </div>
+                                                <div className="pe-1">
+                                                    <img src={arrow} alt="" style={{width: "10px"}}/>
+                                                </div>
+                                                <div className="pe-1">
+                                                   To: {varFields.dynamic_field_1.to ?? ""}
+                                                </div>
+                                            </div>
+                                        :((varFields.dynamic_field_1.arrow)?
                                             <div className="d-flex">
                                                 <div className="pe-1">
                                                     {varFields.dynamic_field_1.name}
@@ -465,7 +477,7 @@ const TransactionStructure = ({ styles, id, data, address, cluster }) => {
                                         :
                                         <div>
                                             {varFields.dynamic_field_1.value}
-                                        </div>
+                                        </div>)
                                     }
                                 </div>
                             </div>
@@ -501,4 +513,4 @@ const TransactionStructure = ({ styles, id, data, address, cluster }) => {
     );
 }
  
-export default TransactionStructure;
+export default TransactionStructureToken;

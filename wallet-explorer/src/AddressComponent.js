@@ -10,6 +10,7 @@ import HeaderComponent from "./components/HeaderComponent";
 import Transactions from "./components/TransactionComponent/Transactions";
 import NftExpanded from "./components/NftExpanded";
 import PlanetLoader from "./components/loaders/loaders";
+import TransactionsToken from "./components/TransactionComponent/TransactionsToken";
 
 const AddressComponent = () => {
     let [searchParams, setSearchParams] = useSearchParams();
@@ -101,19 +102,26 @@ const AddressComponent = () => {
                     <div className="pt-5">
                         <AllNfts collections={data.collections} address={addr} network={cluster}/>
                     </div>
-                    
+                    <div className="container pt-4">
+                        <div className="pt-5">
+                            <Transactions address={addr} cluster={cluster} />
+                        </div>
+                    </div>    
                 </div>}
                 {
                     (contentType === "NFT") && 
-                    <div className="container pt-4">
-                        <NftExpanded nft={data}/>
+                    <div>
+                        <div className="container pt-4">
+                            <NftExpanded nft={data}/>
+                        </div>
+                        <div className="container pt-4">
+                            <div className="pt-5">
+                                <TransactionsToken address={addr} cluster={cluster} />
+                            </div>
+                        </div>
                     </div>
                 }
-                <div className="container pt-4">
-                    <div className="pt-5">
-                        <Transactions address={addr} cluster={cluster} />
-                    </div>
-                </div>
+                
             </div>}
             
         </div>

@@ -216,9 +216,9 @@
 }
 .each_txn_2 .field_1.plus
 {
-    color: #FDF41B; 
+    color: #FDF41B !important; 
 }
 .each_txn_2 .field_1.minus
 {
-    color: #FF5454; 
+    color: #FF5454 !important; 
 }
