@@ -214,11 +214,37 @@
     padding: 14px 0px;
     color: #FFF;
 }
-.each_txn_2 .field_1.plus
+.plus_color
 {
     color: #FDF41B !important; 
 }
-.each_txn_2 .field_1.minus
+.minus_color
 {
     color: #FF5454 !important; 
+}
+
+.each_txn_2 .token_image_sm img
+{
+    width: 18px;
+    height: 18px;
+    border-radius: 10px;
+    object-fit: fill;
+}
+.each_txn_2 button
+{
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    width: 20px;
+    height: 20px;
+}
+.each_txn_2 button img
+{
+    
+    width: 18px;
+    height: 18px;
+}
+.each_txn_2 .small_pad
+{
+    padding-top: 2px;
 }

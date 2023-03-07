@@ -1,10 +1,11 @@
 import { useState,useEffect } from "react";
 import icon from "../../resources/images/txnImages/nft_transfer_2.svg";
-import arrow from "../../resources/images/txnImages/arrow.svg";
+import arrow from "../../resources/images/txnImages/arrow.svg"
+import copy_icon from "../../resources/images/txnImages/copy_icon.svg"
 import solScan from "../../resources/images/txnImages/sol_scan_icon.svg";
 
 import placeholder from "../../resources/images/txnImages/unknown.png";
-import { getNFTData } from "../../utils/getAllData";
+import { getNFTData,getTokenData } from "../../utils/getAllData";
 
 import SOL_TRANSFER from "../../resources/images/txnImages/sol_transfer.png";
 
@@ -28,7 +29,9 @@ import UNKNOWN from "../../resources/images/txnImages/blue_unknown.png";
 const TransactionStructure = ({ styles, id, data, address, cluster }) => {
     const [image, setImage] = useState(placeholder);
   const [name, setName] = useState("");
+  const [currency,setCurrency] = useState("");
   const [relField, setRelField] = useState("");
+  const [currencyField,setCurrencyField] = useState("");
 
   const [typeImage, setTypeImage] = useState(UNKNOWN);
 
@@ -79,6 +82,17 @@ const TransactionStructure = ({ styles, id, data, address, cluster }) => {
     }
   };
 
+  useEffect(() => {
+    if (currencyField !== "") getCurrency(cluster, currencyField);
+  }, [currencyField]);
+
+  const getCurrency = async (cluster, address) => {
+    const res = await getTokenData(cluster, address);
+    if (res.success === true) {
+      setCurrency(res.details.symbol ?? res.details.name ?? "");
+    }
+  };
+
   const categoriseTxn = () => {
     var type_field = {};
     var dynamic_field_1 = {};
@@ -94,6 +108,8 @@ const TransactionStructure = ({ styles, id, data, address, cluster }) => {
             value: "SOL Transfer"
         }
         dynamic_field_1 = {
+            from:data.actions[0].info.sender ?? "--",
+            to:data.actions[0].info.receiver ?? "--",
             name: "To",
             value: data.actions[0].info.receiver ?? "--",
             arrow:true
@@ -118,6 +134,8 @@ const TransactionStructure = ({ styles, id, data, address, cluster }) => {
             value: "TOKEN Transfer"
         }
         dynamic_field_1 = {
+            from:data.actions[0].info.sender ?? "--",
+            to:data.actions[0].info.receiver ?? "--",
             name: "To",
             value: data.actions[0].info.receiver ?? "--",
             arrow:true
@@ -139,6 +157,8 @@ const TransactionStructure = ({ styles, id, data, address, cluster }) => {
             value: "NFT Transfer"
         }
         dynamic_field_1 = {
+            from:data.actions[0].info.sender ?? "--",
+            to:data.actions[0].info.receiver ?? "--",
             name: "To",
             value: data.actions[0].info.receiver ?? "--",
             arrow:true
@@ -282,6 +302,7 @@ const TransactionStructure = ({ styles, id, data, address, cluster }) => {
         //   end_symbol: data.actions[0].info.price ?? "--"
         };
         setRelField(data.actions[0].info.nft_address ?? "");
+        setCurrencyField(data.actions[0].info.currency ?? "");
         setTypeImage(NFT_LIST);
       } else if (data.type === "NFT_SALE") {
         type_field = {
@@ -305,6 +326,7 @@ const TransactionStructure = ({ styles, id, data, address, cluster }) => {
         //   end_symbol: data.actions[0].info.price ?? "--"
         };
         setRelField(data.actions[0].info.nft_address ?? "");
+        setCurrencyField(data.actions[0].info.currency ?? "");
         setTypeImage(NFT_SALE);
       } else if (data.type === "NFT_LIST_CANCEL") {
         type_field = {
@@ -328,6 +350,7 @@ const TransactionStructure = ({ styles, id, data, address, cluster }) => {
         //   end_symbol: data.actions[0].info.price ?? "--"
         };
         setRelField(data.actions[0].info.nft_address ?? "");
+        setCurrencyField(data.actions[0].info.currency ?? "");
         setTypeImage(NFT_LIST_CANCEL);
       } else if (data.type === "NFT_BID") {
         type_field = {
@@ -351,6 +374,7 @@ const TransactionStructure = ({ styles, id, data, address, cluster }) => {
         //   end_symbol: data.actions[0].info.price ?? "--"
         };
         setRelField(data.actions[0].info.nft_address ?? "");
+        setCurrencyField(data.actions[0].info.currency ?? "");
         setTypeImage(NFT_BID);
       } else if (data.type === "MARKETPLACE_WITHDRAW") {
         type_field = {
@@ -442,29 +466,66 @@ const TransactionStructure = ({ styles, id, data, address, cluster }) => {
                 <div className="col-12 col-lg-11">
                     <div className={styles.fields_container}>
                         <div className="row">
-                            <div className="col-6 col-lg-12">
+                            <div className="col-12 col-lg-12">
                                 <div className={styles.txn_name}>
                                     {varFields.type_field.value ?? "--"}
                                 </div>
                             </div>
-                            <div className="col-6 col-lg-12">
+                            <div className="col-12 col-lg-12">
                                 <div className={styles.dynamic_field}>
                                     {
                                         (varFields.dynamic_field_1.arrow)?
-                                            <div className="d-flex">
+                                            (address === varFields.dynamic_field_1.from)?(<div className="d-flex">
                                                 <div className="pe-1">
-                                                    {varFields.dynamic_field_1.name}
+                                                    To
+                                                </div>
+                                                <div className="px-2">
+                                                    <img src={arrow} alt="" style={{width: "16px"}}/>
                                                 </div>
                                                 <div className="pe-1">
-                                                    <img src={arrow} alt="" style={{width: "10px"}}/>
+                                                    {varFields.dynamic_field_1.to}
                                                 </div>
-                                                <div className="pe-1">
-                                                    {varFields.dynamic_field_1.value}
-                                                </div>
+                                            </div>):
+                                            ((address === varFields.dynamic_field_1.to)?(<div className="d-flex">
+                                            <div className="pe-1">
+                                                From
                                             </div>
+                                            <div className="px-2">
+                                                <img src={arrow} alt="" style={{width: "16px"}}/>
+                                            </div>
+                                            <div className="pe-1">
+                                                {varFields.dynamic_field_1.from}
+                                            </div>
+                                        </div>):(
+                                          <div className="d-flex">
+                                              <div className="pe-1">
+                                                From: {varFields.dynamic_field_1.from ?? ""}
+                                              </div>
+                                              <div className="px-2">
+                                                  <img src={arrow} alt="" style={{width: "16px"}}/>
+                                              </div>
+                                              <div className="pe-1">
+                                                To: {varFields.dynamic_field_1.to ?? ""}
+                                              </div>
+                                          </div>
+                                        ))
                                         :
-                                        <div>
+                                        <div className="d-flex flex-wrap justify-content-start">
+                                          <div className="pe-2">
+                                              <div className={styles.token_image_sm}>
+                                                <img src={image} alt="token image" />
+                                              </div>
+                                          </div>
+                                          <div className={styles.small_pad}>
                                             {varFields.dynamic_field_1.value}
+                                          </div>
+                                          <div>
+                                              <div className={styles.copy_button}>
+                                                <button>
+                                                  <img src={copy_icon} alt="Copy" />
+                                                </button>
+                                              </div>
+                                          </div>
                                         </div>
                                     }
                                 </div>
@@ -477,8 +538,15 @@ const TransactionStructure = ({ styles, id, data, address, cluster }) => {
                                 </div>
                             </div>
                             <div className="col-6 col-lg-2">
-                                <div className={`text-center ${styles.field_1} ${(varFields.third_field.value === "+")?styles.plus:styles.minus}`}>
-                                    {varFields.third_field.symbol ?? ""}{varFields.third_field.value ?? ""}
+                                <div className={`text-center ${styles.field_1} ${(varFields.third_field.value === "+")?styles.plus:((varFields.third_field.value === "-")?styles.minus:"")}`}>
+                                  {(varFields.third_field.symbol === "+")?<div className={styles.plus_color}>
+                                    {varFields.third_field.symbol ?? ""}{varFields.third_field.value ?? ""} {(varFields.type_field.value === "SOL Transfer")?"SOL":""}
+                                  </div>:
+                                  ((varFields.third_field.symbol === "-")?<div className={styles.minus_color}>
+                                  {varFields.third_field.symbol ?? ""}{varFields.third_field.value ?? ""} {(varFields.type_field.value === "SOL Transfer")?"SOL":""}
+                                </div>:<div>
+                                  {varFields.third_field.symbol ?? ""}{varFields.third_field.value ?? ""} {currency ?? ""}
+                                </div>)}
                                 </div>
                             </div>
                             <div className="col-6 col-lg-2">

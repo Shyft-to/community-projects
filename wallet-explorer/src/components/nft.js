@@ -43,7 +43,7 @@ const NFTs = ({ collection, address, network }) => {
               </div>
             </div>
           </div>
-          <div className={styles.button_section}>
+          {/* <div className={styles.button_section}>
             <div className="row">
               <div className="col-6">
                 <div className={styles.i_hover_section}>
@@ -65,17 +65,12 @@ const NFTs = ({ collection, address, network }) => {
                     className="no_underline"
                     href={`/collections/${address}?cluster=${network}`}
                   >
-                    {/* <div className={styles.btn_sm_outline_outer}>
-                                    <div className={styles.btn_sm_outline_inner}>
-                                        Details
-                                    </div>
-                                </div> */}
                     <div className={styles.btn_sm_outline}>Details</div>
                   </a>
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

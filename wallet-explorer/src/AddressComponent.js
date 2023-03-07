@@ -102,11 +102,7 @@ const AddressComponent = () => {
                     <div className="pt-5">
                         <AllNfts collections={data.collections} address={addr} network={cluster}/>
                     </div>
-                    <div className="container pt-4">
-                        <div className="pt-5">
-                            <Transactions address={addr} cluster={cluster} />
-                        </div>
-                    </div>    
+                       
                 </div>}
                 {
                     (contentType === "NFT") && 
@@ -114,14 +110,18 @@ const AddressComponent = () => {
                         <div className="container pt-4">
                             <NftExpanded nft={data}/>
                         </div>
-                        <div className="container pt-4">
+                        {/* <div className="container pt-4">
                             <div className="pt-5">
                                 <TransactionsToken address={addr} cluster={cluster} />
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 }
-                
+                <div className="container pt-4">
+                    <div className="pt-5">
+                        <Transactions address={addr} cluster={cluster} />
+                    </div>
+                </div> 
             </div>}
             
         </div>
