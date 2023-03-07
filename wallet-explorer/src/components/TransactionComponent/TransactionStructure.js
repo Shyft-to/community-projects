@@ -26,6 +26,7 @@ import NFT_LIST_CANCEL from "../../resources/images/txnImages/blue_unknown.png";
 import MARKETPLACE_WITHDRAW from "../../resources/images/txnImages/blue_unknown.png";
 
 import UNKNOWN from "../../resources/images/txnImages/blue_unknown.png";
+import { Link } from "react-router-dom";
 
 const TransactionStructure = ({ styles, id, data, address, cluster }) => {
     const [image, setImage] = useState(placeholder);
@@ -425,7 +426,7 @@ const TransactionStructure = ({ styles, id, data, address, cluster }) => {
         }
         dynamic_field_1 = {
             name: "To",
-            value: "--",
+            value: data.protocol?.name ?? "--",
             arrow:false
         };
         dynamic_field_2 = {
@@ -491,7 +492,7 @@ const TransactionStructure = ({ styles, id, data, address, cluster }) => {
                             </div>
                             {
                               (varFields.type_field.name === "nocategory") && <div className="col-12 col-lg-12">
-                                  <div className={styles.interacted_with}>{varFields.type_field.value ?? "--"}</div>
+                                  <div className={styles.interacted_with}>{varFields.dynamic_field_1.value ?? "--"}</div>
                               </div>
                             }
                             {(varFields.type_field.name != "nocategory") && <div className="col-12 col-lg-12">
@@ -506,7 +507,8 @@ const TransactionStructure = ({ styles, id, data, address, cluster }) => {
                                                     <img src={arrow} alt="" style={{width: "16px"}}/>
                                                 </div>
                                                 <div className="pe-1">
-                                                  <a href={`/address/${varFields.dynamic_field_1.value}?cluster=${cluster}`}>{shortenAddress(varFields.dynamic_field_1.to)}</a>
+                                                  
+                                                  <Link to={`/address/${varFields.dynamic_field_1.value}?cluster=${cluster}`}>{shortenAddress(varFields.dynamic_field_1.to)}</Link>
                                                 </div>
                                             </div>):
                                             ((address === varFields.dynamic_field_1.to)?(<div className="d-flex">
@@ -517,7 +519,7 @@ const TransactionStructure = ({ styles, id, data, address, cluster }) => {
                                                 <img src={arrow} alt="" style={{width: "16px"}}/>
                                             </div>
                                             <div className="pe-1">
-                                              <a href={`/address/${varFields.dynamic_field_1.value}?cluster=${cluster}`}>{shortenAddress(varFields.dynamic_field_1.from)}</a>
+                                              <Link to={`/address/${varFields.dynamic_field_1.value}?cluster=${cluster}`}>{shortenAddress(varFields.dynamic_field_1.from)}</Link>
                                             </div>
                                         </div>):(
                                           <div className="d-flex">
@@ -541,7 +543,7 @@ const TransactionStructure = ({ styles, id, data, address, cluster }) => {
                                                 </div>
                                             </div>
                                             <div className={styles.small_pad}>
-                                              <a href={`/address/${varFields.dynamic_field_1.value}?cluster=${cluster}`}>{(name!= null || name !== "")?(name):(shortenAddress(varFields.dynamic_field_1.value) ?? "")}</a>
+                                              <Link to={`/address/${varFields.dynamic_field_1.value}?cluster=${cluster}`}>{(name!= null || name !== "")?(name):(shortenAddress(varFields.dynamic_field_1.value) ?? "")}</Link>
                                             </div>
                                             <div>
                                                 <div className={styles.copy_button}>

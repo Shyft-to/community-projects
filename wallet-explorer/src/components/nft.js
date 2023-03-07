@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import styles from "../resources/css/Nft.module.css";
 
@@ -27,15 +28,14 @@ const NFTs = ({ collection, address, network }) => {
     <div className="pt-4 px-2 pb-5">
       <div className={styles.nft_container_outer}>
         <div className={styles.nft_container}>
-          <a
-            href={`/collections/${address}?cluster=${network}`}
-            target="_blank"
-            rel="noreferrer"
+          <Link
+            to={`/collections/${address}?cluster=${network}`}
           >
+            
             <div className={styles.image_container}>
               <img src={image} alt="nft" />
             </div>
-          </a>
+          </Link>
 
           <div className={styles.name_section}>
             <div className="row">

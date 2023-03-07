@@ -6,6 +6,7 @@ import bluePlanet from "./resources/images/blue_planet.png";
 import redPlanet from "./resources/images/red-planet.png";
 import spottedPlanetBottom from "./resources/images/spotted-planet-bottom.png";
 import rocket from "./resources/images/rocket.png";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [wallet,setWallet] = useState('');
@@ -64,9 +65,9 @@ const Home = () => {
                         </div>
                       </div>
                       <div className="pt-5 mt-1">
-                        <a href={`/address/${wallet}?cluster=${network}`} className={styles.btn_solid_grad}>
+                        <Link to={`/address/${wallet}?cluster=${network}`} className={styles.btn_solid_grad}>
                           Continue
-                        </a>
+                        </Link>
                       </div>
                     </div>
                     

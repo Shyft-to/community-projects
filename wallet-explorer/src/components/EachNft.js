@@ -1,4 +1,5 @@
 import { useState,useEffect } from "react";
+import { Link } from "react-router-dom";
 import styles from "../resources/css/CollectionRow.module.css";
 
 import i_icon from "../resources/images/i_icon.svg";
@@ -32,11 +33,12 @@ const EachNft = ({nft,cluster}) => {
     return ( 
         <div className=" py-4 pe-4">
               <div className={styles.nft_container}>
-                <a href={`/address/${nft.mint}?cluster=${cluster}`}>
+                
+                <Link to={`/address/${nft.mint}?cluster=${cluster}`}>
                   <div className={styles.image_container}>
                     <img src={image} alt="nft" />
                   </div>
-                </a>
+                </Link>
                 
                 <div className={styles.name_section}>
                   <div className="row">
