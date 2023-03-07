@@ -19,6 +19,7 @@ const AllTokens = ({tokens,address,network}) => {
                     margin={40} 
                     nav={true}
                     // dotClass={TestStyles.grad_dot}
+                    navClass={[styles.nav_class_color_left,styles.nav_class_color_right]}
                     responsive={{
                         0:{
                             items:1
@@ -30,7 +31,7 @@ const AllTokens = ({tokens,address,network}) => {
                             items:7
                         }
                     }}
-                    dots
+                    dots={false}
                     autoplay
                 >
                   

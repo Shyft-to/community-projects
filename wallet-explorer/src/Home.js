@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import {motion} from "framer-motion";
+
 import styles from "./resources/css/Home.module.css";
 
 import spottedPlanetTop from "./resources/images/spotted-planet-top.png";
@@ -6,7 +9,6 @@ import bluePlanet from "./resources/images/blue_planet.png";
 import redPlanet from "./resources/images/red-planet.png";
 import spottedPlanetBottom from "./resources/images/spotted-planet-bottom.png";
 import rocket from "./resources/images/rocket.png";
-import { Link } from "react-router-dom";
 
 const Home = () => {
   const [wallet,setWallet] = useState('');

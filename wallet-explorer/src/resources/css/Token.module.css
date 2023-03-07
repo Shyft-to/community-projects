@@ -56,3 +56,34 @@
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+
+.nav_class_color_left
+{
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(41.93% 45% at 48.75% 48.75%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1855) 44.44%, rgba(255, 255, 255, 0.35) 100%);
+    position: absolute;
+    left: -20px;
+    top: 30%;
+    border-radius: 20px;
+    font-size: 50px;
+    line-height: 25px;
+    color: #FDF41B;
+    padding: 0px 0px 20px;
+    border: none;
+}
+.nav_class_color_right
+{
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(41.93% 45% at 48.75% 48.75%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1855) 44.44%, rgba(255, 255, 255, 0.35) 100%);
+    position: absolute;
+    right: -20px;
+    top: 30%;
+    border-radius: 20px;
+    font-size: 50px;
+    line-height: 25px;
+    color: #FDF41B;
+    padding: 0px 0px 20px;
+    border: none;
+}

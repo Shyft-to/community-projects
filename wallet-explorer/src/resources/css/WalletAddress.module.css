@@ -13,7 +13,7 @@
   min-height: 100vh;
   padding: 40px 0px;
 }
-.background_super
+/* .background_super
 {
   position: relative;
   min-height: 100vh;
@@ -22,6 +22,18 @@
   background-repeat: no-repeat,no-repeat;
   background-position: 0% 170%,100% 100%;
   background-attachment: fixed,fixed;
+  padding: 40px 0px;
+
+} */
+.background_super
+{
+  position: relative;
+  min-height: 100vh;
+  background: radial-gradient(#2a0855 8%, #0a0215 75%);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
+  background-attachment: fixed;
   padding: 40px 0px;
 
 }
