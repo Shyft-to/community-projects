@@ -5,7 +5,7 @@ const Token = ({token,address,network}) => {
     return ( 
         <div>
             <div className={styles.token_container}>
-                <a href={`/token/${address}?cluster=${network}`} target="_blank" rel="noreferrer">
+                <a href={`/token/${token.address}?cluster=${network}`} target="_blank" rel="noreferrer">
                     <div className={styles.token_image}>
                         <img src={token.info.image ?? TokenImage} alt="Token" />
                     </div>

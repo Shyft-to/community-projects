@@ -169,7 +169,7 @@
 {
     position: relative;
     min-height: 100px;
-    background-color: #a254b033;
+    background-color: #9D56F933;
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border-radius: 14px;
@@ -194,6 +194,12 @@
     padding: 10px 0px;
     color: #FDF41B;
 }
+.each_txn_2 .interacted_with
+{
+    font: 500 16px/20px "Montserrat",sans-serif;
+    padding: 4px 0px;
+    color: #fff;
+}
 .each_txn_2 .dynamic_field
 {
     font: 400 14px/14px "Montserrat",sans-serif;
@@ -201,12 +207,22 @@
     padding: 4px 0px;
     color: #FFFA;
 }
+.each_txn_2 .dynamic_field a
+{
+    text-decoration: none;
+    color: inherit;
+}
 .each_txn_2 .dynamic_field_2
 {
     font: 400 16px/16px "Montserrat",sans-serif;
     letter-spacing: 1px;
     padding: 14px 0px;
     color: #FFFFFF;
+}
+.each_txn_2 .dynamic_field_2 a
+{
+    text-decoration: none;
+    color: inherit;
 }
 .each_txn_2 .field_1
 {

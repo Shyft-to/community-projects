@@ -6,6 +6,7 @@ import solScan from "../../resources/images/txnImages/sol_scan_icon.svg";
 
 import placeholder from "../../resources/images/txnImages/unknown.png";
 import { getNFTData,getTokenData } from "../../utils/getAllData";
+import { shortenAddress,getRelativetime } from "../../utils/formatter";
 
 import SOL_TRANSFER from "../../resources/images/txnImages/sol_transfer.png";
 
@@ -74,12 +75,19 @@ const TransactionStructure = ({ styles, id, data, address, cluster }) => {
   }, [relField]);
 
   const getData = async (cluster, address) => {
+    try{
     const res = await getNFTData(cluster, address);
     if (res.success === true) {
       if (res.details.image_uri)
         setImage(res.details.cached_image_uri ?? res.details.image_uri);
       setName(res.details.name);
     }
+  }
+  catch(error)
+  {
+    setName("");
+  }
+    
   };
 
   useEffect(() => {
@@ -87,11 +95,20 @@ const TransactionStructure = ({ styles, id, data, address, cluster }) => {
   }, [currencyField]);
 
   const getCurrency = async (cluster, address) => {
-    const res = await getTokenData(cluster, address);
-    if (res.success === true) {
-      setCurrency(res.details.symbol ?? res.details.name ?? "");
+    try {
+      const res = await getTokenData(cluster, address);
+      if (res.success === true) {
+        setCurrency(res.details.symbol ?? res.details.name ?? "");
+      }
+    } catch (error) {
+      setCurrency("");
     }
+    
   };
+
+  const copyValue = (value) => {
+    navigator.clipboard.writeText(value);
+  }
 
   const categoriseTxn = () => {
     var type_field = {};
@@ -219,7 +236,7 @@ const TransactionStructure = ({ styles, id, data, address, cluster }) => {
       } else if (data.type === "NFT_BURN") {
         type_field = {
             name: "Type",
-            value: "NFT Mint"
+            value: "NFT Burn"
         }
         dynamic_field_1 = {
             name: "To",
@@ -236,11 +253,12 @@ const TransactionStructure = ({ styles, id, data, address, cluster }) => {
           symbol:"-"
         };
         setRelField(data.actions[0].info.nft_address ?? "");
+        console.log(data.actions[0].info.nft_address);
         setTypeImage(NFT_BURN);
       } else if (data.type === "TOKEN_BURN") {
         type_field = {
             name: "Type",
-            value: "NFT Burn"
+            value: "TOKEN Burn"
         }
         dynamic_field_1 = {
             name: "To",
@@ -402,8 +420,8 @@ const TransactionStructure = ({ styles, id, data, address, cluster }) => {
       else
       {
         type_field = {
-            name: "Type",
-            value: "Unknown"
+            name: "nocategory",
+            value: data.type
         }
         dynamic_field_1 = {
             name: "To",
@@ -428,7 +446,7 @@ const TransactionStructure = ({ styles, id, data, address, cluster }) => {
       }
       time_field = { 
         name: "Time",
-        value: data.timestamp ?? ""
+        value: (data.timestamp !== "")?getRelativetime(data.timestamp):""
       
       }
       setVarFields({
@@ -450,7 +468,7 @@ const TransactionStructure = ({ styles, id, data, address, cluster }) => {
     <div>
         <div className={styles.each_txn_2}>
             <div className={styles.toggle_button}>
-                <a href="">
+                <a href={(cluster === "mainnet-beta")?`https://solscan.io/tx/${data.signatures[0]}`:`https://solscan.io/tx/${data.signatures[0]}?cluster=${cluster}`} target="_blank">
                     <div className={styles.sol_icon}>
                         <img src={solScan} alt="View on SolScan" />
                     </div>
@@ -467,11 +485,16 @@ const TransactionStructure = ({ styles, id, data, address, cluster }) => {
                     <div className={styles.fields_container}>
                         <div className="row">
                             <div className="col-12 col-lg-12">
-                                <div className={styles.txn_name}>
+                                {(varFields.type_field.name === "nocategory")?<div className={styles.txn_name}>Interacted With</div>:<div className={styles.txn_name}>
                                     {varFields.type_field.value ?? "--"}
-                                </div>
+                                </div>}
                             </div>
-                            <div className="col-12 col-lg-12">
+                            {
+                              (varFields.type_field.name === "nocategory") && <div className="col-12 col-lg-12">
+                                  <div className={styles.interacted_with}>{varFields.type_field.value ?? "--"}</div>
+                              </div>
+                            }
+                            {(varFields.type_field.name != "nocategory") && <div className="col-12 col-lg-12">
                                 <div className={styles.dynamic_field}>
                                     {
                                         (varFields.dynamic_field_1.arrow)?
@@ -483,7 +506,7 @@ const TransactionStructure = ({ styles, id, data, address, cluster }) => {
                                                     <img src={arrow} alt="" style={{width: "16px"}}/>
                                                 </div>
                                                 <div className="pe-1">
-                                                    {varFields.dynamic_field_1.to}
+                                                  <a href={`/address/${varFields.dynamic_field_1.value}?cluster=${cluster}`}>{shortenAddress(varFields.dynamic_field_1.to)}</a>
                                                 </div>
                                             </div>):
                                             ((address === varFields.dynamic_field_1.to)?(<div className="d-flex">
@@ -494,42 +517,47 @@ const TransactionStructure = ({ styles, id, data, address, cluster }) => {
                                                 <img src={arrow} alt="" style={{width: "16px"}}/>
                                             </div>
                                             <div className="pe-1">
-                                                {varFields.dynamic_field_1.from}
+                                              <a href={`/address/${varFields.dynamic_field_1.value}?cluster=${cluster}`}>{shortenAddress(varFields.dynamic_field_1.from)}</a>
                                             </div>
                                         </div>):(
                                           <div className="d-flex">
                                               <div className="pe-1">
-                                                From: {varFields.dynamic_field_1.from ?? ""}
+                                                From: {shortenAddress(varFields.dynamic_field_1.from) ?? ""}
                                               </div>
                                               <div className="px-2">
                                                   <img src={arrow} alt="" style={{width: "16px"}}/>
                                               </div>
                                               <div className="pe-1">
-                                                To: {varFields.dynamic_field_1.to ?? ""}
+                                                To: {shortenAddress(varFields.dynamic_field_1.to) ?? ""}
                                               </div>
                                           </div>
                                         ))
                                         :
-                                        <div className="d-flex flex-wrap justify-content-start">
-                                          <div className="pe-2">
-                                              <div className={styles.token_image_sm}>
-                                                <img src={image} alt="token image" />
-                                              </div>
-                                          </div>
-                                          <div className={styles.small_pad}>
-                                            {varFields.dynamic_field_1.value}
-                                          </div>
-                                          <div>
-                                              <div className={styles.copy_button}>
-                                                <button>
-                                                  <img src={copy_icon} alt="Copy" />
-                                                </button>
-                                              </div>
-                                          </div>
+                                        <div>
+                                          {(varFields.dynamic_field_1.value !== "--")?<div className="d-flex flex-wrap justify-content-start">
+                                            <div className="pe-2">
+                                                <div className={styles.token_image_sm}>
+                                                  <img src={image} alt="token image" />
+                                                </div>
+                                            </div>
+                                            <div className={styles.small_pad}>
+                                              <a href={`/address/${varFields.dynamic_field_1.value}?cluster=${cluster}`}>{(name!= null || name !== "")?(name):(shortenAddress(varFields.dynamic_field_1.value) ?? "")}</a>
+                                            </div>
+                                            <div>
+                                                <div className={styles.copy_button}>
+                                                  <button onClick={() => copyValue(varFields.dynamic_field_1.value)}>
+                                                    <img src={copy_icon} alt="Copy" />
+                                                  </button>
+                                                </div>
+                                            </div>
+                                          </div>:<div>
+                                              {varFields.dynamic_field_1.value}
+                                            </div>}
                                         </div>
+                                        
                                     }
                                 </div>
-                            </div>
+                            </div>}
                         </div>
                         <div className="row">
                             <div className="col-6 col-lg-4">

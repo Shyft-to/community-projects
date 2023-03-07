@@ -1,6 +1,7 @@
 import { useState,useEffect } from "react";
 import {useSearchParams,useParams,useNavigate} from "react-router-dom";
 import { categorizeAddress } from "./utils/getAllData";
+import { shortenAddress } from "./utils/formatter";
 
 import styles from "./resources/css/WalletAddress.module.css";
 
@@ -10,22 +11,25 @@ import HeaderComponent from "./components/HeaderComponent";
 import Transactions from "./components/TransactionComponent/Transactions";
 import NftExpanded from "./components/NftExpanded";
 import PlanetLoader from "./components/loaders/loaders";
-import TransactionsToken from "./components/TransactionComponent/TransactionsToken";
+// import TransactionsToken from "./components/TransactionComponent/TransactionsToken";
 
 const AddressComponent = () => {
     let [searchParams, setSearchParams] = useSearchParams();
     const { addr } = useParams();
     const cluster = searchParams.get("cluster");
     const navigate = useNavigate();
-
+    
     
     const [isLoading,setLoading] = useState(true);
     const [data,setData] = useState(null);
     const [contentType,setType] = useState('');
     const [errOccured,setErrOccured] = useState(false);
+    // const [currentCluster,setCurrentCuster] = useState('mainnet-beta');
 
     useEffect(() => {
         setLoading(true);
+        // setCurrentCuster(cluster);
+        // console.log(cluster);
         getClassifiedData();
     }, [cluster]);
 
@@ -76,7 +80,7 @@ const AddressComponent = () => {
                         <div className="row">
                             <div className="col-12 col-lg-7">
                                 <div className={styles.main_heading}>
-                                    <span>Space Overview</span> ({addr})
+                                    <span>Space Overview</span> ({shortenAddress(addr)})
                                 </div>
                             </div>
                             <div className="col-12 col-lg-4 text-end">
@@ -85,8 +89,8 @@ const AddressComponent = () => {
                                 </div>
                             </div>
                             <div className="col-12 col-lg-1 text-end">
-                                <div className="select_container" value={cluster} onChange={(e) => changeCluster(e.target.value)}>
-                                    <select>
+                                <div className="select_container">
+                                    <select value={cluster} onChange={(e) => changeCluster(e.target.value)}>
                                         <option value="mainnet-beta">Mainnet</option>
                                         <option value="devnet">Devnet</option>
                                         <option value="testnet">Testnet</option>

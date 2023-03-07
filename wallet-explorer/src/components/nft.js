@@ -17,7 +17,10 @@ const NFTs = ({ collection, address, network }) => {
   };
 
   useEffect(() => {
-    if (collection.address) getData(network, collection.address);
+    if (collection.address) 
+      getData(network, collection.address);
+    else
+      getData(network, collection.nfts[0].mint);
   }, []);
 
   return (
