@@ -4,6 +4,7 @@ import { categorizeAddress } from "./utils/getAllData";
 import { shortenAddress } from "./utils/formatter";
 
 import styles from "./resources/css/WalletAddress.module.css";
+import styles2 from "./resources/css/Transactions.module.css";
 
 import AllNfts from "./components/AllNfts";
 import AllTokens from "./components/AllTokens";
@@ -11,6 +12,7 @@ import HeaderComponent from "./components/HeaderComponent";
 import Transactions from "./components/TransactionComponent/Transactions";
 import NftExpanded from "./components/NftExpanded";
 import PlanetLoader from "./components/loaders/loaders";
+import TransactionStructureToken from "./components/TransactionComponent/TransactionsStructureToken";
 // import TransactionsToken from "./components/TransactionComponent/TransactionsToken";
 
 const AddressComponent = () => {
@@ -122,6 +124,7 @@ const AddressComponent = () => {
                     </div>
                 }
                 <div className="container pt-4">
+
                     <div className="pt-5">
                         <Transactions address={addr} cluster={cluster} />
                     </div>

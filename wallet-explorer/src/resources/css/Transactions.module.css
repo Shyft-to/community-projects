@@ -264,3 +264,161 @@
 {
     padding-top: 2px;
 }
+
+.each_txn_3
+{
+    position: relative;
+    min-height: 100px;
+    background-color: #9D56F933;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-radius: 14px;
+    padding: 16px 24px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+.each_txn_3 .toggle_button
+{
+    position: absolute;
+    right: 20px;
+}
+
+.each_txn_3 .toggle_button .sol_icon img
+{
+    width: 20px;
+    height: 20px;
+}
+.each_txn_3 .txn_name
+{
+    font: 500 18px/24px "Montserrat",sans-serif;
+    padding: 10px 20px 10px 0px;
+    color: #FDF41B;
+}
+.each_txn_3 .txn_subname
+{
+    font: 300 12px/28px "Montserrat",sans-serif;
+    padding: 10px 20px 10px 0px;
+    color: #FFFFFF99;
+}
+.each_txn_3 .interacted_with
+{
+    font: 500 16px/20px "Montserrat",sans-serif;
+    padding: 4px 0px;
+    color: #fff;
+}
+.each_txn_3 .dynamic_field
+{
+    font: 400 14px/14px "Montserrat",sans-serif;
+    letter-spacing: 1px;
+    padding: 4px 0px;
+    color: #FFFA;
+}
+.each_txn_3 a
+{
+    text-decoration: none;
+    color: inherit;
+}
+.each_txn_3 a:hover
+{
+    text-decoration: none;
+    color: #0AEEFF;
+}
+.each_txn_3 .dynamic_field_2
+{
+    font: 400 16px/16px "Montserrat",sans-serif;
+    letter-spacing: 1px;
+    padding: 14px 0px;
+    color: #FFFFFF;
+}
+.each_txn_3 .dynamic_field_2 a
+{
+    text-decoration: none;
+    color: inherit;
+}
+.each_txn_3 .field_1
+{
+    font: 400 16px/16px "Montserrat",sans-serif;
+    padding: 14px 0px;
+    color: #FFF;
+}
+.each_txn_3 .plus_color
+{
+    color: #FDF41B !important; 
+}
+.each_txn_3 .minus_color
+{
+    color: #FF5454 !important; 
+}
+
+.each_txn_3 .token_image_sm img
+{
+    width: 18px;
+    height: 18px;
+    border-radius: 10px;
+    object-fit: fill;
+}
+.each_txn_3 button
+{
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    width: 20px;
+    height: 20px;
+}
+.each_txn_3 button img
+{
+    
+    width: 18px;
+    height: 18px;
+}
+.each_txn_3 .small_pad
+{
+    padding-top: 2px;
+}
+
+.sub_txns .thumb_container
+{
+    padding-right: 8px;
+}
+.sub_txns .thumb_container img
+{
+    width: 28px;
+    height: 28px;
+    border-radius: 14px;
+    object-fit: fill;
+
+}
+.sub_txns .txn_details
+{
+    padding: 4px 8px;
+    width: 100%;
+    max-width: 500px;
+}
+.sub_txns .txn_details .subtxn_token
+{
+    font: 400 15px/24px "Montserrat",sans-serif;
+    color: #FFFFFFAA;
+}
+.sub_txns .field_sub_1
+{
+    font: 400 15px/26px "Montserrat",sans-serif;
+    color: #FFF;
+}
+.sub_txns .plus_color
+{
+    color: #FDF41B !important; 
+}
+.sub_txns .minus_color
+{
+    color: #FF5454 !important; 
+}
+.sub_txns a
+{
+    text-decoration: none;
+    color: inherit;
+}
+.sub_txns a:hover
+{
+    text-decoration: none;
+    color: #0AEEFF;
+}

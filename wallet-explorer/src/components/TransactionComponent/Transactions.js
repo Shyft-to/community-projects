@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import styles from "../../resources/css/Transactions.module.css";
 import TokenTransfer from "./TokenTransfer";
-import TransactionStructure from "./TransactionStructure";
+import TransactionStructureToken from "./TransactionsStructureToken";
 
 const endpoint = process.env.REACT_APP_API_EP ?? "";
 const xKey = process.env.REACT_APP_API_KEY ?? "";
@@ -117,7 +117,7 @@ const Transactions = ({ address, cluster }) => {
          {
             (txns.length>0)?
                 (
-                    txns.map((each_txn) => <TransactionStructure styles={styles} id={each_txn.signatures[0]} data={each_txn} address={address} cluster={cluster} />)
+                    txns.map((each_txn) => <TransactionStructureToken styles={styles} id={each_txn.signatures[0]} data={each_txn} address={address} cluster={cluster} />)
                 ):""
             
          }
