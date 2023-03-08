@@ -12,6 +12,7 @@ import Transactions from "./components/TransactionComponent/Transactions";
 import NftExpanded from "./components/NftExpanded";
 import PlanetLoader from "./components/loaders/loaders";
 import copyIcon from "./resources/images/txnImages/copy_icon.svg"
+import SearchComponent from "./components/SearchComponent";
 // import TransactionsToken from "./components/TransactionComponent/TransactionsToken";
 
 const AddressComponent = () => {
@@ -80,15 +81,18 @@ const AddressComponent = () => {
         <div className={styles.background_super}>
             {isLoading && <PlanetLoader />}
             {!isLoading && <div>
+                <div className="container py-2">
+                    <SearchComponent />
+                </div>
                 {(contentType === "WALLET") && <div className="container pt-4">
                     <div className={styles.heading_section}>
                         <div className="row">
                             <div className="col-12 col-lg-7">
                                 <div className={styles.main_heading}>
                                     <div className="d-flex">
-                                        <div>({shortenAddress(addr)})</div>
+                                        <div className="pe-2">({shortenAddress(addr)})</div>
                                         <div>
-                                            <button onClick={() => copyValue(addr)}>
+                                            <button className={styles.copy_button} onClick={() => copyValue(addr)}>
                                                 <img src={copyIcon} alt="Copy Image" />
                                             </button>
                                         </div>

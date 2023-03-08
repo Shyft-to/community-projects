@@ -1,0 +1,73 @@
+.form_container
+{
+  padding-top: 20px;
+}
+.form_container label
+{
+  font: 500 16px/24px "Montserrat", sans-serif;
+  color: #fff;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+.form_field_outer
+{
+  position: relative;
+  padding: 2px;
+  border-radius: 25px;
+  /* background: linear-gradient(90deg,#E0499B 12%, #FDF41B 70%); */
+  background-color: transparent;
+
+}
+.form_field_outer .form_field_inner
+{
+  background-color: transparent;
+  border-radius: 25px;
+  padding: 8px 24px 12px;
+  border: 1px solid #fff5;
+}
+.form_field_outer .form_field_inner input
+{
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  width: 100%;
+  color: #fff;
+  font: 500 16px/18px "Montserrat", sans-serif;
+  letter-spacing: 1px;
+}
+.form_field_outer .form_field_inner input:focus
+{
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+.form_field_outer .form_field_inner select
+{
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  color: #fff;
+  font: 500 16px/18px "Montserrat", sans-serif;
+  letter-spacing: 1px;
+}
+.form_field_outer .form_field_inner select:focus
+{
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+.form_field_outer .form_field_inner option
+{
+  background-color: #2a0855;
+}
+.search_icon
+{
+    text-decoration: none;
+    color: #555;
+    transition: all o.2s ease-in;
+}
+.search_icon:hover
+{
+    color: aqua;
+}

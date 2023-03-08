@@ -59,3 +59,14 @@
   font: 400 40px/48px "Odibee Sans", sans-serif;
   color: #fff;
 }
+.copy_button
+{
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+.copy_button img
+{
+  width: 24px;
+  margin-top: -2px;
+}

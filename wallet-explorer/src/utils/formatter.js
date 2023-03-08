@@ -17,3 +17,8 @@ export function getRelativetime(ISOString)
 {
     return moment(ISOString).fromNow();
 }
+
+export function getFullTime(ISOString)
+{
+    return (moment(ISOString).format('lll') + " (UTC)");
+}

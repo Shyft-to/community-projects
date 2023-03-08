@@ -12,7 +12,7 @@ const AllNfts = ({collections,address,network}) => {
                 <div className="d-flex flex-wrap">
                     <div className="pe-2">
                     <div className={styles.main_heading}>
-                        NFT Collections <span> ({collections.length})</span>
+                        NFT Collections  ({collections.length})
                     </div>
                     </div>
                     <div className="pe-2">

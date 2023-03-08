@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import 'balloon-css';
 
 import icon from "../../resources/images/txnImages/unknown.png";
 import arrow from "../../resources/images/txnImages/arrow.svg";
@@ -128,7 +129,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                     type: "BURN",
                     from: data.info.wallet ?? "--",
                     to: "--",
-                    token: "TOKEN",
+                    token: "NFT",
                     action: "--",
                     value: data.info.amount ?? "--",
                     symbol: ""
@@ -311,7 +312,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                 return (
                                     <>
                                         {(wallet === varFields.from) && <div className="row pt-1">
-                                            <div className="col-8">
+                                            <div className="col-6">
                                                 <div className="d-flex">
                                                     <div className="pe-2">
                                                         <div className={styles.field_sub_1}>
@@ -323,21 +324,21 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                     </div>
                                                     <div className="pe-1">
                                                         <div className={styles.field_sub_1}>
-                                                            <Link to={`/address/${varFields.to}?cluster=${cluster}`}>{shortenAddress(varFields.to)}</Link>
+                                                            <Link to={`/address/${varFields.to}?cluster=${cluster}`} aria-label={varFields.to} data-balloon-pos="up">{shortenAddress(varFields.to)}</Link>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="col-4">
+                                            <div className="col-6">
                                                 <div className={`text-end ${styles.field_sub_1}`}>
                                                     <div className={styles.minus_color}>
-                                                        - {varFields.value}
+                                                        - {varFields.value} {(varFields.token === "TOKEN")?"SOL":""}
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>}
                                         {(wallet === varFields.to) && <div className="row pt-1">
-                                            <div className="col-8">
+                                            <div className="col-6">
                                                 <div className="d-flex">
                                                     <div className="pe-2">
                                                         <div className={styles.field_sub_1}>
@@ -349,22 +350,22 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                     </div>
                                                     <div className="pe-1">
                                                         <div className={styles.field_sub_1}>
-                                                            <Link to={`/address/${varFields.from}?cluster=${cluster}`}>{shortenAddress(varFields.from)}</Link>
+                                                            <Link to={`/address/${varFields.from}?cluster=${cluster}`} aria-label={varFields.from} data-balloon-pos="up">{shortenAddress(varFields.from)}</Link>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="col-4">
+                                            <div className="col-6">
                                                 <div className={`text-end ${styles.field_sub_1}`}>
                                                     <div className={styles.plus_color}>
-                                                        + {varFields.value}
+                                                        + {varFields.value} {(varFields.token === "TOKEN")?"SOL":""}
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>}
                                         {(wallet !== varFields.to && wallet !== varFields.from) && <>
                                             <div className="row pt-1">
-                                                <div className="col-8">
+                                                <div className="col-6">
                                                     <div className="d-flex">
                                                         <div className="pe-2">
                                                             <div className={styles.field_sub_1}>
@@ -376,12 +377,12 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                         </div>
                                                         <div className="pe-2">
                                                             <div className={styles.field_sub_1}>
-                                                                <Link to={`/address/${varFields.from}?cluster=${cluster}`}>{varFields.from}</Link>
+                                                                <Link to={`/address/${varFields.from}?cluster=${cluster}`} aria-label={varFields.from} data-balloon-pos="up">{varFields.from}</Link>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="col-4">
+                                                <div className="col-6">
                                                     <div className={`text-end ${styles.field_sub_1}`}>
                                                         <div className={styles.plus}>
 
@@ -390,7 +391,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                 </div>
                                             </div>
                                             <div className="row pt-1">
-                                                <div className="col-8">
+                                                <div className="col-6">
                                                     <div className="d-flex">
                                                         <div className="pe-1">
                                                             <div className={styles.field_sub_1}>
@@ -402,14 +403,14 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                         </div>
                                                         <div className="pe-1">
                                                             <div className={styles.field_sub_1}>
-                                                                <Link to={`/address/${varFields.to}?cluster=${cluster}`}>{shortenAddress(varFields.to)}</Link>
+                                                                <Link to={`/address/${varFields.to}?cluster=${cluster}`} aria-label={varFields.to} data-balloon-pos="up">{shortenAddress(varFields.to)}</Link>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="col-4">
+                                                <div className="col-6">
                                                     <div className={`text-end ${styles.field_sub_1}`}>
-                                                        {varFields.value}
+                                                        {varFields.value} {(varFields.token === "TOKEN")?"SOL":""}
                                                     </div>
                                                 </div>
                                             </div>
@@ -422,7 +423,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                             else if (varFields.type === "MINT") {
                                 return (
                                     <div className="row pt-1">
-                                        <div className="col-8">
+                                        <div className="col-6">
                                             <div className="d-flex">
                                                 <div className="pe-2">
                                                     <div className={styles.field_sub_1}>
@@ -434,15 +435,15 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                 </div>
                                                 <div className="pe-1">
                                                     <div className={styles.field_sub_1}>
-                                                        <Link to={`/address/${varFields.to}?cluster=${cluster}`}>{shortenAddress(varFields.to)}</Link>
+                                                        <Link to={`/address/${varFields.to}?cluster=${cluster}`} aria-label={varFields.to} data-balloon-pos="up">{shortenAddress(varFields.to)}</Link>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-4">
+                                        <div className="col-6">
                                             <div className={`text-end ${styles.field_sub_1}`}>
                                                 <div className={styles.plus_color}>
-                                                    + {varFields.value}
+                                                    + {varFields.value} {(varFields.token === "TOKEN")?"SOL":""}
                                                 </div>
                                             </div>
                                         </div>
@@ -452,7 +453,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                             else if (varFields.type === "BURN") {
                                 return (
                                     <div className="row pt-1">
-                                        <div className="col-8">
+                                        <div className="col-6">
                                             <div className="d-flex">
                                                 <div className="pe-2">
                                                     <div className={styles.field_sub_1}>
@@ -469,10 +470,10 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-4">
+                                        <div className="col-6">
                                             <div className={`text-end ${styles.field_sub_1}`}>
                                                 <div className={styles.minus_color}>
-                                                    - {varFields.value}
+                                                    - {varFields.value} {(varFields.token === "TOKEN")?"SOL":""}
                                                 </div>
                                             </div>
                                         </div>
@@ -482,7 +483,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                             else if (varFields.type === "CREATE") {
                                 return (
                                     <div className="row pt-1">
-                                        <div className="col-8">
+                                        <div className="col-6">
                                             <div className="d-flex">
                                                 <div className="pe-2">
                                                     <div className={styles.field_sub_1}>
@@ -499,7 +500,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-4">
+                                        <div className="col-6">
                                             <div className={`text-end ${styles.field_sub_1}`}>
                                                 <div className={styles.plus_color}>
                                                     + 1
@@ -512,7 +513,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                             else if (varFields.type === "NFT_LIST") {
                                 return (
                                     <div className="row pt-1">
-                                        <div className="col-8">
+                                        <div className="col-6">
                                             <div className="d-flex justify-content-start">
                                                 <div className="pe-2">
                                                     <div className={styles.field_sub_1}>
@@ -524,12 +525,12 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                 </div>
                                                 <div className="pe-1">
                                                     <div className={styles.field_sub_1}>
-                                                        <Link to={`/address/${varFields.from}?cluster=${cluster}`}>{shortenAddress(varFields.from)}</Link>
+                                                        <Link to={`/address/${varFields.from}?cluster=${cluster}`} aria-label={varFields.from} data-balloon-pos="up">{shortenAddress(varFields.from)}</Link>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-4">
+                                        <div className="col-6">
                                             <div className={`text-end ${styles.field_sub_1}`}>
                                                 <div>
                                                     {varFields.value} {currency}
@@ -543,7 +544,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                 return (
                                     <>
                                         <div className="row pt-1">
-                                            <div className="col-8">
+                                            <div className="col-6">
                                                 <div className="d-flex">
                                                     <div className="pe-2">
                                                         <div className={styles.field_sub_1}>
@@ -555,12 +556,12 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                     </div>
                                                     <div className="pe-1">
                                                         <div className={styles.field_sub_1}>
-                                                            <Link to={`/address/${varFields.from}?cluster=${cluster}`}>{shortenAddress(varFields.from)}</Link>
+                                                            <Link to={`/address/${varFields.from}?cluster=${cluster}`} aria-label={varFields.from} data-balloon-pos="up">{shortenAddress(varFields.from)}</Link>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="col-4">
+                                            <div className="col-6">
                                                 <div className={`text-end ${styles.field_sub_1}`}>
                                                     <div>
                                                         
@@ -569,7 +570,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                             </div>
                                         </div>
                                         <div className="row pt-1">
-                                            <div className="col-8">
+                                            <div className="col-6">
                                                 <div className="d-flex">
                                                     <div className="pe-2">
                                                         <div className={styles.field_sub_1}>
@@ -581,12 +582,12 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                     </div>
                                                     <div className="pe-1">
                                                         <div className={styles.field_sub_1}>
-                                                            <Link to={`/address/${varFields.to}?cluster=${cluster}`}>{shortenAddress(varFields.to)}</Link>
+                                                            <Link to={`/address/${varFields.to}?cluster=${cluster}`} aria-label={varFields.to} data-balloon-pos="up">{shortenAddress(varFields.to)}</Link>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="col-4">
+                                            <div className="col-6">
                                                 <div className={`text-end ${styles.field_sub_1}`}>
                                                     {varFields.value} {currency}
                                                 </div>
@@ -598,7 +599,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                             else if (varFields.type === "NFT_LIST_CANCEL") {
                                 return (
                                     <div className="row pt-1">
-                                        <div className="col-8">
+                                        <div className="col-6">
                                             <div className="d-flex">
                                                 <div className="pe-2">
                                                     <div className={styles.field_sub_1}>
@@ -615,7 +616,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-4">
+                                        <div className="col-6">
                                             <div className={`text-end ${styles.field_sub_1}`}>
                                                 <div className={styles.plus}>
 
@@ -628,7 +629,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                             else if (varFields.type === "NFT_BID") {
                                 return (
                                     <div className="row pt-1">
-                                        <div className="col-8">
+                                        <div className="col-6">
                                             <div className="d-flex">
                                                 <div className="pe-2">
                                                     <div className={styles.field_sub_1}>
@@ -640,12 +641,12 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                 </div>
                                                 <div className="pe-1">
                                                     <div className={styles.field_sub_1}>
-                                                        <Link to={`/address/${varFields.from}?cluster=${cluster}`}>{shortenAddress(varFields.from)}</Link>
+                                                        <Link to={`/address/${varFields.from}?cluster=${cluster}`} aria-label={varFields.from} data-balloon-pos="up">{shortenAddress(varFields.from)}</Link>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-4">
+                                        <div className="col-6">
                                             <div className={`text-end ${styles.field_sub_1}`}>
                                                 <div>
                                                     {varFields.value} {currency}
@@ -658,7 +659,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                             else if (varFields.type === "MARKETPLACE_WITHDRAW") {
                                 return (
                                     <div className="row pt-1">
-                                        <div className="col-8">
+                                        <div className="col-6">
                                             <div className="d-flex">
                                                 <div className="pe-2">
                                                     <div className={styles.field_sub_1}>
@@ -670,12 +671,12 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                 </div>
                                                 <div className="pe-1">
                                                     <div className={styles.field_sub_1}>
-                                                        <Link to={`/address/${varFields.to}?cluster=${cluster}`}>{shortenAddress(varFields.to)}</Link>
+                                                        <Link to={`/address/${varFields.to}?cluster=${cluster}`} aria-label={varFields.to} data-balloon-pos="up">{shortenAddress(varFields.to)}</Link>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-4">
+                                        <div className="col-6">
                                             <div className={`text-end ${styles.field_sub_1}`}>
                                                 <div>
                                                     {varFields.value} {currency}

@@ -3,7 +3,6 @@
     font: 500 22px/24px "Montserrat",sans-serif;
     color: #fff;
     padding-bottom: 12px;
-    letter-spacing: 1px;
 }
 .nft_all_section .main_heading span
 {
@@ -14,12 +13,12 @@
 .view_all_text
 {
     text-align: end;
-    font: 700 14px/18px "Montserrat", sans-serif !important;
-    background: -webkit-linear-gradient(280deg, #FF008A 80%, #F3DD59 95%);
+    font: 700 16px/26px "Montserrat", sans-serif !important;
+    background: -webkit-linear-gradient(280deg, #FF008A 2%, #F3DD59 92%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    letter-spacing: 1px;
+    margin-left: 10px;
 }
 /* Each NFT */
 

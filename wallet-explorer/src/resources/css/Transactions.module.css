@@ -391,6 +391,7 @@
     position: relative;
     width: 90%;
     margin: 0 auto;
+    padding-bottom: 10px;
 }
 @media screen and (max-width: 1100px) {
     .sub_txns
@@ -406,9 +407,9 @@
 }
 .sub_txns .thumb_container img
 {
-    width: 28px;
-    height: 28px;
-    border-radius: 14px;
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
     object-fit: fill;
 
 }
@@ -427,7 +428,7 @@
 {
     font: 400 15px/26px "Montserrat",sans-serif;
     color: #FFF;
-    width: 120px;
+    width: 100%;
 }
 .sub_txns .plus_color
 {

@@ -1,11 +1,13 @@
 import { useState,useEffect } from "react";
+import 'balloon-css';
+
 import icon from "../../resources/images/txnImages/nft_transfer_2.svg";
 import arrow from "../../resources/images/txnImages/arrow.svg";
 import solScan from "../../resources/images/txnImages/sol_scan_icon.svg";
 
 import placeholder from "../../resources/images/txnImages/unknown.png";
 import { getNFTData } from "../../utils/getAllData";
-import { shortenAddress,getRelativetime } from "../../utils/formatter";
+import { shortenAddress,getRelativetime, getFullTime } from "../../utils/formatter";
 
 import SubTransactions from "./SubTransaction";
 import { Link } from "react-router-dom";
@@ -38,7 +40,7 @@ const TransactionStructureToken = ({ styles, id, data, address, cluster }) => {
                                 </div>
                             </div>
                             <div className="">
-                                <div className={styles.txn_subname}>
+                                <div className={styles.txn_subname} aria-label={(data.timestamp != "")?getFullTime(data.timestamp):""} data-balloon-pos="up">
                                     {(data.timestamp != "")?getRelativetime(data.timestamp):""}
                                 </div>
                             </div>
