@@ -1,6 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;700&display=swap');
 
+.txn_section
+{
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 800px;
+}
 .txn_section .main_heading
 {
     font: 500 22px/24px "Montserrat",sans-serif;
@@ -269,13 +276,17 @@
 {
     position: relative;
     min-height: 100px;
-    background-color: #9D56F933;
+    background-color: #3C1B67;
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border-radius: 14px;
     padding: 16px 24px;
     margin-bottom: 20px;
-    transition: all 0.3s ease;
+    transition: all 0.1s ease;
+}
+.each_txn_3:hover
+{
+    border: 2px solid #01b4e0;
 }
 .each_txn_3 .toggle_button
 {
@@ -290,13 +301,13 @@
 }
 .each_txn_3 .txn_name
 {
-    font: 500 18px/24px "Montserrat",sans-serif;
+    font: 500 20px/24px "Montserrat",sans-serif;
     padding: 10px 20px 10px 0px;
     color: #FDF41B;
 }
 .each_txn_3 .txn_subname
 {
-    font: 300 12px/28px "Montserrat",sans-serif;
+    font: 300 11px/28px "Montserrat",sans-serif;
     padding: 10px 20px 10px 0px;
     color: #FFFFFF99;
 }
@@ -375,7 +386,20 @@
 {
     padding-top: 2px;
 }
-
+.sub_txns
+{
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+}
+@media screen and (max-width: 1100px) {
+    .sub_txns
+    {
+        position: relative;
+        width: 100%;
+        margin: 0 auto;
+    } 
+}
 .sub_txns .thumb_container
 {
     padding-right: 8px;
@@ -392,8 +416,8 @@
 {
     padding: 4px 8px;
     width: 100%;
-    max-width: 500px;
 }
+
 .sub_txns .txn_details .subtxn_token
 {
     font: 400 15px/24px "Montserrat",sans-serif;
@@ -403,6 +427,7 @@
 {
     font: 400 15px/26px "Montserrat",sans-serif;
     color: #FFF;
+    width: 120px;
 }
 .sub_txns .plus_color
 {

@@ -14,7 +14,8 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
     const [image, setImage] = useState(icon);
     const [name, setName] = useState("");
     const [relField, setRelField] = useState("");
-    const [currency, setCurrencyField] = useState("");
+    const [currency, setCurrency] = useState("");
+    const [currencyField,setCurrencyField] = useState("");
     const [varFields, setVarFields] = useState({
         type: "",
         from: "",
@@ -44,10 +45,10 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
         try {
             const res = await getTokenData(cluster, address);
             if (res.success === true) {
-                setCurrencyField(res.details.symbol ?? res.details.name ?? "");
+                setCurrency(res.details.symbol ?? res.details.name ?? "");
             }
         } catch (error) {
-            setCurrencyField("");
+            setCurrencyField(address);
         }
 
     };
@@ -69,7 +70,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                     type: "TRANSFER",
                     from: data.info.sender ?? "--",
                     to: data.info.receiver ?? "--",
-                    token: "--",
+                    token: "TOKEN",
                     action: "--",
                     value: data.info.amount ?? "--",
                     symbol: ""
@@ -81,7 +82,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                     type: "TRANSFER",
                     from: data.info.sender ?? "--",
                     to: data.info.receiver ?? "--",
-                    token: "--",
+                    token: "TOKEN",
                     action: "--",
                     value: data.info.amount ?? "--",
                     symbol: ""
@@ -92,7 +93,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                     type: "TRANSFER",
                     from: data.info.sender ?? "--",
                     to: data.info.receiver ?? "--",
-                    token: "--",
+                    token: "NFT",
                     action: "--",
                     // value: data.info.amount ?? "--",
                     value: data.info.amount ?? "--",
@@ -102,7 +103,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
             } else if (data.type === "TOKEN_MINT") {
                 type_obj = {
                     type: "MINT",
-                    from: "--",
+                    from: "TOKEN",
                     to: data.info.receiver_address ?? "--",
                     token: "--",
                     action: "--",
@@ -114,7 +115,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
             } else if (data.type === "NFT_MINT") {
                 type_obj = {
                     type: "MINT",
-                    from: "--",
+                    from: "NFT",
                     to: data.info.owner ?? "--",
                     token: "--",
                     action: "--",
@@ -127,19 +128,31 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                     type: "BURN",
                     from: data.info.wallet ?? "--",
                     to: "--",
-                    token: "--",
+                    token: "TOKEN",
                     action: "--",
                     value: data.info.amount ?? "--",
                     symbol: ""
                 }
 
                 setRelField(data.info.nft_address ?? "");
+            } else if (data.type === "BURN") {
+                type_obj = {
+                    type: "BURN",
+                    from: "--",
+                    to: "--",
+                    token: "NFT",
+                    action: "--",
+                    value: data.info.amount ?? "--",
+                    symbol: ""
+                }
+
+                setRelField(data.info.mint ?? "");
             } else if (data.type === "TOKEN_BURN") {
                 type_obj = {
                     type: "BURN",
                     from: data.info.wallet ?? "--",
                     to: "--",
-                    token: "--",
+                    token: "TOKEN",
                     action: "--",
                     value: data.info.amount ?? "--",
                     symbol: ""
@@ -150,7 +163,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                     type: "CREATE",
                     from: "--",
                     to: "--",
-                    token: "--",
+                    token: "TOKEN",
                     action: "--",
                     value: "--",
                     symbol: ""
@@ -265,8 +278,8 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
     }, [relField]);
 
     useEffect(() => {
-        if (currency !== "") getCurrency(cluster, currency);
-    }, [currency]);
+        if (currencyField !== "") getCurrency(cluster, currencyField);
+    }, [currencyField]);
 
     useEffect(() => {
 
@@ -282,7 +295,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                     <div className={styles.subtxn_token}>
                         <div className="d-flex">
                             <div>
-                                {name}
+                                {name || relField}
                             </div>
                             <div className={styles.copy_bt}>
                                 <button onClick={() => copyValue(relField)}>
@@ -298,9 +311,9 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                 return (
                                     <>
                                         {(wallet === varFields.from) && <div className="row pt-1">
-                                            <div className="col-10">
+                                            <div className="col-8">
                                                 <div className="d-flex">
-                                                    <div className="pe-1">
+                                                    <div className="pe-2">
                                                         <div className={styles.field_sub_1}>
                                                             To
                                                         </div>
@@ -310,13 +323,13 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                     </div>
                                                     <div className="pe-1">
                                                         <div className={styles.field_sub_1}>
-                                                            <Link to={`address/${varFields.to}?cluster=${cluster}`}>{shortenAddress(varFields.to)}</Link>
+                                                            <Link to={`/address/${varFields.to}?cluster=${cluster}`}>{shortenAddress(varFields.to)}</Link>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="col-2">
-                                                <div className={`text-center ${styles.field_sub_1}`}>
+                                            <div className="col-4">
+                                                <div className={`text-end ${styles.field_sub_1}`}>
                                                     <div className={styles.minus_color}>
                                                         - {varFields.value}
                                                     </div>
@@ -324,9 +337,9 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                             </div>
                                         </div>}
                                         {(wallet === varFields.to) && <div className="row pt-1">
-                                            <div className="col-10">
+                                            <div className="col-8">
                                                 <div className="d-flex">
-                                                    <div className="pe-1">
+                                                    <div className="pe-2">
                                                         <div className={styles.field_sub_1}>
                                                             From
                                                         </div>
@@ -336,13 +349,13 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                     </div>
                                                     <div className="pe-1">
                                                         <div className={styles.field_sub_1}>
-                                                            <Link to={`address/${varFields.from}?cluster=${cluster}`}>{varFields.from}</Link>
+                                                            <Link to={`/address/${varFields.from}?cluster=${cluster}`}>{shortenAddress(varFields.from)}</Link>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="col-2">
-                                                <div className={`text-center ${styles.field_sub_1}`}>
+                                            <div className="col-4">
+                                                <div className={`text-end ${styles.field_sub_1}`}>
                                                     <div className={styles.plus_color}>
                                                         + {varFields.value}
                                                     </div>
@@ -351,9 +364,9 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                         </div>}
                                         {(wallet !== varFields.to && wallet !== varFields.from) && <>
                                             <div className="row pt-1">
-                                                <div className="col-10">
+                                                <div className="col-8">
                                                     <div className="d-flex">
-                                                        <div className="pe-1">
+                                                        <div className="pe-2">
                                                             <div className={styles.field_sub_1}>
                                                                 From
                                                             </div>
@@ -361,15 +374,15 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                         <div className="pe-1">
                                                             <img src={arrow} alt="" style={{ width: "14px" }} />
                                                         </div>
-                                                        <div className="pe-1">
+                                                        <div className="pe-2">
                                                             <div className={styles.field_sub_1}>
-                                                                <Link to={`address/${varFields.from}?cluster=${cluster}`}>{varFields.from}</Link>
+                                                                <Link to={`/address/${varFields.from}?cluster=${cluster}`}>{varFields.from}</Link>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="col-2">
-                                                    <div className={`text-center ${styles.field_sub_1}`}>
+                                                <div className="col-4">
+                                                    <div className={`text-end ${styles.field_sub_1}`}>
                                                         <div className={styles.plus}>
 
                                                         </div>
@@ -377,7 +390,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                 </div>
                                             </div>
                                             <div className="row pt-1">
-                                                <div className="col-10">
+                                                <div className="col-8">
                                                     <div className="d-flex">
                                                         <div className="pe-1">
                                                             <div className={styles.field_sub_1}>
@@ -389,13 +402,13 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                         </div>
                                                         <div className="pe-1">
                                                             <div className={styles.field_sub_1}>
-                                                                <Link to={`address/${varFields.to}?cluster=${cluster}`}>{shortenAddress(varFields.to)}</Link>
+                                                                <Link to={`/address/${varFields.to}?cluster=${cluster}`}>{shortenAddress(varFields.to)}</Link>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="col-2">
-                                                    <div className={`text-center ${styles.field_sub_1}`}>
+                                                <div className="col-4">
+                                                    <div className={`text-end ${styles.field_sub_1}`}>
                                                         {varFields.value}
                                                     </div>
                                                 </div>
@@ -409,9 +422,9 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                             else if (varFields.type === "MINT") {
                                 return (
                                     <div className="row pt-1">
-                                        <div className="col-10">
+                                        <div className="col-8">
                                             <div className="d-flex">
-                                                <div className="pe-1">
+                                                <div className="pe-2">
                                                     <div className={styles.field_sub_1}>
                                                         Mint
                                                     </div>
@@ -421,13 +434,13 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                 </div>
                                                 <div className="pe-1">
                                                     <div className={styles.field_sub_1}>
-                                                        <Link to={`address/${varFields.to}?cluster=${cluster}`}>{shortenAddress(varFields.to)}</Link>
+                                                        <Link to={`/address/${varFields.to}?cluster=${cluster}`}>{shortenAddress(varFields.to)}</Link>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-2">
-                                            <div className={`text-center ${styles.field_sub_1}`}>
+                                        <div className="col-4">
+                                            <div className={`text-end ${styles.field_sub_1}`}>
                                                 <div className={styles.plus_color}>
                                                     + {varFields.value}
                                                 </div>
@@ -439,9 +452,9 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                             else if (varFields.type === "BURN") {
                                 return (
                                     <div className="row pt-1">
-                                        <div className="col-10">
+                                        <div className="col-8">
                                             <div className="d-flex">
-                                                <div className="pe-1">
+                                                <div className="pe-2">
                                                     <div className={styles.field_sub_1}>
                                                         Burned
                                                     </div>
@@ -456,8 +469,8 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-2">
-                                            <div className={`text-center ${styles.field_sub_1}`}>
+                                        <div className="col-4">
+                                            <div className={`text-end ${styles.field_sub_1}`}>
                                                 <div className={styles.minus_color}>
                                                     - {varFields.value}
                                                 </div>
@@ -469,9 +482,9 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                             else if (varFields.type === "CREATE") {
                                 return (
                                     <div className="row pt-1">
-                                        <div className="col-10">
+                                        <div className="col-8">
                                             <div className="d-flex">
-                                                <div className="pe-1">
+                                                <div className="pe-2">
                                                     <div className={styles.field_sub_1}>
                                                         Created
                                                     </div>
@@ -486,8 +499,8 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-2">
-                                            <div className={`text-center ${styles.field_sub_1}`}>
+                                        <div className="col-4">
+                                            <div className={`text-end ${styles.field_sub_1}`}>
                                                 <div className={styles.plus_color}>
                                                     + 1
                                                 </div>
@@ -499,9 +512,9 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                             else if (varFields.type === "NFT_LIST") {
                                 return (
                                     <div className="row pt-1">
-                                        <div className="col-10">
-                                            <div className="d-flex">
-                                                <div className="pe-1">
+                                        <div className="col-8">
+                                            <div className="d-flex justify-content-start">
+                                                <div className="pe-2">
                                                     <div className={styles.field_sub_1}>
                                                         Listed By
                                                     </div>
@@ -511,13 +524,13 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                 </div>
                                                 <div className="pe-1">
                                                     <div className={styles.field_sub_1}>
-                                                        <Link to={`address/${varFields.from}?cluster=${cluster}`}>{shortenAddress(varFields.from)}</Link>
+                                                        <Link to={`/address/${varFields.from}?cluster=${cluster}`}>{shortenAddress(varFields.from)}</Link>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-2">
-                                            <div className={`text-center ${styles.field_sub_1}`}>
+                                        <div className="col-4">
+                                            <div className={`text-end ${styles.field_sub_1}`}>
                                                 <div>
                                                     {varFields.value} {currency}
                                                 </div>
@@ -530,9 +543,9 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                 return (
                                     <>
                                         <div className="row pt-1">
-                                            <div className="col-10">
+                                            <div className="col-8">
                                                 <div className="d-flex">
-                                                    <div className="pe-1">
+                                                    <div className="pe-2">
                                                         <div className={styles.field_sub_1}>
                                                             Sold By
                                                         </div>
@@ -542,23 +555,23 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                     </div>
                                                     <div className="pe-1">
                                                         <div className={styles.field_sub_1}>
-                                                            <Link to={`address/${varFields.from}?cluster=${cluster}`}>{shortenAddress(varFields.from)}</Link>
+                                                            <Link to={`/address/${varFields.from}?cluster=${cluster}`}>{shortenAddress(varFields.from)}</Link>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="col-2">
-                                                <div className={`text-center ${styles.field_sub_1}`}>
+                                            <div className="col-4">
+                                                <div className={`text-end ${styles.field_sub_1}`}>
                                                     <div>
-                                                        {varFields.value} {currency}
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="row pt-1">
-                                            <div className="col-10">
+                                            <div className="col-8">
                                                 <div className="d-flex">
-                                                    <div className="pe-1">
+                                                    <div className="pe-2">
                                                         <div className={styles.field_sub_1}>
                                                             To
                                                         </div>
@@ -568,13 +581,13 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                     </div>
                                                     <div className="pe-1">
                                                         <div className={styles.field_sub_1}>
-                                                            <Link to={`address/${varFields.to}?cluster=${cluster}`}>{shortenAddress(varFields.to)}</Link>
+                                                            <Link to={`/address/${varFields.to}?cluster=${cluster}`}>{shortenAddress(varFields.to)}</Link>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="col-2">
-                                                <div className={`text-center ${styles.field_sub_1}`}>
+                                            <div className="col-4">
+                                                <div className={`text-end ${styles.field_sub_1}`}>
                                                     {varFields.value} {currency}
                                                 </div>
                                             </div>
@@ -585,9 +598,9 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                             else if (varFields.type === "NFT_LIST_CANCEL") {
                                 return (
                                     <div className="row pt-1">
-                                        <div className="col-10">
+                                        <div className="col-8">
                                             <div className="d-flex">
-                                                <div className="pe-1">
+                                                <div className="pe-2">
                                                     <div className={styles.field_sub_1}>
                                                         Listing Cancelled
                                                     </div>
@@ -602,8 +615,8 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-2">
-                                            <div className={`text-center ${styles.field_sub_1}`}>
+                                        <div className="col-4">
+                                            <div className={`text-end ${styles.field_sub_1}`}>
                                                 <div className={styles.plus}>
 
                                                 </div>
@@ -615,9 +628,9 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                             else if (varFields.type === "NFT_BID") {
                                 return (
                                     <div className="row pt-1">
-                                        <div className="col-10">
+                                        <div className="col-8">
                                             <div className="d-flex">
-                                                <div className="pe-1">
+                                                <div className="pe-2">
                                                     <div className={styles.field_sub_1}>
                                                         Bid
                                                     </div>
@@ -627,13 +640,13 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                 </div>
                                                 <div className="pe-1">
                                                     <div className={styles.field_sub_1}>
-                                                        <Link to={`address/${varFields.from}?cluster=${cluster}`}>{shortenAddress(varFields.from)}</Link>
+                                                        <Link to={`/address/${varFields.from}?cluster=${cluster}`}>{shortenAddress(varFields.from)}</Link>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-2">
-                                            <div className={`text-center ${styles.field_sub_1}`}>
+                                        <div className="col-4">
+                                            <div className={`text-end ${styles.field_sub_1}`}>
                                                 <div>
                                                     {varFields.value} {currency}
                                                 </div>
@@ -645,9 +658,9 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                             else if (varFields.type === "MARKETPLACE_WITHDRAW") {
                                 return (
                                     <div className="row pt-1">
-                                        <div className="col-10">
+                                        <div className="col-8">
                                             <div className="d-flex">
-                                                <div className="pe-1">
+                                                <div className="pe-2">
                                                     <div className={styles.field_sub_1}>
                                                         By
                                                     </div>
@@ -657,13 +670,13 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                 </div>
                                                 <div className="pe-1">
                                                     <div className={styles.field_sub_1}>
-                                                        <Link to={`address/${varFields.to}?cluster=${cluster}`}>{shortenAddress(varFields.to)}</Link>
+                                                        <Link to={`/address/${varFields.to}?cluster=${cluster}`}>{shortenAddress(varFields.to)}</Link>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-2">
-                                            <div className={`text-center ${styles.field_sub_1}`}>
+                                        <div className="col-4">
+                                            <div className={`text-end ${styles.field_sub_1}`}>
                                                 <div>
                                                     {varFields.value} {currency}
                                                 </div>
@@ -677,7 +690,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                     <div className="row pt-1">
                                         <div className="col-10">
                                             <div className="d-flex">
-                                                <div className="pe-1">
+                                                <div className="pe-2">
                                                     <div className={styles.field_sub_1}>
                                                         -
                                                     </div>

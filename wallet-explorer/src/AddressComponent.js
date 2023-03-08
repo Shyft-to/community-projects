@@ -4,7 +4,6 @@ import { categorizeAddress } from "./utils/getAllData";
 import { shortenAddress } from "./utils/formatter";
 
 import styles from "./resources/css/WalletAddress.module.css";
-import styles2 from "./resources/css/Transactions.module.css";
 
 import AllNfts from "./components/AllNfts";
 import AllTokens from "./components/AllTokens";
@@ -12,7 +11,7 @@ import HeaderComponent from "./components/HeaderComponent";
 import Transactions from "./components/TransactionComponent/Transactions";
 import NftExpanded from "./components/NftExpanded";
 import PlanetLoader from "./components/loaders/loaders";
-import TransactionStructureToken from "./components/TransactionComponent/TransactionsStructureToken";
+import copyIcon from "./resources/images/txnImages/copy_icon.svg"
 // import TransactionsToken from "./components/TransactionComponent/TransactionsToken";
 
 const AddressComponent = () => {
@@ -33,7 +32,7 @@ const AddressComponent = () => {
         // setCurrentCuster(cluster);
         // console.log(cluster);
         getClassifiedData();
-    }, [cluster]);
+    }, [addr,cluster]);
 
     const getClassifiedData = async() => {
       
@@ -70,10 +69,14 @@ const AddressComponent = () => {
         if(networkCluster !== cluster)
             navigate(`/address/${addr}?cluster=${networkCluster}`)
     }
+
+    const copyValue = (value) => {
+        navigator.clipboard.writeText(value);
+    }
     
     return ( 
         <div>
-        <HeaderComponent />
+        {/* <HeaderComponent /> */}
         <div className={styles.background_super}>
             {isLoading && <PlanetLoader />}
             {!isLoading && <div>
@@ -82,7 +85,17 @@ const AddressComponent = () => {
                         <div className="row">
                             <div className="col-12 col-lg-7">
                                 <div className={styles.main_heading}>
-                                    <span>Space Overview</span> ({shortenAddress(addr)})
+                                    <div className="d-flex">
+                                        <div>({shortenAddress(addr)})</div>
+                                        <div>
+                                            <button onClick={() => copyValue(addr)}>
+                                                <img src={copyIcon} alt="Copy Image" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                    {/*<span>Space Overview</span> */} 
+                                    
+                                    
                                 </div>
                             </div>
                             <div className="col-12 col-lg-4 text-end">
@@ -102,9 +115,9 @@ const AddressComponent = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="pt-5">
+                    {/* <div className="pt-5">
                         <AllTokens tokens={data.tokens} address={addr} network={cluster} />
-                    </div>
+                    </div> */}
                     <div className="pt-5">
                         <AllNfts collections={data.collections} address={addr} network={cluster}/>
                     </div>
@@ -123,13 +136,13 @@ const AddressComponent = () => {
                         </div> */}
                     </div>
                 }
-                <div className="container pt-4">
-
-                    <div className="pt-5">
-                        <Transactions address={addr} cluster={cluster} />
-                    </div>
-                </div> 
+                
             </div>}
+            <div className="container pt-4">
+                <div className="pt-5">
+                    <Transactions address={addr} cluster={cluster} />
+                </div>
+            </div> 
             
         </div>
         </div> 

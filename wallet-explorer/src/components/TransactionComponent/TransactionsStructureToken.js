@@ -29,7 +29,7 @@ const TransactionStructureToken = ({ styles, id, data, address, cluster }) => {
                         <div className="d-flex flex-wrap justify-content-start align-content-end">
                             <div className="">
                                 <div className={styles.txn_name}>
-                                    {data.type ?? "--"}
+                                    {(data.type === "UNKNOWN")?"Interacted with":(data.type ?? "--")}
                                 </div>
                             </div>
                             <div className="">

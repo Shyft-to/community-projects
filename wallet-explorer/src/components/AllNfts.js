@@ -9,13 +9,13 @@ const AllNfts = ({collections,address,network}) => {
     return ( 
         <div>
             {<div className={styles.nft_all_section}>
-                <div className="row">
-                    <div className="col-12 col-lg-6">
+                <div className="d-flex flex-wrap">
+                    <div className="pe-2">
                     <div className={styles.main_heading}>
-                        NFT Collections in your Space<span>({collections.length} Collection)</span>
+                        NFT Collections <span> ({collections.length})</span>
                     </div>
                     </div>
-                    <div className="col-12 col-lg-6 text-end">
+                    <div className="pe-2">
                         <a className="no_underline" href={`/collections/${address}?cluster=${network}`}>
                             <div className={styles.view_all_text}>
                                 View All

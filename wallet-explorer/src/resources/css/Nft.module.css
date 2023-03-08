@@ -26,31 +26,31 @@
 .nft_container
 {
     position: relative;
-    background-color: #442863;
-    width: 224px;
-    min-height: 200px;
-    padding: 12px;
+    background-color: #3C1B67;
+    width: 180px;
+    /* min-height: 180px; */
+    padding: 12px 12px 0px;
     border-radius: 20px;
     z-index: 2;
-    transform: rotate(4deg);
+    transform: rotate(8deg);
     /* box-shadow: 10px -10px #7640b2; */
 }
 .nft_container_outer
 {
     position: relative;
     z-index: 1;
-    width: 224px;
+    width: 180px;
     border-radius: 20px;
     background-color: #7640b2;
-    transform: rotate(-4deg);
+    transform: rotate(-8deg);
     
 }
 .nft_container .image_container
 {
-    width: 200px;
+    width: 150px;
     display: block;
     margin: 0 auto;
-    height: 200px;
+    height: 140px;
 }
 .nft_container .image_container img
 {
