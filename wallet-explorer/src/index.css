@@ -14,11 +14,11 @@ body {
 {
   min-height: 100vh;
   max-width: 100vw;
-  background: url("./resources/images/waves-flipped.png"),radial-gradient(#2a0855 8%, #0a0215 75%);
-  background-size: 60%,100%;
-  background-repeat: no-repeat,no-repeat;
-  background-position: -10% 140%,100% 100%;
-  background-attachment: fixed,fixed;
+  background: radial-gradient(#1E0C36 8%, #000 75%);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
+  background-attachment: fixed;
   padding: 40px 0px;
 }
 .toggle_up {

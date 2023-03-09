@@ -87,7 +87,7 @@ const AddressComponent = () => {
                 </div>
                 {(contentType === "WALLET") && 
                 <div className="container">
-                    <motion.div className={styles.heading_section} initial={{ opacity: 0,y:-20 }} whileInView={{ opacity: 1,y:0 }} viewport={{ once: true }}>
+                    <motion.div className={styles.heading_section} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
                         <div className="row">
                             <div className="col-12 col-lg-7">
                                 <div className={styles.main_heading}>

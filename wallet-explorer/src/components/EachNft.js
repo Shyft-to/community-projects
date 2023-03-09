@@ -1,5 +1,6 @@
 import { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import styles from "../resources/css/CollectionRow.module.css";
 
 import i_icon from "../resources/images/i_icon.svg";
@@ -32,7 +33,7 @@ const EachNft = ({nft,cluster}) => {
     };
     return ( 
         <div className=" py-4 pe-4">
-              <div className={styles.nft_container}>
+              <motion.div className={styles.nft_container} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
                 
                 <Link to={`/address/${nft.mint}?cluster=${cluster}`}>
                   <div className={styles.image_container}>
@@ -98,7 +99,7 @@ const EachNft = ({nft,cluster}) => {
                     </div>
                   </div>
                 </div> */}
-              </div>
+              </motion.div>
             </div>
      );
 }

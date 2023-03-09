@@ -1,10 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;700&display=swap');
 
 .background
 {
   position: relative;
   background: radial-gradient(#2a0855 8%, #0a0215 75%);
+  z-index: 0;
+  height: 100vh;
+}
+.background_2
+{
+  position: relative;
+  background: radial-gradient(#1E0C36 8%, #000 75%);
   z-index: 0;
   height: 100vh;
 }
@@ -151,17 +159,17 @@
   /* padding: 0.8rem 2.5rem 0.8rem 2.5rem; */
   padding-top: 0.7rem;
   padding-bottom: 0.7rem;
-  min-width: 180px;
+  min-width: 220px;
   border: none;
   border-radius: 2.5rem;
   background-color: rgba(89, 101, 243, 0.29);
   background: linear-gradient(
     90.8deg,
-    #E0499B 3.34%,
-    #FDF41B 100%
+    #E0499B 30.34%,
+    #FDF41B 98%
   );
   color: #fff;
-  font: 600 0.8rem/1.2rem "Montserrat", sans-serif;
+  font: 500 0.9rem/1.2rem "Montserrat", sans-serif;
   letter-spacing: 1px;
   text-align: center;
   text-decoration: none !important;
@@ -208,3 +216,77 @@
   }
   
 } */
+
+.central_area 
+{
+  /* background-color: #E0499B; */
+  min-height: 100vh;
+  padding-top: 18%;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.central_area .main_title_container
+{
+  text-align: center;
+  font: 800 72px/88px "Montserrat", sans-serif;
+  color: #fff;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+@media screen and (max-width: 1000px) {
+  .central_area .main_title_container
+  {
+    font: 700 64px/72px "Montserrat", sans-serif;
+    word-wrap: break-word;
+    height: 150px;
+  }
+}
+.simple_input_container
+{
+  background-color: transparent;
+  border: 2px solid #9650E5;
+  padding: 10px 20px;
+  border-radius: 25px;
+  margin: 0 auto;
+  letter-spacing: 1px;
+}
+.simple_input_container input
+{
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  width: 100%;
+  color: #fff;
+  font: 500 16px/18px "Montserrat", sans-serif;
+}
+
+.simple_select_container
+{
+  background-color: #280C4C;
+  padding: 10px 20px;
+  border-radius: 25px;
+}
+.simple_select_container select
+{
+  background-color: #280C4C;
+  border: none;
+  border-radius: 25px;
+  width: 100%;
+  padding: 4px;
+  box-shadow: none;
+  color: #fff;
+  font: 500 16px/18px "Montserrat", sans-serif;
+  letter-spacing: 1px;
+}
+.simple_select_container select:focus
+{
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+.simple_select_container option
+{
+  background-color: #2a0855;
+}

@@ -1,5 +1,6 @@
 import styles from "../resources/css/CollectionRow.module.css";
 import EachNft from "./EachNft";
+import { motion } from "framer-motion";
 
 const CollectionRow = ({ collection,cluster }) => {
   
@@ -7,7 +8,7 @@ const CollectionRow = ({ collection,cluster }) => {
     <div>
       <div className={styles.collection_row}>
         <div className={styles.collection_name}>{collection.name}</div>
-        <div className={styles.collection_nft_container}>
+        <motion.div className={styles.collection_nft_container} initial={{ width: "0px" }} whileInView={{ width: "auto" }} viewport={{ once: true }}>
           <div className="d-flex flex-wrap justify-content-start">
             {
               (collection.nfts?.map((nft) => (
@@ -16,7 +17,7 @@ const CollectionRow = ({ collection,cluster }) => {
             }
             
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
