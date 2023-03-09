@@ -142,7 +142,7 @@ const Transactions = ({ address, cluster }) => {
     <div>
       <div className={styles.txn_section}>
       
-        <h3 className={styles.main_heading}>Activity</h3>
+        <h3 className={styles.main_heading}></h3>
 
         {/* <div className={styles.all_txn_container}>
           <TransactionStructure styles={styles} />

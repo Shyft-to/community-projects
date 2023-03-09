@@ -190,3 +190,10 @@ body {
 {
   min-height: 10px;
 }
+
+.could_not_text
+{
+    font: 300 16px/20px "Poppins",sans-serif;
+    color: #FFF3;
+    letter-spacing: 1px;
+}

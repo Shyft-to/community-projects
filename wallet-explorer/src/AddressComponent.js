@@ -21,6 +21,9 @@ const AddressComponent = () => {
     const { addr } = useParams();
     const cluster = searchParams.get("cluster");
     const navigate = useNavigate();
+
+    const [panel,setPanel] = useState("TXN");
+
     
     
     const [isLoading,setLoading] = useState(true);
@@ -144,11 +147,34 @@ const AddressComponent = () => {
                 }
                 
             </div>}
-            <div className="container pt-2">
-                <div className="pt-5">
-                    <Transactions address={addr} cluster={cluster} />
+            <div className="container-lg pt-2">
+                <div className={styles.tab_container}>
+                    <button className={(panel === "TXN")?`${styles.top_tab} ${styles.top_tab_selected}`:`${styles.top_tab} `} onClick={(e)=> setPanel("TXN")}>
+                        Transactions
+                        {(panel === "TXN")?<div className={styles.underline} />:""}
+                    </button>
+                    <button className={(panel === "TKN")?`${styles.top_tab} ${styles.top_tab_selected}`:`${styles.top_tab} `} onClick={(e)=> setPanel("TKN")}>
+                        Tokens
+                        {(panel === "TKN")?<div className={styles.underline} />:""}
+                    </button>
                 </div>
-            </div> 
+                <div className={styles.tabbed_section_container}> 
+                    {
+                        (panel === "TXN") && <Transactions address={addr} cluster={cluster} />
+                    }
+                    {
+                        (panel === "TKN") && <div className="text-center could_not_text pt-5">
+                            No Tokens Found
+                        </div>
+                    }
+                </div>
+            </div>
+            
+            {/* <div className="container pt-2">
+                <div className="pt-5">
+                    
+                </div>
+            </div>  */}
             
         </div>
         </div> 
