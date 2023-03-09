@@ -298,7 +298,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                     <div className={styles.subtxn_token}>
                         <div className="d-flex">
                             <div>
-                                {name || relField}
+                                {name || relField || "Unknown"}
                             </div>
 
                             {(relField !== "")?<div className={styles.copy_bt}>

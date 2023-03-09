@@ -28,7 +28,7 @@ const Transactions = ({ address, cluster }) => {
   // const loadMoreArea = useRef(null);
   // const isInViewLoadMore = useInView(loadMoreArea,{ margin: "20%" });
   useEffect(() => {
-    console.log("End of screen reach:",inView,txns.length)
+    // console.log("End of screen reach:",inView,txns.length)
     if(isLoading === false)
     {
       if(inView === true)

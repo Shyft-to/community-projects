@@ -5,6 +5,7 @@ import icon from "../../resources/images/txnImages/nft_transfer_2.svg";
 import arrow from "../../resources/images/txnImages/arrow.svg";
 import solScan from "../../resources/images/txnImages/sol_scan_icon.svg";
 import solExplorer from "../../resources/images/txnImages/solana_explorer.jpeg";
+import copyIcon from "../../resources/images/txnImages/copy_icon.svg"
 
 import placeholder from "../../resources/images/txnImages/unknown.png";
 import { getNFTData } from "../../utils/getAllData";
@@ -16,10 +17,19 @@ import { Link } from "react-router-dom";
 
 const TransactionStructureToken = ({ styles, id, data, address, cluster }) => {
     
+    const copyValue = (value) => {
+        navigator.clipboard.writeText(value);
+    }
+
     return ( 
     <div>
         <div className={styles.each_txn_3}>
             <div className={styles.toggle_button}>
+                <div className="pe-3">
+                    <button className={styles.copyTxnSig} onClick={() => copyValue(data.signatures[0])} aria-label="Copy Signature" data-balloon-pos="up">
+                        <img src={copyIcon} alt="Copy Value" />
+                    </button>
+                </div>
                 <div className="pe-2">
                     <a href={(cluster === "mainnet-beta")?`https://solscan.io/tx/${data.signatures[0]}`:`https://solscan.io/tx/${data.signatures[0]}?cluster=${cluster}`} target="_blank" aria-label="View on Solscan" data-balloon-pos="up">
                         <div className={styles.sol_icon}>

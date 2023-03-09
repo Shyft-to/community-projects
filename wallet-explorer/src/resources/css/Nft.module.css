@@ -1,3 +1,10 @@
+.nft_all_section
+{
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 900px;
+}
 .nft_all_section .main_heading
 {
     font: 500 22px/24px "Montserrat",sans-serif;

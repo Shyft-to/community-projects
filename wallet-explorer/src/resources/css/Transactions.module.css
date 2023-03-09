@@ -7,7 +7,7 @@
     position: relative;
     margin: 0 auto;
     width: 100%;
-    max-width: 800px;
+    max-width: 900px;
 }
 .txn_section .main_heading
 {
@@ -310,6 +310,12 @@
     width: 24px;
     height: 24px;
 }
+
+.each_txn_3 .toggle_button .copyTxnSig img
+{
+    width: 23px;
+    height: 23px;
+}
 .each_txn_3 .txn_name
 {
     font: 500 20px/24px "Montserrat",sans-serif;
@@ -359,7 +365,7 @@
 }
 .each_txn_3 .field_1
 {
-    font: 400 16px/16px "Montserrat",sans-serif;
+    font: 400 16px/16px "Poppins",sans-serif;
     padding: 14px 0px;
     color: #FFF;
 }
@@ -400,10 +406,16 @@
 .sub_txns
 {
     position: relative;
-    width: 90%;
+    width: 95%;
     margin: 0 auto;
     padding-bottom: 10px;
 }
+/* .sub_txns::before
+{
+    content: "-----";
+    color: #01b4e0;
+    position: absolute;
+} */
 @media screen and (max-width: 1100px) {
     .sub_txns
     {
@@ -444,10 +456,12 @@
 .sub_txns .plus_color
 {
     color: #FDF41B !important; 
+    font-weight: 500;
 }
 .sub_txns .minus_color
 {
     color: #FF5454 !important; 
+    font-weight: 500;
 }
 .sub_txns a
 {
@@ -459,6 +473,10 @@
     text-decoration: none;
     color: #0AEEFF;
 }
+.sub_txns .copy_bt
+{
+    margin-top: -2px;
+}
 
 .could_not_text
 {
@@ -466,3 +484,4 @@
     color: #FFF3;
     letter-spacing: 1px;
 }
+

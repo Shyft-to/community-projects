@@ -81,10 +81,11 @@ const AddressComponent = () => {
         <div className={styles.background_super}>
             {isLoading && <PlanetLoader />}
             {!isLoading && <div>
-                <div className="container py-2">
+                <div className="container pt-2 pb-1">
                     <SearchComponent />
                 </div>
-                {(contentType === "WALLET") && <div className="container pt-4">
+                {(contentType === "WALLET") && 
+                <div className="container">
                     <div className={styles.heading_section}>
                         <div className="row">
                             <div className="col-12 col-lg-7">
@@ -142,7 +143,7 @@ const AddressComponent = () => {
                 }
                 
             </div>}
-            <div className="container pt-4">
+            <div className="container pt-2">
                 <div className="pt-5">
                     <Transactions address={addr} cluster={cluster} />
                 </div>

@@ -39,7 +39,7 @@ const AllNfts = ({collections,address,network}) => {
                             items:3
                         },
                         1100:{
-                            items:5
+                            items:4
                         }
                     }}
                     dots={false}
