@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
+import {motion} from "framer-motion";
 
 import styles from "../resources/css/SearchComponent.module.css";
 
@@ -9,7 +10,7 @@ const SearchComponent = () => {
   const [network, setNetwork] = useState("mainnet-beta");
   return (
     <div>
-      <div className={styles.form_container}>
+      <motion.div className={styles.form_container} initial={{ opacity: 0,y:-100 }} whileInView={{ opacity: 1,y:0 }}>
         <div className={styles.form_field_outer}>
           <div className={styles.form_field_inner}>
             <div className="d-flex justify-content-start">
@@ -46,7 +47,7 @@ const SearchComponent = () => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 import styles from "../resources/css/Nft.module.css";
 
@@ -26,7 +27,7 @@ const NFTs = ({ collection, address, network }) => {
 
   return (
     <div className="pt-4 px-2 pb-5">
-      <div className={styles.nft_container_outer}>
+      <motion.div className={styles.nft_container_outer} initial={{ opacity: 0,scale:0.4 }} whileInView={{ opacity: 1,scale:1 }} viewport={{ once: true }} whileHover={{ scale: 1.05 }}>
         <div className={styles.nft_container}>
           <Link
             to={`/collections/${address}?cluster=${network}`}
@@ -75,7 +76,7 @@ const NFTs = ({ collection, address, network }) => {
             </div>
           </div> */}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

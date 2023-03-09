@@ -2,6 +2,7 @@ import { useState,useEffect } from "react";
 import {useSearchParams,useParams,useNavigate} from "react-router-dom";
 import { categorizeAddress } from "./utils/getAllData";
 import { shortenAddress } from "./utils/formatter";
+import { motion } from "framer-motion";
 
 import styles from "./resources/css/WalletAddress.module.css";
 
@@ -86,7 +87,7 @@ const AddressComponent = () => {
                 </div>
                 {(contentType === "WALLET") && 
                 <div className="container">
-                    <div className={styles.heading_section}>
+                    <motion.div className={styles.heading_section} initial={{ opacity: 0,y:-20 }} whileInView={{ opacity: 1,y:0 }} viewport={{ once: true }}>
                         <div className="row">
                             <div className="col-12 col-lg-7">
                                 <div className={styles.main_heading}>
@@ -119,7 +120,7 @@ const AddressComponent = () => {
                                 
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
                     {/* <div className="pt-5">
                         <AllTokens tokens={data.tokens} address={addr} network={cluster} />
                     </div> */}

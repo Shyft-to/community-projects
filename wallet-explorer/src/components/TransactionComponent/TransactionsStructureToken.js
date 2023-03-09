@@ -1,5 +1,6 @@
 import { useState,useEffect } from "react";
 import 'balloon-css';
+import { motion } from "framer-motion"; 
 
 import icon from "../../resources/images/txnImages/nft_transfer_2.svg";
 import arrow from "../../resources/images/txnImages/arrow.svg";
@@ -23,27 +24,27 @@ const TransactionStructureToken = ({ styles, id, data, address, cluster }) => {
 
     return ( 
     <div>
-        <div className={styles.each_txn_3}>
+        <motion.div initial={{ opacity: 0,y:30 }} whileInView={{ opacity: 1,y:0 }} viewport={{ once: true }} className={styles.each_txn_3}>
             <div className={styles.toggle_button}>
                 <div className="pe-3">
-                    <button className={styles.copyTxnSig} onClick={() => copyValue(data.signatures[0])} aria-label="Copy Signature" data-balloon-pos="up">
+                    <motion.button className={styles.copyTxnSig} onClick={() => copyValue(data.signatures[0])} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
                         <img src={copyIcon} alt="Copy Value" />
-                    </button>
+                    </motion.button>
                 </div>
-                <div className="pe-2">
-                    <a href={(cluster === "mainnet-beta")?`https://solscan.io/tx/${data.signatures[0]}`:`https://solscan.io/tx/${data.signatures[0]}?cluster=${cluster}`} target="_blank" aria-label="View on Solscan" data-balloon-pos="up">
+                <motion.div className="pe-2" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                    <motion.a href={(cluster === "mainnet-beta")?`https://solscan.io/tx/${data.signatures[0]}`:`https://solscan.io/tx/${data.signatures[0]}?cluster=${cluster}`} target="_blank">
                         <div className={styles.sol_icon}>
                             <img src={solScan} alt="View on SolScan" />
                         </div>
-                    </a>
-                </div>
-                <div>
-                    <a href={`https://explorer.solana.com/tx/${data.signatures[0]}?cluster=${cluster}`} target="_blank" aria-label="View on Explorer" data-balloon-pos="up">
+                    </motion.a>
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                    <a href={`https://explorer.solana.com/tx/${data.signatures[0]}?cluster=${cluster}`} target="_blank">
                         <div className={styles.sol_icon_2}>
                             <img src={solExplorer} alt="View on SolExplorer" />
                         </div>
                     </a>
-                </div>
+                </motion.div>
                 
             </div>
             <div className="row">
@@ -76,7 +77,7 @@ const TransactionStructureToken = ({ styles, id, data, address, cluster }) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     </div> 
     );
 }
