@@ -4,6 +4,7 @@ import 'balloon-css';
 import icon from "../../resources/images/txnImages/nft_transfer_2.svg";
 import arrow from "../../resources/images/txnImages/arrow.svg";
 import solScan from "../../resources/images/txnImages/sol_scan_icon.svg";
+import solExplorer from "../../resources/images/txnImages/solana_explorer.jpeg";
 
 import placeholder from "../../resources/images/txnImages/unknown.png";
 import { getNFTData } from "../../utils/getAllData";
@@ -19,11 +20,21 @@ const TransactionStructureToken = ({ styles, id, data, address, cluster }) => {
     <div>
         <div className={styles.each_txn_3}>
             <div className={styles.toggle_button}>
-                <a href="">
-                    <div className={styles.sol_icon}>
-                        <img src={solScan} alt="View on SolScan" />
-                    </div>
-                </a>
+                <div className="pe-2">
+                    <a href={(cluster === "mainnet-beta")?`https://solscan.io/tx/${data.signatures[0]}`:`https://solscan.io/tx/${data.signatures[0]}?cluster=${cluster}`} target="_blank" aria-label="View on Solscan" data-balloon-pos="up">
+                        <div className={styles.sol_icon}>
+                            <img src={solScan} alt="View on SolScan" />
+                        </div>
+                    </a>
+                </div>
+                <div>
+                    <a href={`https://explorer.solana.com/tx/${data.signatures[0]}?cluster=${cluster}`} target="_blank" aria-label="View on Explorer" data-balloon-pos="up">
+                        <div className={styles.sol_icon_2}>
+                            <img src={solExplorer} alt="View on SolExplorer" />
+                        </div>
+                    </a>
+                </div>
+                
             </div>
             <div className="row">
                 <div className="col-12">
@@ -36,7 +47,7 @@ const TransactionStructureToken = ({ styles, id, data, address, cluster }) => {
                             </div>
                             <div className="">
                                 <div className={styles.txn_subname}>
-                                  {(data.protocol.name != "")?<div><Link to={`/address/${data.protocol.address}?cluster=${cluster}`}>{data.protocol.name}</Link></div>:(data.protocol.address ?? "--")}
+                                  {(data.protocol.name != "")?<div><Link to={`/address/${data.protocol.address}?cluster=mainnet-beta`}>{data.protocol.name}</Link></div>:(data.protocol.address ?? "--")}
                                 </div>
                             </div>
                             <div className="">

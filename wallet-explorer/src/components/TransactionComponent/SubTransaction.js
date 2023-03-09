@@ -4,6 +4,7 @@ import 'balloon-css';
 
 import icon from "../../resources/images/txnImages/unknown.png";
 import arrow from "../../resources/images/txnImages/arrow.svg";
+import solanaIcon from "../../resources/images/txnImages/solana_icon.svg";
 import copyIcon from "../../resources/images/txnImages/copy_icon.svg"
 
 import { getNFTData, getTokenData } from "../../utils/getAllData";
@@ -77,6 +78,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                     symbol: ""
                 }
                 setName("SOL");
+                setImage(solanaIcon);
 
             } else if (data.type === "TOKEN_TRANSFER") {
                 type_obj = {
@@ -298,11 +300,12 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                             <div>
                                 {name || relField}
                             </div>
-                            <div className={styles.copy_bt}>
+
+                            {(relField !== "")?<div className={styles.copy_bt}>
                                 <button onClick={() => copyValue(relField)}>
                                     <img src={copyIcon} alt="Copy Icon" />
                                 </button>
-                            </div>
+                            </div>:""}
                         </div>
                     </div>
 

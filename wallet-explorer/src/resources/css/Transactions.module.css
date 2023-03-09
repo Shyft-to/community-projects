@@ -187,6 +187,7 @@
 .each_txn_2 .toggle_button
 {
     position: absolute;
+    top: 30px;
     right: 20px;
 }
 
@@ -291,13 +292,21 @@
 .each_txn_3 .toggle_button
 {
     position: absolute;
+    top: 20px;
     right: 20px;
+    display: flex;
+    justify-content: end;
 }
 
 .each_txn_3 .toggle_button .sol_icon img
 {
     width: 20px;
     height: 20px;
+}
+.each_txn_3 .toggle_button .sol_icon_2 img
+{
+    width: 24px;
+    height: 24px;
 }
 .each_txn_3 .txn_name
 {

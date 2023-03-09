@@ -29,7 +29,7 @@ const SearchComponent = () => {
                         <input
                             
                             type="text"
-                            placeholder="Search Account"
+                            placeholder="Explore Solana"
                             value={wallet}
                             onChange={(e) => setWallet(e.target.value)}
                         />

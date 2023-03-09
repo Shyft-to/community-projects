@@ -54,7 +54,7 @@ const Transactions = ({ address, cluster }) => {
         setErrOcc(true);
         console.warn(err);
       });
-  }, []);
+  }, [address,cluster]);
 
   const getPrevNext = (value) => {
     var params = {
