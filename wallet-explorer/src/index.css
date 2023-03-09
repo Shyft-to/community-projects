@@ -155,3 +155,8 @@ body {
   text-decoration: none;
   color: #FFF;
 }
+
+.ten-height
+{
+  min-height: 10px;
+}

@@ -1,6 +1,10 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useRef } from "react";
+import { useInView } from 'react-intersection-observer'; 
+
+
 import styles from "../../resources/css/Transactions.module.css";
+import TxnLoader from "../loaders/TxnLoader";
 import TokenTransfer from "./TokenTransfer";
 import TransactionStructureToken from "./TransactionsStructureToken";
 
@@ -9,6 +13,7 @@ const xKey = process.env.REACT_APP_API_KEY ?? "";
 
 const Transactions = ({ address, cluster }) => {
   const [loaded, setLoaded] = useState(false);
+  const [isLoading,setLoading] = useState(false);
   const [errOcc,setErrOcc] = useState(false);
   const [txnOne, setTxnOne] = useState("");
   const [txnLast, setTxnLast] = useState("");
@@ -16,7 +21,31 @@ const Transactions = ({ address, cluster }) => {
 
   const [txns, setTxns] = useState([]);
 
+  const [moreTxns,setMoreTxns] = useState(false);
+
+  const {ref,inView} = useInView();
+
+  // const loadMoreArea = useRef(null);
+  // const isInViewLoadMore = useInView(loadMoreArea,{ margin: "20%" });
   useEffect(() => {
+    console.log("End of screen reach:",inView,txns.length)
+    if(isLoading === false)
+    {
+      if(inView === true)
+      {
+        if(moreTxns === true && txns.length>9)
+        {
+          console.log("Getting more txns");
+          getPrevNext("next");
+        }
+      }
+    }
+  },[inView])
+  
+
+  useEffect(() => {
+    setLoading(true);
+    setTxns([]);
     var params = {
       network: cluster,
       account: address,
@@ -40,6 +69,8 @@ const Transactions = ({ address, cluster }) => {
       .then((res) => {
         if (res.data.success === true && res.data.result.length > 0) {
           const txnReceived = res.data.result;
+          if(txnReceived.length>=10)
+            setMoreTxns(true);
           if (txnLastInitial === "")
             setTxnLastInitial(
               txnReceived[txnReceived.length - 1].signatures[0]
@@ -49,17 +80,21 @@ const Transactions = ({ address, cluster }) => {
           setTxnOne(txnReceived[0].signatures[0]);
           setTxns(txnReceived);
         }
+        setLoading(false);
       })
       .catch((err) => {
         setErrOcc(true);
         console.warn(err);
+        setLoading(false);
       });
   }, [address,cluster]);
 
   const getPrevNext = (value) => {
+    setLoading(true);
     var params = {
       network: cluster,
       account: address,
+      // tx_num: 5
     };
     if (value === "prev") {
       params = {
@@ -82,17 +117,24 @@ const Transactions = ({ address, cluster }) => {
       params: params,
     })
       .then((res) => {
+        
         if (res.data.success === true && res.data.result.length > 0) {
           const txnReceived = res.data.result;
-          setTxns(txnReceived);
+          if(txnReceived.length>=10)
+            setMoreTxns(true);
+          setTxns([...txns,...txnReceived]);
           setTxnLast(txnReceived[txnReceived.length - 1].signatures[0]);
           setTxnOne(txnReceived[0].signatures[0]); 
         }
         setLoaded(true);
+        setTimeout(() => {
+          setLoading(false);
+        }, 500);
       })
       .catch((err) => {
         setErrOcc(true);
         console.warn(err);
+        setLoading(false);
       });
   };
 
@@ -122,11 +164,15 @@ const Transactions = ({ address, cluster }) => {
             
          }
          {
-          (errOcc) && <div className="text-light text-center lead">
+          (errOcc) && <div className={styles.could_not_text}>
             Could Not Load Transactions
           </div>
          }
-          
+          <div ref={ref} className="pt-2 text-center ten-height">
+            {isLoading && <TxnLoader />}
+            {(isLoading === false && moreTxns === false && errOcc === false)?<div className={styles.could_not_text}>No more transactions to load</div>:""}
+            {/* <button className="btn btn-light" onClick={() => getPrevNext("next")}>Load More</button> */}
+          </div>
         </div>
       </div>
     </div>

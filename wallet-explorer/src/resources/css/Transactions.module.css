@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;700&display=swap');
 
 .txn_section
 {
@@ -281,6 +282,7 @@
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border-radius: 14px;
+    border: 2px solid transparent;
     padding: 16px 24px;
     margin-bottom: 20px;
     transition: all 0.1s ease;
@@ -430,12 +432,12 @@
 
 .sub_txns .txn_details .subtxn_token
 {
-    font: 400 15px/24px "Montserrat",sans-serif;
+    font: 400 15px/24px "Poppins",sans-serif;
     color: #FFFFFFAA;
 }
 .sub_txns .field_sub_1
 {
-    font: 400 15px/26px "Montserrat",sans-serif;
+    font: 400 13px/26px "Poppins",sans-serif;
     color: #FFF;
     width: 100%;
 }
@@ -456,4 +458,11 @@
 {
     text-decoration: none;
     color: #0AEEFF;
+}
+
+.could_not_text
+{
+    font: 300 16px/20px "Poppins",sans-serif;
+    color: #FFF3;
+    letter-spacing: 1px;
 }
