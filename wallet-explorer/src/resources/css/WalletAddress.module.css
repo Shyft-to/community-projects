@@ -61,6 +61,8 @@
 }
 .copy_button
 {
+  display: block;
+
   background-color: transparent;
   border: none;
   box-shadow: none;
@@ -69,4 +71,25 @@
 {
   width: 24px;
   margin-top: -2px;
+}
+
+@media screen and (max-width:767px) {
+  .background_super
+  {
+    padding: 16px 0px;
+  }
+  .main_heading
+  {
+    font: 300 16px/18px "Montserrat", sans-serif;
+  }
+  .copy_button
+  {
+    display: none;
+  }
+  .wallet_balance_indicator
+  {
+    font: 300 18px/18px "Odibee Sans", sans-serif;
+    color: #fff;
+  }
+  
 }

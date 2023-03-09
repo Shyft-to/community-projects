@@ -14,7 +14,14 @@
     font: 500 22px/24px "Montserrat",sans-serif;
     color: #fff;
     padding-bottom: 12px;
-    letter-spacing: 1px;
+}
+@media screen and (max-width: 767px) {
+    .txn_section .main_heading
+    {
+        font: 500 18px/24px "Montserrat",sans-serif;
+        color: #fff;
+        padding-bottom: 12px;
+    }
 }
 .each_txn
 {
@@ -316,6 +323,29 @@
     width: 23px;
     height: 23px;
 }
+@media screen and (max-width: 767px) {
+    .each_txn_3 .toggle_button
+    {
+        top: 10px;
+        right: 12px;
+        
+    }
+    .each_txn_3 .toggle_button .sol_icon img
+    {
+        width: 14px;
+        height: 14px;
+    }
+    .each_txn_3 .toggle_button .sol_icon_2 img
+    {
+        width: 16px;
+        height: 16px;
+    }
+
+    .each_txn_3 .toggle_button .copyTxnSig img
+    {
+        display:none;
+    }
+}
 .each_txn_3 .txn_name
 {
     font: 500 20px/24px "Montserrat",sans-serif;
@@ -333,6 +363,28 @@
     font: 500 16px/20px "Montserrat",sans-serif;
     padding: 4px 0px;
     color: #fff;
+}
+@media screen and (max-width:767px) {
+    .each_txn_3
+    {
+        position: relative;
+        border: 2px solid transparent;
+        padding: 4px 16px;
+        margin-bottom: 20px;
+        transition: all 0.1s ease;
+    }
+    .each_txn_3 .txn_name
+    {
+        font: 500 16px/20px "Montserrat",sans-serif;
+        width: 70vw;
+        padding-bottom: 0px;
+    }
+    .each_txn_3 .txn_subname
+    {
+        font: 300 11px/14px "Montserrat",sans-serif;
+        padding: 6px 20px 20px 0px;
+        color: #FFFFFF99;
+    }
 }
 .each_txn_3 .dynamic_field
 {
@@ -422,6 +474,7 @@
         position: relative;
         width: 100%;
         margin: 0 auto;
+        padding-bottom: 0px;
     } 
 }
 .sub_txns .thumb_container
@@ -475,6 +528,7 @@
 }
 .sub_txns .copy_bt
 {
+    display: block;
     margin-top: -2px;
 }
 
@@ -483,5 +537,44 @@
     font: 300 16px/20px "Poppins",sans-serif;
     color: #FFF3;
     letter-spacing: 1px;
+}
+@media screen and (max-width: 767px) {
+    .sub_txns .thumb_container
+    {
+        padding-right: 4px;
+    }
+    .sub_txns .thumb_container img
+    {
+        width: 24px;
+        height: 24px;
+        border-radius: 12px;
+        object-fit: fill;
+
+    }
+    .sub_txns .txn_details
+    {
+        padding: 4px 8px;
+        width: 100%;
+        overflow: hidden;
+    }
+    .sub_txns .txn_details .subtxn_token
+    {
+        
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .sub_txns .field_sub_1
+    {
+        font: 400 12px/26px "Poppins",sans-serif;
+        color: #FFF;
+        width: 100%;
+        
+    }
+    .sub_txns .copy_bt
+    {
+        display: none;
+        /* margin-top: -2px; */
+    }
 }
 

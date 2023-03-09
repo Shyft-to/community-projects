@@ -27,6 +27,26 @@
     -webkit-text-fill-color: transparent;
     margin-left: 10px;
 }
+
+
+@media screen and (max-width: 767px) {
+   .nft_all_section .main_heading
+    {
+        font: 500 16px/22px "Montserrat",sans-serif;
+        color: #fff;
+        padding-bottom: 12px;
+    } 
+    .view_all_text
+    {
+        text-align: end;
+        font: 700 14px/22px "Montserrat", sans-serif !important;
+        background: -webkit-linear-gradient(280deg, #FF008A 2%, #F3DD59 92%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-left: 4px;
+    }
+}
 /* Each NFT */
 
 .nft_container
@@ -48,8 +68,13 @@
     width: 180px;
     border-radius: 20px;
     background-color: #7640b2;
-    transform: rotate(-8deg);
+    transform: rotate(-8deg) !important;
     
+}
+@media screen and (max-width: 767px) {
+    .nft_container_outer{
+        margin: 0 auto;
+    } 
 }
 .nft_container .image_container
 {

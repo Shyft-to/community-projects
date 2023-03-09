@@ -89,7 +89,7 @@ const AddressComponent = () => {
                 <div className="container">
                     <motion.div className={styles.heading_section} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
                         <div className="row">
-                            <div className="col-12 col-lg-7">
+                            <div className="col-6 col-lg-6">
                                 <div className={styles.main_heading}>
                                     <div className="d-flex">
                                         <div className="pe-2">({shortenAddress(addr)})</div>
@@ -104,12 +104,12 @@ const AddressComponent = () => {
                                     
                                 </div>
                             </div>
-                            <div className="col-12 col-lg-4 text-end">
+                            <div className="col-6 col-lg-4 text-end">
                                 <div className={styles.wallet_balance_indicator}>
                                     {data.balance} SOL
                                 </div>
                             </div>
-                            <div className="col-12 col-lg-1 text-end">
+                            <div className="col-12 col-lg-2 text-end">
                                 <div className="select_container">
                                     <select value={cluster} onChange={(e) => changeCluster(e.target.value)}>
                                         <option value="mainnet-beta">Mainnet</option>

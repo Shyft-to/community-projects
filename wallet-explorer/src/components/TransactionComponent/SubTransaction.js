@@ -324,7 +324,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                 return (
                                     <>
                                         {(wallet === varFields.from) && <div className="row pt-1">
-                                            <div className="col-6">
+                                            <div className="col-12 col-md-6">
                                                 <div className="d-flex">
                                                     <div className="pe-2">
                                                         <div className={styles.field_sub_1}>
@@ -341,7 +341,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="col-6">
+                                            <div className="col-12 col-md-6">
                                                 <div className={`text-end ${styles.field_sub_1}`}>
                                                     <div className={styles.minus_color}>
                                                         - {varFields.value} {(varFields.token === "TOKEN")?"SOL":""}
@@ -350,7 +350,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                             </div>
                                         </div>}
                                         {(wallet === varFields.to) && <div className="row pt-1">
-                                            <div className="col-6">
+                                            <div className="col-12 col-md-6">
                                                 <div className="d-flex">
                                                     <div className="pe-2">
                                                         <div className={styles.field_sub_1}>
@@ -367,7 +367,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="col-6">
+                                            <div className="col-12 col-md-6">
                                                 <div className={`text-end ${styles.field_sub_1}`}>
                                                     <div className={styles.plus_color}>
                                                         + {varFields.value} {(varFields.token === "TOKEN")?"SOL":""}
@@ -377,7 +377,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                         </div>}
                                         {(wallet !== varFields.to && wallet !== varFields.from) && <>
                                             <div className="row pt-1">
-                                                <div className="col-6">
+                                                <div className="col-12 col-md-6">
                                                     <div className="d-flex">
                                                         <div className="pe-2">
                                                             <div className={styles.field_sub_1}>
@@ -394,7 +394,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="col-6">
+                                                <div className="col-12 col-md-6">
                                                     <div className={`text-end ${styles.field_sub_1}`}>
                                                         <div className={styles.plus}>
 
@@ -403,7 +403,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                 </div>
                                             </div>
                                             <div className="row pt-1">
-                                                <div className="col-6">
+                                                <div className="col-12 col-md-6">
                                                     <div className="d-flex">
                                                         <div className="pe-1">
                                                             <div className={styles.field_sub_1}>
@@ -420,7 +420,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="col-6">
+                                                <div className="col-12 col-md-6">
                                                     <div className={`text-end ${styles.field_sub_1}`}>
                                                         {varFields.value} {(varFields.token === "TOKEN")?"SOL":""}
                                                     </div>
@@ -435,7 +435,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                             else if (varFields.type === "MINT") {
                                 return (
                                     <div className="row pt-1">
-                                        <div className="col-6">
+                                        <div className="col-12 col-md-6">
                                             <div className="d-flex">
                                                 <div className="pe-2">
                                                     <div className={styles.field_sub_1}>
@@ -452,7 +452,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-6">
+                                        <div className="col-12 col-md-6">
                                             <div className={`text-end ${styles.field_sub_1}`}>
                                                 <div className={styles.plus_color}>
                                                     + {varFields.value} {(varFields.token === "TOKEN")?"SOL":""}
@@ -465,7 +465,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                             else if (varFields.type === "BURN") {
                                 return (
                                     <div className="row pt-1">
-                                        <div className="col-6">
+                                        <div className="col-12 col-md-6">
                                             <div className="d-flex">
                                                 <div className="pe-2">
                                                     <div className={styles.field_sub_1}>
@@ -482,7 +482,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-6">
+                                        <div className="col-12 col-md-6">
                                             <div className={`text-end ${styles.field_sub_1}`}>
                                                 <div className={styles.minus_color}>
                                                     - {varFields.value} {(varFields.token === "TOKEN")?"SOL":""}
@@ -495,7 +495,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                             else if (varFields.type === "CREATE") {
                                 return (
                                     <div className="row pt-1">
-                                        <div className="col-6">
+                                        <div className="col-12 col-md-6">
                                             <div className="d-flex">
                                                 <div className="pe-2">
                                                     <div className={styles.field_sub_1}>
@@ -512,7 +512,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-6">
+                                        <div className="col-12 col-md-6">
                                             <div className={`text-end ${styles.field_sub_1}`}>
                                                 <div className={styles.plus_color}>
                                                     + 1
@@ -525,7 +525,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                             else if (varFields.type === "NFT_LIST") {
                                 return (
                                     <div className="row pt-1">
-                                        <div className="col-6">
+                                        <div className="col-12 col-md-6">
                                             <div className="d-flex justify-content-start">
                                                 <div className="pe-2">
                                                     <div className={styles.field_sub_1}>
@@ -542,7 +542,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-6">
+                                        <div className="col-12 col-md-6">
                                             <div className={`text-end ${styles.field_sub_1}`}>
                                                 <div>
                                                     {varFields.value} {currency}
@@ -556,7 +556,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                 return (
                                     <>
                                         <div className="row pt-1">
-                                            <div className="col-6">
+                                            <div className="col-12 col-md-6">
                                                 <div className="d-flex">
                                                     <div className="pe-2">
                                                         <div className={styles.field_sub_1}>
@@ -573,7 +573,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="col-6">
+                                            <div className="col-12 col-md-6">
                                                 <div className={`text-end ${styles.field_sub_1}`}>
                                                     <div>
                                                         
@@ -582,7 +582,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                             </div>
                                         </div>
                                         <div className="row pt-1">
-                                            <div className="col-6">
+                                            <div className="col-12 col-md-6">
                                                 <div className="d-flex">
                                                     <div className="pe-2">
                                                         <div className={styles.field_sub_1}>
@@ -599,7 +599,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="col-6">
+                                            <div className="col-12 col-md-6">
                                                 <div className={`text-end ${styles.field_sub_1}`}>
                                                     {varFields.value} {currency}
                                                 </div>
@@ -611,7 +611,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                             else if (varFields.type === "NFT_LIST_CANCEL") {
                                 return (
                                     <div className="row pt-1">
-                                        <div className="col-6">
+                                        <div className="col-12 col-md-6">
                                             <div className="d-flex">
                                                 <div className="pe-2">
                                                     <div className={styles.field_sub_1}>
@@ -628,7 +628,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-6">
+                                        <div className="col-12 col-md-6">
                                             <div className={`text-end ${styles.field_sub_1}`}>
                                                 <div className={styles.plus}>
 
@@ -641,7 +641,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                             else if (varFields.type === "NFT_BID") {
                                 return (
                                     <div className="row pt-1">
-                                        <div className="col-6">
+                                        <div className="col-12 col-md-6">
                                             <div className="d-flex">
                                                 <div className="pe-2">
                                                     <div className={styles.field_sub_1}>
@@ -658,7 +658,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-6">
+                                        <div className="col-12 col-md-6">
                                             <div className={`text-end ${styles.field_sub_1}`}>
                                                 <div>
                                                     {varFields.value} {currency}
@@ -671,7 +671,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                             else if (varFields.type === "MARKETPLACE_WITHDRAW") {
                                 return (
                                     <div className="row pt-1">
-                                        <div className="col-6">
+                                        <div className="col-12 col-md-6">
                                             <div className="d-flex">
                                                 <div className="pe-2">
                                                     <div className={styles.field_sub_1}>
@@ -688,7 +688,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-6">
+                                        <div className="col-12 col-md-6">
                                             <div className={`text-end ${styles.field_sub_1}`}>
                                                 <div>
                                                     {varFields.value} {currency}

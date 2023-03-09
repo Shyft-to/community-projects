@@ -1,10 +1,12 @@
 import styles from "../resources/css/NftExpanded.module.css";
 import unknown from "../resources/images/ok_bear.png";
+import {motion} from "framer-motion";
+
 const NftExpanded = ({ nft }) => {
   return (
-    <div>
+    <div className={styles.entire_nft_expanded}>
       <div className="row">
-        <div className="col-12 col-lg-5">
+        <motion.div className="col-12 col-lg-3" initial={{ opacity: 0, x:-20 }} whileInView={{ opacity: 1,x:0 }} viewport={{ once: true }}>
           <div className={styles.nft_image_container}>
             <img
               src={( nft.image_uri === "" )?unknown:nft.image_uri}
@@ -13,15 +15,24 @@ const NftExpanded = ({ nft }) => {
               alt="nft"
             />
           </div>
-        </div>
-        <div className="col-12 col-lg-7">
+        </motion.div>
+        <div className="col-12 col-lg-9">
           <div className={styles.nft_desc_section}>
-            <h2 className={styles.nft_name}>{nft.name ?? "--"}</h2>
-            <div className={styles.nft_section}>
+            <motion.h2 className={styles.nft_name} initial={{ opacity: 0, y:20 }} whileInView={{ opacity: 1,y:0 }} viewport={{ once: true }} transition={{delay:0.2}}>{nft.name ?? "--"}</motion.h2>
+            <motion.div className={styles.nft_section} initial={{ opacity: 0, y:20 }} whileInView={{ opacity: 1,y:0 }} viewport={{ once: true }} transition={{delay:0.4}}>
               <h6 className={styles.section_heading}>Description</h6>
               <p className={styles.section_desc}>{nft.description ?? "--"}</p>
+            </motion.div>
+            <div className={styles.nft_image_container_mob}>
+              <motion.img
+                src={( nft.image_uri === "" )?unknown:nft.image_uri}
+                
+                className="img-fluid"
+                alt="nft"
+                initial={{ opacity: 0, y:20 }} whileInView={{ opacity: 1,y:0 }} viewport={{ once: true }} transition={{delay:0.6}}
+              />
             </div>
-            <div className={styles.nft_section}>
+            <motion.div className={styles.nft_section} initial={{ opacity: 0, y:20 }} whileInView={{ opacity: 1,y:0 }} viewport={{ once: true }} transition={{delay:0.8}}>
               <h6 className={styles.section_heading}>Details</h6>
               <div className={`mt-3 ${styles.table_container}`}>
                 <div className={`row ${styles.each_row}`}>
@@ -65,11 +76,11 @@ const NftExpanded = ({ nft }) => {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {(nft.attributes_array?.length > 0) && (
               <div className="pt-4">
-                <div className={styles.nft_section}>
+                <motion.div className={styles.nft_section} initial={{ opacity: 0, y:20 }} whileInView={{ opacity: 1,y:0 }} viewport={{ once: true }} transition={{delay:1}}>
                   <h6 className={styles.section_heading}>Attributes</h6>
                   <div className={styles.attributes_section}>
                     <div className="row">
@@ -109,7 +120,7 @@ const NftExpanded = ({ nft }) => {
                             </div> */}
                     </div>
                   </div>
-                </div>
+                </motion.div>
               </div>
             )}
           </div>

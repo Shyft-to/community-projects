@@ -150,3 +150,45 @@
   -webkit-text-fill-color: transparent;
   letter-spacing: 1px;
 }
+
+@media screen and (max-width: 767px) {
+    .all_collections_page .main_heading
+    {
+        font: 500 32px/40px "Odibee Sans", sans-serif;
+        background: -webkit-linear-gradient(278deg, #FF008A 1%, #F3DD59 75%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: 1px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .collection_row .collection_name
+    {
+        font: 400 18px/22px "Montserrat",sans-serif;
+        color: #fff;
+        padding-bottom: 10px;
+        letter-spacing: 1px;
+    }
+    .collection_nft_container .nft_container
+    {
+        width: 170px;
+        padding-bottom: 0px;
+    }
+    .collection_nft_container .image_container
+    {
+        width: 148px;
+        display: block;
+        margin: 0 auto;
+        height: 140px;
+    }
+    .collection_nft_container .name_section .name_text
+    {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        font: 400 12px/20px "Montserrat", sans-serif;
+        color: #fff;    
+    }
+}

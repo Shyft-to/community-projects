@@ -9,7 +9,7 @@ const AllNfts = ({collections,address,network}) => {
     return ( 
         <div>
             {<div className={styles.nft_all_section}>
-                <div className="d-flex flex-wrap">
+                <div className="d-flex flex-wrap justify-content-between justify-content-md-start">
                     <div className="pe-2">
                     <div className={styles.main_heading}>
                         NFT Collections  ({collections.length})
