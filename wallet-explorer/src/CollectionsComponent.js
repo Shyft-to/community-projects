@@ -73,9 +73,9 @@ const CollectionsComponent = () => {
                     </div>
                 }
                 <div className="container pt-4">
-                    <div className="pt-5">
+                    {/* <div className="pt-5">
                         <Transactions address={addr} cluster={cluster} />
-                    </div>
+                    </div> */}
                 </div>
             </div>            
         </div>

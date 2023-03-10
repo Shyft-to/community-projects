@@ -17,7 +17,7 @@ import mint from "../../resources/images/txnImages/mint.svg";
 
 
 import { getNFTData, getTokenData } from "../../utils/getAllData";
-import { shortenAddress } from "../../utils/formatter";
+import { shortenAddress,formatLamports } from "../../utils/formatter";
 
 
 
@@ -188,7 +188,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                     to: data.info.marketplace ?? "--",
                     token: "--",
                     action: "--",
-                    value: data.info.price ?? "--",
+                    value: formatLamports(data.info.price) ?? "--",
                     symbol: ""
                 }
 
@@ -201,7 +201,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                     to: data.info.buyer ?? "--",
                     token: "--",
                     action: "--",
-                    value: data.info.price ?? "--",
+                    value: formatLamports(data.info.price) ?? "--",
                     symbol: ""
                 }
                 setRelField(data.info.nft_address ?? "");
@@ -213,7 +213,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                     to: data.info.marketplace ?? "--",
                     token: "--",
                     action: "--",
-                    value: data.info.price ?? "--",
+                    value: formatLamports(data.info.price) ?? "--",
                     symbol: ""
                 }
 
@@ -226,7 +226,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                     to: data.info.marketplace ?? "--",
                     token: "--",
                     action: "--",
-                    value: data.info.price ?? "--",
+                    value: formatLamports(data.info.price) ?? "--",
                     symbol: ""
                 }
 
@@ -239,7 +239,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                     to: data.info.withdrawal_destination_account ?? "--",
                     token: "--",
                     action: "--",
-                    value: data.info.amount ?? "--",
+                    value: formatLamports(data.info.amount) ?? "--",
                     symbol: ""
                 }
             }

@@ -14,6 +14,7 @@ import NftExpanded from "./components/NftExpanded";
 import PlanetLoader from "./components/loaders/loaders";
 import copyIcon from "./resources/images/txnImages/copy_icon.svg"
 import SearchComponent from "./components/SearchComponent";
+import TabbedTokens from "./components/TransactionComponent/TabbedTokens";
 // import TransactionsToken from "./components/TransactionComponent/TransactionsToken";
 
 const AddressComponent = () => {
@@ -150,7 +151,7 @@ const AddressComponent = () => {
             <div className="container-lg pt-2">
                 <div className={styles.tab_container}>
                     <button className={(panel === "TXN")?`${styles.top_tab} ${styles.top_tab_selected}`:`${styles.top_tab} `} onClick={(e)=> setPanel("TXN")}>
-                        Transactions
+                        Activity
                         {(panel === "TXN")?<div className={styles.underline} />:""}
                     </button>
                     <button className={(panel === "TKN")?`${styles.top_tab} ${styles.top_tab_selected}`:`${styles.top_tab} `} onClick={(e)=> setPanel("TKN")}>
@@ -164,7 +165,7 @@ const AddressComponent = () => {
                     }
                     {
                         (panel === "TKN") && <div className="text-center could_not_text pt-5">
-                            No Tokens Found
+                            <TabbedTokens address={addr} cluster={cluster}/>
                         </div>
                     }
                 </div>

@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;700&display=swap');
+
+.tabbed_token_section
+{
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 900px;
+}
+
+.each_tab_token
+{
+    position: relative;
+    min-height: 100px;
+    background-color: #3C1B67;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-radius: 14px;
+    border: 2px solid transparent;
+    padding: 16px 24px;
+    margin-bottom: 20px;
+    transition: all 0.05s ease;
+}
+.each_tab_token .toggle_button
+{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: end;
+}
+
+.each_tab_token .toggle_button .sol_icon img
+{
+    width: 20px;
+    height: 20px;
+}
+.each_tab_token .toggle_button .sol_icon_2 img
+{
+    width: 24px;
+    height: 24px;
+}
+.each_tab_token .toggle_button .copyTxnSig
+{
+    background-color: transparent;
+    border: none;
+    outline:none;
+    box-shadow: none;
+    margin-top: -1px;
+    display: block;
+}
+.each_tab_token .toggle_button .copyTxnSig img
+{
+    width: 23px;
+    height: 23px;
+}
+.each_tab_token .name_section
+{
+    max-width: 100%;
+}
+.each_tab_token .name_section .name
+{
+    font: 500 20px/24px "Montserrat",sans-serif;
+    padding: 10px 20px 10px 0px;
+    color: #FDF41B;
+}
+.each_tab_token .name_section .sub_name
+{
+    font: 300 11px/30px "Montserrat",sans-serif;
+    padding: 10px 20px 10px 0px;
+    color: #FFFFFF99;
+}
+.each_tab_token .name_section .sub_name_mob
+{
+    display: none;
+}
+.each_tab_token .info_section
+{
+    padding: 12px 0px 12px;
+}
+.each_tab_token .info_section .token_image_container 
+{
+    text-align: left;
+}
+.each_tab_token .info_section .token_image_container img
+{
+    width: 44px;
+    height: 44px;
+    border-radius: 20px;
+    object-fit: fill;
+}
+.each_tab_token .info_section .field
+{
+    font: 400 16px/24px "Poppins",sans-serif;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+    padding-top: 10px;
+}
+.each_tab_token .info_section .field a
+{
+    text-decoration: none;
+    color: inherit;
+}
+.each_tab_token .info_section .field a:hover
+{
+    text-decoration: none;
+    color: #0AEEFF;
+}
+.could_not_text
+{
+    font: 300 16px/20px "Poppins",sans-serif;
+    color: #FFF3;
+    letter-spacing: 1px;
+    text-align: center;
+}
+@media screen and (max-width:767px) {
+    .each_tab_token
+    {
+        position: relative;
+        border-radius: 10px;
+        border: 2px solid transparent;
+        padding: 8px 12px;
+        
+    }
+    .each_tab_token .name_section
+    {
+        max-width: 80%;
+    }
+    .each_tab_token .name_section .name
+    {
+        font: 500 18px/22px "Montserrat",sans-serif;
+        padding: 10px 20px 10px 0px;
+        color: #FDF41B;
+        width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-align: start;
+    } 
+    .each_tab_token .name_section .sub_name
+    {
+        font: 300 10px/16px "Montserrat",sans-serif;
+        padding: 0px 20px 10px 0px;
+        color: #FFFFFF99;
+        display:none;
+    }
+    .each_tab_token .name_section .sub_name_mob
+    {
+        font: 300 11px/30px "Montserrat",sans-serif;
+        color: #FFFFFF99; 
+        margin-top: -8px;
+        text-align: left;
+        display: block;
+    }
+    .each_tab_token .info_section .token_image_container 
+    {
+        
+        text-align: center;
+        padding-bottom: 32px;
+    }
+    .each_tab_token .info_section .token_image_container img
+    {
+        width: 120px;
+        height: 120px;
+        border-radius: 60px;
+        object-fit: fill;
+    }
+    .each_tab_token .info_section .field
+    {
+        font: 400 12px/24px "Poppins",sans-serif;
+        padding-top: 4px;
+    }
+    .each_tab_token .toggle_button .sol_icon img
+    {
+        width: 16px;
+        height: 16px;
+    }
+    .each_tab_token .toggle_button .sol_icon_2 img
+    {
+        width: 18px;
+        height: 18px;
+    }
+    .each_tab_token .toggle_button .copyTxnSig
+    {
+        background-color: transparent;
+        
+        display: none;
+    }
+    
+}

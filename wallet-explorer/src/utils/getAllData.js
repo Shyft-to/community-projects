@@ -196,6 +196,40 @@ export async function getWalletData(network, address) {
   }
 }
 
+export async function getAllTokens(network, address) {
+  var data = {
+    success: false,
+    type: "UNKNOWN",
+    details: null,
+  };
+  await axios({
+    url: `${endpoint}wallet/all_tokens`,
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": xKey,
+    },
+    params: {
+      network: network,
+      wallet: address,
+    },
+  })
+    .then((res) => {
+      if (res.data.success === true) {
+        data = {
+          success: true,
+          type: "TOKENS",
+          details: res.data.result,
+        };
+      }
+    })
+    .catch((err) => {
+      console.warn(err);
+    });
+
+  return data;
+}
+
 // export async function categorizeAddress(network, address) {
 //   var data = {
 //     success: false,
