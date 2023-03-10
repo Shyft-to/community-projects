@@ -165,8 +165,8 @@
   background-color: rgba(89, 101, 243, 0.29);
   background: linear-gradient(
     90.8deg,
-    #E0499B 30.34%,
-    #FDF41B 98%
+    #E0499B -30.34%,
+    #571DA3 85%
   );
   color: #fff;
   font: 500 0.9rem/1.2rem "Montserrat", sans-serif;

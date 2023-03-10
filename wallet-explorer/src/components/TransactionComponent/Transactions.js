@@ -168,7 +168,10 @@ const Transactions = ({ address, cluster }) => {
             Could Not Load Transactions
           </div>
          }
-          <div ref={ref} className="pt-2 text-center ten-height">
+         <div ref={ref} className="ten-height-2">
+              
+         </div>
+          <div  className="pt-2 text-center ten-height">
             {isLoading && <TxnLoader />}
             {(isLoading === false && moreTxns === false && errOcc === false)?<div className={styles.could_not_text}>No more transactions to load</div>:""}
             {/* <button className="btn btn-light" onClick={() => getPrevNext("next")}>Load More</button> */}

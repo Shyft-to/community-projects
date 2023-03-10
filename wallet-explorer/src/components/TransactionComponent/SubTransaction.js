@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import 'balloon-css';
 import { motion } from "framer-motion";
 
-import icon from "../../resources/images/txnImages/unknown.png";
+import icon from "../../resources/images/txnImages/unknown_token.png";
 import arrow from "../../resources/images/txnImages/arrow.svg";
 import solanaIcon from "../../resources/images/txnImages/solana_icon.svg";
 import copyIcon from "../../resources/images/txnImages/copy_icon.svg"
