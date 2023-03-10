@@ -292,7 +292,7 @@
     border: 2px solid transparent;
     padding: 16px 24px;
     margin-bottom: 20px;
-    transition: all 0.1s ease;
+    transition: all 0.05s ease;
 }
 .each_txn_3:hover
 {

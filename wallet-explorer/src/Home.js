@@ -20,16 +20,12 @@ const Home = () => {
         <div className="container-lg">
           <div className={styles.central_area}>
             <div className={styles.main_title_container}>
-              <div className="d-flex flex-wrap justify-content-center">
-                <div>Solana &nbsp;</div>
+              <motion.div initial={{ opacity: 0, y:30 }} animate={{ opacity: 1, y:0 }} transition={{delay:0.4}}>Solana Translator</motion.div>
+
+              {/* <div className="d-flex flex-wrap justify-content-center">
+                <motion.div initial={{ opacity: 0, y:30 }} animate={{ opacity: 1, y:0 }} transition={{delay:0.4}}>Solana Translator</motion.div>
                 <div>
-                  {/* <Typewriter
-                    options={{
-                      strings: ["Tokens","Transactions", 'Translator'],
-                      autoStart: true,
-                      loop: true,
-                    }}
-                  /> */}
+                  
                   <Typewriter
                     onInit={(typewriter) => {
                       typewriter.typeString('Tokens')
@@ -44,9 +40,9 @@ const Home = () => {
                     }}
                   />
                 </div>
-              </div>
+              </div> */}
             </div>
-            <motion.div className="row py-5" initial={{ opacity: 0, y:30 }} animate={{ opacity: 1, y:0 }} transition={{delay:5}}>
+            <motion.div className="row py-5" initial={{ opacity: 0, y:30 }} animate={{ opacity: 1, y:0 }} transition={{delay:0.6}}>
               <div className="col-12 col-md-8 p-2">
                 <div className={styles.simple_input_container}>
                   <div className="d-flex">
@@ -71,7 +67,7 @@ const Home = () => {
               </div>
             </motion.div>
             <div className="text-center">
-              <motion.div className={styles.button_container} initial={{ opacity: 0, y:30 }} animate={{ opacity: 1, y:0 }} transition={{delay:5.5}}>
+              <motion.div className={styles.button_container} initial={{ opacity: 0, y:30 }} animate={{ opacity: 1, y:0 }} transition={{delay:0.9}}>
                 <Link to={`/address/${wallet}?cluster=${network}`} className={styles.btn_solid_grad}>
                   Translate
                 </Link>
