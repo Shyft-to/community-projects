@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;700&display=swap');
+
+/* Tabbed Section Container */
+.tabbed_section_container
+{
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 900px;
+}
+.tab_container
+{
+  position: relative;
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  border-bottom: 1px solid #fff2;
+}
+.top_tab
+{
+  position: relative;
+  width: 50%;
+  text-align: center;
+  padding: 24px 0px;
+  font: 500 16px/16px "Poppins", sans-serif;
+  color: #fffa;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  transition: all 0.2s ease;
+}
+.top_tab_selected
+{
+  background-color: #8254b066 !important;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  color: #fffe;
+}
+.underline
+{
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #FDF41B;
+  transition: all 0.2s ease;
+}
+
+
+.txn_section
+{
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 900px;
+}
+.txn_section .main_heading
+{
+    font: 500 22px/24px "Montserrat",sans-serif;
+    color: #fff;
+    padding-bottom: 12px;
+}
+.tabbed_token_section
+{
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 900px;
+}
+@media screen and (max-width: 767px) {
+    .txn_section .main_heading
+    {
+        font: 500 18px/24px "Montserrat",sans-serif;
+        color: #fff;
+        padding-bottom: 12px;
+    }
+}

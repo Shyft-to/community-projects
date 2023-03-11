@@ -11,7 +11,7 @@ import TransactionStructureToken from "./TransactionsStructureToken";
 const endpoint = process.env.REACT_APP_API_EP ?? "";
 const xKey = process.env.REACT_APP_API_KEY ?? "";
 
-const Transactions = ({ address, cluster,toast }) => {
+const Transactions = ({ address, cluster }) => {
   const [loaded, setLoaded] = useState(false);
   const [isLoading,setLoading] = useState(false);
   const [errOcc,setErrOcc] = useState(false);

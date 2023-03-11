@@ -148,7 +148,7 @@ const AddressComponent = () => {
                 }
                 
             </div>}
-            {/* <div className="container-lg pt-2">
+            <div className="container-lg pt-2">
                 <div className={styles.tab_container}>
                     <button className={(panel === "TXN")?`${styles.top_tab} ${styles.top_tab_selected}`:`${styles.top_tab} `} onClick={(e)=> setPanel("TXN")}>
                         Activity
@@ -169,7 +169,7 @@ const AddressComponent = () => {
                         </div>
                     }
                 </div>
-            </div> */}
+            </div>
             
         </div>
         </div> 
