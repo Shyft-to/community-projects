@@ -244,12 +244,50 @@
 }
 .simple_input_container
 {
+  position: relative;
   background-color: transparent;
   border: 2px solid #9650E5;
   padding: 10px 20px;
   border-radius: 25px;
   margin: 0 auto;
   letter-spacing: 1px;
+}
+.simple_input_container .search_area
+{
+  position: absolute;
+  margin-top: 10px;
+  width: 90%;
+}
+.simple_input_container .search_area .each_item
+{
+  background: #3C1B6755;
+  border-radius: 6px;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  padding: 8px 8px 10px;
+  margin-top: 10px;
+  width: 100%;
+  border: none;
+  outline:none;
+}
+.simple_input_container .search_area .each_item .network_area
+{
+  color: #fff;
+  font: 300 12px/14px "Poppins",sans-serif;
+  background-color: #2a0855;
+  padding: 5px 10px 2px;
+  width: 80px;
+  text-align: center;
+}
+.simple_input_container .search_area .each_item .address_area
+{
+  color: #fff;
+  font: 300 14px/14px "Poppins",sans-serif;
+  padding: 5px 8px 2px;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .simple_input_container input
 {
