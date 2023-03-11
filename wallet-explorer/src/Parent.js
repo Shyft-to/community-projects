@@ -5,6 +5,7 @@ import Home from "./Home";
 import ScrollToTop from "./ScrollToTop";
 import TokenComponent from "./TokenComponent";
 import TxnComponent from "./TxnComponent";
+import { Toaster } from 'react-hot-toast';
 
 const Parent = () => {
     return ( 
@@ -19,6 +20,24 @@ const Parent = () => {
                 <Route exact path="/:type/:addr" element={<TokenComponent />} />
                 <Route exact path="*" element={<Home />} />
                 </Routes>
+                <Toaster
+                    position="bottom-center"
+                    reverseOrder={false}
+                    toastOptions={
+                        {
+                            // icon: '🚀',
+                            duration: 900,
+                            style: {
+                              padding: '4px 12px',
+                              borderRadius: '6px',
+                              background: '#333',
+                              color: '#fff',
+                              fontFamily: 'Poppins',
+                              fontSize: '14px',
+                            },
+                          }
+                    }
+                />
             </Router>
         </div>
      );

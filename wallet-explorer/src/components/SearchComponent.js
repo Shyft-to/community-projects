@@ -10,7 +10,7 @@ const SearchComponent = () => {
   const [network, setNetwork] = useState("mainnet-beta");
   return (
     <div>
-      <motion.div className={styles.form_container} initial={{ opacity: 0,y:-100 }} whileInView={{ opacity: 1,y:0 }}>
+      <motion.div className={styles.form_container} initial={{ opacity: 0,y:-100 }} whileInView={{ opacity: 1,y:0 }} viewport={{ once: true }}>
         <div className={styles.form_field_outer}>
           <div className={styles.form_field_inner}>
             <div className="d-flex justify-content-start">

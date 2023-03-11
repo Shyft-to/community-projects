@@ -1,8 +1,17 @@
+import {motion} from "framer-motion";
+import toast from 'react-hot-toast';
+
 import styles from "../resources/css/NftExpanded.module.css";
 import unknown from "../resources/images/ok_bear.png";
-import {motion} from "framer-motion";
+import copyBtn from "../resources/images/txnImages/copy_icon.svg";
+
 
 const NftExpanded = ({ nft }) => {
+  
+  const copyValue = (value) => {
+      toast('Copied');
+      navigator.clipboard.writeText(value);
+  }
   return (
     <div className={styles.entire_nft_expanded}>
       <div className="row">
@@ -61,7 +70,7 @@ const NftExpanded = ({ nft }) => {
                   </div>
                   <div className="col-8">
                     <div className={styles.table_field_value}>
-                      {nft.mint ?? "--"}
+                      {(nft.mint !== "") && <button onClick={() => copyValue(nft.mint)}><img src={copyBtn} /></button>}{nft.mint ?? "--"}
                     </div>
                   </div>
                 </div>
@@ -71,7 +80,7 @@ const NftExpanded = ({ nft }) => {
                   </div>
                   <div className="col-8">
                     <div className={styles.table_field_value}>
-                      {nft.owner ?? "--"}
+                      {(nft.owner !== "") && <button onClick={() => copyValue(nft.owner)}><img src={copyBtn} /></button>}{nft.owner ?? "--"}
                     </div>
                   </div>
                 </div>

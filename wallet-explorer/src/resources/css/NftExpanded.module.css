@@ -87,6 +87,18 @@
 {
     padding-top:28px;
 }
+.nft_section .table_container .each_row button
+{
+    display: inline-block;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+.nft_section .table_container .each_row button img
+{
+    width: 18px;
+}
 .nft_section .table_container .each_row:first-of-type
 {
     padding-top:0px;
@@ -99,7 +111,7 @@
 }
 .nft_section .table_container .table_field_value
 {
-    font: 500 16px/16px "Poppins", sans-serif;
+    font: 500 16px/19px "Poppins", sans-serif;
     color: #fff;
     text-align: end;
     overflow: hidden;
