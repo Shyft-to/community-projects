@@ -128,12 +128,61 @@
   }
   
   .search_icon {
-    text-decoration: none;
+    /* text-decoration: none; */
     color: #555;
     transition: all 0.2s ease-in;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
   }
   
   .search_icon:hover {
     color: aqua;
   }
+}
+.form_container .search_n_suggestions
+{
+  position: relative;
+}
+.search_n_suggestions .suggestions_area_outer
+{
+  position: absolute;
+  top: 54px;
+  padding: 0px 18px;
+  width: 100%;
+  z-index: 10;
+}
+.search_n_suggestions .suggestions_area_outer .each_search
+{
+  display: block;
+  margin-top: 6px;
+  background: #3C1B67aa;
+  border-radius: 6px;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  padding: 10px 8px;
+  width: 100%;
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+.each_search .network_area
+{
+  color: #fff;
+  font: 300 12px/14px "Poppins",sans-serif;
+  background-color: #2a0855;
+  padding: 5px 10px 2px;
+  width: 80px;
+  text-align: center;
+}
+.each_search .address_area
+{
+  color: #fff;
+  font: 300 14px/14px "Poppins",sans-serif;
+  padding: 5px 8px 2px;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
