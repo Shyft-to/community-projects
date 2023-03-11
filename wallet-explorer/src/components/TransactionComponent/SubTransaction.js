@@ -36,6 +36,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
         value: "",
         symbol: ""
     });
+    const [copy,setCopied] = useState("copy");
 
     const getData = async (cluster, address) => {
         try {
@@ -283,6 +284,10 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
 
     const copyValue = (value) => {
         navigator.clipboard.writeText(value);
+        setCopied("copied");
+        setTimeout(() => {
+            setCopied("copy");
+        }, 500);
     }
 
     useEffect(() => {
@@ -294,20 +299,20 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
     }, [currencyField]);
 
     useEffect(() => {
-
         categoriseAction();
     }, []);
     return (
         <div className={styles.sub_txns}>
             <div className="d-flex">
                 <div className={styles.thumb_container}>
-                    <img src={image} alt="token" />
+                    {((data.type==="NFT_TRANSFER" || data.type==="TOKEN_TRANSFER")&& relField!=="")?<Link to={`/address/${relField}?cluster=${cluster}`}><img src={image} alt="token" /></Link>:<img src={image} alt="token" />}
                 </div>
                 <div className={styles.txn_details}>
                     <div className={styles.subtxn_token}>
                         <div className="d-flex">
                             <div>
-                                {name || relField || "Unknown"}
+                                {/* {name || relField || "Unknown"} */}
+                                {(data.type==="NFT_TRANSFER" || data.type==="TOKEN_TRANSFER")?((relField)?((name === "")?<Link to={`/address/${relField}?cluster=${cluster}`}>{relField}</Link>:<Link to={`/address/${relField}?cluster=${cluster}`}>{name}</Link>):"Unknown"):(name || relField || "Unknown")}  
                             </div>
 
                             {(relField !== "")?<div className={styles.copy_bt}>
@@ -389,7 +394,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                         </div>
                                                         <div className="pe-2">
                                                             <div className={styles.field_sub_1}>
-                                                                <Link to={`/address/${varFields.from}?cluster=${cluster}`} aria-label={varFields.from} data-balloon-pos="up">{varFields.from}</Link>
+                                                                <Link to={`/address/${varFields.from}?cluster=${cluster}`} aria-label={varFields.from} data-balloon-pos="up">{shortenAddress(varFields.from)}</Link>
                                                             </div>
                                                         </div>
                                                     </div>

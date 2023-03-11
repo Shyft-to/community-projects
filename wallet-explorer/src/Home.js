@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Typewriter from 'typewriter-effect';
+
 import styles from "./resources/css/Home.module.css";
 
 // import spottedPlanetTop from "./resources/images/spotted-planet-top.png";
@@ -17,6 +18,7 @@ const Home = () => {
   return (
     <div>
       <div className={styles.background_2}>
+     
         <div className="container-lg">
           <div className={styles.central_area}>
             <div className={styles.main_title_container}>

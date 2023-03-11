@@ -3,7 +3,6 @@ import {useSearchParams,useParams,useNavigate} from "react-router-dom";
 import { categorizeAddress } from "./utils/getAllData";
 import { shortenAddress } from "./utils/formatter";
 import { motion } from "framer-motion";
-
 import styles from "./resources/css/WalletAddress.module.css";
 
 import AllNfts from "./components/AllNfts";
@@ -24,7 +23,7 @@ const AddressComponent = () => {
     const navigate = useNavigate();
 
     const [panel,setPanel] = useState("TXN");
-
+    const [copy,setCopied] = useState("copy");
     
     
     const [isLoading,setLoading] = useState(true);
@@ -78,12 +77,17 @@ const AddressComponent = () => {
 
     const copyValue = (value) => {
         navigator.clipboard.writeText(value);
+        setCopied("copied");
+        setTimeout(() => {
+            setCopied("copy");
+        }, 500);
     }
     
     return ( 
         <div>
         {/* <HeaderComponent /> */}
         <div className={styles.background_super}>
+            
             {isLoading && <PlanetLoader />}
             {!isLoading && <div>
                 <div className="container pt-2 pb-1">
@@ -144,7 +148,7 @@ const AddressComponent = () => {
                 }
                 
             </div>}
-            {/* <div className="container-lg pt-2">
+            <div className="container-lg pt-2">
                 <div className={styles.tab_container}>
                     <button className={(panel === "TXN")?`${styles.top_tab} ${styles.top_tab_selected}`:`${styles.top_tab} `} onClick={(e)=> setPanel("TXN")}>
                         Activity
@@ -157,7 +161,7 @@ const AddressComponent = () => {
                 </div>
                 <div className={styles.tabbed_section_container}> 
                     {
-                        (panel === "TXN") && <Transactions address={addr} cluster={cluster} />
+                        (panel === "TXN") && <Transactions address={addr} cluster={cluster}/>
                     }
                     {
                         (panel === "TKN") && <div className="text-center could_not_text pt-5">
@@ -165,7 +169,7 @@ const AddressComponent = () => {
                         </div>
                     }
                 </div>
-            </div> */}
+            </div>
             
         </div>
         </div> 

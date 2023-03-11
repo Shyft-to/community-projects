@@ -1,6 +1,7 @@
 import { useState,useEffect } from "react";
-import 'balloon-css';
+import 'react-tippy/dist/tippy.css';
 import { motion } from "framer-motion"; 
+import Tooltip from "react-simple-tooltip";
 
 import icon from "../../resources/images/txnImages/nft_transfer_2.svg";
 import arrow from "../../resources/images/txnImages/arrow.svg";
@@ -16,10 +17,15 @@ import SubTransactions from "./SubTransaction";
 import { Link } from "react-router-dom";
 
 
+
 const TransactionStructureToken = ({ styles, id, data, address, cluster }) => {
-    
+    const [copied,setCopied] = useState("Copy");
     const copyValue = (value) => {
         navigator.clipboard.writeText(value);
+        setCopied("copied");
+        setTimeout(() => {
+            setCopied("Copy");  
+        }, 1000);
     }
 
     return ( 
@@ -27,9 +33,16 @@ const TransactionStructureToken = ({ styles, id, data, address, cluster }) => {
         <motion.div initial={{ opacity: 0,y:30 }} whileInView={{ opacity: 1,y:0 }} viewport={{ once: true }} className={styles.each_txn_3}>
             <div className={styles.toggle_button}>
                 <div className="pe-3">
+                <Tooltip
+                // options
+                content={copied}
+                padding={4}
+                placement="top"
+                >
                     <motion.button className={styles.copyTxnSig} onClick={() => copyValue(data.signatures[0])} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
                         <img src={copyIcon} alt="Copy Value" />
                     </motion.button>
+                </Tooltip>
                 </div>
                 <motion.div className="pe-2" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
                     <motion.a href={(cluster === "mainnet-beta")?`https://solscan.io/tx/${data.signatures[0]}`:`https://solscan.io/tx/${data.signatures[0]}?cluster=${cluster}`} target="_blank">
@@ -58,11 +71,11 @@ const TransactionStructureToken = ({ styles, id, data, address, cluster }) => {
                             </div>
                             <div className="">
                                 <div className={styles.txn_subname}>
-                                  {(data.protocol.name != "")?<div><Link to={`/address/${data.protocol.address}?cluster=mainnet-beta`}>{data.protocol.name}</Link></div>:(data.protocol.address ?? "--")}
+                                  {(data.protocol.name != "")?<div><Link to={`/address/${data.protocol.address}?cluster=mainnet-beta`}>{data.protocol.name}</Link></div>:(<Link to={`/address/${data.protocol.address}?cluster=mainnet-beta`}>{shortenAddress(data.protocol.address)}</Link>)}
                                 </div>
                             </div>
                             <div className="">
-                                <div className={styles.txn_subname} aria-label={(data.timestamp != "")?getFullTime(data.timestamp):""} data-balloon-pos="up">
+                                <div className={styles.txn_subname} style={{cursor:"pointer"}} aria-label={(data.timestamp != "")?getFullTime(data.timestamp):""} data-balloon-pos="up">
                                     {(data.timestamp != "")?getRelativetime(data.timestamp):""}
                                 </div>
                             </div>

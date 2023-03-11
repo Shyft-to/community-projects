@@ -206,3 +206,12 @@ body {
     color: #FFF3;
     letter-spacing: 1px;
 }
+.logo_container
+{
+  font: 700 18px/20px "Montserrat",sans-serif;
+}
+.logo_container a
+{
+  text-decoration: none;
+  color: #fff;
+}
