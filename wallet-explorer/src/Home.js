@@ -108,7 +108,7 @@ const Home = () => {
                     </div>
                   </div>
                   {isFocused && <div className={styles.search_area}>
-                    {searchData.map((result) => (<motion.button className={styles.each_item} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                    {searchData.map((result) => (<motion.button className={styles.each_item} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={() => addDataNavigate(result.address, result.network)}>
                       <div className="d-flex">
                         <div className={`flex-grow-1 ${styles.address_area}`}>
                           {result.address}
@@ -134,9 +134,9 @@ const Home = () => {
             </motion.div>
             <div className="text-center">
               <motion.div className={styles.button_container} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9 }}>
-                <Link to={`/address/${wallet}?cluster=${network}`} className={styles.btn_solid_grad}>
+                <button onClick={() => addDataNavigate(wallet, network)} className={styles.btn_solid_grad}>
                   Translate
-                </Link>
+                </button>
               </motion.div>
             </div>
 

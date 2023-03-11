@@ -62,14 +62,14 @@ const SearchComponent = () => {
   }
   return (
     <div>
-      <div className="row">
+      <motion.div className="row" initial={{ opacity: 0, y: -100 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
         <div className="col-12 col-lg-2">
-          <div className="logo_container">
+          <div className="logo_container pt-3">
             <Link to={`/`}>Solana Explorer</Link>
           </div>
         </div>
         <div className="col-12 col-lg-8">
-          <motion.div className={styles.form_container} initial={{ opacity: 0, y: -100 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <motion.div className={styles.form_container}>
             <div className={styles.search_n_suggestions} >
               <div className={styles.form_field_outer}>
                 <div className={styles.form_field_inner}>
@@ -136,7 +136,7 @@ const SearchComponent = () => {
           </motion.div>
         </div>
         <div className="col-12 col-lg-2"></div>
-      </div>
+      </motion.div>
 
     </div>
   );
