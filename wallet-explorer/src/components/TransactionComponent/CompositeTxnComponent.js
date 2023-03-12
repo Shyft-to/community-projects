@@ -4,7 +4,9 @@ import { useInView } from 'react-intersection-observer';
 
 
 import styles from "../../resources/css/Transactions.module.css";
+import { getAllTokens } from "../../utils/getAllData";
 import TxnLoader from "../loaders/TxnLoader";
+import EachTabToken from "./EachTabToken";
 import TokenTransfer from "./TokenTransfer";
 import TransactionStructureToken from "./TransactionsStructureToken";
 
@@ -12,6 +14,7 @@ const endpoint = process.env.REACT_APP_API_EP ?? "";
 const xKey = process.env.REACT_APP_API_KEY ?? "";
 
 const CompositeTxnComponent = ({ address, cluster }) => {
+
     const [loaded, setLoaded] = useState(false);
     const [isLoading, setLoading] = useState(false);
     const [errOcc, setErrOcc] = useState(false);
