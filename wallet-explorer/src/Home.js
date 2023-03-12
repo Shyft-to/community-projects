@@ -73,6 +73,7 @@ const Home = () => {
         <div className="container-lg">
           <div className={styles.central_area}>
             <div className={styles.main_title_container}>
+              
               <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>Solana Translator</motion.div>
 
               {/* <div className="d-flex flex-wrap justify-content-center">

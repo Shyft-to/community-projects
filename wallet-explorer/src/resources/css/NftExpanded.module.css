@@ -119,6 +119,17 @@
     text-overflow: ellipsis;
 
 }
+.nft_section .table_container .table_field_value a
+{
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.1s ease;
+}
+.nft_section .table_container .table_field_value a:hover
+{
+    
+    color: #0AEEFF;
+}
 /* .nft_section .attributes_section
 {
     padding-top: px;

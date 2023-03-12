@@ -4,8 +4,9 @@ import styles from "../resources/css/NftExpanded.module.css";
 import unknown from "../resources/images/ok_bear.png";
 import copyBtn from "../resources/images/txnImages/copy_icon.svg";
 import Tooltip from "react-simple-tooltip";
+import { Link } from "react-router-dom";
 
-const NftExpanded = ({ nft }) => {
+const NftExpanded = ({ nft,cluster }) => {
   const [copied, setcopied] = useState("copy");
   const copyValue = (value) => {
 
@@ -93,7 +94,7 @@ const NftExpanded = ({ nft }) => {
                         content={copied}
                         padding={4}
                         placement="top"
-                      ><button onClick={() => copyValue(nft.owner)}><img src={copyBtn} /></button></Tooltip>}{nft.owner ?? "--"}
+                      ><button onClick={() => copyValue(nft.owner)}><img src={copyBtn} /></button></Tooltip>}{(nft.owner !== "")? <Link to={`/address/${nft.owner}?cluster=${cluster}`}>{nft.owner}</Link>:"--"}
                     </div>
                   </div>
                 </div>
