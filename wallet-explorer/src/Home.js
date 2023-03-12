@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Typewriter from 'typewriter-effect';
-
 import styles from "./resources/css/Home.module.css";
 
 // import spottedPlanetTop from "./resources/images/spotted-planet-top.png";
@@ -73,7 +72,6 @@ const Home = () => {
         <div className="container-lg">
           <div className={styles.central_area}>
             <div className={styles.main_title_container}>
-              
               <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>Solana Translator</motion.div>
 
               {/* <div className="d-flex flex-wrap justify-content-center">

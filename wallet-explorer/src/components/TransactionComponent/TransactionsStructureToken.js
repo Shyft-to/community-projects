@@ -11,7 +11,7 @@ import copyIcon from "../../resources/images/txnImages/copy_icon.svg"
 
 import placeholder from "../../resources/images/txnImages/unknown.png";
 import { getNFTData } from "../../utils/getAllData";
-import { shortenAddress,getRelativetime, getFullTime } from "../../utils/formatter";
+import { shortenAddress,getRelativetime, getFullTime, formatNames } from "../../utils/formatter";
 
 import SubTransactions from "./SubTransaction";
 import { Link } from "react-router-dom";
@@ -35,9 +35,9 @@ const TransactionStructureToken = ({ styles, id, data, address, cluster }) => {
                 <div className="pe-3">
                 <Tooltip
                 // options
-                color="#101010"
+                background="#101010"
                 fontSize={"12px"}
-                radius={2}
+                radius={4}
                 content={copied}
                 padding={8}
                 placement="top"
@@ -69,7 +69,7 @@ const TransactionStructureToken = ({ styles, id, data, address, cluster }) => {
                         <div className="d-flex flex-wrap justify-content-start align-content-end">
                             <div className="">
                                 <div className={styles.txn_name}>
-                                    {(data.type === "UNKNOWN")?"Interacted with":(data.type ?? "--")}
+                                    {(data.type === "UNKNOWN")?"Interacted with":(formatNames(data.type) || "--")}
                                 </div>
                             </div>
                             <div className="">

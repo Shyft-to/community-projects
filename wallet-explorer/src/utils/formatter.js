@@ -34,3 +34,37 @@ export function formatLamports(value)
     else
         return "--";
 }
+
+export function formatNames(name)
+{
+    try {
+        if(name.includes("_"))
+        {
+            var words = name.split("_");
+            var capitalizedText = "";
+            for (let index = 0; index < words.length; index++) {
+                capitalizedText += capitalizeText(words[index]) + " ";
+            }
+            return capitalizedText;
+        }
+        else
+            return (capitalizeText(name))
+    } catch (error) {
+        return name;
+    }
+    
+}
+function capitalizeText(text)
+{
+    try {
+        if(text === "NFT")
+            return "NFT";
+        else if(text === "SOL")
+            return "SOL";
+        else
+            return text[0].toUpperCase() + text.substring(1).toLowerCase();
+    } catch (error) {
+        return text;
+    }
+    
+}

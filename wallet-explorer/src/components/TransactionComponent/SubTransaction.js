@@ -319,11 +319,11 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                             {(relField !== "")?<div className={styles.copy_bt}>
                             <Tooltip
                                 // options
-                                color="#101010"
+                                background="#101010"
                                 fontSize={"12px"}
-                                radius={8}
+                                radius={4}
                                 content={copy}
-                                padding={8}
+                                padding={6}
                                 placement="top"
                                 >
                                 <motion.button onClick={() => copyValue(relField)} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.95 }}>
