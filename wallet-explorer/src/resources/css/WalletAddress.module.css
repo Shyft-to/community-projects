@@ -117,21 +117,29 @@
 {
   position: relative;
   width: 50%;
+  max-width: 250px;
   text-align: center;
-  padding: 24px 0px;
+  padding: 18px 0px;
   font: 500 16px/16px "Poppins", sans-serif;
   color: #fffa;
   outline: none;
   border: none;
   background-color: transparent;
   transition: all 0.2s ease;
+  border-top-right-radius: 2px;
+  border-top-left-radius: 2px;
+}
+.top_tab:hover
+{
+  color: #fff;
+  background-color: #8254b022;
 }
 .top_tab_selected
 {
-  background-color: #8254b066 !important;
-  border-top-right-radius: 8px;
-  border-top-left-radius: 8px;
-  color: #fffe;
+  /* background-color: #8254b066 !important; */
+  border-top-right-radius: 2px;
+  border-top-left-radius: 2px;
+  color: #FDF41B !important;
 }
 .underline
 {
