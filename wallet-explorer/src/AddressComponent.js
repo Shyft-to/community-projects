@@ -3,6 +3,7 @@ import {useSearchParams,useParams,useNavigate} from "react-router-dom";
 import { categorizeAddress } from "./utils/getAllData";
 import { shortenAddress } from "./utils/formatter";
 import { motion } from "framer-motion";
+import Tooltip from "react-simple-tooltip";
 import styles from "./resources/css/WalletAddress.module.css";
 
 import AllNfts from "./components/AllNfts";
@@ -102,9 +103,20 @@ const AddressComponent = () => {
                                     <div className="d-flex">
                                         <div className="pe-2">({shortenAddress(addr)})</div>
                                         <div>
+                                        <Tooltip
+                                            // options
+                                            
+                                            fontSize={"12px"}
+                                            radius={8}
+                                            content={copy}
+                                            padding={8}
+                                            placement="top"
+                                            zIndex={20}
+                                            >
                                             <button className={styles.copy_button} onClick={() => copyValue(addr)}>
                                                 <img src={copyIcon} alt="Copy Image" />
                                             </button>
+                                            </Tooltip>
                                         </div>
                                     </div>
                                     {/*<span>Space Overview</span> */} 

@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react";
-import 'react-tippy/dist/tippy.css';
+
 import { motion } from "framer-motion"; 
 import Tooltip from "react-simple-tooltip";
 
@@ -19,12 +19,12 @@ import { Link } from "react-router-dom";
 
 
 const TransactionStructureToken = ({ styles, id, data, address, cluster }) => {
-    const [copied,setCopied] = useState("Copy");
+    const [copied,setCopied] = useState("copy");
     const copyValue = (value) => {
         navigator.clipboard.writeText(value);
         setCopied("copied");
         setTimeout(() => {
-            setCopied("Copy");  
+            setCopied("copy");  
         }, 1000);
     }
 
@@ -35,8 +35,11 @@ const TransactionStructureToken = ({ styles, id, data, address, cluster }) => {
                 <div className="pe-3">
                 <Tooltip
                 // options
+                color="#101010"
+                fontSize={"12px"}
+                radius={2}
                 content={copied}
-                padding={4}
+                padding={8}
                 placement="top"
                 >
                     <motion.button className={styles.copyTxnSig} onClick={() => copyValue(data.signatures[0])} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>

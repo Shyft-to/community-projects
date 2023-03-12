@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import 'balloon-css';
 import { motion } from "framer-motion";
+import Tooltip from "react-simple-tooltip";
 
 import icon from "../../resources/images/txnImages/unknown_token.png";
 import arrow from "../../resources/images/txnImages/arrow.svg";
@@ -316,9 +317,19 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                             </div>
 
                             {(relField !== "")?<div className={styles.copy_bt}>
+                            <Tooltip
+                                // options
+                                color="#101010"
+                                fontSize={"12px"}
+                                radius={8}
+                                content={copy}
+                                padding={8}
+                                placement="top"
+                                >
                                 <motion.button onClick={() => copyValue(relField)} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.95 }}>
                                     <img src={copyIcon} alt="Copy Icon" />
                                 </motion.button>
+                                </Tooltip>
                             </div>:""}
                         </div>
                     </div>
