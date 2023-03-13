@@ -19,12 +19,12 @@ import { Link } from "react-router-dom";
 
 
 const TransactionStructureToken = ({ styles, id, data, address, cluster }) => {
-    const [copied,setCopied] = useState("copy");
+    const [copied,setCopied] = useState("Copy");
     const copyValue = (value) => {
         navigator.clipboard.writeText(value);
-        setCopied("copied");
+        setCopied("Copied");
         setTimeout(() => {
-            setCopied("copy");  
+            setCopied("Copy");  
         }, 1000);
     }
 
@@ -69,7 +69,7 @@ const TransactionStructureToken = ({ styles, id, data, address, cluster }) => {
                         <div className="d-flex flex-wrap justify-content-start align-content-end">
                             <div className="">
                                 <div className={styles.txn_name}>
-                                    {(data.type === "UNKNOWN")?"Interacted with":(formatNames(data.type) || "--")}
+                                    {(data.type === "UNKNOWN")?"Protocol Interaction":(formatNames(data.type) || "--")}
                                 </div>
                             </div>
                             <div className="">

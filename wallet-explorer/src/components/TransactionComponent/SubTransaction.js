@@ -37,7 +37,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
         value: "",
         symbol: ""
     });
-    const [copy,setCopied] = useState("copy");
+    const [copy,setCopied] = useState("Copy");
 
     const getData = async (cluster, address) => {
         try {
@@ -45,6 +45,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
             if (res.success === true) {
                 if (res.details.image_uri)
                     setImage(res.details.cached_image_uri ?? res.details.image_uri);
+
                 setName(res.details.name);
             }
         }
@@ -83,7 +84,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                     type: "TRANSFER",
                     from: data.info.sender ?? "--",
                     to: data.info.receiver ?? "--",
-                    token: "TOKEN",
+                    token: "SOL",
                     action: "--",
                     value: data.info.amount ?? "--",
                     symbol: ""
@@ -102,6 +103,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                     symbol: ""
                 }
                 setRelField(data.info.token_address ?? "");
+                // setCurrencyField(data.info.token_address ?? "");
             } else if (data.type === "NFT_TRANSFER") {
                 type_obj = {
                     type: "TRANSFER",
@@ -285,9 +287,9 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
 
     const copyValue = (value) => {
         navigator.clipboard.writeText(value);
-        setCopied("copied");
+        setCopied("Copied");
         setTimeout(() => {
-            setCopied("copy");
+            setCopied("Copy");
         }, 500);
     }
 
@@ -306,14 +308,14 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
         <div className={styles.sub_txns}>
             <div className="d-flex">
                 <div className={styles.thumb_container}>
-                    {((data.type==="NFT_TRANSFER" || data.type==="TOKEN_TRANSFER")&& relField!=="")?<Link to={`/address/${relField}?cluster=${cluster}`}><img src={image} alt="token" /></Link>:<img src={image} alt="token" />}
+                    {((data.type==="NFT_TRANSFER" || data.type==="TOKEN_TRANSFER" || data.type==="NFT_MINT" || data.type==="TOKEN_MINT" || data.type==="TOKEN_CREATE" || data.type==="NFT_SALE" || data.type==="NFT_BID" || data.type==="NFT_LIST")&& relField!=="")?<Link to={`/address/${relField}?cluster=${cluster}`}><img src={image} alt="token" /></Link>:<img src={image} alt="token" />}
                 </div>
                 <div className={styles.txn_details}>
                     <div className={styles.subtxn_token}>
                         <div className="d-flex">
                             <div>
                                 {/* {name || relField || "Unknown"} */}
-                                {(data.type==="NFT_TRANSFER" || data.type==="TOKEN_TRANSFER")?((relField)?((name === "")?<Link to={`/address/${relField}?cluster=${cluster}`}>{relField}</Link>:<Link to={`/address/${relField}?cluster=${cluster}`}>{name}</Link>):"General Interaction"):(name || relField || "General Interaction")}  
+                                {(data.type==="NFT_TRANSFER" || data.type==="TOKEN_TRANSFER" || data.type==="NFT_MINT" || data.type==="TOKEN_MINT" || data.type==="TOKEN_CREATE" || data.type==="NFT_SALE" || data.type==="NFT_BID" || data.type==="NFT_LIST")?((relField)?((name === "")?<Link to={`/address/${relField}?cluster=${cluster}`}>{relField}</Link>:<Link to={`/address/${relField}?cluster=${cluster}`}>{name}</Link>):"Protocol Interaction"):(name || relField || "Protocol Interaction")}  
                             </div>
 
                             {(relField !== "")?<div className={styles.copy_bt}>
@@ -360,7 +362,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                             <div className="col-12 col-md-6">
                                                 <div className={`text-end ${styles.field_sub_1}`}>
                                                     <div className={styles.minus_color}>
-                                                        - {varFields.value} {(varFields.token === "TOKEN")?"SOL":""}
+                                                        - {varFields.value} {(varFields.token === "SOL")?"SOL":""}
                                                     </div>
                                                 </div>
                                             </div>
@@ -386,7 +388,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                             <div className="col-12 col-md-6">
                                                 <div className={`text-end ${styles.field_sub_1}`}>
                                                     <div className={styles.plus_color}>
-                                                        + {varFields.value} {(varFields.token === "TOKEN")?"SOL":""}
+                                                        + {varFields.value} {(varFields.token === "SOL")?"SOL":""}
                                                     </div>
                                                 </div>
                                             </div>
@@ -438,7 +440,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                 </div>
                                                 <div className="col-12 col-md-6">
                                                     <div className={`text-end ${styles.field_sub_1}`}>
-                                                        {varFields.value} {(varFields.token === "TOKEN")?"SOL":""}
+                                                        {varFields.value} {(varFields.token === "SOL")?"SOL":""}
                                                     </div>
                                                 </div>
                                             </div>
@@ -721,15 +723,13 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                             <div className="d-flex">
                                                 <div className="pe-2">
                                                     <div className={styles.field_sub_1}>
-                                                        -
+                                                    &nbsp;
                                                     </div>
                                                 </div>
-                                                {/* <div className="pe-1">
-                                                    <img src={arrow} alt="" style={{ width: "14px" }} />
-                                                </div> */}
+                                                
                                                 <div className="pe-1">
                                                     <div className={styles.field_sub_1}>
-                                                        -
+                                                        &nbsp;
                                                     </div>
                                                 </div>
                                             </div>

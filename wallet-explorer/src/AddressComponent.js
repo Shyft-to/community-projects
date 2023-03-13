@@ -24,7 +24,7 @@ const AddressComponent = () => {
     const navigate = useNavigate();
 
     const [panel, setPanel] = useState("TXN");
-    const [copy, setCopied] = useState("copy");
+    const [copied, setCopied] = useState("copy");
 
 
     const [isLoading, setLoading] = useState(true);
@@ -102,22 +102,24 @@ const AddressComponent = () => {
                                     <div className="col-6 col-lg-6">
                                         <div className={styles.main_heading}>
                                             <div className="d-flex">
-                                                <div className="pe-2">({shortenAddress(addr)})</div>
+                                                <div className="pe-2">{shortenAddress(addr)}</div>
                                                 <div>
-                                                    <Tooltip
+                                                    
+                                                        <button className={styles.copy_button} onClick={() => copyValue(addr)} aria-label={copied} data-balloon-pos="up">
+                                                        <Tooltip
                                                         // options
 
                                                         fontSize={"12px"}
                                                         radius={8}
-                                                        content={copy}
+                                                        content={copied}
                                                         padding={8}
                                                         placement="top"
                                                         zIndex={20}
                                                     >
-                                                        <button className={styles.copy_button} onClick={() => copyValue(addr)}>
                                                             <img src={copyIcon} alt="Copy Image" />
+                                                        </Tooltip>
                                                         </button>
-                                                    </Tooltip>
+                                                    
                                                 </div>
                                             </div>
                                             {/*<span>Space Overview</span> */}
