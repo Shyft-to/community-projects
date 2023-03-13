@@ -24,7 +24,7 @@ const AddressComponent = () => {
     const navigate = useNavigate();
 
     const [panel, setPanel] = useState("TXN");
-    const [copied, setCopied] = useState("copy");
+    const [copied, setCopied] = useState("Copy");
 
 
     const [isLoading, setLoading] = useState(true);
@@ -74,9 +74,9 @@ const AddressComponent = () => {
 
     const copyValue = (value) => {
         navigator.clipboard.writeText(value);
-        setCopied("copied");
+        setCopied("Copied");
         setTimeout(() => {
-            setCopied("copy");
+            setCopied("Copy");
         }, 500);
     }
 

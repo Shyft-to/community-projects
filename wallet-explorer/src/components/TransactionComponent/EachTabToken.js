@@ -10,12 +10,12 @@ import { Link } from "react-router-dom";
 import { shortenAddress } from "../../utils/formatter";
 
 const EachTabToken = ({ styles, token, cluster }) => {
-    const [copied, setCopied] = useState("copy");
+    const [copied, setCopied] = useState("Copy");
     const copyValue = (value) => {
         navigator.clipboard.writeText(value);
-        setCopied("copied");
+        setCopied("Copied");
         setTimeout(() => {
-            setCopied("copy");
+            setCopied("Copy");
         }, 1000);
     }
 
@@ -24,8 +24,6 @@ const EachTabToken = ({ styles, token, cluster }) => {
             <div className={styles.toggle_button}>
                 <div className="pe-3">
                     <Tooltip
-                        // options
-
                         fontSize={"12px"}
                         radius={8}
                         content={copied}

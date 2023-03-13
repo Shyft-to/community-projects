@@ -3,7 +3,7 @@ import {useSearchParams,useParams} from "react-router-dom";
 
 import styles from "./resources/css/CollectionRow.module.css";
 import CollectionRow from "./components/CollectionRow";
-import PlanetLoader from "./components/loaders/loaders";
+import SimpleLoader from "./components/loaders/SimpleLoader";
 
 import { getCollectionsData } from "./utils/getAllData";
 import Transactions from "./components/TransactionComponent/Transactions";
@@ -12,6 +12,7 @@ const CollectionsComponent = () => {
     let [searchParams, setSearchParams] = useSearchParams();
     const { addr } = useParams();
     const cluster = searchParams.get("cluster");
+    const collectionName = searchParams.get("collName") ?? "";
     
     const [isLoading,setLoading] = useState(true);
     const [data,setData] = useState(null);
@@ -50,6 +51,15 @@ const CollectionsComponent = () => {
       if(data !== null && errOccured === false)
       {
         setLoading(false);
+        setTimeout(() => {
+            if(collectionName !== "")
+            {
+                console.log("execute");
+                document.getElementById(collectionName).scrollIntoView();  
+                
+            }
+            
+        }, 1000);
       }
     }, [data])
     
@@ -57,7 +67,11 @@ const CollectionsComponent = () => {
     return ( 
         <div>
             <div className="background_super">
-                {isLoading && <PlanetLoader />}
+                {isLoading && 
+                <div className="pt-5 mt-3">
+                    <SimpleLoader />
+                </div>
+                }
                 {!isLoading && 
                     <div className={styles.all_collections_page}>
                     <div className="container-lg pt-4">
@@ -65,7 +79,7 @@ const CollectionsComponent = () => {
                             Collections in your space 
                         </div>
                     </div>
-                    {data.map(collection => (<div className="container-lg pt-4">
+                    {data.map(collection => (<div className="container-lg pt-4" id={collection.name}>
                         <CollectionRow collection={collection} cluster={cluster}/>
 
                     </div>))}

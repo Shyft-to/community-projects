@@ -69,12 +69,12 @@ const TransactionStructureToken = ({ styles, id, data, address, cluster }) => {
                         <div className="d-flex flex-wrap justify-content-start align-content-end">
                             <div className="">
                                 <div className={styles.txn_name}>
-                                    {(data.type === "UNKNOWN")?"Protocol Interaction":(formatNames(data.type) || "--")}
+                                    {(data.type === "UNKNOWN")?"Protocol Interaction":(formatNames(data.type) || "Protocol Interaction")}
                                 </div>
                             </div>
                             <div className="">
                                 <div className={styles.txn_subname}>
-                                  {(data.protocol.name != "")?<div><Link to={`/address/${data.protocol.address}?cluster=mainnet-beta`}>{data.protocol.name}</Link></div>:(<Link to={`/address/${data.protocol.address}?cluster=mainnet-beta`}>{shortenAddress(data.protocol.address)}</Link>)}
+                                  {(data.protocol.name != "")?<div><Link to={`/address/${data.protocol.address}?cluster=mainnet-beta`}>{formatNames(data.protocol.name)}</Link></div>:(<Link to={`/address/${data.protocol.address}?cluster=mainnet-beta`}>{shortenAddress(data.protocol.address)}</Link>)}
                                 </div>
                             </div>
                             <div className="">

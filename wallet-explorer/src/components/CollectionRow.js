@@ -7,7 +7,7 @@ const CollectionRow = ({ collection,cluster }) => {
   return (
     <div>
       <div className={styles.collection_row}>
-        <div className={styles.collection_name}>{collection.name}</div>
+        <div className={styles.collection_name}>{collection.name} {(collection.nfts && Array.isArray(collection.nfts))?(`(${collection.nfts.length})`):""}</div>
         <motion.div className={styles.collection_nft_container} initial={{ width: "0px" }} whileInView={{ width: "auto" }} viewport={{ once: true }}>
           <div className="d-flex flex-wrap justify-content-start">
             {
