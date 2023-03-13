@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import 'balloon-css';
 import { motion } from "framer-motion";
-import Tooltip from "react-simple-tooltip";
+import Tooltip from 'react-tooltip-lite';
 
 import icon from "../../resources/images/txnImages/unknown_token.png";
 import arrow from "../../resources/images/txnImages/arrow.svg";
@@ -18,7 +18,7 @@ import mint from "../../resources/images/txnImages/mint.svg";
 
 
 import { getNFTData, getTokenData } from "../../utils/getAllData";
-import { shortenAddress,formatLamports } from "../../utils/formatter";
+import { shortenAddress, formatLamports } from "../../utils/formatter";
 
 
 
@@ -27,7 +27,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
     const [name, setName] = useState("");
     const [relField, setRelField] = useState("");
     const [currency, setCurrency] = useState("");
-    const [currencyField,setCurrencyField] = useState("");
+    const [currencyField, setCurrencyField] = useState("");
     const [varFields, setVarFields] = useState({
         type: "",
         from: "",
@@ -37,7 +37,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
         value: "",
         symbol: ""
     });
-    const [copy,setCopied] = useState("Copy");
+    const [copy, setCopied] = useState("Copy");
 
     const getData = async (cluster, address) => {
         try {
@@ -308,31 +308,34 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
         <div className={styles.sub_txns}>
             <div className="d-flex">
                 <div className={styles.thumb_container}>
-                    {((data.type==="NFT_TRANSFER" || data.type==="TOKEN_TRANSFER" || data.type==="NFT_MINT" || data.type==="TOKEN_MINT" || data.type==="TOKEN_CREATE" || data.type==="NFT_SALE" || data.type==="NFT_BID" || data.type==="NFT_LIST")&& relField!=="")?<Link to={`/address/${relField}?cluster=${cluster}`}><img src={image} alt="token" /></Link>:<img src={image} alt="token" />}
+                    {((data.type === "NFT_TRANSFER" || data.type === "TOKEN_TRANSFER" || data.type === "NFT_MINT" || data.type === "TOKEN_MINT" || data.type === "TOKEN_CREATE" || data.type === "NFT_SALE" || data.type === "NFT_BID" || data.type === "NFT_LIST") && relField !== "") ? <Link to={`/address/${relField}?cluster=${cluster}`}><img src={image} alt="token" /></Link> : <img src={image} alt="token" />}
                 </div>
                 <div className={styles.txn_details}>
                     <div className={styles.subtxn_token}>
                         <div className="d-flex">
                             <div>
                                 {/* {name || relField || "Unknown"} */}
-                                {(data.type==="NFT_TRANSFER" || data.type==="TOKEN_TRANSFER" || data.type==="NFT_MINT" || data.type==="TOKEN_MINT" || data.type==="TOKEN_CREATE" || data.type==="NFT_SALE" || data.type==="NFT_BID" || data.type==="NFT_LIST")?((relField)?((name === "")?<Link to={`/address/${relField}?cluster=${cluster}`}>{relField}</Link>:<Link to={`/address/${relField}?cluster=${cluster}`}>{name}</Link>):"Protocol Interaction"):(name || relField || "Protocol Interaction")}  
+                                {(data.type === "NFT_TRANSFER" || data.type === "TOKEN_TRANSFER" || data.type === "NFT_MINT" || data.type === "TOKEN_MINT" || data.type === "TOKEN_CREATE" || data.type === "NFT_SALE" || data.type === "NFT_BID" || data.type === "NFT_LIST") ? ((relField) ? ((name === "") ? <Link to={`/address/${relField}?cluster=${cluster}`}>{relField}</Link> : <Link to={`/address/${relField}?cluster=${cluster}`}>{name}</Link>) : "Protocol Interaction") : (name || relField || "Protocol Interaction")}
                             </div>
 
-                            {(relField !== "")?<div className={styles.copy_bt}>
-                            <Tooltip
-                                // options
-                                background="#101010"
-                                fontSize={"12px"}
-                                radius={4}
-                                content={copy}
-                                padding={6}
-                                placement="top"
+                            {(relField !== "") ? <div className={styles.copy_bt}>
+                                <Tooltip
+                                    content={<div>Copied✅</div>}
+                                    className="myMarginTarget"
+                                    direction="up"
+                                    eventOn="onClick"
+                                    eventOff="onMouseLeave"
+                                    useHover={false}
+                                    background="#101010"
+                                    color="#fefefe"
+                                    arrowSize={0}
+                                    styles={{ display: "inline" }}
                                 >
-                                <motion.button onClick={() => copyValue(relField)} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.95 }}>
-                                    <img src={copyIcon} alt="Copy Icon" />
-                                </motion.button>
+                                    <motion.button onClick={() => copyValue(relField)} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.95 }}>
+                                        <img src={copyIcon} alt="Copy Icon" />
+                                    </motion.button>
                                 </Tooltip>
-                            </div>:""}
+                            </div> : ""}
                         </div>
                     </div>
 
@@ -350,7 +353,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                         </div>
                                                     </div>
                                                     <div className="pe-1">
-                                                        <img src={arrow} alt="" style={{ width: "14px",marginTop: "-2px" }} />
+                                                        <img src={arrow} alt="" style={{ width: "14px", marginTop: "-2px" }} />
                                                     </div>
                                                     <div className="pe-1">
                                                         <div className={styles.field_sub_1}>
@@ -362,7 +365,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                             <div className="col-12 col-md-6">
                                                 <div className={`text-end ${styles.field_sub_1}`}>
                                                     <div className={styles.minus_color}>
-                                                        - {varFields.value} {(varFields.token === "SOL")?"SOL":""}
+                                                        - {varFields.value} {(varFields.token === "SOL") ? "SOL" : ""}
                                                     </div>
                                                 </div>
                                             </div>
@@ -376,7 +379,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                         </div>
                                                     </div>
                                                     <div className="pe-1">
-                                                        <img src={arrow_rev} alt="" style={{ width: "14px",marginTop: "-2px" }} />
+                                                        <img src={arrow_rev} alt="" style={{ width: "14px", marginTop: "-2px" }} />
                                                     </div>
                                                     <div className="pe-1">
                                                         <div className={styles.field_sub_1}>
@@ -388,7 +391,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                             <div className="col-12 col-md-6">
                                                 <div className={`text-end ${styles.field_sub_1}`}>
                                                     <div className={styles.plus_color}>
-                                                        + {varFields.value} {(varFields.token === "SOL")?"SOL":""}
+                                                        + {varFields.value} {(varFields.token === "SOL") ? "SOL" : ""}
                                                     </div>
                                                 </div>
                                             </div>
@@ -403,7 +406,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                             </div>
                                                         </div>
                                                         <div className="pe-1">
-                                                            <img src={arrow_rev} alt="" style={{ width: "14px",marginTop: "-2px" }} />
+                                                            <img src={arrow_rev} alt="" style={{ width: "14px", marginTop: "-2px" }} />
                                                         </div>
                                                         <div className="pe-2">
                                                             <div className={styles.field_sub_1}>
@@ -429,7 +432,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                             </div>
                                                         </div>
                                                         <div className="pe-1">
-                                                            <img src={arrow} alt="" style={{ width: "14px",marginTop: "-2px" }} />
+                                                            <img src={arrow} alt="" style={{ width: "14px", marginTop: "-2px" }} />
                                                         </div>
                                                         <div className="pe-1">
                                                             <div className={styles.field_sub_1}>
@@ -440,7 +443,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                 </div>
                                                 <div className="col-12 col-md-6">
                                                     <div className={`text-end ${styles.field_sub_1}`}>
-                                                        {varFields.value} {(varFields.token === "SOL")?"SOL":""}
+                                                        {varFields.value} {(varFields.token === "SOL") ? "SOL" : ""}
                                                     </div>
                                                 </div>
                                             </div>
@@ -461,7 +464,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                     </div>
                                                 </div>
                                                 <div className="pe-3">
-                                                    <img src={mint} alt="" style={{ width: "14px",marginTop: "-4px" }} />
+                                                    <img src={mint} alt="" style={{ width: "14px", marginTop: "-4px" }} />
                                                 </div>
                                                 <div className="pe-1">
                                                     <div className={styles.field_sub_1}>
@@ -491,7 +494,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                     </div>
                                                 </div>
                                                 <div className="pe-3">
-                                                    <img src={burn} alt="" style={{ width: "14px",marginTop: "-6px" }} />
+                                                    <img src={burn} alt="" style={{ width: "14px", marginTop: "-6px" }} />
                                                 </div>
                                                 <div className="pe-1">
                                                     <div className={styles.field_sub_1}>
@@ -521,7 +524,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                     </div>
                                                 </div>
                                                 <div className="pe-3">
-                                                    <img src={mint} alt="" style={{ width: "14px",marginTop: "-4px" }} />
+                                                    <img src={mint} alt="" style={{ width: "14px", marginTop: "-4px" }} />
                                                 </div>
                                                 <div className="pe-1">
                                                     <div className={styles.field_sub_1}>
@@ -551,7 +554,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                     </div>
                                                 </div>
                                                 <div className="pe-3">
-                                                    <img src={list} alt="" style={{ width: "14px",marginTop: "-4px" }} />
+                                                    <img src={list} alt="" style={{ width: "14px", marginTop: "-4px" }} />
                                                 </div>
                                                 <div className="pe-1">
                                                     <div className={styles.field_sub_1}>
@@ -582,7 +585,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                         </div>
                                                     </div>
                                                     <div className="pe-1">
-                                                        <img src={arrow} alt="" style={{ width: "14px",marginTop: "-2px" }} />
+                                                        <img src={arrow} alt="" style={{ width: "14px", marginTop: "-2px" }} />
                                                     </div>
                                                     <div className="pe-1">
                                                         <div className={styles.field_sub_1}>
@@ -594,7 +597,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                             <div className="col-12 col-md-6">
                                                 <div className={`text-end ${styles.field_sub_1}`}>
                                                     <div>
-                                                        
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -608,7 +611,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                         </div>
                                                     </div>
                                                     <div className="pe-1">
-                                                        <img src={arrow} alt="" style={{ width: "14px",marginTop: "-2px" }} />
+                                                        <img src={arrow} alt="" style={{ width: "14px", marginTop: "-2px" }} />
                                                     </div>
                                                     <div className="pe-1">
                                                         <div className={styles.field_sub_1}>
@@ -637,7 +640,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                     </div>
                                                 </div>
                                                 <div className="pe-3">
-                                                    <img src={cancel} alt="" style={{ width: "14px",marginTop: "-4px" }} />
+                                                    <img src={cancel} alt="" style={{ width: "14px", marginTop: "-4px" }} />
                                                 </div>
                                                 <div className="pe-1">
                                                     <div className={styles.field_sub_1}>
@@ -667,7 +670,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                     </div>
                                                 </div>
                                                 <div className="pe-3">
-                                                    <img src={bid} alt="" style={{ width: "14px",marginTop: "-4px" }} />
+                                                    <img src={bid} alt="" style={{ width: "14px", marginTop: "-4px" }} />
                                                 </div>
                                                 <div className="pe-1">
                                                     <div className={styles.field_sub_1}>
@@ -697,7 +700,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                                     </div>
                                                 </div>
                                                 <div className="pe-1">
-                                                    <img src={arrow_rev} alt="" style={{ width: "14px",marginTop: "-2px" }} />
+                                                    <img src={arrow_rev} alt="" style={{ width: "14px", marginTop: "-2px" }} />
                                                 </div>
                                                 <div className="pe-1">
                                                     <div className={styles.field_sub_1}>
@@ -723,10 +726,10 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                             <div className="d-flex">
                                                 <div className="pe-2">
                                                     <div className={styles.field_sub_1}>
-                                                    &nbsp;
+                                                        &nbsp;
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div className="pe-1">
                                                     <div className={styles.field_sub_1}>
                                                         &nbsp;

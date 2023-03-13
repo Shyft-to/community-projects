@@ -104,8 +104,8 @@ const AddressComponent = () => {
                                             <div className="d-flex">
                                                 <div className="pe-2">{shortenAddress(addr)}</div>
                                                 <div>
-                                                    
-                                                        <Tooltip
+
+                                                    <Tooltip
                                                         content={<div>Copied✅</div>}
                                                         className="myTarget"
                                                         direction="right"
@@ -115,13 +115,13 @@ const AddressComponent = () => {
                                                         background="#101010"
                                                         color="#fefefe"
                                                         arrowSize={5}
-                                                        
+
                                                     >
                                                         <button className={styles.copy_button} onClick={() => copyValue(addr)}>
                                                             <img src={copyIcon} alt="Copy Image" />
                                                         </button>
-                                                        </Tooltip>
-                                                    
+                                                    </Tooltip>
+
                                                 </div>
                                             </div>
                                             {/*<span>Space Overview</span> */}

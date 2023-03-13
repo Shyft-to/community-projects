@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Typewriter from 'typewriter-effect';
 import styles from "./resources/css/Home.module.css";
+import Footer from "./Footer";
 
 
 import searchIcon from "./resources/images/uil_search.svg";
@@ -124,6 +125,7 @@ const Home = () => {
         </div>
 
       </div>
+      <Footer />
     </div>
   );
 };

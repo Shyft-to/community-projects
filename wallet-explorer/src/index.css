@@ -222,3 +222,28 @@ body {
   font: 300 12px/0 "Poppins",sans-serif;
   display: inline;
 }
+.myMarginTarget .react-tooltip-lite {
+  width: 80px;
+  padding: 18px 4px;
+  font: 300 12px/0 "Poppins",sans-serif;
+  display: inline;
+  margin-left: 8px;
+}
+
+.footer-white
+{
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  background: #f0f0f007;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(5px);
+  padding: 15px 5px 5px;
+  /* border-top: 1px solid #ffffffcc; */
+  min-height: 10vh;
+  bottom: 0;
+}
+.white-footer-icons img
+{
+  width: 70%;
+}

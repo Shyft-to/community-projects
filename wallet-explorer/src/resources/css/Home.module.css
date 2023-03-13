@@ -7,20 +7,20 @@
   position: relative;
   background: radial-gradient(#2a0855 8%, #0a0215 75%);
   z-index: 0;
-  height: 100vh;
+  min-height: 88.5vh;
 }
 .background_2
 {
   position: relative;
   background: radial-gradient(#1E0C36 8%, #000 75%);
   z-index: 0;
-  height: 100vh;
+  min-height: 88.5vh;
 }
 .middle_layer
 {
   position: absolute;
   z-index:2;
-  height: 100vh;
+  min-height: 88.5vh;
   top: 0;
   width: 100vw;
   background: url("../images/waves.png"),url("../images/stars-and-planet.png");
