@@ -73,51 +73,56 @@ const SearchComponent = () => {
             <div className={styles.search_n_suggestions} >
               <div className={styles.form_field_outer}>
                 <div className={styles.form_field_inner}>
-                  <div className="d-flex justify-content-start">
+                  <form onSubmit={(e) => {
+                    e.preventDefault();
+                    addDataNavigate(wallet, network)}
+                    }>
+                    <div className="d-flex justify-content-start">
 
-                    <select
-                      className="me-4"
-                      value={network}
-                      onChange={(e) => setNetwork(e.target.value)}
-                    >
-                      <option value="mainnet-beta">Mainnet</option>
-                      <option value="devnet">Devnet</option>
-                      <option value="testnet">Testnet</option>
-                    </select>
-                    <div className="flex-grow-1">
+                      <select
+                        className="me-4"
+                        value={network}
+                        onChange={(e) => setNetwork(e.target.value)}
+                      >
+                        <option value="mainnet-beta">Mainnet</option>
+                        <option value="devnet">Devnet</option>
+                        <option value="testnet">Testnet</option>
+                      </select>
+                      <div className="flex-grow-1">
 
-                      <div className="d-flex justify-content-between">
-                        <div className="flex-grow-1">
-                          <input
-                            type="text"
-                            placeholder="Explore Solana"
-                            value={wallet}
-                            onChange={(e) => setWallet(e.target.value)}
-                            onFocus={() => setFocused(true)}
-                            onBlur={BlurAfterTime}
-                          />
-                        </div>
-                        <div>
-                          {/* <Link to={`/address/${wallet}?cluster=${network}`} className={styles.search_icon}>
+                        <div className="d-flex justify-content-between">
+                          <div className="flex-grow-1">
+                            <input
+                              type="text"
+                              placeholder="Explore Solana"
+                              value={wallet}
+                              onChange={(e) => setWallet(e.target.value)}
+                              onFocus={() => setFocused(true)}
+                              onBlur={BlurAfterTime}
+                            />
+                          </div>
+                          <div>
+                            {/* <Link to={`/address/${wallet}?cluster=${network}`} className={styles.search_icon}>
                                 <FaSearch />
                             </Link> */}
-                          <button onClick={() => addDataNavigate(wallet, network)} style={{ backgroundColor: "transparent", border: "none", outline: "none" }} className={styles.search_icon}>
-                            <FaSearch />
-                          </button>
+                            <button type="submit" style={{ backgroundColor: "transparent", border: "none", outline: "none" }} className={styles.search_icon}>
+                              <FaSearch />
+                            </button>
+                          </div>
+
                         </div>
 
                       </div>
 
                     </div>
-
-                  </div>
+                  </form>
                 </div>
               </div>
 
               {isFocused && <div className={styles.suggestions_area_outer}>
 
                 {<motion.div className={styles.suggestions_area} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}>
-                  {(searchData.length > 0) && (searchData.map((result) => (<motion.button className={styles.each_search} onClick={() => addDataNavigate(result.address, result.network)} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                  {(searchData.length > 0) && (searchData.filter(result => result.address.startsWith(wallet)).map((result) => (<button className={styles.each_search} onClick={() => addDataNavigate(result.address, result.network)} key={Math.random()}>
                     <div className="d-flex">
                       <div className={styles.network_area}>
                         {(result.network === "mainnet-beta") ? <span className="text-light">mainnet</span> : (result.network === "testnet") ? <span className="text-warning">testnet</span> : <span className="text-info">devnet</span>}
@@ -126,7 +131,7 @@ const SearchComponent = () => {
                         {result.address}
                       </div>
                     </div>
-                  </motion.button>)
+                  </button>)
                   ))}
                 </motion.div>
                 }
