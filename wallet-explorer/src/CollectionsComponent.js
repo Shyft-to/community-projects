@@ -54,7 +54,7 @@ const CollectionsComponent = () => {
         setTimeout(() => {
             if(collectionName !== "")
             {
-                console.log("The translated collection name",collectionName);
+                // console.log("The translated collection name",collectionName);
                 document.getElementById(collectionName).scrollIntoView();  
             }
             

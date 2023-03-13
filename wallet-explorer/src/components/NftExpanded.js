@@ -3,7 +3,7 @@ import { useState } from "react";
 import styles from "../resources/css/NftExpanded.module.css";
 import unknown from "../resources/images/ok_bear.png";
 import copyBtn from "../resources/images/txnImages/copy_icon.svg";
-import Tooltip from "react-simple-tooltip";
+import Tooltip from 'react-tooltip-lite';
 import { Link } from "react-router-dom";
 
 const NftExpanded = ({ nft,cluster }) => {
@@ -75,10 +75,16 @@ const NftExpanded = ({ nft,cluster }) => {
                   <div className="col-8">
                     <div className={styles.table_field_value}>
                       {(nft.mint !== "") && <Tooltip
-                        // options
-                        content={copied}
-                        padding={4}
-                        placement="top"
+                        content={"Copied✅"}
+                        className="myTarget"
+                        direction="left"
+                        eventOn="onClick"
+                        eventOff="onMouseLeave"
+                        useHover={false}
+                        background="#101010"
+                        color="#fefefe"
+                        styles={{display:"inline"}}
+                        arrowSize={5}
                       ><button onClick={() => copyValue(nft.mint)}><img src={copyBtn} /></button></Tooltip>}{nft.mint ?? "--"}
                     </div>
                   </div>
@@ -90,10 +96,16 @@ const NftExpanded = ({ nft,cluster }) => {
                   <div className="col-8">
                     <div className={styles.table_field_value}>
                       {(nft.owner !== "") && <Tooltip
-                        // options
-                        content={copied}
-                        padding={4}
-                        placement="top"
+                        content={"Copied✅"}
+                        className="myTarget"
+                        direction="left"
+                        eventOn="onClick"
+                        eventOff="onMouseLeave"
+                        useHover={false}
+                        background="#101010"
+                        color="#fefefe"
+                        styles={{display:"inline"}}
+                        arrowSize={5}
                       ><button onClick={() => copyValue(nft.owner)}><img src={copyBtn} /></button></Tooltip>}{(nft.owner !== "")? <Link to={`/address/${nft.owner}?cluster=${cluster}`}>{nft.owner}</Link>:"--"}
                     </div>
                   </div>
@@ -108,7 +120,7 @@ const NftExpanded = ({ nft,cluster }) => {
                   <div className={styles.attributes_section}>
                     <div className="row">
                       {nft.attributes_array.map((each_attrib) => (
-                        <div className="col-12 col-lg-6">
+                        <div className="col-12 col-lg-6" key={Math.random()}>
                           <div className={styles.each_attribute}>
                             <div className="row">
                               <div className="col-6">

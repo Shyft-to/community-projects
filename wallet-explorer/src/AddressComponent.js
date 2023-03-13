@@ -3,7 +3,7 @@ import { useSearchParams, useParams, useNavigate } from "react-router-dom";
 import { categorizeAddress } from "./utils/getAllData";
 import { shortenAddress } from "./utils/formatter";
 import { motion } from "framer-motion";
-import Tooltip from "react-simple-tooltip";
+import Tooltip from 'react-tooltip-lite';
 import styles from "./resources/css/WalletAddress.module.css";
 
 import AllNfts from "./components/AllNfts";
@@ -105,20 +105,22 @@ const AddressComponent = () => {
                                                 <div className="pe-2">{shortenAddress(addr)}</div>
                                                 <div>
                                                     
-                                                        <button className={styles.copy_button} onClick={() => copyValue(addr)} aria-label={copied} data-balloon-pos="up">
                                                         <Tooltip
-                                                        // options
-
-                                                        fontSize={"12px"}
-                                                        radius={8}
-                                                        content={copied}
-                                                        padding={8}
-                                                        placement="top"
-                                                        zIndex={20}
+                                                        content={<div>Copied✅</div>}
+                                                        className="myTarget"
+                                                        direction="right"
+                                                        eventOn="onClick"
+                                                        eventOff="onMouseLeave"
+                                                        useHover={false}
+                                                        background="#101010"
+                                                        color="#fefefe"
+                                                        arrowSize={5}
+                                                        
                                                     >
+                                                        <button className={styles.copy_button} onClick={() => copyValue(addr)}>
                                                             <img src={copyIcon} alt="Copy Image" />
-                                                        </Tooltip>
                                                         </button>
+                                                        </Tooltip>
                                                     
                                                 </div>
                                             </div>

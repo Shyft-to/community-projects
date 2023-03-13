@@ -1,45 +1,42 @@
 import moment from "moment";
-import {LAMPORTS_PER_SOL} from "@solana/web3.js";
+import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 
-export function shortenAddress(address)
-{
+export function shortenAddress(address) {
     var trimmedString = "";
-    if(address === "")
+    if (address === "")
         return "unknown";
-    if(address != null || address.length>16)
-    {
-        trimmedString=(address.substring(0,8)+"..."+address.substring(address.length - 5));
+    if (address != null || address.length > 16) {
+        trimmedString = (address.substring(0, 8) + "..." + address.substring(address.length - 5));
     }
-    else
-    {
-        trimmedString = address ?? ""; 
+    else {
+        trimmedString = address ?? "";
     }
     return trimmedString;
 }
 
-export function getRelativetime(ISOString)
-{
+export function getRelativetime(ISOString) {
     return moment(ISOString).fromNow();
 }
 
-export function getFullTime(ISOString)
-{
+export function getFullTime(ISOString) {
     return (moment(ISOString).format('lll') + " (UTC)");
 }
 
-export function formatLamports(value)
-{
-    if(typeof value === "number")
-        return (parseFloat(value)/LAMPORTS_PER_SOL);
-    else
+export function formatLamports(value) {
+    try {
+        if (typeof value === "number")
+            return (parseFloat(value) / LAMPORTS_PER_SOL);
+        else
+            return "--";
+    } catch (error) {
         return "--";
+    }
+
 }
 
-export function formatNames(name)
-{
+export function formatNames(name) {
     try {
-        if(name.includes("_"))
-        {
+        if (name.includes("_")) {
             var words = name.split("_");
             var capitalizedText = "";
             for (let index = 0; index < words.length; index++) {
@@ -52,19 +49,18 @@ export function formatNames(name)
     } catch (error) {
         return name;
     }
-    
+
 }
-function capitalizeText(text)
-{
+function capitalizeText(text) {
     try {
-        if(text === "NFT")
+        if (text === "NFT")
             return "NFT";
-        else if(text === "SOL")
+        else if (text === "SOL")
             return "SOL";
         else
             return text[0].toUpperCase() + text.substring(1).toLowerCase();
     } catch (error) {
         return text;
     }
-    
+
 }

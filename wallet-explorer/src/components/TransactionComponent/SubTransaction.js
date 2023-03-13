@@ -99,7 +99,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                     to: data.info.receiver ?? "--",
                     token: "TOKEN",
                     action: "--",
-                    value: data.info.amount ?? "--",
+                    value: formatLamports(data.info.amount) ?? "--",
                     symbol: ""
                 }
                 setRelField(data.info.token_address ?? "");
@@ -473,7 +473,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                         <div className="col-12 col-md-6">
                                             <div className={`text-end ${styles.field_sub_1}`}>
                                                 <div className={styles.plus_color}>
-                                                    + {varFields.value} {(varFields.token === "TOKEN")?"SOL":""}
+                                                    + {varFields.value}
                                                 </div>
                                             </div>
                                         </div>
