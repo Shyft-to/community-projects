@@ -30,7 +30,7 @@ const NFTs = ({ collection, address, network }) => {
       <motion.div className={styles.nft_container_outer} initial={{ opacity: 0,scale:0.4 }} whileInView={{ opacity: 1,scale:1 }} viewport={{ once: true }} whileHover={{ scale: 1.05 }}>
         <div className={styles.nft_container}>
           <Link
-            to={`/collections/${address}?cluster=${network}`}
+            to={(collection.name)?`/collection/${address}?cluster=${network}&collName=${collection.name}`:`/collections/${address}?cluster=${network}`}
           >
             
             <div className={styles.image_container}>

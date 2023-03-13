@@ -503,7 +503,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                         <div className="col-12 col-md-6">
                                             <div className={`text-end ${styles.field_sub_1}`}>
                                                 <div className={styles.minus_color}>
-                                                    - {varFields.value} {(varFields.token === "TOKEN")?"SOL":""}
+                                                    - {varFields.value}
                                                 </div>
                                             </div>
                                         </div>

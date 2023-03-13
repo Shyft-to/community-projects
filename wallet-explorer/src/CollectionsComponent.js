@@ -54,12 +54,11 @@ const CollectionsComponent = () => {
         setTimeout(() => {
             if(collectionName !== "")
             {
-                console.log("execute");
+                console.log("The translated collection name",collectionName);
                 document.getElementById(collectionName).scrollIntoView();  
-                
             }
             
-        }, 1000);
+        }, 3000);
       }
     }, [data])
     
