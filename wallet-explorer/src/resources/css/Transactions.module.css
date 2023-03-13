@@ -483,9 +483,9 @@
 }
 .sub_txns .thumb_container img
 {
-    width: 32px;
-    height: 32px;
-    border-radius: 16px;
+    width: 38px;
+    height: 38px;
+    border-radius: 19px;
     object-fit: fill;
 
 }

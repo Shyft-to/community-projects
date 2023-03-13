@@ -313,7 +313,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                         <div className="d-flex">
                             <div>
                                 {/* {name || relField || "Unknown"} */}
-                                {(data.type==="NFT_TRANSFER" || data.type==="TOKEN_TRANSFER")?((relField)?((name === "")?<Link to={`/address/${relField}?cluster=${cluster}`}>{relField}</Link>:<Link to={`/address/${relField}?cluster=${cluster}`}>{name}</Link>):"Unknown"):(name || relField || "Unknown")}  
+                                {(data.type==="NFT_TRANSFER" || data.type==="TOKEN_TRANSFER")?((relField)?((name === "")?<Link to={`/address/${relField}?cluster=${cluster}`}>{relField}</Link>:<Link to={`/address/${relField}?cluster=${cluster}`}>{name}</Link>):"General Interaction"):(name || relField || "General Interaction")}  
                             </div>
 
                             {(relField !== "")?<div className={styles.copy_bt}>

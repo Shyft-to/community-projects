@@ -96,7 +96,7 @@ const Home = () => {
 
             </div>
             <motion.div className="row py-5" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}>
-              <div className="col-12 col-md-8 p-2">
+              <div className="col-12 col-md-9 p-2">
                 <div className={styles.simple_input_container}>
                   <div className="d-flex">
                     <div className="flex-grow-1">
@@ -121,7 +121,7 @@ const Home = () => {
                   </div>}
                 </div>
               </div>
-              <div className="col-12 col-md-4 p-2">
+              <div className="col-12 col-md-3 p-2">
                 <div className={styles.simple_select_container}>
                   <select value={network} onChange={(e) => setNetwork(e.target.value)}>
                     <option value="mainnet-beta">Mainnet</option>

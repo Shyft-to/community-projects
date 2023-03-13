@@ -64,7 +64,7 @@ const SearchComponent = () => {
     <div>
       <motion.div className="row" initial={{ opacity: 0, y: -100 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
         <div className="col-12 col-lg-2">
-          <div className="logo_container pt-3">
+          <div className="logo_container pt-3 text-center text-lg-end">
             <Link to={`/`}>Solana Translator</Link>
           </div>
         </div>
