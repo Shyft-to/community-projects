@@ -1,7 +1,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import Tooltip from "react-simple-tooltip";
+import Tooltip from 'react-tooltip-lite';
 import solScan from "../../resources/images/txnImages/sol_scan_icon.svg";
 import solExplorer from "../../resources/images/txnImages/solana_explorer.jpeg";
 import copyIcon from "../../resources/images/txnImages/copy_icon.svg";
@@ -13,7 +13,7 @@ const EachTabToken = ({ styles, token, cluster }) => {
     const [copied, setCopied] = useState("Copy");
     const copyValue = (value) => {
         navigator.clipboard.writeText(value);
-        setCopied("Copied");
+        setCopied("Copied✅");
         setTimeout(() => {
             setCopied("Copy");
         }, 1000);
@@ -22,13 +22,17 @@ const EachTabToken = ({ styles, token, cluster }) => {
     return (
         <div className={styles.each_tab_token}>
             <div className={styles.toggle_button}>
-                <div className="pe-3">
+                <div className="pe-1">
                     <Tooltip
-                        fontSize={"12px"}
-                        radius={8}
                         content={copied}
-                        padding={8}
-                        placement="top"
+                        className="myTarget"
+                        direction="left"
+                        // eventOn="onClick"
+                        // eventOff="onMouseLeave"
+                        useHover={true}
+                        background="#101010"
+                        color="#fefefe"
+                        arrowSize={0}
                     >
                         <motion.button className={styles.copyTxnSig} onClick={() => copyValue(token.address)} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
                             <img src={copyIcon} alt="Copy Value" />
@@ -36,20 +40,20 @@ const EachTabToken = ({ styles, token, cluster }) => {
                     </Tooltip>
 
                 </div>
-                <motion.div className="pe-2" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
                     <motion.a href={(cluster === "mainnet-beta") ? `https://solscan.io/token/${token.address}` : `https://solscan.io/token/${token.address}?cluster=${cluster}`} target="_blank">
                         <div className={styles.sol_icon}>
                             <img src={solScan} alt="View on SolScan" />
                         </div>
                     </motion.a>
                 </motion.div>
-                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                {/* <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
                     <a href={`https://explorer.solana.com/address/${token.address}?cluster=${cluster}`} target="_blank">
                         <div className={styles.sol_icon_2}>
                             <img src={solExplorer} alt="View on SolExplorer" />
                         </div>
                     </a>
-                </motion.div>
+                </motion.div> */}
 
             </div>
             <div className={styles.name_section}>

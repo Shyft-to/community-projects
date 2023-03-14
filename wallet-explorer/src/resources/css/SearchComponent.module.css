@@ -24,6 +24,11 @@
   border-radius: 25px;
   padding: 8px 24px 12px;
   border: 1px solid #fff5;
+  transition: all 0.2s ease;
+}
+.form_field_outer .form_field_inner:hover {
+  
+  border: 1px solid #ffff;
 }
 
 .form_field_outer .form_field_inner input {

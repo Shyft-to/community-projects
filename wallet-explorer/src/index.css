@@ -263,10 +263,11 @@ body {
 }
 
 .myTarget .react-tooltip-lite {
-  width: 80px;
+  width: 76px;
   padding: 18px 4px;
   font: 300 12px/0 "Poppins",sans-serif;
   display: inline;
+  text-align: center;
 }
 .myMarginTarget .react-tooltip-lite {
   width: 80px;
@@ -274,6 +275,7 @@ body {
   font: 300 12px/0 "Poppins",sans-serif;
   display: inline;
   margin-left: 8px;
+  text-align: center;
 }
 
 .footer-white

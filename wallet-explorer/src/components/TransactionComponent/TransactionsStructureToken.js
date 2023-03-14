@@ -22,7 +22,7 @@ const TransactionStructureToken = ({ styles, id, data, address, cluster }) => {
     const [copied, setCopied] = useState("Copy");
     const copyValue = (value) => {
         navigator.clipboard.writeText(value);
-        setCopied("Copied");
+        setCopied("Copied✅");
         setTimeout(() => {
             setCopied("Copy");
         }, 1000);
@@ -34,12 +34,12 @@ const TransactionStructureToken = ({ styles, id, data, address, cluster }) => {
                 <div className={styles.toggle_button}>
                     <div className="pe-3">
                         <Tooltip
-                            content={<div>Copied✅</div>}
+                            content={copied}
                             className="myTarget"
-                            direction="up"
-                            eventOn="onClick"
-                            eventOff="onMouseLeave"
-                            useHover={false}
+                            direction="left"
+                            // eventOn="onClick"
+                            // eventOff="onMouseLeave"
+                            useHover={true}
                             background="#101010"
                             color="#fefefe"
                             arrowSize={0}
@@ -49,20 +49,20 @@ const TransactionStructureToken = ({ styles, id, data, address, cluster }) => {
                             </motion.button>
                         </Tooltip>
                     </div>
-                    <motion.div className="pe-2" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                    <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
                         <motion.a href={(cluster === "mainnet-beta") ? `https://solscan.io/tx/${data.signatures[0]}` : `https://solscan.io/tx/${data.signatures[0]}?cluster=${cluster}`} target="_blank">
                             <div className={styles.sol_icon}>
                                 <img src={solScan} alt="View on SolScan" />
                             </div>
                         </motion.a>
                     </motion.div>
-                    <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                    {/* <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
                         <a href={`https://explorer.solana.com/tx/${data.signatures[0]}?cluster=${cluster}`} target="_blank">
                             <div className={styles.sol_icon_2}>
                                 <img src={solExplorer} alt="View on SolExplorer" />
                             </div>
                         </a>
-                    </motion.div>
+                    </motion.div> */}
 
                 </div>
                 <div className="row">

@@ -287,7 +287,7 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
 
     const copyValue = (value) => {
         navigator.clipboard.writeText(value);
-        setCopied("Copied");
+        setCopied("Copied✅");
         setTimeout(() => {
             setCopied("Copy");
         }, 500);
@@ -320,12 +320,12 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
 
                             {(relField !== "") ? <div className={styles.copy_bt}>
                                 <Tooltip
-                                    content={<div>Copied✅</div>}
+                                    content={copy}
                                     className="myMarginTarget"
                                     direction="up"
-                                    eventOn="onClick"
-                                    eventOff="onMouseLeave"
-                                    useHover={false}
+                                    // eventOn="onClick"
+                                    // eventOff="onMouseLeave"
+                                    useHover={true}
                                     background="#101010"
                                     color="#fefefe"
                                     arrowSize={0}

@@ -8,8 +8,8 @@ import Tooltip from 'react-tooltip-lite';
 import styles from "./resources/css/WalletAddress.module.css";
 
 import AllNfts from "./components/AllNfts";
-import AllTokens from "./components/AllTokens";
-import HeaderComponent from "./components/HeaderComponent";
+// import AllTokens from "./components/AllTokens";
+// import HeaderComponent from "./components/HeaderComponent";
 import Transactions from "./components/TransactionComponent/Transactions";
 import NftExpanded from "./components/NftExpanded";
 import copyIcon from "./resources/images/txnImages/copy_icon.svg"
@@ -84,10 +84,10 @@ const AddressComponent = () => {
 
     const copyValue = (value) => {
         navigator.clipboard.writeText(value);
-        setCopied("Copied");
+        setCopied("Copied✅");
         setTimeout(() => {
             setCopied("Copy");
-        }, 500);
+        }, 800);
     }
 
     return (
@@ -116,12 +116,12 @@ const AddressComponent = () => {
                                                 <div>
 
                                                     <Tooltip
-                                                        content={<div>Copied✅</div>}
+                                                        content={copied}
                                                         className="myTarget"
                                                         direction="right"
-                                                        eventOn="onClick"
-                                                        eventOff="onMouseLeave"
-                                                        useHover={false}
+                                                        // eventOn="onClick"
+                                                        // eventOff="onMouseLeave"
+                                                        useHover={true}
                                                         background="#101010"
                                                         color="#fefefe"
                                                         arrowSize={5}

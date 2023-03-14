@@ -5,7 +5,7 @@ import { useInView } from 'react-intersection-observer';
 
 import styles from "../../resources/css/Transactions.module.css";
 import TxnLoader from "../loaders/TxnLoader";
-import TokenTransfer from "./TokenTransfer";
+// import TokenTransfer from "./TokenTransfer";
 import TransactionStructureToken from "./TransactionsStructureToken";
 
 const endpoint = process.env.REACT_APP_API_EP ?? "";
