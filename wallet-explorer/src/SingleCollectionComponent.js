@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSearchParams, useParams } from "react-router-dom";
+import ReactGA from "react-ga4";
 
 import styles from "./resources/css/CollectionRow.module.css";
 import CollectionRow from "./components/CollectionRow";
@@ -23,6 +24,10 @@ const SingleCollectionComponent = () => {
         setLoading(true);
         getClassifiedData();
     }, [cluster]);
+
+    useEffect(() => {
+        ReactGA.send({ hitType: "pageview", page: "/collection", title: "Single Collection" });
+    }, []);
 
     const getClassifiedData = async () => {
 

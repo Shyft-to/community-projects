@@ -6,9 +6,41 @@ body {
 }
 .background {
   position: relative;
-  background: radial-gradient(#2a0855 8%, #0a0215 75%);
+  background: radial-gradient(#1E0C36 8%, #000 75%);
   z-index: 0;
   height: 100vh;
+}
+.four04
+{
+  color: #fff;
+  font: 600 48px/50px "Montserrat", sans-serif;
+  padding-bottom: 30px;
+}
+.four04_button
+{
+  display: inline-block;
+  /* padding: 0.8rem 2.5rem 0.8rem 2.5rem; */
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+  min-width: 220px;
+  border: none;
+  border-radius: 2.5rem;
+  background-color: rgba(89, 101, 243, 0.29);
+  background: linear-gradient(
+    90.8deg,
+    #E0499B -30.34%,
+    #571DA3 85%
+  );
+  color: #fff;
+  font: 500 0.9rem/1.2rem "Poppins", sans-serif;
+  letter-spacing: 1px;
+  text-align: center;
+  text-decoration: none !important;
+  transition: all 0.2s;
+}
+.four04_button:hover
+{
+  color: #fffa
 }
 .background_super
 {

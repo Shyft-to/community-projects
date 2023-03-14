@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import ReactGA from "react-ga4";
 import { useSearchParams, useParams, useNavigate } from "react-router-dom";
 import { categorizeAddress } from "./utils/getAllData";
 import { shortenAddress } from "./utils/formatter";
@@ -32,13 +33,22 @@ const AddressComponent = () => {
     const [contentType, setType] = useState('');
     const [errOccured, setErrOccured] = useState(false);
     // const [currentCluster,setCurrentCuster] = useState('mainnet-beta');
-
     useEffect(() => {
+        ReactGA.send({ hitType: "pageview", page: "/address", title: "Address Page" });
+    }, []);
+    
+    useEffect(() => {
+        ReactGA.event({
+            category: "SEARCH",
+            action: "New Search Result Generated",
+          });
+        
         setLoading(true);
         // setCurrentCuster(cluster);
         // console.log(cluster);
         getClassifiedData();
     }, [addr, cluster]);
+    
 
     const getClassifiedData = async () => {
 

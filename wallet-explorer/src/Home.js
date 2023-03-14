@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import ReactGA from "react-ga4";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -17,6 +18,10 @@ const Home = () => {
   const [isFocused, setFocused] = useState(false);
 
   const [searchData, setSearchData] = useState([]);
+
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: "/", title: "HomePage" });
+  }, []);
 
   useEffect(() => {
     try {

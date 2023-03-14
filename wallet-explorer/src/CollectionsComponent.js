@@ -1,5 +1,6 @@
 import {useState,useEffect} from "react";
 import {useSearchParams,useParams} from "react-router-dom";
+import ReactGA from "react-ga4";
 
 import styles from "./resources/css/CollectionRow.module.css";
 import CollectionRow from "./components/CollectionRow";
@@ -18,6 +19,10 @@ const CollectionsComponent = () => {
     const [data,setData] = useState(null);
     const [contentType,setType] = useState('');
     const [errOccured,setErrOccured] = useState(false);
+
+    useEffect(() => {
+        ReactGA.send({ hitType: "pageview", page: "/collections", title: "Collections" });
+    }, []);
 
     useEffect(() => {
         setLoading(true);
