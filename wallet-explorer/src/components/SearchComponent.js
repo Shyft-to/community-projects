@@ -64,7 +64,7 @@ const SearchComponent = () => {
     <motion.div className={styles.header_search_area} initial={{ opacity: 0, y: -100 }} animate={{ opacity: 1, y: 0 }}>
       <div className={styles.header_search_area_inner}>
         <div className="container-xl">
-        <div className="row" >
+        <div className="row p-1" >
           <div className="col-12 col-lg-2">
             <div className="logo_container pt-3 text-center text-lg-start">
               <Link to={`/`}>Translator</Link>

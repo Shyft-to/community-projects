@@ -9,6 +9,7 @@ import SimpleLoader from "./components/loaders/SimpleLoader";
 import { getCollectionsData } from "./utils/getAllData";
 import Transactions from "./components/TransactionComponent/Transactions";
 import SearchComponent from "./components/SearchComponent";
+import CollectionRowSlice from "./components/CollectionRowSlice";
 
 const SingleCollectionComponent = () => {
     let [searchParams, setSearchParams] = useSearchParams();
@@ -109,12 +110,12 @@ const SingleCollectionComponent = () => {
                         </div>
                         {
                             (collectionName !== "") ? (data.filter(collection => collection.name !== collectionName)).map(collection => (<div className="container-lg pt-4" id={collection.name} key={Math.random()}>
-                                <CollectionRow collection={collection} cluster={cluster} />
+                                <CollectionRowSlice collection={collection} cluster={cluster} />
 
                             </div>)) :
                                 data.map(collection => (<div className="container-lg pt-4" id={collection.name} key={Math.random()}>
                                     <CollectionRow collection={collection} cluster={cluster} />
-
+                                    
                                 </div>))
                         }
                         {/* {data.map(collection => (<div className="container-lg pt-4" id={collection.name} key={Math.random()}>

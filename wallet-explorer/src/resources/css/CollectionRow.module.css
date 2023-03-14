@@ -194,3 +194,19 @@
         color: #fff;    
     }
 }
+.expand_button
+{
+    position: relative;
+    padding-left: 10px;
+    margin-top: -1px;
+    transition: all 0.2s auto;
+}
+.expand_button button
+{
+    background-color: transparent;
+    color: #F3DD59;
+    border: none;
+    box-shadow: none;
+    display: inline-block;
+    padding: 0px;
+}
