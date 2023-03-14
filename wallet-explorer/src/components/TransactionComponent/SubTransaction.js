@@ -15,6 +15,8 @@ import burn from "../../resources/images/txnImages/burn.svg";
 import cancel from "../../resources/images/txnImages/cancel.svg";
 import list from "../../resources/images/txnImages/list.svg";
 import mint from "../../resources/images/txnImages/mint.svg";
+import loan from "../../resources/images/txnImages/loan.png";
+import solSmall from "../../resources/images/txnImages/sol_small.png";
 
 
 import { getNFTData, getTokenData } from "../../utils/getAllData";
@@ -246,6 +248,80 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                     value: formatLamports(data.info.amount) ?? "--",
                     symbol: ""
                 }
+            }
+            else if (data.type === "OFFER_LOAN") {
+                type_obj = {
+                    type: "OFFER_LOAN",
+                    from: data.info.lender ?? "--",
+                    to: "",
+                    token: "--",
+                    action: "--",
+                    value: `${data.info.amount} SOL` ?? "--",
+                    symbol: ""
+                }
+                setRelField(data.info.lender ?? "");
+                setImage(loan);
+            }
+            else if (data.type === "CANCEL_LOAN") {
+                type_obj = {
+                    type: "CANCEL_LOAN",
+                    from: data.info.lender ?? "--",
+                    to: "",
+                    token: "--",
+                    action: "--",
+                    value: `` ?? "--",
+                    symbol: ""
+                }
+                setRelField(data.info.lender ?? "");
+                setImage(loan);
+            }
+            else if (data.type === "TAKE_LOAN") {
+                type_obj = {
+                    type: "SHARKYFI_GEN_LOAN",
+                    from: "",
+                    to: data.info.borrower ?? "--",
+                    token: "--",
+                    action: "--",
+                    value: "",
+                    symbol: ""
+                }
+                setRelField(data.info.collateral_mint ?? "");
+            }
+            else if (data.type === "REPAY_LOAN") {
+                type_obj = {
+                    type: "SHARKYFI_GEN_LOAN",
+                    from: data.info.borrower ?? "--",
+                    to: data.info.lender ?? "--",
+                    token: "--",
+                    action: "--",
+                    value: "",
+                    symbol: ""
+                }
+                setRelField(data.info.collateral_mint ?? "");
+            }
+            else if (data.type === "REPAY_ESCROW_LOAN") {
+                type_obj = {
+                    type: "SHARKYFI_GEN_LOAN",
+                    from: data.info.borrower ?? "--",
+                    to: data.info.lender ?? "--",
+                    token: "--",
+                    action: "--",
+                    value: "",
+                    symbol: ""
+                }
+                setRelField(data.info.collateral_mint ?? "");
+            }
+            else if (data.type === "FORECLOSE_LOAN") {
+                type_obj = {
+                    type: "SHARKYFI_GEN_LOAN",
+                    from: data.info.borrower ?? "--",
+                    to: data.info.lender ?? "--",
+                    token: "--",
+                    action: "--",
+                    value: "",
+                    symbol: ""
+                }
+                setRelField(data.info.collateral_mint ?? "");
             }
             else {
                 type_obj = {
@@ -717,6 +793,114 @@ const SubTransactions = ({ styles, data, wallet, cluster }) => {
                                             </div>
                                         </div>
                                     </div>
+                                )
+                            }
+                            else if (varFields.type === "SHARKYFI_GEN_LOAN") {
+                                return (
+                                    <>
+                                        {(varFields.from)?<div className="row pt-1">
+                                            <div className="col-12 col-md-6">
+                                                <div className="d-flex">
+                                                    <div className="pe-2">
+                                                        <div className={styles.field_sub_1}>
+                                                            Borrowed From
+                                                        </div>
+                                                    </div>
+                                                    <div className="pe-1">
+                                                        <img src={arrow} alt="" style={{ width: "14px", marginTop: "-2px" }} />
+                                                    </div>
+                                                    <div className="pe-2">
+                                                        <div className={styles.field_sub_1}>
+                                                            <Link to={`/address/${varFields.from}?cluster=${cluster}`} aria-label={varFields.from} data-balloon-pos="up">{shortenAddress(varFields.from)}</Link>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="col-12 col-md-6">
+                                                <div className={`text-end ${styles.field_sub_1}`}>
+                                                    <div className={styles.plus}>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>:""}
+                                        <div className="row pt-1">
+                                            <div className="col-12 col-md-12">
+                                                <div className="d-flex">
+                                                    <div className="pe-1">
+                                                        <div className={styles.field_sub_1}>
+                                                            Borrowed By
+                                                        </div>
+                                                    </div>
+                                                    <div className="pe-1">
+                                                        <img src={arrow_rev} alt="" style={{ width: "14px", marginTop: "-2px" }} />
+                                                    </div>
+                                                    <div className="pe-1">
+                                                        <div className={styles.field_sub_1}>
+                                                            <Link to={`/address/${varFields.to}?cluster=${cluster}`} aria-label={varFields.to} data-balloon-pos="up">{shortenAddress(varFields.to)}</Link>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {/* <div className="col-12 col-md-6">
+                                                <div className={`text-end ${styles.field_sub_1}`}>
+                                                    {varFields.value} {(varFields.token === "SOL") ? "SOL" : ""}
+                                                </div>
+                                            </div> */}
+                                        </div>
+                                    </>
+                                )
+                            }
+                            else if (varFields.type === "OFFER_LOAN") {
+                                return (
+                                    <>
+                                        <div className="row pt-1">
+                                            <div className="col-12 col-md-10">
+                                                <div className="d-flex">
+                                                    <div className="pe-2">
+                                                        <div className={styles.field_sub_1}>
+                                                            Amount
+                                                        </div>
+                                                    </div>
+                                                    <div className="pe-1">
+                                                        <img src={solSmall} alt="" style={{ width: "14px", marginTop: "-2px" }} />
+                                                    </div>
+                                                    <div className="pe-2">
+                                                        <div className={styles.field_sub_1}>
+                                                            {varFields.value ?? "--"}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </>
+                                )
+                            }
+                            else if (varFields.type === "CANCEL_LOAN") {
+                                return (
+                                    <>
+                                        <div className="row pt-1">
+                                            <div className="col-12 col-md-10">
+                                                <div className="d-flex">
+                                                    <div className="pe-2">
+                                                        <div className={styles.field_sub_1}>
+                                                            Cancelled
+                                                        </div>
+                                                    </div>
+                                                    <div className="pe-1">
+                                                        <img src={cancel} alt="" style={{ width: "14px", marginTop: "-2px" }} />
+                                                    </div>
+                                                    <div className="pe-2">
+                                                        <div className={styles.field_sub_1}>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </>
                                 )
                             }
                             else {
