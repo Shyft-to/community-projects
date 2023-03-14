@@ -8,6 +8,7 @@ import SimpleLoader from "./components/loaders/SimpleLoader";
 
 import { getCollectionsData } from "./utils/getAllData";
 import Transactions from "./components/TransactionComponent/Transactions";
+import SearchComponent from "./components/SearchComponent";
 
 const SingleCollectionComponent = () => {
     let [searchParams, setSearchParams] = useSearchParams();
@@ -67,6 +68,9 @@ const SingleCollectionComponent = () => {
     return (
         <div>
             <div className="background_super">
+                <div className="container pt-2 pb-1">
+                    <SearchComponent />
+                </div>
                 {isLoading &&
                     <div className="pt-5 mt-3">
                         <SimpleLoader />
@@ -96,11 +100,30 @@ const SingleCollectionComponent = () => {
 
                     </div>
                 }
-                <div className="container pt-4">
-                    {/* <div className="pt-5">
-                        <Transactions address={addr} cluster={cluster} />
-                    </div> */}
-                </div>
+                {!isLoading &&
+                    <div className={styles.all_collections_page}>
+                        <div className="container-lg pt-5">
+                            <div className={styles.main_heading}>
+                                More Collections from this wallet
+                            </div>
+                        </div>
+                        {
+                            (collectionName !== "") ? (data.filter(collection => collection.name !== collectionName)).map(collection => (<div className="container-lg pt-4" id={collection.name} key={Math.random()}>
+                                <CollectionRow collection={collection} cluster={cluster} />
+
+                            </div>)) :
+                                data.map(collection => (<div className="container-lg pt-4" id={collection.name} key={Math.random()}>
+                                    <CollectionRow collection={collection} cluster={cluster} />
+
+                                </div>))
+                        }
+                        {/* {data.map(collection => (<div className="container-lg pt-4" id={collection.name} key={Math.random()}>
+                        <CollectionRow collection={collection} cluster={cluster}/>
+
+                    </div>))} */}
+
+                    </div>
+                }
             </div>
         </div>
     );

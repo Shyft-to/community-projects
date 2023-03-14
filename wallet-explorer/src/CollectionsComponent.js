@@ -8,6 +8,7 @@ import SimpleLoader from "./components/loaders/SimpleLoader";
 
 import { getCollectionsData } from "./utils/getAllData";
 import Transactions from "./components/TransactionComponent/Transactions";
+import SearchComponent from "./components/SearchComponent";
 
 const CollectionsComponent = () => {
     let [searchParams, setSearchParams] = useSearchParams();
@@ -71,6 +72,10 @@ const CollectionsComponent = () => {
     return ( 
         <div>
             <div className="background_super">
+                
+                <div className="container pt-2 pb-1">
+                    <SearchComponent />
+                </div>
                 {isLoading && 
                 <div className="pt-5 mt-3">
                     <SimpleLoader />
@@ -83,7 +88,7 @@ const CollectionsComponent = () => {
                             Collections in your space 
                         </div>
                     </div>
-                    {data.map(collection => (<div className="container-lg pt-4" id={collection.name}>
+                    {data.map(collection => (<div className="container-lg pt-5" id={collection.name}>
                         <CollectionRow collection={collection} cluster={cluster}/>
 
                     </div>))}

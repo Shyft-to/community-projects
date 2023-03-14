@@ -51,7 +51,21 @@ body {
   background-repeat: no-repeat;
   background-position: 100% 100%;
   background-attachment: fixed;
-  padding: 40px 0px;
+  padding: 80px 0px 40px;
+}
+@media screen and (max-width: 992px) {
+  .background_super
+  {
+    
+    padding: 110px 0px 40px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .background_super
+  {
+    
+    padding: 120px 0px 40px;
+  }
 }
 .toggle_up {
   transform: rotate(180deg);
