@@ -3,7 +3,7 @@
     font: 500 20px/24px "Montserrat",sans-serif;
     color: #fff;
     padding-bottom: 12px;
-    letter-spacing: 1px;
+    /* letter-spacing: 1px; */
 }
 .token_section .main_heading span
 {

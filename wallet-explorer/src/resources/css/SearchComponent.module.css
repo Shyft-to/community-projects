@@ -186,3 +186,23 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.header_search_area
+{
+  position: absolute;
+  background-color: transparent;
+  transition: color 0.2s ease;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  padding: 8px 0px;
+  z-index: 10;
+}
+.header_search_area:hover
+{
+  background-color: #8254b022;
+}
+.header_search_area .header_search_area_inner
+{
+  position: relative;
+}

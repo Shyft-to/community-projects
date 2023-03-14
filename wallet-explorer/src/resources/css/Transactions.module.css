@@ -389,7 +389,7 @@
 .each_txn_3 .dynamic_field
 {
     font: 400 14px/14px "Montserrat",sans-serif;
-    letter-spacing: 1px;
+    /* letter-spacing: 1px; */
     padding: 4px 0px;
     color: #FFFA;
 }

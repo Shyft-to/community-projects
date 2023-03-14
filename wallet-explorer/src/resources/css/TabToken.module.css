@@ -94,7 +94,7 @@
 .each_tab_token .info_section .field
 {
     font: 400 16px/24px "Poppins",sans-serif;
-    letter-spacing: 1px;
+    /* letter-spacing: 1px; */
     color: #FFFFFF;
     padding-top: 10px;
 }

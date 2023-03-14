@@ -3,7 +3,7 @@
     font: 400 20px/24px "Montserrat",sans-serif;
     color: #fff;
     padding-bottom: 24px;
-    letter-spacing: 1px;
+    /* letter-spacing: 1px; */
 }
 /* .nft_all_section .main_heading span
 {
@@ -136,7 +136,7 @@
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    letter-spacing: 1px;
+    /* letter-spacing: 1px; */
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -148,7 +148,7 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  letter-spacing: 1px;
+  /* letter-spacing: 1px; */
 }
 
 @media screen and (max-width: 767px) {
@@ -159,7 +159,7 @@
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
-        letter-spacing: 1px;
+        /* letter-spacing: 1px; */
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -169,7 +169,7 @@
         font: 400 18px/22px "Montserrat",sans-serif;
         color: #fff;
         padding-bottom: 10px;
-        letter-spacing: 1px;
+        /* letter-spacing: 1px; */
     }
     .collection_nft_container .nft_container
     {
