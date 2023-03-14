@@ -66,7 +66,7 @@ const SearchComponent = () => {
         <div className="container-xl">
         <div className="row" >
           <div className="col-12 col-lg-2">
-            <div className="logo_container pt-3 text-center text-lg-center">
+            <div className="logo_container pt-3 text-center text-lg-start">
               <Link to={`/`}>Translator</Link>
             </div>
           </div>

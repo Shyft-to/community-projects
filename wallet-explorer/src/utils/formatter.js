@@ -27,9 +27,9 @@ export function formatLamports(value) {
         if (typeof value === "number")
             return (parseFloat(value) / LAMPORTS_PER_SOL);
         else
-            return "--";
+            return value;
     } catch (error) {
-        return "--";
+        return value;
     }
 
 }

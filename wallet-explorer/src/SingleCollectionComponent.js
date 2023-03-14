@@ -79,9 +79,9 @@ const SingleCollectionComponent = () => {
                 {!isLoading &&
                     <div className={styles.all_collections_page}>
                         <div className="container-lg pt-4">
-                            <div className={styles.main_heading}>
+                            {/* <div className={styles.main_heading}>
                                 NFTs from this Collection
-                            </div>
+                            </div> */}
                         </div>
                         {
                             (collectionName !== "") ? (data.filter(collection => collection.name === collectionName)).map(collection => (<div className="container-lg pt-4" id={collection.name} key={Math.random()}>
