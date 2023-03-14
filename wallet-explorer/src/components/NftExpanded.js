@@ -23,7 +23,6 @@ const NftExpanded = ({ nft,cluster }) => {
           <div className={styles.nft_image_container}>
             <img
               src={(nft.image_uri === "") ? unknown : nft.image_uri}
-
               className="img-fluid"
               alt="nft"
             />
