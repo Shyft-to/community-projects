@@ -1,95 +1,64 @@
-import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
-import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
-import { WalletModalProvider, WalletMultiButton } from '@solana/wallet-adapter-react-ui';
-import { UnsafeBurnerWalletAdapter } from '@solana/wallet-adapter-wallets';
-import { clusterApiUrl } from '@solana/web3.js';
-import React, { FC, ReactNode, useMemo, useState } from 'react';
+import { WalletDisconnectButton, WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import React, { FC, useState } from 'react';
 
+import { signAndSendTransaction } from '@shyft-to/js';
+import styles from './styles/Home.module.css';
+import { NetworkSwitcher } from './components/NetworkSwitcher';
+import { ContextProvider } from './contexts/ContextProvider';
+import { useNetworkConfiguration } from './contexts/NetworkConfigurationProvider';
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
-import { confirmTxn, Network, ShyftWallet } from '@shyft-to/js';
 
 require('./App.css');
 require('@solana/wallet-adapter-react-ui/styles.css');
 
 const App: FC = () => {
     return (
-        <Context>
+        <ContextProvider>
             <Content />
-        </Context>
+        </ContextProvider>
     );
 };
 export default App;
 
-const Context: FC<{ children: ReactNode }> = ({ children }) => {
-    // The network can be set to 'devnet', 'testnet', or 'mainnet-beta'.
-    const network = WalletAdapterNetwork.Devnet;
-
-    // You can also provide a custom RPC endpoint.
-    const endpoint = useMemo(() => clusterApiUrl(network), [network]);
-
-    const wallets = useMemo(
-        () => [
-            /**
-             * Wallets that implement either of these standards will be available automatically.
-             *
-             *   - Solana Mobile Stack Mobile Wallet Adapter Protocol
-             *     (https://github.com/solana-mobile/mobile-wallet-adapter)
-             *   - Solana Wallet Standard
-             *     (https://github.com/solana-labs/wallet-standard)
-             *
-             * If you wish to support a wallet that supports neither of those standards,
-             * instantiate its legacy wallet adapter here. Common legacy adapters can be found
-             * in the npm package `@solana/wallet-adapter-wallets`.
-             */
-            new UnsafeBurnerWalletAdapter(),
-        ],
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [network]
-    );
-
-    return (
-        <ConnectionProvider endpoint={endpoint}>
-            <WalletProvider wallets={wallets} autoConnect>
-                <WalletModalProvider>{children}</WalletModalProvider>
-            </WalletProvider>
-        </ConnectionProvider>
-    );
-};
-
 const Content: FC = () => {
+    const { networkConfiguration } = useNetworkConfiguration();
     const { connection } = useConnection();
-    const { signTransaction, signAllTransactions } = useWallet();
-
+    const wallet = useWallet();
     const [txn, setTxn] = useState('');
     const [signature, setSignature] = useState('');
     const [success, setSuccess] = useState(false);
+    const [errorMsg, setErrorMsg] = useState('');
     const [isErrorOccured, setErrorOccured] = useState(false);
     const signTxn = async () => {
-        const wallet: ShyftWallet = {
-            signTransaction: signTransaction!,
-            signAllTransactions: signAllTransactions!,
-        };
         try {
-            const signature = await confirmTxn(connection, txn, wallet);
+            const signature = await signAndSendTransaction(connection, txn, wallet);
             setSignature(signature);
             setSuccess(true);
             setErrorOccured(false);
             console.log(signature);
-        } catch (error) {
+        } catch (error: any) {
             setSuccess(false);
             setErrorOccured(true);
+            setErrorMsg(error?.message ?? 'Some error occured!');
             console.error(error);
         }
     };
     return (
         <div className="App">
             <div className="container pt-4">
-                <div className="row pt-1">
-                    <div className="col-6">
-                        <WalletMultiButton />
-                    </div>
-                    <div className="col-6"></div>
-                </div>
+            <div className="row">
+          <div className="col-12 col-lg-6">
+            <div className={styles.walletButtons}>
+              <WalletMultiButton />
+              <WalletDisconnectButton />
+            </div>
+          </div>
+          <div className="col-12 col-lg-6">
+          <div className={styles.walletButtons}>
+            <NetworkSwitcher />
+            </div>
+          </div>
+        </div>
                 <div className="row pt-4">
                     <div className="col-6">
                         <div style={{ paddingTop: '10px' }}>
@@ -109,7 +78,7 @@ const Content: FC = () => {
                         {isErrorOccured ? (
                             <>
                                 <hr />
-                                Could not Sign
+                                {errorMsg}
                             </>
                         ) : (
                             <></>
@@ -122,7 +91,7 @@ const Content: FC = () => {
                                     Transaction signature: {''}
                                     <a
                                         style={{ wordWrap: 'break-word' }}
-                                        href={`https://explorer.solana.com/tx/${signature}?cluster=devnet`}
+                                        href={`https://explorer.solana.com/tx/${signature}?cluster=${networkConfiguration}`}
                                         target="_blank"
                                         rel="noreferrer"
                                     >

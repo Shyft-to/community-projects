@@ -1,10 +1,15 @@
 {
-    "extends": "../../../tsconfig.root.json",
-    "include": ["src"],
+    "include": [
+        "src"
+    ],
     "compilerOptions": {
         "outDir": "lib",
         "target": "es5",
-        "lib": ["dom", "dom.iterable", "esnext"],
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "esnext"
+        ],
         "allowJs": true,
         "skipLibCheck": true,
         "esModuleInterop": true,
