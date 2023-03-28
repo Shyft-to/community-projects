@@ -12,12 +12,16 @@ Get your own API KEY from [SHYFT](https://shyft.to/): [https://shyft.to/get-api-
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-To run this project create your own .env file, with SHYFT's API endpoint, and [your own API key](https://shyft.to/get-api-key)
+To run this project create your own `.env` file, with SHYFT's API endpoint, and [your own API key](https://shyft.to/get-api-key).
 ```
 REACT_APP_API_EP=https://api.shyft.to/sol/v1/
 REACT_APP_API_KEY=test
 REACT_APP_GA_ID=123
 ```
+or you can simply rename `example.env` to `.env`, add your API key and get started.
+
+To start this project on local environment, use command `npm run start`
+
 
 ## Available Scripts
 
