@@ -144,7 +144,7 @@ const TransactionSigner: NextPage = () => {
           <div className="alert alert-success" role="alert">
             Transaction signature: {""}
             <a style={{ wordWrap: "break-word" }}
-              href={`https://explorer.solana.com/tx/${response}?cluster=${networkConfiguration}`}
+              href={`https://translator.shyft.to/tx/${response}?cluster=${networkConfiguration}`}
 							target="_blank"
 							rel="noreferrer"
             >
