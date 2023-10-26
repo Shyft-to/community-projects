@@ -1,8 +1,7 @@
-"use server";
 import { ShyftSdk, Network } from "@shyft-to/js";
 
 const shyft = new ShyftSdk({
-  apiKey: process.env.SHYFT_API_KEY!,
+  apiKey: process.env.NEXT_PUBLIC_SHYFT_API_KEY!,
   network: Network.Devnet,
 });
 
@@ -14,7 +13,7 @@ async function createRelayerWaller() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": process.env.SHYFT_API_KEY!,
+        "x-api-key": process.env.NEXT_PUBLIC_SHYFT_API_KEY!,
       },
     }
   );
@@ -47,7 +46,7 @@ async function createMerkleTree() {
     }),
     headers: {
       "Content-Type": "application/json",
-      "x-api-key": process.env.SHYFT_API_KEY!,
+      "x-api-key": process.env.NEXT_PUBLIC_SHYFT_API_KEY!,
     },
   });
 
@@ -66,7 +65,7 @@ export async function handleMint(receiver: string): Promise<{
       creatorWallet: process.env.NEXT_PUBLIC_RELAYER_WALLET!,
       metadataUri: process.env.NEXT_PUBLIC_NFT_METADATA!,
       merkleTree: process.env.NEXT_PUBLIC_MERKLE_TREE!,
-      receiver: receiver,
+      receiver,
       feePayer: process.env.NEXT_PUBLIC_RELAYER_WALLET!,
     });
 
@@ -80,7 +79,7 @@ export async function handleMint(receiver: string): Promise<{
         }),
         headers: {
           "Content-Type": "application/json",
-          "x-api-key": process.env.SHYFT_API_KEY!,
+          "x-api-key": process.env.NEXT_PUBLIC_SHYFT_API_KEY!,
         },
       }
     );

@@ -1,11 +1,11 @@
 "use client";
 
 import Button from "./ui/button";
-import { handleMint } from "@/app/action";
 import { toast } from "sonner";
 import { useWallet } from "@solana/wallet-adapter-react";
 import ConnectWalletButton from "./connect-wallet-button";
 import { useState } from "react";
+import { handleMint } from "@/lib/shyft";
 
 export default function MintButton() {
   const { connected, publicKey } = useWallet();
