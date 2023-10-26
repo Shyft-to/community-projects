@@ -1,11 +1,60 @@
 "use server";
 import { ShyftSdk, Network } from "@shyft-to/js";
-import {
-  Connection,
-  Keypair,
-  Transaction,
-  sendAndConfirmTransaction,
-} from "@solana/web3.js";
+
+const shyft = new ShyftSdk({
+  apiKey: process.env.SHYFT_API_KEY!,
+  network: Network.Devnet,
+});
+
+// Use this function to create the relayer wallet
+async function createRelayerWaller() {
+  const response = await fetch(
+    "https://api.shyft.to/sol/v1/txn_relayer/create",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": process.env.SHYFT_API_KEY!,
+      },
+    }
+  );
+
+  const data = await response.json();
+
+  console.log(data);
+}
+
+// Use this function to setup the Merkle tree
+async function createMerkleTree() {
+  const result = await shyft.nft.compressed.createMerkleTree({
+    network: Network.Devnet,
+    walletAddress: process.env.NEXT_PUBLIC_RELAYER_WALLET!,
+    maxDepthSizePair: {
+      maxDepth: 14,
+      maxBufferSize: 64,
+    },
+    canopyDepth: 0,
+    feePayer: process.env.NEXT_PUBLIC_RELAYER_WALLET!,
+  });
+
+  console.log(result);
+
+  const response = await fetch("https://api.shyft.to/sol/v1/txn_relayer/sign", {
+    method: "POST",
+    body: JSON.stringify({
+      network: "devnet",
+      encoded_transaction: result.encoded_transaction,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": process.env.SHYFT_API_KEY!,
+    },
+  });
+
+  const data = await response.json();
+
+  console.log(data);
+}
 
 export async function handleMint(receiver: string): Promise<{
   success: boolean;
@@ -13,40 +62,34 @@ export async function handleMint(receiver: string): Promise<{
   data?: string;
 }> {
   try {
-    const shyft = new ShyftSdk({
-      apiKey: process.env.SHYFT_API_KEY!,
-      network: Network.Devnet,
-    });
-
-    const keypair = Keypair.fromSecretKey(
-      new Uint8Array(JSON.parse(process.env.MASTER_WALLET!))
-    );
-
     const result = await shyft.nft.compressed.mint({
-      creatorWallet: keypair.publicKey.toBase58(),
+      creatorWallet: process.env.NEXT_PUBLIC_RELAYER_WALLET!,
       metadataUri: process.env.NEXT_PUBLIC_NFT_METADATA!,
       merkleTree: process.env.NEXT_PUBLIC_MERKLE_TREE!,
       receiver: receiver,
-      feePayer: keypair.publicKey.toBase58(),
+      feePayer: process.env.NEXT_PUBLIC_RELAYER_WALLET!,
     });
 
-
-    const tx = Transaction.from(
-      Buffer.from(result.encoded_transaction, "base64")
+    const response = await fetch(
+      "https://api.shyft.to/sol/v1/txn_relayer/sign",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          network: "devnet",
+          encoded_transaction: result.encoded_transaction,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": process.env.SHYFT_API_KEY!,
+        },
+      }
     );
 
-    const connection = new Connection(process.env.NEXT_PUBLIC_RPC_URL!, {
-      commitment: "confirmed",
-    });
-    const signature = await sendAndConfirmTransaction(connection, tx, [
-      keypair,
-    ]);
-
-    console.log({ signature });
+    const data = await response.json();
 
     return {
       success: true,
-      data: signature
+      data: data.result.tx,
     };
   } catch (error: any) {
     console.error(error);
