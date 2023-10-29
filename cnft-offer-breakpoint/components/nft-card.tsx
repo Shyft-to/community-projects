@@ -4,17 +4,18 @@ export default function NFTCard() {
       <div className="relative aspect-square">
         <img
           className="rounded-xl w-full h-auto"
-          src="/shyft-nft.webp"
+          src="/shyft-nft.png"
           alt="nft"
         />
       </div>
       <div className="space-y-2">
         <h3 className="text-white text-xl font-bold leading-normal">
-          Shyft Offer NFT
+          Breakpoint Supercharge 2023
         </h3>
         <p className="text-grey text-sm">
-          We are building the infrastucture layer of Solana to provide the best
-          DevEx. Get started with our detailed documentation and 24/7 support.
+          This NFT will supercharge your Solana DevEx above 9000. . Holder of
+          this will get 50M free credits, only if redeemed before 1 Dec 2023.
+          Hurry up! Only 100 of a kind is going to be minted.
         </p>
       </div>
     </div>
