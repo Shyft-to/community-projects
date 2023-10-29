@@ -76,14 +76,14 @@ const SuccessView = () => {
   return (
     <div className="container px-4 md:px-8 flex mx-auto flex-col items-center py-20 gap-5">
       <h2 className="text-2xl lg:text-4xl text-center font-bold leading-normal text-white mt-2">
-        You have supercharged your Wallet with 50M Shyft Credits
+        Congrats! You just supercharged your wallet with 50M Shyft Credits.
       </h2>
 
       <div className="max-w-md mx-4 flex justify-center items-center gap-6 mt-10">
         <a
           target="_blank"
           href="https://shyft.to/get-api-key"
-          className="rounded-full text-sm font-medium px-4 disabled:cursor-not-allowed disabled:bg-gray-500 py-2 px-6 focus:outline-none focus:enabled:ring bg-red-500 hover:enabled:bg-amber-400/80 text-white focus:enabled:ring-amber-400"
+          className="rounded-full text-sm font-medium px-4 disabled:cursor-not-allowed disabled:bg-gray-500 py-2 px-5 focus:outline-none focus:enabled:ring bg-red-500 hover:enabled:bg-amber-400/80 text-white focus:enabled:ring-amber-400"
         >
           Redeem Now
         </a>
@@ -92,7 +92,7 @@ const SuccessView = () => {
           target="_blank"
           className="rounded-full text-sm font-medium px-4 disabled:cursor-not-allowed disabled:bg-gray-500 py-2 focus:outline-none focus:enabled:ring bg-amber-400 hover:enabled:bg-amber-400/80 text-black focus:enabled:ring-amber-400"
         >
-          See in Translator
+          View on Translator
         </a>
       </div>
     </div>
