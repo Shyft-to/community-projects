@@ -15,9 +15,9 @@ const jost = Jost({
 });
 
 export const metadata: Metadata = {
-  title: "Airdrop with Shyft",
+  title: "Unlock Shyft Credits",
   description:
-    "Unlock the power of compression with Shyft Airdrop – your go-to platform to effortlessly take snapshots of NFT collection holders. Easily collect the addresses of current NFT holders for your airdrops and promotions. Streamline your NFT distribution with Shyft Airdrop today for free!",
+    "Mint Shyft Credit NFTs to supercharge your DevEx",
   openGraph: {
     images: [
       {
@@ -27,6 +27,7 @@ export const metadata: Metadata = {
       },
     ],
   },
+  icons: [{ rel: "icon", url: "https://shyft.to/logo192.png" }, { rel: "apple-touch-icon", url: "https://shyft.to/logo192.png" }]
 };
 
 export default function RootLayout({

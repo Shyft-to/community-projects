@@ -41,7 +41,13 @@ export default function Home() {
               <p className="text-xl font-bold text-white mx-5">
                 Real-time infrastructure on solana
               </p>
-              <p className="text-xl font-bold text-white mx-5">GraphQL APIs</p>
+              <p className="text-xl font-bold text-white mx-5">Making Solana Queryable</p>
+              <p className="text-xl font-bold text-white mx-5">Real-time Infrastructure</p>
+              <p className="text-xl font-bold text-white mx-5">GraphQL Protocol APIs</p>
+              <p className="text-xl font-bold text-white mx-5">DAS Enabled RPCs</p>
+              <p className="text-xl font-bold text-white mx-5">Compressed NFT Minting APIs</p>
+              <p className="text-xl font-bold text-white mx-5">Gasless Infrastructure</p>
+              <p className="text-xl font-bold text-white mx-5">Parsed Transactions</p>
             </Marquee>
           </div>
         </div>
