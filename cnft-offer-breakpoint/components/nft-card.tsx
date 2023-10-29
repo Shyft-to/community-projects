@@ -13,9 +13,9 @@ export default function NFTCard() {
           Breakpoint Supercharge 2023
         </h3>
         <p className="text-grey text-sm">
-          This NFT will supercharge your Solana DevEx above 9000. . Holder of
-          this will get 50M free credits, only if redeemed before 1 Dec 2023.
-          Hurry up! Only 100 of a kind is going to be minted.
+          This NFT will supercharge your Solana DevEx over 9000. Mint and redeem
+          before 1st December 2023 to unlock 50M in Shyft credits for RPCs,
+          APIs, Callbacks and more. Only 100 in total.
         </p>
       </div>
     </div>
