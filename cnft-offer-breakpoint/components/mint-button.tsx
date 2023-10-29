@@ -31,7 +31,7 @@ export default function MintButton() {
 
   return (
     <Button disabled={loading} onClick={() => mintcNFT()}>
-      {loading ? "Minting your cNFT..." : "Mint your cNFT"}
+      {loading ? "Minting your cNFT..." : "Get Free Credits"}
     </Button>
   );
 }

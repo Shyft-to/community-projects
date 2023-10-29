@@ -31,7 +31,7 @@ export default function Home() {
                 Build Faster and Smarter
               </p>
               <h2 className="text-3xl lg:text-5xl font-bold leading-normal text-white mt-2">
-                Complete Development Suite
+                Claim Your Free Credits
               </h2>
             </div>
             <Marquee speed={100}>
@@ -83,9 +83,9 @@ const SuccessView = () => {
         <a
           target="_blank"
           href="https://shyft.to/get-api-key"
-          className="rounded-full text-sm font-medium px-4 disabled:cursor-not-allowed disabled:bg-gray-500 py-2 focus:outline-none focus:enabled:ring bg-amber-400 hover:enabled:bg-amber-400/80 text-black focus:enabled:ring-amber-400"
+          className="rounded-full text-sm font-medium px-4 disabled:cursor-not-allowed disabled:bg-gray-500 py-2 px-6 focus:outline-none focus:enabled:ring bg-red-500 hover:enabled:bg-amber-400/80 text-white focus:enabled:ring-amber-400"
         >
-          Redeem Credits
+          Redeem Now
         </a>
         <a
           href={`https://translator.shyft.to/tx/${tx}?cluster=${process.env.NEXT_PUBLIC_SOLANA_CLUSTER}`}
