@@ -1,9 +1,14 @@
 "use client";
-
+import dynamic from "next/dynamic";
 import MintButton from "@/components/mint-button";
 import Marquee from "react-fast-marquee";
 import NFTCard from "@/components/nft-card";
 import { useSearchParams } from "next/navigation";
+const WalletDisconnectButton = dynamic(
+  async () =>
+    (await import("@solana/wallet-adapter-react-ui")).WalletDisconnectButton,
+  { ssr: false }
+);
 
 export default function Home() {
   const searchParams = useSearchParams();
@@ -64,6 +69,9 @@ export default function Home() {
       <div className="container px-4 md:px-8 flex mx-auto flex-col items-center py-20 gap-5">
         <NFTCard />
         <MintButton />
+        {/* <div className="keys" style={{display: "block"}}>
+            <WalletDisconnectButton />
+      </div> */}
       </div>
     </main>
   );
