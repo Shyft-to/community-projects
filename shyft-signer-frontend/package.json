@@ -26,9 +26,11 @@
         "lint": "next lint"
     },
     "dependencies": {
+        "@fortawesome/free-solid-svg-icons": "^6.4.2",
+        "@fortawesome/react-fontawesome": "^0.2.0",
         "@solana-mobile/wallet-adapter-mobile": "^0.0.1-alpha.0",
         "@solana/wallet-adapter-base": "^0.9.9",
-        "@solana/wallet-adapter-react": "^0.15.8",
+        "@solana/wallet-adapter-react": "^0.15.35",
         "@solana/wallet-adapter-react-ui": "^0.9.10",
         "@solana/wallet-adapter-wallets": "^0.16.8",
         "@solana/web3.js": "^1.66.2",

@@ -1,29 +1,65 @@
 import { Wallet } from "@solana/wallet-adapter-react";
-import { Connection, Signer, Transaction } from "@solana/web3.js";
+import {
+  Connection,
+  Signer,
+  Transaction,
+  VersionedTransaction,
+} from "@solana/web3.js";
 
 export interface ShyftWallet {
   wallet: Wallet;
-  signTransaction(tx: Transaction): Promise<Transaction>;
-  signAllTransactions?(txs: Transaction[]): Promise<Transaction[]>;
+  signTransaction(
+    tx: Transaction | VersionedTransaction
+  ): Promise<Transaction | VersionedTransaction>;
+  signAllTransactions?(
+    txs: Array<Transaction> | Array<VersionedTransaction>
+  ): Promise<Array<Transaction> | Array<VersionedTransaction>>;
 }
 
-export async function confirmTransactionFromFrontend(connection: Connection, encodedTransaction: string, wallet: ShyftWallet): Promise<string> {
-  const recoveredTransaction = Transaction.from(
-    Buffer.from(encodedTransaction, 'base64')
-  );
+export async function confirmTransactionFromFrontend(
+  connection: Connection,
+  encodedTransaction: string,
+  wallet: ShyftWallet
+): Promise<string> {
+  const recoveredTransaction = getRawTransaction(encodedTransaction);
   const signedTx = await wallet.signTransaction(recoveredTransaction);
   const confirmTransaction = await connection.sendRawTransaction(
-    signedTx.serialize({ requireAllSignatures: false })
+    signedTx.serialize()
   );
   return confirmTransaction;
 }
 
-export async function signTransactionFromFrontend(encodedTransaction: string, signer: Signer[]): Promise<string> {
-  const recoveredTransaction = Transaction.from(
-    Buffer.from(encodedTransaction, 'base64')
+export async function signTransactionFromFrontend(
+  encodedTransaction: string,
+  signers: Array<Signer>
+): Promise<string> {
+  const recoveredTransaction = getRawTransaction(encodedTransaction);
+
+  if (recoveredTransaction instanceof VersionedTransaction) {
+    recoveredTransaction.sign(signers);
+  } else {
+    recoveredTransaction.partialSign(...signers);
+  }
+
+  const serializedTransaction = recoveredTransaction.serialize();
+  const transactionBase64 = Buffer.from(serializedTransaction).toString(
+    "base64"
   );
-  recoveredTransaction.partialSign(...signer);
-  const serializedTransaction = recoveredTransaction.serialize({ requireAllSignatures: false });
-  const transactionBase64 = serializedTransaction.toString('base64');
   return transactionBase64;
+}
+
+function getRawTransaction(
+  encodedTransaction: string
+): Transaction | VersionedTransaction {
+  let recoveredTransaction: Transaction | VersionedTransaction;
+  try {
+    recoveredTransaction = Transaction.from(
+      Buffer.from(encodedTransaction, "base64")
+    );
+  } catch (error) {
+    recoveredTransaction = VersionedTransaction.deserialize(
+      Buffer.from(encodedTransaction, "base64")
+    );
+  }
+  return recoveredTransaction;
 }
