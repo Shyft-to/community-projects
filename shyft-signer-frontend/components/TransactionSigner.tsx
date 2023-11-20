@@ -1,6 +1,8 @@
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import type { NextPage } from "next";
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Keypair, Signer } from "@solana/web3.js";
 import { decode } from "bs58";
 import {
@@ -11,6 +13,12 @@ import ErrorComponent from "./ErrorComponent";
 import { useNetworkConfiguration } from "../contexts/NetworkConfigurationProvider";
 
 const TransactionSigner: NextPage = () => {
+  const removeKey = (index: number) => {
+    const list = [...privateKeys];
+    list.splice(index, 1);
+    setPrivateKeys(list);
+  };
+
   const [privateKeys, setPrivateKeys] = useState([{ id: 1, privateKey: "" }]);
 
   const [response, setResponse] = useState<string | any>();
@@ -37,7 +45,7 @@ const TransactionSigner: NextPage = () => {
       let transaction: string;
 
       if (privateKeys[0].privateKey !== "") {
-        const signer = privateKeys.map((key) => {
+        const signers = privateKeys.map((key) => {
           const signer = Keypair.fromSecretKey(
             decode(key.privateKey)
           ) as Signer;
@@ -45,7 +53,7 @@ const TransactionSigner: NextPage = () => {
         });
         transaction = await signTransactionFromFrontend(
           encodedTransaction,
-          signer
+          signers
         );
       } else {
         transaction = encodedTransaction;
@@ -84,28 +92,43 @@ const TransactionSigner: NextPage = () => {
       </h3>
       <form onSubmit={handleSubmit}>
         {privateKeys.map((key, index) => (
-          <div key={index} className="form-group mt-4">
-            <label>Private key of other signer</label>
-            <textarea
-              name="private_keys"
-              className="form-control"
-              id="private_keys"
-              placeholder="Enter Private Key (Optional)"
-              value={key.privateKey}
-              onChange={(e) => {
-                const privateKey = e.target.value;
-                setPrivateKeys((currentField) =>
-                  currentField.map((x) =>
-                    x.id === key.id
-                      ? {
-                          ...x,
-                          privateKey,
-                        }
-                      : x
-                  )
-                );
-              }}
-            />
+          <div key={index} className="row form-group mt-4">
+            <div className="col-lg-9 col-md-9 col-sm">
+              <label>Private key of other signer</label>
+              <textarea
+                name="private_keys"
+                className="form-control"
+                id="private_keys"
+                placeholder="Enter Private Key (Optional)"
+                value={key.privateKey}
+                onChange={(e) => {
+                  const privateKey = e.target.value;
+                  setPrivateKeys((currentField) =>
+                    currentField.map((x) =>
+                      x.id === key.id
+                        ? {
+                            ...x,
+                            privateKey,
+                          }
+                        : x
+                    )
+                  );
+                }}
+              />
+            </div>
+            <div className="col-lg-3 col-md-3 pt-4">
+              {privateKeys.length - 1 !== 0 && (
+                <button
+                  className="btn btn-light"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    removeKey(privateKeys.length - 1);
+                  }}
+                >
+                  <FontAwesomeIcon icon={faTrash} className="trash" />
+                </button>
+              )}
+            </div>
           </div>
         ))}
         <button
@@ -143,12 +166,13 @@ const TransactionSigner: NextPage = () => {
           <hr />
           <div className="alert alert-success" role="alert">
             Transaction signature: {""}
-            <a style={{ wordWrap: "break-word" }}
+            <a
+              style={{ wordWrap: "break-word" }}
               href={`https://translator.shyft.to/tx/${response}?cluster=${networkConfiguration}`}
-							target="_blank"
-							rel="noreferrer"
+              target="_blank"
+              rel="noreferrer"
             >
-              { response }
+              {response}
             </a>
           </div>
         </>
