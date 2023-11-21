@@ -52,10 +52,7 @@ Drop this repo ⭐ star
 ## Development resources
 
 - Docs: https://docs.shyft.to/
-- Discord Community: https://discord.com/invite/QutuZNp3Us
-- Repo: https://github.com/Shyft-to
+- GraphQL Program APIs: https://docs.shyft.to/graphql-program-apis/introducing-gpa-killer
+- SDK: https://www.npmjs.com/package/@shyft-to/js
+- Support: https://discord.com/invite/QutuZNp3Us
 - Blog: https://medium.com/shyft-to
-- Marketplace APIs: https://shyft.to/marketplace
-- NFT APIs: https://shyft.to/nfts
-- Token APIs: https://docs.shyft.to/start-hacking/fungible-tokens
-- Wallet APIs: https://docs.shyft.to/start-hacking/wallet
