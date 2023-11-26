@@ -34,14 +34,18 @@ export async function signTransactionFromFrontend(
   signers: Array<Signer>
 ): Promise<string> {
   const recoveredTransaction = getRawTransaction(encodedTransaction);
+  let serializedTransaction: Uint8Array | Buffer;
 
   if (recoveredTransaction instanceof VersionedTransaction) {
     recoveredTransaction.sign(signers);
+    serializedTransaction = recoveredTransaction.serialize();
   } else {
     recoveredTransaction.partialSign(...signers);
+    serializedTransaction = recoveredTransaction.serialize({
+      requireAllSignatures: false,
+    });
   }
 
-  const serializedTransaction = recoveredTransaction.serialize();
   const transactionBase64 = Buffer.from(serializedTransaction).toString(
     "base64"
   );
