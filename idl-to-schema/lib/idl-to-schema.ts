@@ -36,7 +36,7 @@ const createTableSchemaFromIdl = (idl: Idl, accountName: string) => {
       primaryKey: true,
     },
     {
-      name: "lamports",
+      name: "_lamports",
       type: "numeric",
       nullable: false,
     }
