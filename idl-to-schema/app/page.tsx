@@ -2,6 +2,8 @@
 
 import Form from "@/components/Form";
 import GeneratedCode from "@/components/GeneratedCode";
+import Button from "@/components/ui/button";
+import { downloadSQL } from "@/lib/download";
 import { idlToDatabaseSchema } from "@/lib/idl-to-schema";
 import { useState } from "react";
 
@@ -15,14 +17,18 @@ CREATE TABLE "NFT" (
 export default function Home() {
   const [sql, setSql] = useState(sampleSql);
   const [accountCount, setAccountCount] = useState(0);
+  const [generated, setGenerated] = useState(false);
 
   const handleSubmit = (fileStr: string) => {
     try {
+      setGenerated(false);
       const { accountCount, sql } = idlToDatabaseSchema(JSON.parse(fileStr));
       setAccountCount(accountCount);
       setSql(sql ?? "");
+      setGenerated(true);
     } catch (error: any) {
       alert(error?.message);
+      setGenerated(false);
     }
   };
 
@@ -36,9 +42,12 @@ export default function Home() {
       </p>
       <Form onSubmit={handleSubmit} />
       <div className="w-full max-w-screen-md mx-auto mt-20">
-        <p className="text-right mb-5 font-semibold">
-          Accounts: {accountCount}
-        </p>
+        <div className="flex items-center justify-between mb-5">
+          {generated && (
+            <Button onClick={() => downloadSQL(sql)}>Download</Button>
+          )}
+          <p className="font-semibold">Accounts: {accountCount}</p>
+        </div>
         <GeneratedCode text={sql} />
       </div>
     </main>
