@@ -19,7 +19,8 @@ export default function Header() {
             as="a"
             label="Github"
             target="_blank"
-            href="https://github.com/Shyft-to"
+            // TODO will update after the PR was merged
+            href="https://github.com/Shyft-to/community-projects/tree/idl-to-sql"
           >
             <GithubIcon />
           </IconButton>

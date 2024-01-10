@@ -28,7 +28,7 @@ export default function Form({
   return (
     <>
       <form
-        className="max-w-screen-md w-full gap-4 flex items-center"
+        className="max-w-screen-md w-full gap-6 flex items-center"
         onSubmit={handleSubmit}
       >
         <label htmlFor="file-input" className="sr-only">
@@ -43,7 +43,7 @@ export default function Form({
           onChange={handleChange}
         />
 
-        <Button className="self-stretch" type="submit">
+        <Button className="self-stretch px-8 text-base" type="submit">
           Generate
         </Button>
       </form>

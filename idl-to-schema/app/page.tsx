@@ -14,11 +14,13 @@ CREATE TABLE "NFT" (
 
 export default function Home() {
   const [sql, setSql] = useState(sampleSql);
+  const [accountCount, setAccountCount] = useState(0);
 
   const handleSubmit = (fileStr: string) => {
     try {
-      const result = idlToDatabaseSchema(JSON.parse(fileStr));
-      setSql(result ?? "");
+      const { accountCount, sql } = idlToDatabaseSchema(JSON.parse(fileStr));
+      setAccountCount(accountCount);
+      setSql(sql ?? "");
     } catch (error: any) {
       alert(error?.message);
     }
@@ -26,11 +28,19 @@ export default function Home() {
 
   return (
     <main className="container px-4 md:px-8 flex mx-auto flex-col items-center py-20">
-      <h2 className="text-4xl text-white font-extrabold text-center mb-10">
+      <h2 className="text-4xl text-white font-extrabold text-center mb-2">
         IDL To SQL
       </h2>
+      <p className="text-xl text-slate-200 font-medium text-center mb-10">
+        Convert Solana IDL to SQL Schema
+      </p>
       <Form onSubmit={handleSubmit} />
-      <GeneratedCode text={sql} />
+      <div className="w-full max-w-screen-md mx-auto mt-20">
+        <p className="text-right mb-5 font-semibold">
+          Accounts: {accountCount}
+        </p>
+        <GeneratedCode text={sql} />
+      </div>
     </main>
   );
 }

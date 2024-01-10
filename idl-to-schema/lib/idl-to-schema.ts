@@ -10,9 +10,10 @@ export const idlToDatabaseSchema = (idl: Idl) => {
       return createTableSchemaFromIdl(idl, accountDef.name);
     });
 
-    return tableSchemas.join("\n");
+    return { accountCount: tableSchemas.length, sql: tableSchemas.join("\n") };
   } catch (error) {
     console.error(error);
+    throw error
   }
 };
 
@@ -96,7 +97,7 @@ const IDL_TO_DB_COLUMN: Record<IdlFields, string> = {
   bytes: "bytea",
 };
 
-function getColumnType(field: IdlField): TableField {
+export function getColumnType(field: IdlField): TableField {
   if (typeof field.type === "object") {
     if ("option" in field.type) {
       const type = getColumnType({ name: field.name, type: field.type.option });
@@ -134,12 +135,17 @@ function getColumnType(field: IdlField): TableField {
 }
 
 function getColumnSpec(field: TableField): string {
-  return `"${field.name}" ${field.type} ${field.isArray ? "ARRAY" : ""} ${
-    field.primaryKey ? "PRIMARY KEY" : ""
-  }`;
+  return [
+    `"${field.name}"`,
+    field.type,
+    field.isArray ? "ARRAY" : "",
+    field.primaryKey ? "PRIMARY KEY" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
 }
 
-function convertTableMappinsToSchema(
+export function convertTableMappinsToSchema(
   tableName: string,
   columns: TableField[]
 ): string {
