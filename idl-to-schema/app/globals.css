@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply text-grey;
+  background-color: #111;
+}
+
+@layer utilities {
+  .animated-text {
+    @apply font-semibold text-sm overflow-hidden whitespace-nowrap pr-5 text-amber-500;
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 3s ease-in-out;
+}
+
+.fade-in.show {
+  opacity: 1;
+}
+
+.slick-slider .slick-arrow:before {
+  color: #f59e0b;
+  font-size: 1rem;
+}
+
+.slick-slider .slick-dots button:before {
+  font-size: 1rem;
+  color: #f59e0b;
+}
+
+.slick-slider .slick-dots li.slick-active button::before {
+  color: #f59e0b;
+}
+.slick-slider .slick-dots {
+  bottom: 0px;
+}
+
+.slick-slider .slick-dots li {
+  margin: 0 0.5rem;
+}
