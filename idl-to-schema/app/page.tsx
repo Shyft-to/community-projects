@@ -16,12 +16,14 @@ CREATE TABLE "NFT" (
 
 export default function Home() {
   const [sql, setSql] = useState(sampleSql);
+  const [filename, setFilename] = useState("");
   const [accountCount, setAccountCount] = useState(0);
   const [generated, setGenerated] = useState(false);
 
-  const handleSubmit = (fileStr: string) => {
+  const handleSubmit = (fileStr: string, filename?: string) => {
     try {
       setGenerated(false);
+      setFilename(filename ?? "");
       const { accountCount, sql } = idlToDatabaseSchema(JSON.parse(fileStr));
       setAccountCount(accountCount);
       setSql(sql ?? "");
@@ -40,11 +42,13 @@ export default function Home() {
       <p className="text-xl text-slate-200 font-medium text-center mb-10">
         Convert Solana IDL to SQL Schema
       </p>
+
       <Form onSubmit={handleSubmit} />
+
       <div className="w-full max-w-screen-md mx-auto mt-20">
         <div className="flex items-center justify-between mb-5">
           {generated && (
-            <Button onClick={() => downloadSQL(sql)}>Download</Button>
+            <Button onClick={() => downloadSQL(sql, filename)}>Download</Button>
           )}
           <p className="font-semibold">Accounts: {accountCount}</p>
         </div>

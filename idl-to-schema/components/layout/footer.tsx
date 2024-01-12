@@ -97,6 +97,15 @@ export default function Footer() {
             <ul className="space-y-2">
               <li className="text-sm">
                 <a
+                  href="https://docs.shyft.to/solana-indexers/instant-graphql-apis"
+                  target="_blank"
+                  className="hover:text-brand"
+                >
+                  GraphQL APIs
+                </a>
+              </li>
+              <li className="text-sm">
+                <a
                   href="https://docs.shyft.to/start-hacking/nft"
                   target="_blank"
                   className="hover:text-brand"
