@@ -1,5 +1,7 @@
 # Convert Solana IDL to SQL Schema
 
+https://github.com/Shyft-to/community-projects/blob/main/_assets/idl-to-sql.mp4
+
 ## Getting Started
 
 1. Clone repository:
