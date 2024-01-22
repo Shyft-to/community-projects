@@ -2,8 +2,6 @@ import { Network, ShyftSdk } from '@shyft-to/js';
 import 'dotenv/config';
 import { gql, GraphQLClient } from 'graphql-request';
 
-// const COLLECTION = 'J1S9H3QjnRtBbbuD4HjPV6RpRhwuk4zKbxsnCHuTgh9w';
-
 const endpoint = `https://programs.shyft.to/v0/graphql/?api_key=${process.env.SHYFT_API_KEY}`;
 
 const graphQLClient = new GraphQLClient(endpoint, {
@@ -26,14 +24,23 @@ async function start() {
   console.log('Collection address', args[0]);
 
   try {
-    const assetsByGroup = await shyft.rpc.getAssetsByGroup({
-      groupKey: 'collection',
-      groupValue: args[0],
-      page: 1,
-      limit: 1000,
-    });
-    console.log('Fetched NFT ', assetsByGroup.total);
-    const nftAddresses = assetsByGroup.items.map((nft) => nft.id);
+    let page = 1;
+    let assets = [];
+
+    while (page > 0) {
+      const assetsByGroup = await shyft.rpc.getAssetsByGroup({
+        groupKey: 'collection',
+        groupValue: args[0],
+        page,
+        limit: 1000,
+      });
+
+      assets.push(...assetsByGroup.items);
+      page = assetsByGroup.total !== 1000 ? -1 : page + 1;
+    }
+
+    console.log('Total NFT ', assets.length);
+    const nftAddresses = assets.map((nft) => nft.id);
 
     const [magicEden, tensor, sniper] = await Promise.all([
       queryMagicEdenListingState(nftAddresses),
@@ -73,8 +80,8 @@ async function start() {
     );
 
     if (smallest) {
-      console.log('The floor price: ', smallest.price / 10 ** 9);
-      console.log(smallest);
+      console.log(`The floor price: ${smallest.price / 10 ** 9} (No fees yet)`);
+      console.log('The NFT: ', smallest.mint);
     } else {
       console.log('Cannot find the floor price of this collection');
     }
