@@ -21,7 +21,8 @@ async function start() {
     console.error('No command-line arguments provided.');
     return;
   }
-  console.log('Collection address', args[0]);
+
+  console.log('Fetching mintlist for collection address', args[0]);
 
   try {
     let page = 1;
@@ -42,15 +43,29 @@ async function start() {
     console.log('Total NFT ', assets.length);
     const nftAddresses = assets.map((nft) => nft.id);
 
+    const t0 = performance.now();
+
     const [magicEden, tensor, sniper] = await Promise.all([
       queryMagicEdenListingState(nftAddresses),
       queryTensorListingState(nftAddresses),
       querySniperListingState(nftAddresses),
     ]);
 
+    const t1 = performance.now();
+
+    console.log(`Fetched Active listings for ${args[0]} in: ${t1 - t0} ms`);
+
+    console.log('Magic Eden Listings', magicEden.length);
+    console.log('Tensor Listings', tensor.length);
+    console.log('Sniper Listings', sniper.length);
+
     const smallestOne = findSmallestItem(magicEden, 'buyerPrice');
     const smallestTwo = findSmallestItem(tensor, 'price');
     const smallestThree = findSmallestItem(sniper, 'price');
+
+    console.log('Smallest Magic Eden', smallestOne);
+    console.log('Smallest Tensor', smallestTwo);
+    console.log('Smallest Sniper', smallestThree);
 
     const smallest = findSmallestItem(
       [
@@ -80,8 +95,8 @@ async function start() {
     );
 
     if (smallest) {
-      console.log(`The floor price: ${smallest.price / 10 ** 9} (No fees yet)`);
-      console.log('The NFT: ', smallest.mint);
+      console.log(`The floor price: ${smallest.price / 10 ** 9} (without fees)`);
+      console.log('Floor price NFT: ', smallest.mint);
     } else {
       console.log('Cannot find the floor price of this collection');
     }
