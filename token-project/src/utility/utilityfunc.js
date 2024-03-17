@@ -1,5 +1,5 @@
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
-import {  clusterApiUrl, Connection,PublicKey } from "@solana/web3.js";
+import {  clusterApiUrl } from "@solana/web3.js";
 const endpoint = {
     http: {
       devnet: 'http://api.devnet.solana.com',

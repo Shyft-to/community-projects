@@ -125,6 +125,7 @@ const CreateToken = () => {
             const ret_result = await signAndConfirmTransaction(net,transaction,callback);
             console.log(ret_result);
             console.log('minted',valueMinted);
+            // setSigning(false);
           }
           else
           {

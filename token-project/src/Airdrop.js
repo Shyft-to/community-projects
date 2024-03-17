@@ -93,7 +93,7 @@ const Airdrop = () => {
         // Attaching the  data
         data: {
           "network": net,
-          "wallet": walletId,
+          "mint_authority": walletId,
           "token_address": tokAddr,
           "amount": Number(amt),
           "receiver":recAddr
@@ -114,6 +114,8 @@ const Airdrop = () => {
               callback
             );
             console.log(ret_result);
+            // setSigning(false);
+            // navigate(`/wallet/${walletId}`);
           } else {
             setMainErr(res.data.message);
             setSending(false);

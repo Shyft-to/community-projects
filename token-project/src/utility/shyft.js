@@ -1,12 +1,13 @@
-import {clusterApiUrl, Connection, Keypair, Transaction } from '@solana/web3.js';
+import { Connection, Keypair, Transaction } from '@solana/web3.js';
 import { NodeWallet } from '@metaplex/js';
 import { decode } from 'bs58';
 import { Buffer } from 'buffer';
+import { clusterUrl } from './utilityfunc';
 
 //import { ShyftWallet } from '../types';
 
 export async function confirmTransactionFromBackend(network, encodedTransaction, privateKey) {
-  const connection = new Connection(clusterApiUrl(network), 'confirmed');
+  const connection = new Connection(clusterUrl(network), 'confirmed');
   const feePayer = Keypair.fromSecretKey(decode(privateKey));
   const wallet = new NodeWallet(feePayer);
   const recoveredTransaction = Transaction.from(
