@@ -94,7 +94,7 @@ const CreateToken = () => {
       formData.append("wallet",walletId)
       formData.append("name",name);
       formData.append("symbol",symbol);
-      formData.append("desc",desc);
+      formData.append("description",desc);
       formData.append("decimals",decis);
       formData.append("file",img);
       axios({
